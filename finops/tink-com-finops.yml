@@ -1,0 +1,123 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Tink
+providerId: tink-com
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - Open Banking
+  - PSD2
+description: >
+  FOCUS-aligned FinOps definition for Tink's Open Banking and Payment
+  Initiation services. Tink bills on a contract basis per product with a
+  mix of per-call, per-active-user, and per-report metering depending on
+  the contracted product. No public per-unit rate card.
+sources:
+  - https://tink.com/pricing/
+  - https://docs.tink.com/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Tink (Visa)
+serviceCategory: Open Banking
+billingModel:
+  pricingCategory: Contract
+  billingFrequency: Monthly
+  billingCurrency: EUR
+  chargeCategories:
+    - Usage
+    - Subscription
+    - Tax
+    - Adjustment
+  primaryUnit: report
+  secondaryUnits:
+    - api_call
+    - active_user
+    - payment
+focusColumns:
+  ServiceName: Tink API
+  ServiceCategory: Open Banking
+  ProviderName: Tink
+  PublisherName: Tink (Visa)
+  InvoiceIssuerName: Tink AB
+  PricingCategory: Contract
+  PricingUnit: report
+  BillingCurrency: EUR
+meters:
+  - name: account_check_reports
+    unit: report
+    aggregation: count
+    dimensions:
+      - market
+      - tier
+  - name: business_account_check_reports
+    unit: report
+    aggregation: count
+    dimensions:
+      - market
+  - name: income_check_reports
+    unit: report
+    aggregation: count
+    dimensions:
+      - market
+  - name: expense_check_reports
+    unit: report
+    aggregation: count
+    dimensions:
+      - market
+  - name: risk_insights_reports
+    unit: report
+    aggregation: count
+    dimensions:
+      - market
+  - name: pis_payments_initiated
+    unit: payment
+    aggregation: count
+    dimensions:
+      - market
+      - currency
+      - payment_type
+  - name: pis_payments_executed
+    unit: payment
+    aggregation: count
+    dimensions:
+      - market
+      - currency
+  - name: refunds_initiated
+    unit: refund
+    aggregation: count
+    dimensions:
+      - market
+      - currency
+  - name: active_users_continuous_access
+    unit: active_user
+    aggregation: count
+    dimensions:
+      - market
+      - product
+  - name: data_api_requests
+    unit: api_call
+    aggregation: count
+    dimensions:
+      - endpoint
+      - market
+costAttribution:
+  - tag: provider_consent_id
+    description: Trace cost back to the bank consent used to fetch data.
+  - tag: external_user_id
+    description: Trace cost back to the partner's end user.
+  - tag: market
+    description: Trace cost by market (PSD2 country code).
+  - tag: product
+    description: Trace cost by Tink product (Account Check, Transactions, Risk Insights, Payments, etc.).
+notes:
+  - Tink does not expose a real-time cost API; invoices are reconciled monthly.
+  - Plans, rate limits, and finops files for Tink are marked unreconciled because per-unit pricing is not publicly disclosed.

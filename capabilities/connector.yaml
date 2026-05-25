@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tink Connector
+  description: Push partner-collected accounts and transactions into the Tink platform via the Connector API for enrichment and risk reporting.
+  tags:
+    - Tink
+    - Connector
+    - Data Ingestion
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      TINK_BEARER_TOKEN: TINK_BEARER_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: connector
+      baseUri: https://api.tink.com
+      description: Tink Connector business capability.
+      resources:
+        - name: connector-accounts
+          path: /connector/users/{external_user_id}/accounts
+          operations:
+            - name: ingest
+              method: POST
+              description: Ingest a batch of partner accounts.
+              outputRawFormat: json
+              inputParameters:
+                - name: external_user_id
+                  in: path
+                  type: string
+                  required: true
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+        - name: connector-transactions
+          path: /connector/users/{external_user_id}/transactions
+          operations:
+            - name: ingest
+              method: POST
+              description: Ingest a batch of partner transactions.
+              outputRawFormat: json
+              inputParameters:
+                - name: external_user_id
+                  in: path
+                  type: string
+                  required: true
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+      authentication:
+        type: bearer
+        value: '{{env.TINK_BEARER_TOKEN}}'
+        placement: header
+  exposes:
+    - type: rest
+      namespace: connector-rest
+      port: 8080
+      description: REST adapter for Tink Connector.
+      resources:
+        - path: /v1/connector/users/{external_user_id}/accounts
+          name: connector-accounts
+          operations:
+            - method: POST
+              name: ingest
+              call: connector.ingest
+              with:
+                external_user_id: rest.path.external_user_id
+                body: rest.body

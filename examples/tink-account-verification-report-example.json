@@ -1,0 +1,44 @@
+{
+  "id": "0f1b9c0c-3a4d-4d7f-9c0f-1a9e8c7d6f01",
+  "market": "GB",
+  "locale": "en_GB",
+  "timestamp": "2026-05-25T12:30:42Z",
+  "accounts": [
+    {
+      "id": "acc_a1b2c3d4",
+      "name": "Personal Current Account",
+      "type": "CHECKING",
+      "currency": "GBP",
+      "holderName": "Jane Doe",
+      "balance": { "amount": "1842.55", "currencyCode": "GBP" },
+      "identifiers": {
+        "iban": "GB29NWBK60161331926819",
+        "sortCodeAccountNumber": {
+          "sortCode": "601613",
+          "accountNumber": "31926819"
+        }
+      }
+    }
+  ],
+  "identities": [
+    {
+      "name": "Jane Doe",
+      "dateOfBirth": "1989-04-12",
+      "emails": ["jane.doe@example.com"],
+      "addresses": [
+        {
+          "country": "GB",
+          "city": "London",
+          "postalCode": "EC1A 1BB",
+          "addressLine": "1 Example Street"
+        }
+      ]
+    }
+  ],
+  "userMatch": {
+    "matchedName": true,
+    "matchedDateOfBirth": true,
+    "matchedAddress": true,
+    "matchScore": 0.98
+  }
+}

@@ -1,0 +1,86 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tink OAuth
+  description: Mint Tink client access tokens, exchange authorization codes for user tokens, and create delegated grants for Tink Link.
+  tags:
+    - Tink
+    - OAuth
+    - Authentication
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      TINK_CLIENT_ID: TINK_CLIENT_ID
+      TINK_CLIENT_SECRET: TINK_CLIENT_SECRET
+capability:
+  consumes:
+    - type: http
+      namespace: oauth
+      baseUri: https://api.tink.com
+      description: Tink OAuth business capability.
+      resources:
+        - name: token
+          path: /api/v1/oauth/token
+          operations:
+            - name: createtoken
+              method: POST
+              description: Issue an OAuth 2.0 token (client_credentials, authorization_code, refresh_token).
+              outputRawFormat: json
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+        - name: authorization-grant
+          path: /api/v1/oauth/authorization-grant
+          operations:
+            - name: createauthorizationgrant
+              method: POST
+              description: Create an authorization grant code for an existing user.
+              outputRawFormat: json
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+        - name: delegated-authorization-grant
+          path: /api/v1/oauth/authorization-grant/delegate
+          operations:
+            - name: createdelegatedgrant
+              method: POST
+              description: Create a delegated authorization grant.
+              outputRawFormat: json
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+        - name: user-create
+          path: /api/v1/user/create
+          operations:
+            - name: createuser
+              method: POST
+              description: Create a permanent Tink user.
+              outputRawFormat: json
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+      authentication:
+        type: none
+  exposes:
+    - type: rest
+      namespace: oauth-rest
+      port: 8080
+      description: REST adapter for Tink OAuth.
+      resources:
+        - path: /v1/oauth/token
+          name: token
+          operations:
+            - method: POST
+              name: createtoken
+              call: oauth.createtoken
+              with:
+                body: rest.body

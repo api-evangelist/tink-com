@@ -1,0 +1,65 @@
+extends:
+  - spectral:oas
+rules:
+  # OpenAPI 3.1 enforced across Tink specs.
+  oas3-api-servers: error
+  # Tink uses kebab-case for path segments.
+  tink-paths-kebab-case:
+    description: Tink path segments must be kebab-case (lowercase, hyphen-separated).
+    severity: error
+    given: $.paths.*~
+    then:
+      function: pattern
+      functionOptions:
+        match: '^(/[a-z0-9-]+(/\{[a-zA-Z0-9_]+\})?(:[a-z-]+)?)+$'
+  # Tink operations must be summarised in Title Case starting with "Tink".
+  tink-operation-summary-title-case:
+    description: Tink operation summaries must use Title Case and begin with "Tink".
+    severity: warn
+    given: $.paths.*[get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^Tink [A-Z]'
+  # Every operation must declare an operationId in camelCase.
+  tink-operation-id-camel-case:
+    description: operationId must be lowerCamelCase.
+    severity: error
+    given: $.paths.*[get,post,put,patch,delete].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]*$'
+  # All error responses must reference the Error schema.
+  tink-error-schema-reused:
+    description: 4xx and 5xx responses must reuse the shared Error schema component.
+    severity: warn
+    given: $.paths.*[get,post,put,patch,delete].responses[?(@property.match(/^(4|5)\d{2}$/))]
+    then:
+      field: content.application/json.schema.$ref
+      function: truthy
+  # Tink requires Bearer authentication on every non-token endpoint.
+  tink-bearer-auth-required:
+    description: Bearer authentication must be declared on every non-oauth endpoint.
+    severity: warn
+    given: $.paths[?(!@property.match(/oauth/))].*.security
+    then:
+      function: truthy
+  # Every API must declare https://api.tink.com (EU) as a server URL.
+  tink-server-url-required:
+    description: Tink specs must list https://api.tink.com as a production server.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://api\.(us\.)?tink\.com$'
+  # Money uses ISO 4217 currency codes.
+  tink-iso-currency:
+    description: Currency fields must reference a string named currencyCode or currency.
+    severity: info
+    given: $.components.schemas..properties.[currency,currencyCode].type
+    then:
+      function: enumeration
+      functionOptions:
+        values: [string]

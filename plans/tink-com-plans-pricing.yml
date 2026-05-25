@@ -1,0 +1,79 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Tink
+providerId: tink-com
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Open Banking
+  - PSD2
+  - Payments
+  - Risk Decisioning
+description: >
+  Tink publishes two commercial tiers — Standard and Enterprise — with all
+  per-call pricing quoted privately to existing customers. No public per-call
+  rate card exists. Net-new prospects must engage Tink sales to obtain a
+  custom quote; pricing varies by market, product mix, expected volume, and
+  contract length. The Enterprise tier unlocks Risk Insights, Income Check,
+  Expense Check, Business Account Check, Business Transactions, Money
+  Manager, and Payment Initiation alongside dedicated support SLAs and
+  background data refresh.
+sources:
+  - https://tink.com/pricing/
+  - https://tink.com/contact-sales/
+plans:
+  - id: tink-standard
+    name: Standard
+    type: contract
+    description: Entry tier covering core data products with on-demand refresh.
+    entries:
+      - label: Pricing
+        name: contract
+        type: contract
+        metric: contract
+        limit: -1
+        timeFrame: usage
+        geo: EU
+        unit: 1
+        price: contact-sales
+        userMultiplied: false
+    elements:
+      - name: Account Check
+      - name: Transactions
+      - name: Tink Link consent flow
+      - name: On-demand data refresh
+      - name: 6,000+ bank connections across Europe
+      - name: Standard developer support
+  - id: tink-enterprise
+    name: Enterprise
+    type: contract
+    description: Premium tier with background refresh, guaranteed SLAs, and access to risk-decisioning and payments products.
+    entries:
+      - label: Pricing
+        name: contract
+        type: contract
+        metric: contract
+        limit: -1
+        timeFrame: usage
+        geo: EU
+        unit: 1
+        price: contact-sales
+        userMultiplied: false
+    elements:
+      - name: All Standard tier products
+      - name: Risk Insights
+      - name: Income Check
+      - name: Expense Check
+      - name: Business Account Check
+      - name: Business Transactions
+      - name: Money Manager
+      - name: Payment Initiation (Pay by Bank)
+      - name: Background data refresh
+      - name: Guaranteed response and resolution times
+      - name: Dedicated account management
+notes:
+  - Tink's pricing page explicitly states the published rates apply only to existing customers under active commercial agreements.
+  - PSD2-licensed integration via Tink removes the need for individual customer PSD2 authorisation.
+  - US Pay by Bank pricing is contracted separately under the Tink US entity.

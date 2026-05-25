@@ -1,0 +1,28 @@
+{
+  "id": "tx_2c4e6f8a",
+  "accountId": "acc_a1b2c3d4",
+  "amount": {
+    "value": { "scale": "2", "unscaledValue": "-4299" },
+    "currencyCode": "GBP"
+  },
+  "descriptions": {
+    "original": "NETFLIX.COM 866-579-7172",
+    "display": "Netflix"
+  },
+  "dates": {
+    "booked": "2026-05-23",
+    "value": "2026-05-23"
+  },
+  "status": "BOOKED",
+  "categories": {
+    "pfm": { "id": "expenses:entertainment.subscriptions", "name": "Subscriptions" }
+  },
+  "merchantInformation": {
+    "merchantName": "Netflix",
+    "merchantCategoryCode": "4899"
+  },
+  "types": {
+    "type": "DEBIT",
+    "financialInstitutionTypeCode": "PMT"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tink-com/main/json-schema/tink-transaction-schema.json",
+  "title": "Tink Transaction",
+  "description": "Aggregated bank transaction returned by Tink Data API and Data Enrichment API.",
+  "type": "object",
+  "required": ["id", "accountId", "amount", "dates", "status"],
+  "properties": {
+    "id": { "type": "string" },
+    "accountId": { "type": "string" },
+    "amount": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "object",
+          "properties": {
+            "scale": { "type": "string" },
+            "unscaledValue": { "type": "string" }
+          }
+        },
+        "currencyCode": { "type": "string" }
+      }
+    },
+    "descriptions": {
+      "type": "object",
+      "properties": {
+        "original": { "type": "string" },
+        "display": { "type": "string" }
+      }
+    },
+    "dates": {
+      "type": "object",
+      "properties": {
+        "booked": { "type": "string", "format": "date" },
+        "value": { "type": "string", "format": "date" }
+      }
+    },
+    "status": { "type": "string", "enum": ["BOOKED", "PENDING", "UNDEFINED"] },
+    "categories": {
+      "type": "object",
+      "properties": {
+        "pfm": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" }
+          }
+        }
+      }
+    },
+    "merchantInformation": {
+      "type": "object",
+      "properties": {
+        "merchantCategoryCode": { "type": "string" },
+        "merchantName": { "type": "string" }
+      }
+    },
+    "types": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "financialInstitutionTypeCode": { "type": "string" }
+      }
+    }
+  }
+}

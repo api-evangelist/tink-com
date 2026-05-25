@@ -1,0 +1,359 @@
+aid: tink-com
+url: https://raw.githubusercontent.com/api-evangelist/tink-com/refs/heads/main/apis.yml
+name: Tink
+description: >-
+  Tink, a Visa solution acquired in 2022, is a European Open Banking platform
+  with 6,000+ bank connections across Europe and a US Pay by Bank stack.
+  Tink exposes a single API for PSD2-aggregated bank data (Accounts,
+  Transactions, Balances, Identities, Investments, Loans), value-added risk
+  reports (Account Check, Business Account Check, Income Check, Expense
+  Check, Risk Insights, Risk Categorisation), Money Manager BFM, Data
+  Enrichment, and PSD2 Payment Initiation Services (Pay by Bank, Auto
+  Payments, Variable Recurring Payments, Mandates, Refunds, Payouts).
+  Authentication is OAuth 2.0 with delegated user consent through the
+  Tink Link hosted flow.
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Open Banking
+  - PSD2
+  - Payment Initiation
+  - Account Aggregation
+  - Risk Decisioning
+  - Pay by Bank
+  - Finance
+  - Banking
+  - Europe
+  - Visa
+created: '2026-05-25'
+modified: '2026-05-25'
+maintainers:
+  - FN: API Evangelist
+    email: info@apievangelist.com
+    X-twitter: '@apievangelist'
+kind: contract
+access: 3rd-Party
+apis:
+  - aid: tink-com:tink-oauth-api
+    name: Tink OAuth API
+    description: OAuth 2.0 client-credentials, refresh, and delegated authorization-grant endpoints that gate every Tink API. Includes permanent user creation and Tink Link session delegation.
+    humanURL: https://docs.tink.com/api-reference/auth-api
+    baseURL: https://api.tink.com
+    tags:
+      - OAuth
+      - Authentication
+      - Users
+    properties:
+      - url: https://docs.tink.com/api-reference/auth-api
+        type: Documentation
+      - url: openapi/tink-oauth-api-openapi.yml
+        type: OpenAPI
+      - url: capabilities/oauth.yaml
+        type: NaftikoCapability
+  - aid: tink-com:tink-account-check-api
+    name: Tink Account Check API
+    description: Verify that a bank account belongs to the consumer or business presenting it. Returns verified account, identity, balance, and user-match results as JSON or PDF. Includes Business Account Check and Tink Link session creation with user info for identity matching.
+    humanURL: https://docs.tink.com/resources/account-check
+    baseURL: https://api.tink.com
+    tags:
+      - Account Check
+      - Account Verification
+      - KYC
+      - Onboarding
+    properties:
+      - url: https://docs.tink.com/resources/account-check
+        type: Documentation
+      - url: openapi/tink-account-check-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/tink-account-verification-report-schema.json
+        type: JSONSchema
+      - url: examples/tink-account-verification-report-example.json
+        type: Example
+      - url: capabilities/account-check.yaml
+        type: NaftikoCapability
+  - aid: tink-com:tink-data-api
+    name: Tink Data API
+    description: Read consented bank data from 6,000+ European banks. Lists accounts, balances, transactions, account parties, identities, investment holdings, and loan accounts. Includes on-demand balance refresh, credentials management, and provider-consent inspection.
+    humanURL: https://docs.tink.com/resources/transactions
+    baseURL: https://api.tink.com
+    tags:
+      - Accounts
+      - Transactions
+      - Balances
+      - Identities
+      - Investments
+      - Loans
+    properties:
+      - url: https://docs.tink.com/resources/transactions
+        type: Documentation
+      - url: openapi/tink-data-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/tink-transaction-schema.json
+        type: JSONSchema
+      - url: examples/tink-transaction-example.json
+        type: Example
+      - url: capabilities/data-transactions.yaml
+        type: NaftikoCapability
+  - aid: tink-com:tink-data-enrichment-api
+    name: Tink Data Enrichment API
+    description: Categorise raw bank transactions, identify the merchant, detect confirmed recurring transactions, and predict future recurring payments. Powers Money Manager, Expense Check, Income Check, and Risk Insights downstream.
+    humanURL: https://docs.tink.com/resources/data-enrichment
+    baseURL: https://api.tink.com
+    tags:
+      - Data Enrichment
+      - Categorisation
+      - Recurring Transactions
+      - Merchants
+    properties:
+      - url: https://docs.tink.com/resources/data-enrichment
+        type: Documentation
+      - url: openapi/tink-data-enrichment-api-openapi.yml
+        type: OpenAPI
+      - url: capabilities/data-enrichment.yaml
+        type: NaftikoCapability
+  - aid: tink-com:tink-payments-api
+    name: Tink Payments API
+    description: PSD2 Payment Initiation Services. Initiate single payments, refunds, payouts, and create mandates for Auto Payments and sweeping Variable Recurring Payments. Available in EU under PSD2 and in the US via the Pay by Bank stack at api.us.tink.com.
+    humanURL: https://docs.tink.com/resources/payments
+    baseURL: https://api.tink.com
+    tags:
+      - Payments
+      - Payment Initiation
+      - PSD2
+      - Pay by Bank
+      - Mandates
+      - Refunds
+      - Variable Recurring Payments
+    properties:
+      - url: https://docs.tink.com/resources/payments
+        type: Documentation
+      - url: openapi/tink-payments-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/tink-payment-schema.json
+        type: JSONSchema
+      - url: examples/tink-payment-example.json
+        type: Example
+      - url: capabilities/payments.yaml
+        type: NaftikoCapability
+  - aid: tink-com:tink-risk-reports-api
+    name: Tink Risk and Reports API
+    description: Decisioning-grade reports built on aggregated bank data — Income Check, Expense Check, Risk Insights, and Risk Categorisation — for affordability, underwriting, and lending decisions.
+    humanURL: https://docs.tink.com/resources/risk-insights
+    baseURL: https://api.tink.com
+    tags:
+      - Risk
+      - Income Check
+      - Expense Check
+      - Risk Insights
+      - Risk Categorisation
+      - Lending
+      - Affordability
+    properties:
+      - url: https://docs.tink.com/resources/risk-insights
+        type: Documentation
+      - url: https://docs.tink.com/resources/income-check
+        type: Documentation
+      - url: https://docs.tink.com/resources/expense-check
+        type: Documentation
+      - url: openapi/tink-risk-reports-api-openapi.yml
+        type: OpenAPI
+      - url: capabilities/risk-reports.yaml
+        type: NaftikoCapability
+  - aid: tink-com:tink-money-manager-api
+    name: Tink Money Manager API
+    description: Personal and business financial-management surface. Cash-flow summaries, recurring and one-off business budgets, a financial calendar of bills and invoices, and reconciliations against bank transactions.
+    humanURL: https://docs.tink.com/resources/money-manager
+    baseURL: https://api.tink.com
+    tags:
+      - Money Manager
+      - BFM
+      - Cash Flow
+      - Budgets
+      - Financial Calendar
+    properties:
+      - url: https://docs.tink.com/resources/money-manager
+        type: Documentation
+      - url: openapi/tink-money-manager-api-openapi.yml
+        type: OpenAPI
+      - url: capabilities/money-manager.yaml
+        type: NaftikoCapability
+  - aid: tink-com:tink-connector-api
+    name: Tink Connector API
+    description: Push partner-collected accounts and transactions into the Tink platform so they benefit from Tink categorisation, recurring detection, Money Manager, and risk reporting alongside PSD2-aggregated data.
+    humanURL: https://docs.tink.com/resources/connector
+    baseURL: https://api.tink.com
+    tags:
+      - Connector
+      - Data Ingestion
+    properties:
+      - url: https://docs.tink.com/resources/connector
+        type: Documentation
+      - url: openapi/tink-connector-api-openapi.yml
+        type: OpenAPI
+      - url: capabilities/connector.yaml
+        type: NaftikoCapability
+  - aid: tink-com:tink-webhooks-api
+    name: Tink Webhooks API
+    description: Register webhook endpoints that receive asynchronous events when reports are ready, payments and refunds change status, or consented bank data is refreshed.
+    humanURL: https://docs.tink.com/resources/webhooks
+    baseURL: https://api.tink.com
+    tags:
+      - Webhooks
+      - Events
+    properties:
+      - url: https://docs.tink.com/resources/webhooks
+        type: Documentation
+      - url: openapi/tink-webhooks-api-openapi.yml
+        type: OpenAPI
+      - url: capabilities/webhooks.yaml
+        type: NaftikoCapability
+common:
+  - url: https://tink.com/
+    type: Portal
+    name: Tink Home
+  - url: https://docs.tink.com/
+    type: Documentation
+    name: Tink Developer Docs
+  - url: https://console.tink.com/
+    type: Console
+    name: Tink Console
+  - url: https://tink.com/contact-sales/
+    type: SignUp
+    name: Contact Sales
+  - url: https://tink.com/pricing/
+    type: Pricing
+    name: Tink Pricing
+  - url: https://status.tink.com/
+    type: StatusPage
+    name: Tink Status
+  - url: https://docs.tink.com/changelog
+    type: ChangeLog
+    name: Tink Changelog
+  - url: https://tink.com/blog/
+    type: Blog
+    name: Tink Blog
+  - url: https://tink.com/terms-and-conditions/
+    type: TermsOfService
+    name: Terms and Conditions
+  - url: https://tink.com/privacy-policy/
+    type: PrivacyPolicy
+    name: Privacy Policy
+  - url: https://tink.com/security/
+    type: Security
+    name: Tink Security
+  - url: https://github.com/tink-ab
+    type: GitHubOrganization
+    name: Tink on GitHub
+  - url: https://www.linkedin.com/company/tink-ab/
+    type: LinkedIn
+    name: Tink on LinkedIn
+  - url: https://github.com/tink-ab/tink-postman
+    type: Postman
+    name: Tink Postman Collections (EU)
+  - url: https://github.com/tink-ab/tink-postman-us
+    type: Postman
+    name: Tink Postman Collections (US)
+  - url: https://github.com/tink-ab/tink-link-android
+    type: SDK
+    name: Tink Link Android SDK
+  - url: https://github.com/tink-ab/tink-link-ios
+    type: SDK
+    name: Tink Link iOS SDK
+  - url: https://github.com/tink-ab/tink-money-manager-android
+    type: SDK
+    name: Tink Money Manager Android SDK
+  - url: https://github.com/tink-ab/tink-money-manager-ios
+    type: SDK
+    name: Tink Money Manager iOS SDK
+  - url: https://github.com/tink-ab/terraform-provider-buildkite
+    type: Tools
+    name: Tink Terraform Provider for Buildkite
+  - url: rules/tink-rules.yml
+    type: SpectralRules
+    name: Tink Spectral Ruleset
+  - url: vocabulary/tink-com-vocabulary.yml
+    type: Vocabulary
+    name: Tink Vocabulary
+  - url: json-ld/tink-com-context.jsonld
+    type: JSONLD
+    name: Tink JSON-LD Context
+  - url: plans/tink-com-plans-pricing.yml
+    type: Plans
+    name: Tink Plans and Pricing
+  - url: rate-limits/tink-com-rate-limits.yml
+    type: RateLimits
+    name: Tink Rate Limits
+  - url: finops/tink-com-finops.yml
+    type: FinOps
+    name: Tink FinOps Surface
+  - type: Features
+    name: Features
+    data:
+      - name: 6,000+ Bank Connections
+        description: PSD2 and non-PSD2 connectivity across the Nordics, UK, DACH, Benelux, France, Iberia, Italy, Ireland, and Poland.
+      - name: PSD2 Payment Initiation
+        description: Single API for one-off payments, Variable Recurring Payments, Auto Payments, payouts, refunds, and mandates.
+      - name: Account Check and Business Account Check
+        description: Verified account ownership for individuals and businesses with optional identity match (name, DOB, address).
+      - name: Risk Insights and Risk Categorisation
+        description: Lender-grade affordability and risk-decisioning reports built on aggregated bank data.
+      - name: Income Check and Expense Check
+        description: Verified income streams and categorised expenses for underwriting and KYC.
+      - name: Money Manager
+        description: Cash-flow summaries, budgets, financial calendar, and reconciliations for SMB and personal apps.
+      - name: Data Enrichment
+        description: Tink categorisation taxonomy, merchant identification, and recurring-transaction detection and prediction.
+      - name: Connector API
+        description: Push partner-collected data into the Tink platform for downstream enrichment and reporting.
+      - name: Tink Link
+        description: Hosted bank-consent UX handling SCA and bank app-to-app redirects on mobile.
+      - name: Webhooks
+        description: Asynchronous notifications for report completion, payment and refund status, and credentials updates.
+      - name: SOC 2 Type II and PSD2 Licence
+        description: Single PSD2 licensed integration removes the need for customers to obtain their own PSD2 authorisation.
+  - type: UseCases
+    name: UseCases
+    data:
+      - name: Onboarding and KYC
+        description: Verify bank ownership and identity match in seconds with Account Check.
+      - name: Affordability and Underwriting
+        description: Risk Insights, Income Check, and Expense Check inform consumer and SMB lending decisions.
+      - name: Pay by Bank Checkout
+        description: Initiate account-to-account payments at checkout with one-off PIS or Auto Payments.
+      - name: Subscription Billing
+        description: Sweeping Variable Recurring Payments collect recurring charges directly from the customer's bank.
+      - name: Business Financial Management
+        description: Embed Money Manager dashboards in SMB banking and accounting apps.
+      - name: PFM and Personal Banking
+        description: Power personal finance experiences with categorised transactions and recurring detection.
+      - name: Payouts
+        description: Disburse funds back to a verified bank account using PIS payouts.
+      - name: Open Finance Composition
+        description: Stitch PSD2 data with partner-collected data via Connector API for a unified view.
+  - type: Integrations
+    name: Integrations
+    data:
+      - name: Visa
+        description: Tink is a Visa solution following the 2022 acquisition; integrates with Visa's payment and risk products.
+      - name: Adyen
+        description: Pay by Bank rails for Adyen merchants.
+      - name: Revolut
+        description: Open Banking data and payments connectivity for Revolut.
+      - name: Younited
+        description: Risk decisioning powered by Tink for the European consumer lender.
+      - name: Bank Norwegian
+        description: Account aggregation and risk reports for the Nordic digital bank.
+      - name: PostNord Strålfors
+        description: Payment Initiation Services for the Nordic communications and logistics group.
+  - type: Solutions
+    name: Solutions
+    data:
+      - name: Banking
+        description: Aggregation, money management, and PIS for retail and business banking platforms.
+      - name: Lending
+        description: Income, expense, risk, and account verification for credit underwriting.
+      - name: Payments
+        description: Pay by Bank, VRP, mandates, refunds, and payouts for ecommerce, billers, and PSPs.
+      - name: Wealth and Investments
+        description: Holdings, loans, and balance aggregation for wealth-management and PFM apps.
+      - name: SMB
+        description: Money Manager BFM, business budgets, cash-flow, and Business Account Check for SMB platforms.

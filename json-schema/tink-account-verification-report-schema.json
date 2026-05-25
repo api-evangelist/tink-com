@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tink-com/main/json-schema/tink-account-verification-report-schema.json",
+  "title": "Tink Account Verification Report",
+  "description": "Account Check report verifying ownership, balance, identity, and user-match status for one or more consented bank accounts.",
+  "type": "object",
+  "required": ["id", "market", "timestamp", "accounts"],
+  "properties": {
+    "id": { "type": "string" },
+    "market": { "type": "string", "examples": ["GB", "SE", "DE", "FR"] },
+    "locale": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "accounts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/VerifiedAccount" }
+    },
+    "identities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Identity" }
+    },
+    "userMatch": { "$ref": "#/$defs/UserMatch" }
+  },
+  "$defs": {
+    "VerifiedAccount": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["CHECKING", "SAVINGS", "CREDIT_CARD", "LOAN", "INVESTMENT", "OTHER"] },
+        "balance": { "$ref": "#/$defs/Money" },
+        "currency": { "type": "string" },
+        "holderName": { "type": "string" },
+        "identifiers": {
+          "type": "object",
+          "properties": {
+            "iban": { "type": "string" },
+            "bban": { "type": "string" },
+            "sortCodeAccountNumber": {
+              "type": "object",
+              "properties": {
+                "sortCode": { "type": "string" },
+                "accountNumber": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Identity": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "dateOfBirth": { "type": "string", "format": "date" },
+        "emails": { "type": "array", "items": { "type": "string", "format": "email" } },
+        "addresses": { "type": "array", "items": { "$ref": "#/$defs/Address" } }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "country": { "type": "string" },
+        "city": { "type": "string" },
+        "postalCode": { "type": "string" },
+        "addressLine": { "type": "string" }
+      }
+    },
+    "Money": {
+      "type": "object",
+      "required": ["amount", "currencyCode"],
+      "properties": {
+        "amount": { "type": "string" },
+        "currencyCode": { "type": "string" }
+      }
+    },
+    "UserMatch": {
+      "type": "object",
+      "properties": {
+        "matchedName": { "type": "boolean" },
+        "matchedDateOfBirth": { "type": "boolean" },
+        "matchedAddress": { "type": "boolean" },
+        "matchScore": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}

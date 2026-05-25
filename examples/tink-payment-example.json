@@ -1,0 +1,26 @@
+{
+  "id": "pmt_8f3e2a91",
+  "status": "AUTHORIZED",
+  "amount": "100.00",
+  "currency": "EUR",
+  "market": "DE",
+  "created": "2026-05-25T08:14:00Z",
+  "updated": "2026-05-25T08:14:42Z",
+  "redirectUrl": "https://link.tink.com/1.0/pay/?client_id=demo&payment_request_id=pmt_8f3e2a91",
+  "destinations": [
+    {
+      "name": "Acme GmbH",
+      "country": "DE",
+      "accountNumber": { "type": "IBAN", "value": "DE89370400440532013000" }
+    }
+  ],
+  "sourceAccount": {
+    "name": "Jane Doe",
+    "country": "DE",
+    "accountNumber": { "type": "IBAN", "value": "DE44500105175407324931" }
+  },
+  "remittanceInformation": {
+    "type": "REFERENCE",
+    "value": "ORDER-1042"
+  }
+}

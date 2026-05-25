@@ -1,0 +1,88 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tink Data Transactions
+  description: List PSD2-aggregated accounts, balances, transactions, identities, investment holdings, and loan accounts from Tink Data API.
+  tags:
+    - Tink
+    - Open Banking
+    - Accounts
+    - Transactions
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      TINK_BEARER_TOKEN: TINK_BEARER_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: data
+      baseUri: https://api.tink.com
+      description: Tink Data API business capability.
+      resources:
+        - name: accounts
+          path: /data/v2/accounts
+          operations:
+            - name: list
+              method: GET
+              description: List user accounts.
+              outputRawFormat: json
+              inputParameters:
+                - name: pageSize
+                  in: query
+                  type: integer
+                - name: pageToken
+                  in: query
+                  type: string
+        - name: account-balances
+          path: /data/v2/accounts/{account_id}/balances
+          operations:
+            - name: getbalances
+              method: GET
+              description: Get balances for an account.
+              outputRawFormat: json
+              inputParameters:
+                - name: account_id
+                  in: path
+                  type: string
+                  required: true
+        - name: transactions
+          path: /data/v2/transactions
+          operations:
+            - name: list
+              method: GET
+              description: List transactions.
+              outputRawFormat: json
+              inputParameters:
+                - name: accountIdIn
+                  in: query
+                  type: string
+                - name: bookedDateGte
+                  in: query
+                  type: string
+                - name: bookedDateLte
+                  in: query
+                  type: string
+        - name: identities
+          path: /data/v2/identities
+          operations:
+            - name: list
+              method: GET
+              description: List bank-returned identities.
+              outputRawFormat: json
+      authentication:
+        type: bearer
+        value: '{{env.TINK_BEARER_TOKEN}}'
+        placement: header
+  exposes:
+    - type: rest
+      namespace: data-rest
+      port: 8080
+      description: REST adapter for Tink Data API.
+      resources:
+        - path: /v1/data/accounts
+          name: accounts
+          operations:
+            - method: GET
+              name: list
+              call: data.list

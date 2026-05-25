@@ -1,0 +1,114 @@
+vocabulary: Tink (tink.com)
+description: Controlled vocabulary for Tink, Visa's European Open Banking and account-to-account payments platform.
+created: '2026-05-25'
+modified: '2026-05-25'
+operational:
+  - dimension: Connectivity
+    terms:
+      - PSD2
+      - Open Banking
+      - Bank Aggregation
+      - SCA (Strong Customer Authentication)
+      - Tink Link
+      - Provider
+      - Credentials
+      - Provider Consent
+      - Refresh
+      - Continuous Access
+      - One-Time Access
+  - dimension: Identity
+    terms:
+      - Permanent User
+      - External User ID
+      - Identity Match
+      - Beneficial Owner
+      - Business
+      - KYC
+      - KYB
+  - dimension: Data
+    terms:
+      - Account
+      - Balance
+      - Transaction
+      - Holding
+      - Loan Account
+      - Party
+      - Categorisation
+      - Recurring Transaction
+      - Merchant Information
+      - MCC
+  - dimension: Risk and Decisioning
+    terms:
+      - Account Verification Report
+      - Business Account Verification Report
+      - Income Check Report
+      - Expense Check Report
+      - Risk Insights Report
+      - Risk Categorisation Report
+      - Risk Signal
+      - Affordability
+  - dimension: Payments
+    terms:
+      - Payment Initiation Service
+      - PIS
+      - Pay by Bank
+      - Mandate
+      - Variable Recurring Payment
+      - Sweeping VRP
+      - Auto Payment
+      - Payout
+      - Refund
+      - Remittance Information
+      - IBAN
+      - BBAN
+      - Sort Code
+  - dimension: Money Management
+    terms:
+      - Cash Flow Summary
+      - Business Budget
+      - Financial Calendar Event
+      - Reconciliation
+      - Predicted Recurring Transaction
+  - dimension: Events
+    terms:
+      - Webhook Endpoint
+      - Enabled Event
+      - Event Type
+      - Signature Verification
+capability:
+  - dimension: Use Cases
+    terms:
+      - Account Ownership Verification
+      - Income Verification
+      - Affordability Assessment
+      - Underwriting
+      - Onboarding
+      - PSD2 Payment Initiation
+      - Subscription Billing
+      - Sweeping
+      - Refund Processing
+      - Cash Flow Forecasting
+      - Expense Management
+  - dimension: Compliance
+    terms:
+      - PSD2
+      - GDPR
+      - SOC 2 Type II
+      - PCI DSS
+      - eIDAS
+      - PSD3 (forthcoming)
+  - dimension: Markets
+    terms:
+      - Nordics
+      - United Kingdom
+      - Germany
+      - France
+      - Spain
+      - Italy
+      - Netherlands
+      - Belgium
+      - Portugal
+      - Austria
+      - Ireland
+      - Poland
+      - United States

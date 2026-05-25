@@ -1,0 +1,51 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Tink
+providerId: tink-com
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Open Banking
+  - Rate Limiting
+  - PSD2
+description: >
+  Tink does not publish a single platform-wide rate limit. Limits are
+  configured per client and per product on the contract, with PSD2-imposed
+  caps that the underlying banks themselves enforce (typically four
+  background refreshes per 24 hours under the Berlin Group SCA exemption).
+  Tink returns 429 with a retry-after hint when a client exceeds its
+  contracted quota.
+sources:
+  - https://docs.tink.com/
+  - https://status.tink.com/
+  - https://www.berlin-group.org/
+headers:
+  retryAfter: retry-after
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+algorithm: token-bucket
+limits:
+  - tier: PSD2 Background Refresh
+    surface: Bank-side
+    cap: 4 refreshes per 24 hours per consent
+    notes: >
+      Imposed by PSD2 / Berlin Group on background data fetches without SCA.
+      User-initiated refreshes are unaffected.
+  - tier: Standard
+    surface: Tink API
+    cap: contract-defined
+    notes: Per-client RPS and daily-call quotas negotiated at contract signing.
+  - tier: Enterprise
+    surface: Tink API
+    cap: contract-defined
+    notes: Higher quotas, background refresh enabled, SLAs apply.
+  - tier: OAuth Token
+    surface: /api/v1/oauth/token
+    cap: client-credentials limited per client_id
+    notes: Issue access tokens sparingly and cache until close to expiry; refresh_token rotation is recommended for user tokens.
+notes:
+  - Specific RPS / RPM numbers are not published; integrators must request them in writing from their Tink account manager.
+  - Background refresh products (Balance Check, Money Manager) explicitly call out the PSD2 four-per-day SCA-free cap.

@@ -1,0 +1,101 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tink Account Check
+  description: Retrieve a personal or business Account Verification Report from Tink as JSON or PDF and create Tink Link sessions for user-matched flows.
+  tags:
+    - Tink
+    - Open Banking
+    - Account Check
+    - KYC
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      TINK_BEARER_TOKEN: TINK_BEARER_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: account-check
+      baseUri: https://api.tink.com
+      description: Tink Account Check business capability. Self-contained, no shared references.
+      resources:
+        - name: account-verification-report
+          path: /api/v1/account-verification-reports/{report_id}
+          operations:
+            - name: getreport
+              method: GET
+              description: Retrieve Account Verification Report as JSON.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: report_id
+                  in: path
+                  type: string
+                  required: true
+        - name: account-verification-report-pdf
+          path: /api/v1/account-verification-reports/{report_id}/pdf
+          operations:
+            - name: getreportpdf
+              method: GET
+              description: Retrieve Account Verification Report as PDF.
+              outputRawFormat: binary
+              inputParameters:
+                - name: report_id
+                  in: path
+                  type: string
+                  required: true
+                - name: template
+                  in: query
+                  type: string
+                  required: false
+        - name: business-account-verification-report
+          path: /data/v1/business-account-verification-reports/{report_id}
+          operations:
+            - name: getbusinessreport
+              method: GET
+              description: Retrieve Business Account Verification Report as JSON.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: report_id
+                  in: path
+                  type: string
+                  required: true
+        - name: link-session
+          path: /link/v1/session
+          operations:
+            - name: createlinksession
+              method: POST
+              description: Create a Tink Link session preloaded with user info.
+              outputRawFormat: json
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+      authentication:
+        type: bearer
+        value: '{{env.TINK_BEARER_TOKEN}}'
+        placement: header
+  exposes:
+    - type: rest
+      namespace: account-check-rest
+      port: 8080
+      description: REST adapter exposing Tink Account Check operations.
+      resources:
+        - path: /v1/account-verification-reports/{report_id}
+          name: account-verification-report
+          operations:
+            - method: GET
+              name: getreport
+              description: Retrieve Account Verification Report.
+              call: account-check.getreport
+              with:
+                report_id: rest.path.report_id

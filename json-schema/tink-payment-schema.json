@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tink-com/main/json-schema/tink-payment-schema.json",
+  "title": "Tink Payment",
+  "description": "Payment Initiation Service payment object including status, beneficiary, source account, and remittance info.",
+  "type": "object",
+  "required": ["id", "status", "amount", "currency"],
+  "properties": {
+    "id": { "type": "string" },
+    "status": { "type": "string", "enum": ["CREATED", "AUTHORIZED", "EXECUTED", "REJECTED", "CANCELLED", "REFUNDED", "FAILED"] },
+    "amount": { "type": "string" },
+    "currency": { "type": "string" },
+    "market": { "type": "string" },
+    "created": { "type": "string", "format": "date-time" },
+    "updated": { "type": "string", "format": "date-time" },
+    "redirectUrl": { "type": "string", "format": "uri" },
+    "destinations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Account" }
+    },
+    "sourceAccount": { "$ref": "#/$defs/Account" },
+    "remittanceInformation": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["UNSTRUCTURED", "REFERENCE"] },
+        "value": { "type": "string" }
+      }
+    }
+  },
+  "$defs": {
+    "Account": {
+      "type": "object",
+      "properties": {
+        "accountNumber": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["IBAN", "SORT_CODE", "BBAN", "ACCOUNT_NUMBER"] },
+            "value": { "type": "string" }
+          }
+        },
+        "name": { "type": "string" },
+        "country": { "type": "string" }
+      }
+    }
+  }
+}
