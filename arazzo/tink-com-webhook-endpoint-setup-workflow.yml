@@ -1,0 +1,94 @@
+arazzo: 1.0.1
+info:
+  title: Tink Register And Verify A Webhook Endpoint
+  summary: Register a webhook endpoint for selected event types, read it back to capture its signing secret, then confirm it is enabled in the endpoint list.
+  description: >-
+    The Tink Webhooks setup flow. It registers a webhook endpoint that Tink
+    will POST events to for the selected event types (report completions,
+    payment and refund status updates, credentials updates), reads the endpoint
+    back by id to capture its signing secret, and lists all endpoints to
+    confirm the new one is present and enabled. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: webhooksApi
+  url: ../openapi/tink-webhooks-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: register-and-verify-webhook
+  summary: Create a webhook endpoint, read its secret, and confirm it in the endpoint list.
+  description: >-
+    Registers a webhook endpoint for the supplied URL and events, fetches it to
+    capture the signing secret, and lists all endpoints to confirm it is
+    enabled.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - url
+    - enabledEvents
+    properties:
+      accessToken:
+        type: string
+        description: A client access token authorized to manage webhook endpoints.
+      url:
+        type: string
+        description: The HTTPS URL Tink will POST events to.
+      description:
+        type: string
+        description: Optional human-readable description for the endpoint.
+      enabledEvents:
+        type: array
+        description: The event types to subscribe to (e.g. payment.status-updated, account-verification-report.completed).
+        items:
+          type: string
+  steps:
+  - stepId: createEndpoint
+    description: Register the webhook endpoint for the supplied URL and event types.
+    operationId: createWebhookEndpoint
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        url: $inputs.url
+        description: $inputs.description
+        enabledEvents: $inputs.enabledEvents
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      endpointId: $response.body#/id
+  - stepId: getEndpoint
+    description: Read the endpoint back by id to capture its signing secret and enabled events.
+    operationId: getWebhookEndpoint
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: endpointId
+      in: path
+      value: $steps.createEndpoint.outputs.endpointId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      secret: $response.body#/secret
+      disabled: $response.body#/disabled
+      enabledEvents: $response.body#/enabledEvents
+  - stepId: listEndpoints
+    description: List all registered endpoints to confirm the new one is present.
+    operationId: listWebhookEndpoints
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      endpoints: $response.body#/endpoints
+  outputs:
+    endpointId: $steps.createEndpoint.outputs.endpointId
+    secret: $steps.getEndpoint.outputs.secret
+    endpoints: $steps.listEndpoints.outputs.endpoints

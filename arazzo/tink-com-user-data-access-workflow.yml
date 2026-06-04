@@ -1,0 +1,125 @@
+arazzo: 1.0.1
+info:
+  title: Tink Onboard A User And Access Their Bank Data
+  summary: Create a permanent Tink user, delegate bank authorization, exchange the code for a user token, and list their accounts.
+  description: >-
+    The canonical Tink continuous-access onboarding flow. It creates a
+    permanent Tink user identified by an external id, mints a delegated
+    authorization grant that returns a Tink Link URL the customer follows to
+    authenticate with their bank, exchanges the resulting authorization code
+    for a user access token, and then lists the bank accounts the user has
+    consented to share. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: oauthApi
+  url: ../openapi/tink-oauth-api-openapi.yml
+  type: openapi
+- name: dataApi
+  url: ../openapi/tink-data-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: onboard-user-and-list-accounts
+  summary: Create a Tink user, obtain a delegated grant and user token, then list their accounts.
+  description: >-
+    Provisions a permanent user, delegates bank authorization to obtain a Tink
+    Link URL and authorization code, exchanges the code for a user access
+    token, and lists the consented bank accounts.
+  inputs:
+    type: object
+    required:
+    - clientAccessToken
+    - externalUserId
+    - market
+    - locale
+    - scope
+    properties:
+      clientAccessToken:
+        type: string
+        description: A client (client_credentials) access token authorized to create users and grants.
+      externalUserId:
+        type: string
+        description: Your own stable identifier for the end user (e.g. a customer id).
+      market:
+        type: string
+        description: ISO 3166-1 alpha-2 market code for the user (e.g. GB).
+      locale:
+        type: string
+        description: The user locale (e.g. en_US).
+      scope:
+        type: string
+        description: The data-product scopes to request (e.g. accounts:read,transactions:read).
+  steps:
+  - stepId: createUser
+    description: >-
+      Create a permanent Tink user keyed by your external user id so the user
+      can be re-authorized for continuous-access products later.
+    operationId: createUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.clientAccessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        external_user_id: $inputs.externalUserId
+        market: $inputs.market
+        locale: $inputs.locale
+        retention_class: PERMANENT
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/user_id
+  - stepId: delegateAuthorization
+    description: >-
+      Mint a delegated authorization code for the user. The returned code is
+      exchanged for a user token, and the customer follows the Tink Link flow
+      to authenticate with their bank.
+    operationId: createDelegatedAuthorizationGrant
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.clientAccessToken"
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        external_user_id: $inputs.externalUserId
+        scope: $inputs.scope
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      authorizationCode: $response.body#/code
+  - stepId: exchangeCodeForToken
+    description: >-
+      Exchange the delegated authorization code for a user access token using
+      the authorization_code grant type.
+    operationId: createOauthToken
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        grant_type: authorization_code
+        code: $steps.delegateAuthorization.outputs.authorizationCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userAccessToken: $response.body#/access_token
+      refreshToken: $response.body#/refresh_token
+  - stepId: listAccounts
+    description: >-
+      List the bank accounts the user has consented to share, using the freshly
+      issued user access token.
+    operationId: listAccounts
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $steps.exchangeCodeForToken.outputs.userAccessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accounts: $response.body#/accounts
+  outputs:
+    userId: $steps.createUser.outputs.userId
+    userAccessToken: $steps.exchangeCodeForToken.outputs.userAccessToken
+    refreshToken: $steps.exchangeCodeForToken.outputs.refreshToken
+    accounts: $steps.listAccounts.outputs.accounts

@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: Tink Review And Revoke A Bank Consent
+  summary: List a user's provider consents and credentials, then delete the credentials object to revoke the underlying bank consent.
+  description: >-
+    A consent-management housekeeping flow. It lists the user's active
+    bank-provider consents and the underlying credentials objects, then — when
+    a credentials object is present — deletes it to revoke the associated bank
+    consent and lists the remaining provider consents to confirm the change.
+    The flow branches so the delete is only attempted when at least one
+    credentials object exists. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataApi
+  url: ../openapi/tink-data-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: review-and-revoke-consent
+  summary: List provider consents and credentials, then revoke a credentials object.
+  description: >-
+    Lists provider consents and credentials, deletes the supplied (or first
+    listed) credentials object to revoke its bank consent, and re-lists the
+    remaining provider consents.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    properties:
+      accessToken:
+        type: string
+        description: A user access token authorized to read and revoke consents.
+      credentialsId:
+        type: string
+        description: Optional credentials id to revoke; when omitted the first listed credentials object is used.
+  steps:
+  - stepId: listProviderConsents
+    description: List the active bank-provider consents for the user.
+    operationId: listProviderConsents
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      providerConsents: $response.body#/providerConsents
+  - stepId: listCredentials
+    description: >-
+      List the credentials objects attached to the user and branch on whether
+      any exist to revoke.
+    operationId: listCredentials
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      credentials: $response.body#/credentials
+      firstCredentialsId: $response.body#/credentials/0/id
+    onSuccess:
+    - name: hasCredentials
+      type: goto
+      stepId: deleteCredentials
+      criteria:
+      - context: $response.body
+        condition: $.credentials.length > 0
+        type: jsonpath
+    - name: noCredentials
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.credentials.length == 0
+        type: jsonpath
+  - stepId: deleteCredentials
+    description: >-
+      Delete the first listed credentials object, revoking the underlying bank
+      consent.
+    operationId: deleteCredentials
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: credentialsId
+      in: path
+      value: $steps.listCredentials.outputs.firstCredentialsId
+    successCriteria:
+    - condition: $statusCode == 204
+  - stepId: confirmConsents
+    description: Re-list the provider consents to confirm the revocation took effect.
+    operationId: listProviderConsents
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      remainingConsents: $response.body#/providerConsents
+  outputs:
+    revokedCredentialsId: $steps.listCredentials.outputs.firstCredentialsId
+    remainingConsents: $steps.confirmConsents.outputs.remainingConsents

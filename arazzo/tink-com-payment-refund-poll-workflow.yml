@@ -1,0 +1,134 @@
+arazzo: 1.0.1
+info:
+  title: Tink Refund An Executed Payment And Poll The Refund
+  summary: Confirm a payment is executed, initiate a refund, then poll the refund until it reaches a terminal status.
+  description: >-
+    A post-settlement Tink Payments flow. It fetches a payment to confirm it
+    has executed, initiates a full or partial refund against it, and then polls
+    the refund by id until it reaches a terminal status (EXECUTED, REJECTED, or
+    FAILED). The flow branches so the refund is only attempted when the payment
+    is in the EXECUTED state. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: paymentsApi
+  url: ../openapi/tink-payments-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: refund-payment-and-poll
+  summary: Verify a payment is executed, refund it, and poll the refund to a terminal status.
+  description: >-
+    Fetches the payment, refunds it only when it is EXECUTED, and re-checks the
+    refund until it is EXECUTED, REJECTED, or FAILED.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - paymentId
+    properties:
+      accessToken:
+        type: string
+        description: An access token authorized for payments and refunds.
+      paymentId:
+        type: string
+        description: The id of the payment to refund.
+      amount:
+        type: string
+        description: Optional refund amount as a decimal string; omit for a full refund.
+      currency:
+        type: string
+        description: Optional ISO 4217 currency code for the refund amount.
+      remittanceValue:
+        type: string
+        description: Optional unstructured remittance information for the refund.
+  steps:
+  - stepId: getPayment
+    description: >-
+      Fetch the payment and branch on its status: only an EXECUTED payment can
+      be refunded.
+    operationId: getPayment
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: paymentId
+      in: path
+      value: $inputs.paymentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: refundable
+      type: goto
+      stepId: refundPayment
+      criteria:
+      - context: $response.body
+        condition: $.status == "EXECUTED"
+        type: jsonpath
+    - name: notRefundable
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status != "EXECUTED"
+        type: jsonpath
+  - stepId: refundPayment
+    description: Initiate a full or partial refund against the executed payment.
+    operationId: refundPayment
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: paymentId
+      in: path
+      value: $inputs.paymentId
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $inputs.amount
+        currency: $inputs.currency
+        remittanceInformation:
+          type: UNSTRUCTURED
+          value: $inputs.remittanceValue
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      refundId: $response.body#/id
+      status: $response.body#/status
+  - stepId: pollRefund
+    description: >-
+      Retrieve the refund status. If still pending, loop back and check again;
+      otherwise finish.
+    operationId: getRefund
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: paymentId
+      in: path
+      value: $inputs.paymentId
+    - name: refundId
+      in: path
+      value: $steps.refundPayment.outputs.refundId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: stillPending
+      type: goto
+      stepId: pollRefund
+      criteria:
+      - context: $response.body
+        condition: $.status == "CREATED"
+        type: jsonpath
+    - name: settled
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "EXECUTED" || $.status == "REJECTED" || $.status == "FAILED"
+        type: jsonpath
+  outputs:
+    refundId: $steps.refundPayment.outputs.refundId
+    finalStatus: $steps.pollRefund.outputs.status

@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: Tink Initiate A Payment And Poll Its Status
+  summary: Initiate a Pay by Bank payment, then poll the payment until it reaches a terminal status.
+  description: >-
+    The core Tink Payments (PIS) flow. It initiates an account-to-account
+    payment to one or more beneficiaries and returns the Tink Link redirect URL
+    the customer follows to authenticate and authorize at their bank, then
+    polls the payment by id until it settles into a terminal status (EXECUTED,
+    REJECTED, CANCELLED, or FAILED). Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: paymentsApi
+  url: ../openapi/tink-payments-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: initiate-payment-and-poll
+  summary: Initiate a payment and poll until it reaches a terminal status.
+  description: >-
+    Initiates a payment, surfaces the Tink Link redirect URL, then re-checks
+    the payment until it is EXECUTED, REJECTED, CANCELLED, or FAILED.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - amount
+    - currency
+    - market
+    - destinationName
+    - destinationAccountType
+    - destinationAccountValue
+    properties:
+      accessToken:
+        type: string
+        description: An access token authorized for payment initiation.
+      amount:
+        type: string
+        description: The payment amount as a decimal string (e.g. 100.00).
+      currency:
+        type: string
+        description: ISO 4217 currency code (e.g. EUR).
+      market:
+        type: string
+        description: ISO 3166-1 alpha-2 market code (e.g. GB).
+      destinationName:
+        type: string
+        description: The beneficiary account holder name.
+      destinationAccountType:
+        type: string
+        description: The destination account identifier type (IBAN, SORT_CODE, BBAN, or ACCOUNT_NUMBER).
+      destinationAccountValue:
+        type: string
+        description: The destination account identifier value.
+      remittanceValue:
+        type: string
+        description: Optional unstructured remittance information shown on the payment.
+  steps:
+  - stepId: initiatePayment
+    description: >-
+      Initiate the payment to the supplied beneficiary and capture the payment
+      id and the Tink Link redirect URL the customer must follow.
+    operationId: initiatePayment
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $inputs.amount
+        currency: $inputs.currency
+        market: $inputs.market
+        remittanceInformation:
+          type: UNSTRUCTURED
+          value: $inputs.remittanceValue
+        destinations:
+        - name: $inputs.destinationName
+          accountNumber:
+            type: $inputs.destinationAccountType
+            value: $inputs.destinationAccountValue
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      paymentId: $response.body#/id
+      status: $response.body#/status
+      redirectUrl: $response.body#/redirectUrl
+  - stepId: pollPayment
+    description: >-
+      Retrieve the payment status. If the payment is still in a non-terminal
+      state, loop back and check again; otherwise finish.
+    operationId: getPayment
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: paymentId
+      in: path
+      value: $steps.initiatePayment.outputs.paymentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: stillPending
+      type: goto
+      stepId: pollPayment
+      criteria:
+      - context: $response.body
+        condition: $.status == "CREATED" || $.status == "AUTHORIZED"
+        type: jsonpath
+    - name: settled
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "EXECUTED" || $.status == "REJECTED" || $.status == "CANCELLED" || $.status == "FAILED"
+        type: jsonpath
+  outputs:
+    paymentId: $steps.initiatePayment.outputs.paymentId
+    redirectUrl: $steps.initiatePayment.outputs.redirectUrl
+    finalStatus: $steps.pollPayment.outputs.status

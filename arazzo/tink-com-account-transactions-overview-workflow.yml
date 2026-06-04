@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Tink Account And Transactions Overview
+  summary: List a user's accounts, read the balances of a chosen account, then list its transactions.
+  description: >-
+    A read-only financial overview built on a user access token. The workflow
+    lists the bank accounts the user has consented to share, reads the booked
+    and available balances of the first (or a supplied) account, and lists the
+    transactions for that account within an optional booked-date range. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataApi
+  url: ../openapi/tink-data-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: account-transactions-overview
+  summary: Resolve an account, read its balances, and list its transactions.
+  description: >-
+    Lists the consented accounts, selects an account (the supplied id or the
+    first returned), reads its balances, and lists its transactions filtered by
+    an optional booked-date range.
+  inputs:
+    type: object
+    required:
+    - userAccessToken
+    properties:
+      userAccessToken:
+        type: string
+        description: A user access token scoped for accounts and transactions read access.
+      accountId:
+        type: string
+        description: Optional account id to inspect; when omitted the first listed account is used.
+      bookedDateGte:
+        type: string
+        description: Optional inclusive lower bound on transaction booked date (YYYY-MM-DD).
+      bookedDateLte:
+        type: string
+        description: Optional inclusive upper bound on transaction booked date (YYYY-MM-DD).
+  steps:
+  - stepId: listAccounts
+    description: List the bank accounts the user has consented to share.
+    operationId: listAccounts
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.userAccessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accounts: $response.body#/accounts
+      firstAccountId: $response.body#/accounts/0/id
+  - stepId: getBalances
+    description: >-
+      Read the booked and available balance snapshots for the selected account.
+    operationId: getAccountBalances
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.userAccessToken"
+    - name: account_id
+      in: path
+      value: $steps.listAccounts.outputs.firstAccountId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      balances: $response.body#/balances
+  - stepId: listTransactions
+    description: >-
+      List transactions for the selected account, filtered by the optional
+      booked-date range.
+    operationId: listTransactions
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.userAccessToken"
+    - name: accountIdIn
+      in: query
+      value: $steps.listAccounts.outputs.firstAccountId
+    - name: bookedDateGte
+      in: query
+      value: $inputs.bookedDateGte
+    - name: bookedDateLte
+      in: query
+      value: $inputs.bookedDateLte
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transactions: $response.body#/transactions
+      nextPageToken: $response.body#/nextPageToken
+  outputs:
+    accounts: $steps.listAccounts.outputs.accounts
+    balances: $steps.getBalances.outputs.balances
+    transactions: $steps.listTransactions.outputs.transactions

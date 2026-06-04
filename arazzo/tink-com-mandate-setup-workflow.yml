@@ -1,0 +1,125 @@
+arazzo: 1.0.1
+info:
+  title: Tink Create A Payment Mandate And Confirm It
+  summary: Create a recurring payment mandate for a user, then read it back to confirm it is active.
+  description: >-
+    The Tink Payments mandate flow for sweeping and variable recurring
+    payments. It creates a mandate authorizing recurring payments from a user's
+    bank account within a maximum amount per period, then reads the mandate back
+    by id and branches on its status to confirm it became ACTIVE. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: paymentsApi
+  url: ../openapi/tink-payments-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-and-confirm-mandate
+  summary: Create a recurring payment mandate and confirm it reaches the ACTIVE state.
+  description: >-
+    Creates a mandate for the supplied user, beneficiary, and limits, then reads
+    it back and branches on whether it became ACTIVE.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - market
+    - currency
+    - userId
+    - period
+    - beneficiaryName
+    - beneficiaryAccountType
+    - beneficiaryAccountValue
+    properties:
+      accessToken:
+        type: string
+        description: An access token authorized to create and read mandates.
+      market:
+        type: string
+        description: ISO 3166-1 alpha-2 market code (e.g. GB).
+      currency:
+        type: string
+        description: ISO 4217 currency code (e.g. EUR).
+      userId:
+        type: string
+        description: The Tink user id the mandate authorizes payments for.
+      maximumIndividualAmount:
+        type: string
+        description: Optional maximum amount for any single payment under the mandate.
+      maximumAmountPerPeriod:
+        type: string
+        description: Optional maximum aggregate amount per period under the mandate.
+      period:
+        type: string
+        description: The mandate period (DAY, WEEK, MONTH, or YEAR).
+      beneficiaryName:
+        type: string
+        description: The beneficiary account holder name.
+      beneficiaryAccountType:
+        type: string
+        description: The beneficiary account identifier type (IBAN, SORT_CODE, BBAN, or ACCOUNT_NUMBER).
+      beneficiaryAccountValue:
+        type: string
+        description: The beneficiary account identifier value.
+  steps:
+  - stepId: createMandate
+    description: >-
+      Create a mandate authorizing recurring payments from the user's bank
+      account to the beneficiary within the supplied limits.
+    operationId: createMandate
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        market: $inputs.market
+        currency: $inputs.currency
+        userId: $inputs.userId
+        maximumIndividualAmount: $inputs.maximumIndividualAmount
+        maximumAmountPerPeriod: $inputs.maximumAmountPerPeriod
+        period: $inputs.period
+        beneficiary:
+          name: $inputs.beneficiaryName
+          accountNumber:
+            type: $inputs.beneficiaryAccountType
+            value: $inputs.beneficiaryAccountValue
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      mandateId: $response.body#/id
+      status: $response.body#/status
+  - stepId: getMandate
+    description: >-
+      Read the mandate back and branch on its status to confirm whether it
+      became ACTIVE.
+    operationId: getMandate
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: id
+      in: path
+      value: $steps.createMandate.outputs.mandateId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: active
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "ACTIVE"
+        type: jsonpath
+    - name: notYetActive
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status != "ACTIVE"
+        type: jsonpath
+  outputs:
+    mandateId: $steps.createMandate.outputs.mandateId
+    status: $steps.getMandate.outputs.status

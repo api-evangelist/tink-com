@@ -1,0 +1,120 @@
+arazzo: 1.0.1
+info:
+  title: Tink Trigger A Balance Refresh And Poll It
+  summary: Trigger an on-demand balance refresh for a credentials object, then poll until it finishes, then read fresh balances.
+  description: >-
+    The Tink Balance Check flow. It triggers an on-demand refresh of account
+    balances for a connected credentials object, polls the refresh by id until
+    it reaches a terminal status (FINISHED or FAILED), and — when the refresh
+    finishes — lists the accounts and reads the freshly updated balances of the
+    first account. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataApi
+  url: ../openapi/tink-data-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: balance-refresh-and-poll
+  summary: Trigger a balance refresh, poll to completion, then read the refreshed balances.
+  description: >-
+    Triggers a balance refresh for the supplied credentials, re-checks its
+    status until FINISHED or FAILED, and on success lists accounts and reads the
+    first account's balances.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - credentialsId
+    properties:
+      accessToken:
+        type: string
+        description: A user access token authorized for balance refresh and account reads.
+      credentialsId:
+        type: string
+        description: The credentials object to refresh balances for.
+  steps:
+  - stepId: createBalanceRefresh
+    description: >-
+      Trigger an on-demand balance refresh for the supplied credentials object.
+    operationId: createBalanceRefresh
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        credentialsId: $inputs.credentialsId
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      balanceRefreshId: $response.body#/balanceRefreshId
+      status: $response.body#/status
+  - stepId: pollRefresh
+    description: >-
+      Retrieve the balance refresh status. While the refresh is QUEUED or
+      IN_PROGRESS, loop back and check again; on FINISHED proceed to read
+      balances; on FAILED end the flow.
+    operationId: getBalanceRefresh
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: balanceRefreshId
+      in: path
+      value: $steps.createBalanceRefresh.outputs.balanceRefreshId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollRefresh
+      criteria:
+      - context: $response.body
+        condition: $.status == "QUEUED" || $.status == "IN_PROGRESS"
+        type: jsonpath
+    - name: finished
+      type: goto
+      stepId: listAccounts
+      criteria:
+      - context: $response.body
+        condition: $.status == "FINISHED"
+        type: jsonpath
+    - name: failed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "FAILED"
+        type: jsonpath
+  - stepId: listAccounts
+    description: List the accounts to resolve an account id for the refreshed balances.
+    operationId: listAccounts
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstAccountId: $response.body#/accounts/0/id
+  - stepId: getBalances
+    description: Read the freshly refreshed balances for the first account.
+    operationId: getAccountBalances
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: account_id
+      in: path
+      value: $steps.listAccounts.outputs.firstAccountId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      balances: $response.body#/balances
+  outputs:
+    balanceRefreshId: $steps.createBalanceRefresh.outputs.balanceRefreshId
+    refreshStatus: $steps.pollRefresh.outputs.status
+    balances: $steps.getBalances.outputs.balances

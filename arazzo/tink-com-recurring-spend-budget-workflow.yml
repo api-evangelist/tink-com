@@ -1,0 +1,127 @@
+arazzo: 1.0.1
+info:
+  title: Tink Build A Budget From Recurring Spend
+  summary: Read a user's confirmed recurring transactions and category taxonomy, create a business budget around them, then read the budget's progress.
+  description: >-
+    A Money Manager flow that grounds a budget in detected recurring spend. It
+    lists the user's confirmed recurring transactions (subscriptions, rent,
+    salary) and the Tink categorisation taxonomy, creates a recurring business
+    budget for a category, and then reads the new budget back to surface its
+    current progress and remaining amount. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: enrichmentApi
+  url: ../openapi/tink-data-enrichment-api-openapi.yml
+  type: openapi
+- name: moneyManagerApi
+  url: ../openapi/tink-money-manager-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: recurring-spend-budget
+  summary: Inspect recurring spend and categories, create a budget, then read its progress.
+  description: >-
+    Lists recurring transactions and the category taxonomy, creates a business
+    budget for the requested category and amount, and reads the budget back to
+    surface its progress.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - budgetName
+    - amount
+    - currencyCode
+    - period
+    - categoryId
+    properties:
+      accessToken:
+        type: string
+        description: A user access token authorized for enrichment and money-manager reads/writes.
+      locale:
+        type: string
+        description: Optional locale for the category taxonomy (e.g. en_US).
+      budgetName:
+        type: string
+        description: A name for the budget.
+      amount:
+        type: string
+        description: The budget limit amount as a decimal string (e.g. 500.00).
+      currencyCode:
+        type: string
+        description: ISO 4217 currency code for the budget amount (e.g. EUR).
+      period:
+        type: string
+        description: The budget period (ONE_OFF, WEEK, MONTH, QUARTER, or YEAR).
+      categoryId:
+        type: string
+        description: The category id the budget filters spend by.
+  steps:
+  - stepId: listRecurring
+    description: >-
+      List the user's confirmed recurring transactions to ground the budget in
+      real recurring spend.
+    operationId: listRecurringTransactions
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      recurringTransactions: $response.body#/recurringTransactions
+  - stepId: listCategories
+    description: List the Tink categorisation taxonomy for the supplied locale.
+    operationId: listCategories
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: locale
+      in: query
+      value: $inputs.locale
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      categories: $response.body#/categories
+  - stepId: createBudget
+    description: >-
+      Create a business budget for the requested category, amount, and period.
+    operationId: createBusinessBudget
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.budgetName
+        amount:
+          amount: $inputs.amount
+          currencyCode: $inputs.currencyCode
+        period: $inputs.period
+        filters:
+          categoryIds:
+          - $inputs.categoryId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      budgetId: $response.body#/id
+  - stepId: getBudget
+    description: Read the new budget back to surface its current progress and remaining amount.
+    operationId: getBusinessBudget
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: budgetId
+      in: path
+      value: $steps.createBudget.outputs.budgetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      progress: $response.body#/progress
+  outputs:
+    recurringTransactions: $steps.listRecurring.outputs.recurringTransactions
+    budgetId: $steps.createBudget.outputs.budgetId
+    progress: $steps.getBudget.outputs.progress
