@@ -1,0 +1,537 @@
+{
+  "item": [
+    {
+      "id": "e80b0bf7-a787-4b7d-85dc-ebac72c09e2b",
+      "name": "WebhookEndpoints",
+      "description": {
+        "content": "Webhook endpoint management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "768e3e5d-5042-4098-80f8-d0f509961e6c",
+          "name": "Tink Create A Webhook Endpoint",
+          "request": {
+            "name": "Tink Create A Webhook Endpoint",
+            "description": {
+              "content": "Register a webhook endpoint that Tink will POST events to. Supports event filters for account-verification-report, income-check, expense-check, risk-insights, payment-status, refund-status, and credentials-updated events.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v2",
+                "webhook-endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d43365e-f52f-4be7-ba6f-2645e6cac1f7",
+              "name": "Endpoint created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v2",
+                    "webhook-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"url\": \"https://XiyloNzgPiKnCCiFeEpQKgoSdvid.zdIOlu3ERobmBsd\",\n  \"description\": \"string\",\n  \"secret\": \"string\",\n  \"enabledEvents\": [\n    \"string\",\n    \"string\"\n  ],\n  \"disabled\": false,\n  \"created\": \"2008-12-15T11:42:11.307Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18161e5a-1cbb-4b3f-8fdc-f79e9e96b1a7",
+          "name": "Tink List Webhook Endpoints",
+          "request": {
+            "name": "Tink List Webhook Endpoints",
+            "description": {
+              "content": "List all webhook endpoints registered for the calling client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v2",
+                "webhook-endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "469aabef-d862-48d5-b95b-8711e07c433d",
+              "name": "Endpoints returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v2",
+                    "webhook-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"endpoints\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://kRIlFXxVvU.dgwQcvoiveGVeT5YeIGFnzkf+zc-P39q0V3IB,fflODaV,orCmgDhRTpl+Udyt\",\n      \"description\": \"string\",\n      \"secret\": \"string\",\n      \"enabledEvents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"disabled\": false,\n      \"created\": \"2024-02-01T20:42:15.386Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"http://eXQHxDUrIVSpUmiooQxuiTVv.ytwE2b.\",\n      \"description\": \"string\",\n      \"secret\": \"string\",\n      \"enabledEvents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"disabled\": false,\n      \"created\": \"1972-05-22T07:13:11.331Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39338341-1929-4e61-9578-60acdb83e3c9",
+          "name": "Tink Get A Webhook Endpoint",
+          "request": {
+            "name": "Tink Get A Webhook Endpoint",
+            "description": {
+              "content": "Retrieve a webhook endpoint by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v2",
+                "webhook-endpoints",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "981c1eb4-0246-4263-af67-e6da64750435",
+              "name": "Endpoint returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v2",
+                    "webhook-endpoints",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"url\": \"https://XiyloNzgPiKnCCiFeEpQKgoSdvid.zdIOlu3ERobmBsd\",\n  \"description\": \"string\",\n  \"secret\": \"string\",\n  \"enabledEvents\": [\n    \"string\",\n    \"string\"\n  ],\n  \"disabled\": false,\n  \"created\": \"2008-12-15T11:42:11.307Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be6a9f5e-13ea-426d-99ff-48641982202a",
+          "name": "Tink Update A Webhook Endpoint",
+          "request": {
+            "name": "Tink Update A Webhook Endpoint",
+            "description": {
+              "content": "Update fields on a webhook endpoint (url, enabledEvents, disabled).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v2",
+                "webhook-endpoints",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9741884f-bcbd-4336-8522-539c65e2fa0d",
+              "name": "Endpoint updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v2",
+                    "webhook-endpoints",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"url\": \"https://XiyloNzgPiKnCCiFeEpQKgoSdvid.zdIOlu3ERobmBsd\",\n  \"description\": \"string\",\n  \"secret\": \"string\",\n  \"enabledEvents\": [\n    \"string\",\n    \"string\"\n  ],\n  \"disabled\": false,\n  \"created\": \"2008-12-15T11:42:11.307Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ba685c4-975c-4cda-9dcf-74b0b66ffcd7",
+          "name": "Tink Delete A Webhook Endpoint",
+          "request": {
+            "name": "Tink Delete A Webhook Endpoint",
+            "description": {
+              "content": "Delete a webhook endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "v2",
+                "webhook-endpoints",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b76a318-0b24-4ff8-95e2-49a621ecfea4",
+              "name": "Endpoint deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "v2",
+                    "webhook-endpoints",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0811257d-eb2b-46b7-b8a4-0b0ce16dd5d1",
+    "name": "Tink Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Webhooks delivers asynchronous event notifications when reports are ready, payments change status, or refreshed bank data is available. Subscribers register an endpoint and select the event types to receive.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink OAuth and Authorization API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Create An OAuth Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/api/v1/oauth/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Issue an OAuth 2.0 access token. Supports `client_credentials` for server-side calls, `authorization_code` to exchange a Tink Link or delegated grant code for a user token, and `refresh_token` to renew an existing user token without re-authentication.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Create An Authorization Grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/api/v1/oauth/authorization-grant",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Mint a one-time authorization code for an existing permanent user. The returned `code` is exchanged at `/api/v1/oauth/token` with `grant_type=authorization_code` to obtain a user access token scoped to the requested data products.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Create A Delegated Authorization Grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/api/v1/oauth/authorization-grant/delegate",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Mint a delegated authorization code for a user who has not yet connected a bank, returning a Tink Link URL the customer can launch to authenticate with their bank and consent to the requested scopes.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Create A Permanent User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/api/v1/user/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a permanent Tink user identified by `external_user_id` for repeat data access. Required before delegating authorization for continuous-access products such as Transactions, Balance Check, and Account Check refreshes.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Delete A User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/api/v1/user/delete"
+          },
+          "docs": "Permanently delete a Tink user and all associated credentials."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

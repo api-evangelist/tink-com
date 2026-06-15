@@ -1,0 +1,619 @@
+{
+  "item": [
+    {
+      "id": "3a4331dd-e114-4885-b4a4-ec742fef3a0d",
+      "name": "IncomeChecks",
+      "description": {
+        "content": "Income verification reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e08a702d-ff24-47dc-b9c1-2ca30bbde6da",
+          "name": "Tink Get An Income Check Report",
+          "request": {
+            "name": "Tink Get An Income Check Report",
+            "description": {
+              "content": "Retrieve a completed Income Check report as JSON. Includes verified income streams, employer information, salary cadence, and trend analysis over the lookback window.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "income-checks",
+                ":report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba10471e-151e-4476-8410-9b1a251c58bc",
+              "name": "Income Check report returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "income-checks",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"market\": \"string\",\n  \"generatedAt\": \"2019-06-13T13:18:49.849Z\",\n  \"verifiedIncomes\": [\n    {\n      \"source\": \"string\",\n      \"payer\": \"string\",\n      \"category\": \"OTHER\",\n      \"cadence\": \"MONTHLY\",\n      \"averageAmount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"firstSeen\": \"2013-05-09\",\n      \"lastSeen\": \"1984-09-29\"\n    },\n    {\n      \"source\": \"string\",\n      \"payer\": \"string\",\n      \"category\": \"INTEREST\",\n      \"cadence\": \"IRREGULAR\",\n      \"averageAmount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"firstSeen\": \"1978-06-11\",\n      \"lastSeen\": \"1958-12-01\"\n    }\n  ],\n  \"summary\": {\n    \"totalNetIncome\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"averageMonthlyIncome\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"consecutiveMonthsWithIncome\": 906\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87c34ef4-3638-460c-999c-9ede7b50f39b",
+              "name": "Report not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "income-checks",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17c9434c-6c7a-411e-88ae-de577098a983",
+          "name": "Tink Generate An Income Check PDF",
+          "request": {
+            "name": "Tink Generate An Income Check PDF",
+            "description": {
+              "content": "Retrieve the Income Check report rendered as a PDF for compliance archives.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "income-checks",
+                "{{report_id}}:generate-pdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1474298f-0af7-4a20-bf8c-3638aaf3f4ff",
+              "name": "PDF returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "income-checks",
+                    "{{report_id}}:generate-pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1104afc0-ddf8-447a-a6bd-97edceab27fb",
+      "name": "ExpenseChecks",
+      "description": {
+        "content": "Expense verification reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3fe4ca1-7245-42a7-9baa-932242ef07af",
+          "name": "Tink Get An Expense Check Report",
+          "request": {
+            "name": "Tink Get An Expense Check Report",
+            "description": {
+              "content": "Retrieve a completed Expense Check report summarising essential and discretionary spending.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v1",
+                "expense-checks",
+                ":report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74d9fe59-5de8-44ed-b802-d2c892efd422",
+              "name": "Expense Check report returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "expense-checks",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"generatedAt\": \"1993-11-15T23:46:44.099Z\",\n  \"summary\": {\n    \"essentialExpenses\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"discretionaryExpenses\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"totalExpenses\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    }\n  },\n  \"categories\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"transactionCount\": 4628\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"transactionCount\": 1510\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "dc07d4c7-f312-4cf8-90df-5716caa44c33",
+      "name": "RiskInsights",
+      "description": {
+        "content": "Risk decisioning reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8ed33be8-7d1d-49b9-b434-03314e74ef16",
+          "name": "Tink Get A Risk Insights Report",
+          "request": {
+            "name": "Tink Get A Risk Insights Report",
+            "description": {
+              "content": "Retrieve a Risk Insights report combining income, expenses, balance volatility, and risk signals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v1",
+                "risk-insights",
+                ":report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3064b2ad-e318-4703-9101-8989adf71df4",
+              "name": "Risk Insights report returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "risk-insights",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"generatedAt\": \"1975-05-17T09:46:54.029Z\",\n  \"signals\": [\n    {\n      \"code\": \"string\",\n      \"severity\": \"HIGH\",\n      \"description\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"string\"\n    }\n  ],\n  \"incomeSummary\": {\n    \"id\": \"string\",\n    \"market\": \"string\",\n    \"generatedAt\": \"2014-10-06T04:22:26.188Z\",\n    \"verifiedIncomes\": [\n      {\n        \"source\": \"string\",\n        \"payer\": \"string\",\n        \"category\": \"BENEFIT\",\n        \"cadence\": \"WEEKLY\",\n        \"averageAmount\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"firstSeen\": \"1969-03-16\",\n        \"lastSeen\": \"1964-12-07\"\n      },\n      {\n        \"source\": \"string\",\n        \"payer\": \"string\",\n        \"category\": \"DIVIDEND\",\n        \"cadence\": \"MONTHLY\",\n        \"averageAmount\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"firstSeen\": \"2019-05-17\",\n        \"lastSeen\": \"2006-06-30\"\n      }\n    ],\n    \"summary\": {\n      \"totalNetIncome\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"averageMonthlyIncome\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"consecutiveMonthsWithIncome\": 4202\n    }\n  },\n  \"expenseSummary\": {\n    \"id\": \"string\",\n    \"generatedAt\": \"2012-09-29T16:43:44.237Z\",\n    \"summary\": {\n      \"essentialExpenses\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"discretionaryExpenses\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"totalExpenses\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      }\n    },\n    \"categories\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"amount\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"transactionCount\": 2793\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"amount\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"transactionCount\": 3643\n      }\n    ]\n  },\n  \"balanceVolatility\": {\n    \"averageBalance\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"minimumBalance\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"overdraftDays\": 2310\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8a3b4d8d-27fe-47ab-b93f-9113dd0cc7bf",
+      "name": "RiskCategorisation",
+      "description": {
+        "content": "Risk categorisation reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "33eb1765-d861-43b6-ab27-b37606783dc1",
+          "name": "Tink Get A Risk Categorisation Report",
+          "request": {
+            "name": "Tink Get A Risk Categorisation Report",
+            "description": {
+              "content": "Retrieve a Risk Categorisation report classifying transactions for lending and affordability decisions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v2",
+                "risk-categorisation",
+                "reports",
+                ":report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5c7e247-d32c-41fe-a962-cbed3d385c54",
+              "name": "Risk Categorisation report returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v2",
+                    "risk-categorisation",
+                    "reports",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"generatedAt\": \"1982-10-07T14:35:19.145Z\",\n  \"categories\": [\n    {\n      \"category\": \"string\",\n      \"riskTier\": \"HIGH\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"transactionCount\": 7805\n    },\n    {\n      \"category\": \"string\",\n      \"riskTier\": \"HIGH\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"transactionCount\": 3648\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "report_id"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "16bc7d8b-34d7-4c25-bac4-616e30c7389f",
+    "name": "Tink Risk and Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink's risk-decisioning reports built on aggregated bank data. Income Check confirms a user's verified income and stability. Expense Check summarises essential and discretionary expenses. Risk Insights produces a risk-decisioning report covering creditworthiness signals. Risk Categorisation classifies transactions for affordability and lending decisions.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "item": [
+    {
+      "id": "9eef41b0-fd74-48ab-bbb6-dd4eba85efcb",
+      "name": "ConnectorAccounts",
+      "description": {
+        "content": "Partner-ingested accounts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c5e1e009-ea43-46fa-a6b8-5a6f2f9e6cf1",
+          "name": "Tink Ingest Connector Accounts",
+          "request": {
+            "name": "Tink Ingest Connector Accounts",
+            "description": {
+              "content": "Push a batch of partner accounts for the specified Tink user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connector",
+                "users",
+                ":external_user_id",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_user_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accounts\": [\n    {\n      \"externalAccountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"currencyCode\": \"<string>\",\n      \"balance\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"identifiers\": {\n        \"iban\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountNumber\": \"<string>\"\n      }\n    },\n    {\n      \"externalAccountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"currencyCode\": \"<string>\",\n      \"balance\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"identifiers\": {\n        \"iban\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountNumber\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e5ea62f3-8a04-4959-a405-3338ce965ce3",
+              "name": "Accounts accepted for ingestion.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connector",
+                    "users",
+                    ":external_user_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_user_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accounts\": [\n    {\n      \"externalAccountId\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"LOAN\",\n      \"currencyCode\": \"string\",\n      \"balance\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"identifiers\": {\n        \"iban\": \"string\",\n        \"sortCode\": \"string\",\n        \"accountNumber\": \"string\"\n      }\n    },\n    {\n      \"externalAccountId\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"CREDIT_CARD\",\n      \"currencyCode\": \"string\",\n      \"balance\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"identifiers\": {\n        \"iban\": \"string\",\n        \"sortCode\": \"string\",\n        \"accountNumber\": \"string\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8f7e31c7-5059-4225-976c-38842a0fa377",
+      "name": "ConnectorTransactions",
+      "description": {
+        "content": "Partner-ingested transactions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f0dca6ba-852d-4500-a4c3-110b74aa0a62",
+          "name": "Tink Ingest Connector Transactions",
+          "request": {
+            "name": "Tink Ingest Connector Transactions",
+            "description": {
+              "content": "Push a batch of partner transactions for the specified Tink user and accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connector",
+                "users",
+                ":external_user_id",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_user_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactions\": [\n    {\n      \"externalTransactionId\": \"<string>\",\n      \"externalAccountId\": \"<string>\",\n      \"amount\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"bookedDate\": \"<date>\",\n      \"description\": \"<string>\",\n      \"merchantName\": \"<string>\"\n    },\n    {\n      \"externalTransactionId\": \"<string>\",\n      \"externalAccountId\": \"<string>\",\n      \"amount\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"bookedDate\": \"<date>\",\n      \"description\": \"<string>\",\n      \"merchantName\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fece4628-d06b-470c-90aa-d8208d224e2e",
+              "name": "Transactions accepted for ingestion.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connector",
+                    "users",
+                    ":external_user_id",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_user_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactions\": [\n    {\n      \"externalTransactionId\": \"string\",\n      \"externalAccountId\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"bookedDate\": \"2011-05-22\",\n      \"description\": \"string\",\n      \"merchantName\": \"string\"\n    },\n    {\n      \"externalTransactionId\": \"string\",\n      \"externalAccountId\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"bookedDate\": \"1969-08-10\",\n      \"description\": \"string\",\n      \"merchantName\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d1d4d24-4212-4837-a4f4-59357166d87b",
+    "name": "Tink Connector API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Connector lets partners push their own account and transaction data into the Tink platform for users they already authenticate, so those feeds benefit from Tink categorisation, recurring detection, Money Manager, and risk reporting alongside PSD2-aggregated data.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

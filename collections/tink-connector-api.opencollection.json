@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Connector API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ConnectorAccounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Ingest Connector Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/connector/users/:external_user_id/accounts",
+            "params": [
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Push a batch of partner accounts for the specified Tink user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ConnectorTransactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Ingest Connector Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/connector/users/:external_user_id/transactions",
+            "params": [
+              {
+                "name": "external_user_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Push a batch of partner transactions for the specified Tink user and accounts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

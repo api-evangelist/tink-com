@@ -1,0 +1,1095 @@
+{
+  "info": {
+    "_postman_id": "00011b62-448f-417c-b703-ce7270b09bd4",
+    "name": "Tink OAuth and Authorization API",
+    "description": "OAuth 2.0 client-credentials, refresh, and delegated authorization-grant endpoints that gate every Tink data, payments, and reporting API. Tink issues client access tokens for server-to-server calls, user access tokens on behalf of an end user, and short-lived authorization codes that the Tink Link flow exchanges for user tokens. All other Tink APIs require a Bearer token issued by this service.\n\n\nContact Support:\n Name: Tink Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:19:19.000Z",
+    "updatedAt": "2026-06-05T15:19:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-00011b62-448f-417c-b703-ce7270b09bd4"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "oauth",
+              "item": [
+                {
+                  "name": "token",
+                  "item": [
+                    {
+                      "name": "Tink Create An OAuth Token",
+                      "id": "07ae6c61-8a0b-4271-869c-a94a3278f978",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) ",
+                              "key": "grant_type",
+                              "value": "refresh_token"
+                            },
+                            {
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "client_secret",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "code",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "refresh_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "scope",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/oauth/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "oauth",
+                            "token"
+                          ]
+                        },
+                        "description": "Issue an OAuth 2.0 access token. Supports `client_credentials` for server-side calls, `authorization_code` to exchange a Tink Link or delegated grant code for a user token, and `refresh_token` to renew an existing user token without re-authentication.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "22d1e3ec-32d1-4c0f-ac99-93cf2d3107a7",
+                          "name": "Access token issued.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "grant_type",
+                                  "value": "refresh_token"
+                                },
+                                {
+                                  "key": "client_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "client_secret",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "code",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "refresh_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "scope",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/oauth/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "oauth",
+                                "token"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"refresh_token\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"id_hint\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:19:19.000Z",
+                          "updatedAt": "2026-06-05T15:19:19.000Z",
+                          "uid": "35240-22d1e3ec-32d1-4c0f-ac99-93cf2d3107a7"
+                        },
+                        {
+                          "id": "f14e3524-6b82-4cb5-9525-5ea838fdc77a",
+                          "name": "Invalid request.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "grant_type",
+                                  "value": "refresh_token"
+                                },
+                                {
+                                  "key": "client_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "client_secret",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "code",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "refresh_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "scope",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/oauth/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "oauth",
+                                "token"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errorMessage\": \"<string>\",\n  \"errorCode\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:19:19.000Z",
+                          "updatedAt": "2026-06-05T15:19:19.000Z",
+                          "uid": "35240-f14e3524-6b82-4cb5-9525-5ea838fdc77a"
+                        },
+                        {
+                          "id": "44174868-fe00-4b02-baf5-76fc22f64101",
+                          "name": "Missing or invalid bearer token.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "grant_type",
+                                  "value": "refresh_token"
+                                },
+                                {
+                                  "key": "client_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "client_secret",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "code",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "refresh_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "scope",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/oauth/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "oauth",
+                                "token"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errorMessage\": \"<string>\",\n  \"errorCode\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:19:19.000Z",
+                          "updatedAt": "2026-06-05T15:19:19.000Z",
+                          "uid": "35240-44174868-fe00-4b02-baf5-76fc22f64101"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:19.000Z",
+                      "updatedAt": "2026-06-05T15:19:19.000Z",
+                      "uid": "35240-07ae6c61-8a0b-4271-869c-a94a3278f978"
+                    }
+                  ],
+                  "id": "cd1392cb-8c77-4e05-b98a-ba6cf0e6b902",
+                  "createdAt": "2026-06-05T15:19:19.000Z",
+                  "updatedAt": "2026-06-05T15:19:19.000Z",
+                  "uid": "35240-cd1392cb-8c77-4e05-b98a-ba6cf0e6b902"
+                },
+                {
+                  "name": "authorization-grant",
+                  "item": [
+                    {
+                      "name": "delegate",
+                      "item": [
+                        {
+                          "name": "Tink Create A Delegated Authorization Grant",
+                          "id": "b42b8cf4-e281-4621-a6c7-b9d69d619cce",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "scope",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "actor_client_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "id_hint",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/oauth/authorization-grant/delegate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "oauth",
+                                "authorization-grant",
+                                "delegate"
+                              ]
+                            },
+                            "description": "Mint a delegated authorization code for a user who has not yet connected a bank, returning a Tink Link URL the customer can launch to authenticate with their bank and consent to the requested scopes.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "25d3d723-5298-4b9b-9bd5-ad4b900d3435",
+                              "name": "Delegated authorization code issued.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "scope",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "actor_client_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "id_hint",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/oauth/authorization-grant/delegate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "oauth",
+                                    "authorization-grant",
+                                    "delegate"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:19.000Z",
+                              "updatedAt": "2026-06-05T15:19:19.000Z",
+                              "uid": "35240-25d3d723-5298-4b9b-9bd5-ad4b900d3435"
+                            },
+                            {
+                              "id": "911198fe-a13c-43a6-8397-960f70cef10c",
+                              "name": "Invalid request.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "scope",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "external_user_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "actor_client_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "id_hint",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/oauth/authorization-grant/delegate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "oauth",
+                                    "authorization-grant",
+                                    "delegate"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errorMessage\": \"<string>\",\n  \"errorCode\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:19.000Z",
+                              "updatedAt": "2026-06-05T15:19:19.000Z",
+                              "uid": "35240-911198fe-a13c-43a6-8397-960f70cef10c"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:19:19.000Z",
+                          "updatedAt": "2026-06-05T15:19:19.000Z",
+                          "uid": "35240-b42b8cf4-e281-4621-a6c7-b9d69d619cce"
+                        }
+                      ],
+                      "id": "09715bad-b6be-4f77-b47d-286deb80ffdb",
+                      "createdAt": "2026-06-05T15:19:19.000Z",
+                      "updatedAt": "2026-06-05T15:19:19.000Z",
+                      "uid": "35240-09715bad-b6be-4f77-b47d-286deb80ffdb"
+                    },
+                    {
+                      "name": "Tink Create An Authorization Grant",
+                      "id": "92def4b9-1fff-4b06-8f0e-869ce8f6c221",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) ",
+                              "key": "external_user_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "id_hint",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/oauth/authorization-grant",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "oauth",
+                            "authorization-grant"
+                          ]
+                        },
+                        "description": "Mint a one-time authorization code for an existing permanent user. The returned `code` is exchanged at `/api/v1/oauth/token` with `grant_type=authorization_code` to obtain a user access token scoped to the requested data products.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "7e3e5b7f-174a-4c3f-8c5c-b32cd49d82a6",
+                          "name": "Authorization code issued.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "scope",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "id_hint",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/oauth/authorization-grant",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "oauth",
+                                "authorization-grant"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:19:19.000Z",
+                          "updatedAt": "2026-06-05T15:19:19.000Z",
+                          "uid": "35240-7e3e5b7f-174a-4c3f-8c5c-b32cd49d82a6"
+                        },
+                        {
+                          "id": "29159b99-fc4a-41d3-ae5a-a37b873e76f0",
+                          "name": "Invalid request.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "external_user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "scope",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "id_hint",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/oauth/authorization-grant",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "oauth",
+                                "authorization-grant"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errorMessage\": \"<string>\",\n  \"errorCode\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:19:19.000Z",
+                          "updatedAt": "2026-06-05T15:19:19.000Z",
+                          "uid": "35240-29159b99-fc4a-41d3-ae5a-a37b873e76f0"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:19.000Z",
+                      "updatedAt": "2026-06-05T15:19:19.000Z",
+                      "uid": "35240-92def4b9-1fff-4b06-8f0e-869ce8f6c221"
+                    }
+                  ],
+                  "id": "5b4d9313-705c-45a6-8ccb-b1652b724b5d",
+                  "createdAt": "2026-06-05T15:19:19.000Z",
+                  "updatedAt": "2026-06-05T15:19:19.000Z",
+                  "uid": "35240-5b4d9313-705c-45a6-8ccb-b1652b724b5d"
+                }
+              ],
+              "id": "70d7ae51-3a15-409c-828e-c6c03434523d",
+              "createdAt": "2026-06-05T15:19:19.000Z",
+              "updatedAt": "2026-06-05T15:19:19.000Z",
+              "uid": "35240-70d7ae51-3a15-409c-828e-c6c03434523d"
+            },
+            {
+              "name": "user",
+              "item": [
+                {
+                  "name": "create",
+                  "item": [
+                    {
+                      "name": "Tink Create A Permanent User",
+                      "id": "138e0111-d51e-40d1-aa21-996e398421ba",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"external_user_id\": \"<string>\",\n  \"market\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"retention_class\": \"PERMANENT\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/user/create",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "user",
+                            "create"
+                          ]
+                        },
+                        "description": "Create a permanent Tink user identified by `external_user_id` for repeat data access. Required before delegating authorization for continuous-access products such as Transactions, Balance Check, and Account Check refreshes.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "3dc707f3-5547-4be9-a459-b02def2c45bb",
+                          "name": "User created.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"external_user_id\": \"<string>\",\n  \"market\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"retention_class\": \"PERMANENT\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/user/create",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "user",
+                                "create"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"user_id\": \"<string>\",\n  \"external_user_id\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:19:19.000Z",
+                          "updatedAt": "2026-06-05T15:19:19.000Z",
+                          "uid": "35240-3dc707f3-5547-4be9-a459-b02def2c45bb"
+                        },
+                        {
+                          "id": "13d4d328-9c33-40f8-84da-7b241b4fe761",
+                          "name": "Invalid request.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"external_user_id\": \"<string>\",\n  \"market\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"retention_class\": \"PERMANENT\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/user/create",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "user",
+                                "create"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errorMessage\": \"<string>\",\n  \"errorCode\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:19:19.000Z",
+                          "updatedAt": "2026-06-05T15:19:19.000Z",
+                          "uid": "35240-13d4d328-9c33-40f8-84da-7b241b4fe761"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:19.000Z",
+                      "updatedAt": "2026-06-05T15:19:19.000Z",
+                      "uid": "35240-138e0111-d51e-40d1-aa21-996e398421ba"
+                    }
+                  ],
+                  "id": "43b08580-56e5-42ef-ae21-e2fdd644cec9",
+                  "createdAt": "2026-06-05T15:19:19.000Z",
+                  "updatedAt": "2026-06-05T15:19:19.000Z",
+                  "uid": "35240-43b08580-56e5-42ef-ae21-e2fdd644cec9"
+                },
+                {
+                  "name": "delete",
+                  "item": [
+                    {
+                      "name": "Tink Delete A User",
+                      "id": "a1a4a92a-d1ff-401c-830d-e37ffbfdd6d0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/user/delete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "user",
+                            "delete"
+                          ]
+                        },
+                        "description": "Permanently delete a Tink user and all associated credentials."
+                      },
+                      "response": [
+                        {
+                          "id": "e5394716-364f-4e78-a477-52e3e64c16a6",
+                          "name": "User deleted.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/user/delete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "user",
+                                "delete"
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:19:19.000Z",
+                          "updatedAt": "2026-06-05T15:19:19.000Z",
+                          "uid": "35240-e5394716-364f-4e78-a477-52e3e64c16a6"
+                        },
+                        {
+                          "id": "769a8e6e-509b-430b-a40b-0fa0b5cd354e",
+                          "name": "Missing or invalid bearer token.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/user/delete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "user",
+                                "delete"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errorMessage\": \"<string>\",\n  \"errorCode\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:19:19.000Z",
+                          "updatedAt": "2026-06-05T15:19:19.000Z",
+                          "uid": "35240-769a8e6e-509b-430b-a40b-0fa0b5cd354e"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:19.000Z",
+                      "updatedAt": "2026-06-05T15:19:19.000Z",
+                      "uid": "35240-a1a4a92a-d1ff-401c-830d-e37ffbfdd6d0"
+                    }
+                  ],
+                  "id": "cb7d0262-0693-4ed5-ab74-f7f3e8e524d5",
+                  "createdAt": "2026-06-05T15:19:19.000Z",
+                  "updatedAt": "2026-06-05T15:19:19.000Z",
+                  "uid": "35240-cb7d0262-0693-4ed5-ab74-f7f3e8e524d5"
+                }
+              ],
+              "id": "ed08555c-35b1-44d8-b7e2-f367ef64b925",
+              "createdAt": "2026-06-05T15:19:19.000Z",
+              "updatedAt": "2026-06-05T15:19:19.000Z",
+              "uid": "35240-ed08555c-35b1-44d8-b7e2-f367ef64b925"
+            }
+          ],
+          "id": "203069e1-1ab7-43d3-b79d-8ed66e754a78",
+          "createdAt": "2026-06-05T15:19:19.000Z",
+          "updatedAt": "2026-06-05T15:19:19.000Z",
+          "uid": "35240-203069e1-1ab7-43d3-b79d-8ed66e754a78"
+        }
+      ],
+      "id": "81327582-d6a9-456d-a991-617369a62d3d",
+      "createdAt": "2026-06-05T15:19:19.000Z",
+      "updatedAt": "2026-06-05T15:19:19.000Z",
+      "uid": "35240-81327582-d6a9-456d-a991-617369a62d3d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tink.com"
+    }
+  ]
+}

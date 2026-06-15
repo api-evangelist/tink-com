@@ -1,0 +1,179 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Payments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Initiate A Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/payments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a payment from the customer's bank account to the beneficiary using PSD2 PIS rails. Returns a payment object and the Tink Link redirect URL the customer follows to authenticate and authorize at their bank.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Get A Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/payments/:paymentId",
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a payment by id, including current status (CREATED, AUTHORIZED, EXECUTED, REJECTED, CANCELLED, REFUNDED)."
+        },
+        {
+          "info": {
+            "name": "Tink Cancel A Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/payments/:paymentId/cancel",
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a payment that has not yet been executed by the customer's bank."
+        },
+        {
+          "info": {
+            "name": "Tink Refund A Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/payments/:paymentId/refunds",
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a full or partial refund for an executed payment."
+        },
+        {
+          "info": {
+            "name": "Tink Get A Refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/payments/:paymentId/refunds/:refundId",
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "refundId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a refund by id, including current status."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Mandates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Create A Mandate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/payments/mandates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a payment mandate that authorizes recurring or sweeping variable recurring payments from a user's bank account.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Get A Mandate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/payments/mandates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a mandate by id."
+        },
+        {
+          "info": {
+            "name": "Tink Revoke A Mandate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tink.com/payments/mandates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Revoke an active mandate."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

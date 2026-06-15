@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Data Enrichment API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EnrichedTransactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Enriched Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/enrichment/v1/transactions",
+            "params": [
+              {
+                "name": "accountIdIn",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bookedDateGte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bookedDateLte",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List user transactions enriched with Tink category, merchant information, and recurring flag."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/enrichment/v1/categories",
+            "params": [
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List the Tink categorisation taxonomy for the calling locale."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "RecurringTransactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Recurring Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/enrichment/v1/recurring-transactions"
+          },
+          "docs": "List confirmed recurring transactions (subscriptions, salary, rent) for the user."
+        },
+        {
+          "info": {
+            "name": "Tink List Predicted Recurring Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/enrichment/v1/predicted-recurring-transactions"
+          },
+          "docs": "List predicted future recurring transactions inferred from the user's transaction history."
+        },
+        {
+          "info": {
+            "name": "Tink List Recurring Transaction Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/enrichment/v1/recurring-transactions-groups"
+          },
+          "docs": "List recurring transaction groups (clusters of related recurring transactions)."
+        },
+        {
+          "info": {
+            "name": "Tink Get A Recurring Transaction Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/enrichment/v1/recurring-transactions-groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single recurring transaction group by id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

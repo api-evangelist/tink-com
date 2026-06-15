@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Webhooks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WebhookEndpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Webhook Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/events/v2/webhook-endpoints"
+          },
+          "docs": "List all webhook endpoints registered for the calling client."
+        },
+        {
+          "info": {
+            "name": "Tink Create A Webhook Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/events/v2/webhook-endpoints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a webhook endpoint that Tink will POST events to. Supports event filters for account-verification-report, income-check, expense-check, risk-insights, payment-status, refund-status, and credentials-updated events.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Get A Webhook Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/events/v2/webhook-endpoints/:endpointId",
+            "params": [
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a webhook endpoint by id."
+        },
+        {
+          "info": {
+            "name": "Tink Update A Webhook Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.tink.com/events/v2/webhook-endpoints/:endpointId",
+            "params": [
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update fields on a webhook endpoint (url, enabledEvents, disabled)."
+        },
+        {
+          "info": {
+            "name": "Tink Delete A Webhook Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tink.com/events/v2/webhook-endpoints/:endpointId",
+            "params": [
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a webhook endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

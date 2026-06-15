@@ -1,126 +1,243 @@
 # Tink (tink-com)
 
-Tink, a Visa solution acquired in 2022, is a European Open Banking platform with 6,000+ bank connections across Europe and a US Pay by Bank stack. A single PSD2-licensed API exposes aggregated bank data (Accounts, Transactions, Balances, Identities, Investments, Loans), value-added risk reports (Account Check, Business Account Check, Income Check, Expense Check, Risk Insights, Risk Categorisation), Money Manager BFM, Data Enrichment, PSD2 Payment Initiation Services (Pay by Bank, Auto Payments, Variable Recurring Payments, Mandates, Refunds, Payouts), and a Connector API for pushing partner data into the platform. Authentication is OAuth 2.0 with delegated user consent handled by the Tink Link hosted flow.
+Tink, a Visa solution acquired in 2022, is a European Open Banking platform with 6,000+ bank connections across Europe and a US Pay by Bank stack. Tink exposes a single API for PSD2-aggregated bank data (Accounts, Transactions, Balances, Identities, Investments, Loans), value-added risk reports (Account Check, Business Account Check, Income Check, Expense Check, Risk Insights, Risk Categorisation), Money Manager BFM, Data Enrichment, and PSD2 Payment Initiation Services (Pay by Bank, Auto Payments, Variable Recurring Payments, Mandates, Refunds, Payouts). Authentication is OAuth 2.0 with delegated user consent through the Tink Link hosted flow.
 
-**URL:** [Visit APIs.json](https://raw.githubusercontent.com/api-evangelist/tink-com/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/tink-com/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/tink-com/refs/heads/main/apis.yml)
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Scope
+
+- **Access:** 3rd-Party
 
 ## Tags
 
- - Open Banking, PSD2, Payment Initiation, Account Aggregation, Risk Decisioning, Pay by Bank, Finance, Banking, Europe, Visa
+- Open Banking
+- PSD2
+- Payment Initiation
+- Account Aggregation
+- Risk Decisioning
+- Pay by Bank
+- Finance
+- Banking
+- Europe
+- Visa
 
 ## Timestamps
 
 - **Created:** 2026-05-25
 - **Modified:** 2026-05-25
 
-## Base URLs
-
-| Region | URL |
-|---|---|
-| Tink EU Production | `https://api.tink.com` |
-| Tink US Production | `https://api.us.tink.com` |
-
 ## APIs
 
 ### Tink OAuth API
+
 OAuth 2.0 client-credentials, refresh, and delegated authorization-grant endpoints that gate every Tink API. Includes permanent user creation and Tink Link session delegation.
 
-**Human URL:** [https://docs.tink.com/api-reference/auth-api](https://docs.tink.com/api-reference/auth-api)
+- **Human URL:** [https://docs.tink.com/api-reference/auth-api](https://docs.tink.com/api-reference/auth-api)
+- **Base URL:** `https://api.tink.com`
+
+#### Tags
+
+- OAuth
+- Authentication
+- Users
+
+#### Properties
 
 - [Documentation](https://docs.tink.com/api-reference/auth-api)
-- [OpenAPI](openapi/tink-oauth-api-openapi.yml)
-- [Naftiko Capability — OAuth](capabilities/oauth.yaml)
+- [OpenAPI](openapi/tink-oauth-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/tink-oauth-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tink-oauth-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Tink Account Check API
-Verify that a bank account belongs to the consumer or business presenting it. Returns verified account, identity, balance, and user-match results as JSON or PDF.
 
-**Human URL:** [https://docs.tink.com/resources/account-check](https://docs.tink.com/resources/account-check)
+Verify that a bank account belongs to the consumer or business presenting it. Returns verified account, identity, balance, and user-match results as JSON or PDF. Includes Business Account Check and Tink Link session creation with user info for identity matching.
+
+- **Human URL:** [https://docs.tink.com/resources/account-check](https://docs.tink.com/resources/account-check)
+- **Base URL:** `https://api.tink.com`
+
+#### Tags
+
+- Account Check
+- Account Verification
+- KYC
+- Onboarding
+
+#### Properties
 
 - [Documentation](https://docs.tink.com/resources/account-check)
-- [OpenAPI](openapi/tink-account-check-api-openapi.yml)
-- [JSON Schema — Account Verification Report](json-schema/tink-account-verification-report-schema.json)
-- [Example — Account Verification Report](examples/tink-account-verification-report-example.json)
-- [Naftiko Capability — Account Check](capabilities/account-check.yaml)
+- [OpenAPI](openapi/tink-account-check-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/tink-account-check-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tink-account-check-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/tink-account-verification-report-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Example](examples/tink-account-verification-report-example.json)
 
 ### Tink Data API
-Read consented bank data from 6,000+ European banks. Accounts, balances, transactions, account parties, identities, investment holdings, loan accounts, on-demand balance refresh, and credentials/consent management.
 
-**Human URL:** [https://docs.tink.com/resources/transactions](https://docs.tink.com/resources/transactions)
+Read consented bank data from 6,000+ European banks. Lists accounts, balances, transactions, account parties, identities, investment holdings, and loan accounts. Includes on-demand balance refresh, credentials management, and provider-consent inspection.
+
+- **Human URL:** [https://docs.tink.com/resources/transactions](https://docs.tink.com/resources/transactions)
+- **Base URL:** `https://api.tink.com`
+
+#### Tags
+
+- Accounts
+- Transactions
+- Balances
+- Identities
+- Investments
+- Loans
+
+#### Properties
 
 - [Documentation](https://docs.tink.com/resources/transactions)
-- [OpenAPI](openapi/tink-data-api-openapi.yml)
-- [JSON Schema — Transaction](json-schema/tink-transaction-schema.json)
-- [Example — Transaction](examples/tink-transaction-example.json)
-- [Naftiko Capability — Data Transactions](capabilities/data-transactions.yaml)
+- [OpenAPI](openapi/tink-data-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/tink-data-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tink-data-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/tink-transaction-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Example](examples/tink-transaction-example.json)
 
 ### Tink Data Enrichment API
-Categorise raw bank transactions, identify the merchant, detect confirmed recurring transactions, and predict future recurring payments.
 
-**Human URL:** [https://docs.tink.com/resources/data-enrichment](https://docs.tink.com/resources/data-enrichment)
+Categorise raw bank transactions, identify the merchant, detect confirmed recurring transactions, and predict future recurring payments. Powers Money Manager, Expense Check, Income Check, and Risk Insights downstream.
+
+- **Human URL:** [https://docs.tink.com/resources/data-enrichment](https://docs.tink.com/resources/data-enrichment)
+- **Base URL:** `https://api.tink.com`
+
+#### Tags
+
+- Data Enrichment
+- Categorisation
+- Recurring Transactions
+- Merchants
+
+#### Properties
 
 - [Documentation](https://docs.tink.com/resources/data-enrichment)
-- [OpenAPI](openapi/tink-data-enrichment-api-openapi.yml)
-- [Naftiko Capability — Data Enrichment](capabilities/data-enrichment.yaml)
+- [OpenAPI](openapi/tink-data-enrichment-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/tink-data-enrichment-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tink-data-enrichment-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Tink Payments API
-PSD2 Payment Initiation Services. Initiate single payments, refunds, payouts, and create mandates for Auto Payments and sweeping Variable Recurring Payments. Available in EU and US.
 
-**Human URL:** [https://docs.tink.com/resources/payments](https://docs.tink.com/resources/payments)
+PSD2 Payment Initiation Services. Initiate single payments, refunds, payouts, and create mandates for Auto Payments and sweeping Variable Recurring Payments. Available in EU under PSD2 and in the US via the Pay by Bank stack at api.us.tink.com.
+
+- **Human URL:** [https://docs.tink.com/resources/payments](https://docs.tink.com/resources/payments)
+- **Base URL:** `https://api.tink.com`
+
+#### Tags
+
+- Payments
+- Payment Initiation
+- PSD2
+- Pay by Bank
+- Mandates
+- Refunds
+- Variable Recurring Payments
+
+#### Properties
 
 - [Documentation](https://docs.tink.com/resources/payments)
-- [OpenAPI](openapi/tink-payments-api-openapi.yml)
-- [JSON Schema — Payment](json-schema/tink-payment-schema.json)
-- [Example — Payment](examples/tink-payment-example.json)
-- [Naftiko Capability — Payments](capabilities/payments.yaml)
+- [OpenAPI](openapi/tink-payments-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/tink-payments-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tink-payments-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/tink-payment-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Example](examples/tink-payment-example.json)
 
 ### Tink Risk and Reports API
-Decisioning-grade reports built on aggregated bank data: Income Check, Expense Check, Risk Insights, and Risk Categorisation.
 
-**Human URL:** [https://docs.tink.com/resources/risk-insights](https://docs.tink.com/resources/risk-insights)
+Decisioning-grade reports built on aggregated bank data — Income Check, Expense Check, Risk Insights, and Risk Categorisation — for affordability, underwriting, and lending decisions.
 
-- [Documentation — Risk Insights](https://docs.tink.com/resources/risk-insights)
-- [Documentation — Income Check](https://docs.tink.com/resources/income-check)
-- [Documentation — Expense Check](https://docs.tink.com/resources/expense-check)
-- [OpenAPI](openapi/tink-risk-reports-api-openapi.yml)
-- [Naftiko Capability — Risk and Reports](capabilities/risk-reports.yaml)
+- **Human URL:** [https://docs.tink.com/resources/risk-insights](https://docs.tink.com/resources/risk-insights)
+- **Base URL:** `https://api.tink.com`
+
+#### Tags
+
+- Risk
+- Income Check
+- Expense Check
+- Risk Insights
+- Risk Categorisation
+- Lending
+- Affordability
+
+#### Properties
+
+- [Documentation](https://docs.tink.com/resources/risk-insights)
+- [Documentation](https://docs.tink.com/resources/income-check)
+- [Documentation](https://docs.tink.com/resources/expense-check)
+- [OpenAPI](openapi/tink-risk-reports-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/tink-risk-reports-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tink-risk-reports-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Tink Money Manager API
-Personal and business financial-management surface. Cash-flow summaries, budgets, financial calendar, and reconciliations.
 
-**Human URL:** [https://docs.tink.com/resources/money-manager](https://docs.tink.com/resources/money-manager)
+Personal and business financial-management surface. Cash-flow summaries, recurring and one-off business budgets, a financial calendar of bills and invoices, and reconciliations against bank transactions.
+
+- **Human URL:** [https://docs.tink.com/resources/money-manager](https://docs.tink.com/resources/money-manager)
+- **Base URL:** `https://api.tink.com`
+
+#### Tags
+
+- Money Manager
+- BFM
+- Cash Flow
+- Budgets
+- Financial Calendar
+
+#### Properties
 
 - [Documentation](https://docs.tink.com/resources/money-manager)
-- [OpenAPI](openapi/tink-money-manager-api-openapi.yml)
-- [Naftiko Capability — Money Manager](capabilities/money-manager.yaml)
+- [OpenAPI](openapi/tink-money-manager-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/tink-money-manager-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tink-money-manager-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Tink Connector API
-Push partner-collected accounts and transactions into the Tink platform so they benefit from categorisation, recurring detection, Money Manager, and risk reporting.
 
-**Human URL:** [https://docs.tink.com/resources/connector](https://docs.tink.com/resources/connector)
+Push partner-collected accounts and transactions into the Tink platform so they benefit from Tink categorisation, recurring detection, Money Manager, and risk reporting alongside PSD2-aggregated data.
+
+- **Human URL:** [https://docs.tink.com/resources/connector](https://docs.tink.com/resources/connector)
+- **Base URL:** `https://api.tink.com`
+
+#### Tags
+
+- Connector
+- Data Ingestion
+
+#### Properties
 
 - [Documentation](https://docs.tink.com/resources/connector)
-- [OpenAPI](openapi/tink-connector-api-openapi.yml)
-- [Naftiko Capability — Connector](capabilities/connector.yaml)
+- [OpenAPI](openapi/tink-connector-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/tink-connector-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tink-connector-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Tink Webhooks API
-Asynchronous event notifications when reports complete, payments and refunds change status, or consented bank data refreshes.
 
-**Human URL:** [https://docs.tink.com/resources/webhooks](https://docs.tink.com/resources/webhooks)
+Register webhook endpoints that receive asynchronous events when reports are ready, payments and refunds change status, or consented bank data is refreshed.
+
+- **Human URL:** [https://docs.tink.com/resources/webhooks](https://docs.tink.com/resources/webhooks)
+- **Base URL:** `https://api.tink.com`
+
+#### Tags
+
+- Webhooks
+- Events
+
+#### Properties
 
 - [Documentation](https://docs.tink.com/resources/webhooks)
-- [OpenAPI](openapi/tink-webhooks-api-openapi.yml)
-- [Naftiko Capability — Webhooks](capabilities/webhooks.yaml)
+- [OpenAPI](openapi/tink-webhooks-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/tink-webhooks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tink-webhooks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
 - [Portal](https://tink.com/)
-- [Developer Docs](https://docs.tink.com/)
+- [Documentation](https://docs.tink.com/)
 - [Console](https://console.tink.com/)
-- [Contact Sales](https://tink.com/contact-sales/)
+- [Sign Up](https://tink.com/contact-sales/)
 - [Pricing](https://tink.com/pricing/)
-- [Status](https://status.tink.com/)
+- [Status Page](https://status.tink.com/)
 - [Changelog](https://docs.tink.com/changelog)
 - [Blog](https://tink.com/blog/)
 - [Terms of Service](https://tink.com/terms-and-conditions/)
@@ -128,63 +245,25 @@ Asynchronous event notifications when reports complete, payments and refunds cha
 - [Security](https://tink.com/security/)
 - [GitHub Organization](https://github.com/tink-ab)
 - [LinkedIn](https://www.linkedin.com/company/tink-ab/)
-- [Postman Collections (EU)](https://github.com/tink-ab/tink-postman)
-- [Postman Collections (US)](https://github.com/tink-ab/tink-postman-us)
-- [SDK — Tink Link Android](https://github.com/tink-ab/tink-link-android)
-- [SDK — Tink Link iOS](https://github.com/tink-ab/tink-link-ios)
-- [SDK — Money Manager Android](https://github.com/tink-ab/tink-money-manager-android)
-- [SDK — Money Manager iOS](https://github.com/tink-ab/tink-money-manager-ios)
-- [Spectral Ruleset](rules/tink-rules.yml)
+- [Postman](https://github.com/tink-ab/tink-postman) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Postman](https://github.com/tink-ab/tink-postman-us) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [SDK](https://github.com/tink-ab/tink-link-android)
+- [SDK](https://github.com/tink-ab/tink-link-ios)
+- [SDK](https://github.com/tink-ab/tink-money-manager-android)
+- [SDK](https://github.com/tink-ab/tink-money-manager-ios)
+- [Tools](https://github.com/tink-ab/terraform-provider-buildkite)
+- [Spectral Rules](rules/tink-rules.yml)
 - [Vocabulary](vocabulary/tink-com-vocabulary.yml)
-- [JSON-LD Context](json-ld/tink-com-context.jsonld)
-- [Plans and Pricing](plans/tink-com-plans-pricing.yml)
+- [JSON-LD](json-ld/tink-com-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Plans](plans/tink-com-plans-pricing.yml)
 - [Rate Limits](rate-limits/tink-com-rate-limits.yml)
-- [FinOps Surface](finops/tink-com-finops.yml)
+- [Fin Ops](finops/tink-com-finops.yml)
+- [Features](undefined)
+- [Use Cases](undefined)
+- [Integrations](undefined)
+- [Solutions](undefined)
 
-## Features
+## Maintainers
 
-- 6,000+ bank connections across Europe (Nordics, UK, DACH, Benelux, France, Iberia, Italy, Ireland, Poland).
-- PSD2 Payment Initiation for one-off payments, VRPs, Auto Payments, payouts, refunds, and mandates.
-- Account Check and Business Account Check with optional identity match (name, DOB, address).
-- Risk Insights and Risk Categorisation reports for affordability and lending.
-- Income Check and Expense Check for underwriting and KYC.
-- Money Manager BFM: cash-flow, budgets, financial calendar, reconciliations.
-- Data Enrichment: Tink categorisation, merchant identification, recurring detection and prediction.
-- Connector API: push partner-collected accounts and transactions into Tink.
-- Tink Link hosted consent UX with SCA and app-to-app redirects.
-- Webhooks for asynchronous events.
-- SOC 2 Type II and PSD2 licensed — customers do not need their own PSD2 authorisation.
-
-## Use Cases
-
-- Onboarding and KYC via verified account ownership.
-- Affordability and underwriting using Risk Insights, Income Check, and Expense Check.
-- Pay by Bank checkout with one-off PIS or Auto Payments.
-- Subscription billing with sweeping VRPs.
-- Embedded BFM for SMB banking and accounting apps.
-- PFM and personal-banking categorisation.
-- Payouts to verified bank accounts.
-- Open Finance composition stitching PSD2 and partner data via Connector.
-
-## Plans
-
-Tink publishes two commercial tiers — **Standard** and **Enterprise** — with per-call pricing quoted privately to existing customers. Net-new prospects engage Tink sales for a quote.
-
-| Tier | Products |
-|---|---|
-| Standard | Account Check, Transactions, Tink Link, on-demand refresh |
-| Enterprise | Standard + Risk Insights, Income Check, Expense Check, Business Account Check, Business Transactions, Money Manager, Payment Initiation; background refresh; guaranteed SLAs |
-
-Full machine-readable plans live in [plans/tink-com-plans-pricing.yml](plans/tink-com-plans-pricing.yml).
-
-## Rate Limits
-
-Specific RPS / RPM limits are not publicly disclosed; Tink configures them per-client per-product at contract signing. PSD2 imposes a four-per-24-hours background-refresh cap per consent without SCA. See [rate-limits/tink-com-rate-limits.yml](rate-limits/tink-com-rate-limits.yml).
-
-## FinOps
-
-FOCUS-aligned billing-surface definition lives in [finops/tink-com-finops.yml](finops/tink-com-finops.yml). Meters include account-check reports, business-account-check reports, income/expense/risk reports, PIS payments initiated and executed, refunds, active continuous-access users, and data-API requests.
-
-## Integrations
-
-Adyen, Revolut, Younited, Bank Norwegian, PostNord Strålfors, and the broader Visa risk and payments stack since the 2022 acquisition.
+**FN:** API Evangelist
+**Email:** info@apievangelist.com

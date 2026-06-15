@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Account Check API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AccountVerificationReports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Get An Account Verification Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/api/v1/account-verification-reports/:report_id",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a completed Account Check report as a JSON document. Includes verified account, identity, party, balance, and risk-signal sections for every account the user shared.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Get An Account Verification Report As PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/api/v1/account-verification-reports/:report_id/pdf",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "template",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a completed Account Check report rendered as a PDF using the specified report template. Useful for compliance, KYC, and underwriting archives.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Create A Tink Link Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/link/v1/session",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Tink Link session pre-loaded with user information so the Account Check report can be matched against the supplied identity (name, date of birth, address). Returns the hosted Tink Link URL.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "BusinessAccountVerificationReports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Get A Business Account Verification Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v1/business-account-verification-reports/:report_id",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a completed Business Account Check report verifying that a commercial bank account is owned by the business identified during the Tink Link session.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,308 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Data API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/accounts",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all bank accounts the user has consented to share with the calling application."
+        },
+        {
+          "info": {
+            "name": "Tink Get Account Balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/accounts/:account_id/balances",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve balance snapshots for a single account, including booked and available balance."
+        },
+        {
+          "info": {
+            "name": "Tink List Account Parties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/accounts/:account_id/parties",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List the legal parties (account holders) attached to an account, as returned by the bank."
+        },
+        {
+          "info": {
+            "name": "Tink List User Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/api/v1/credentials/list"
+          },
+          "docs": "List bank credential objects (consents) attached to the current user."
+        },
+        {
+          "info": {
+            "name": "Tink Delete User Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tink.com/api/v1/credentials/:credentialsId",
+            "params": [
+              {
+                "name": "credentialsId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a credentials object and revoke the underlying bank consent."
+        },
+        {
+          "info": {
+            "name": "Tink List Provider Consents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/api/v1/provider-consents"
+          },
+          "docs": "List all active bank-provider consents for the current user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/transactions",
+            "params": [
+              {
+                "name": "accountIdIn",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bookedDateGte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bookedDateLte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statusIn",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List bank transactions across all consented accounts with optional filters by date range, account, status, and amount.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Identities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Identities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/identities"
+          },
+          "docs": "List identity records returned by banks for the consented user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Investments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Investment Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/investment-accounts"
+          },
+          "docs": "List investment accounts the user has consented to share."
+        },
+        {
+          "info": {
+            "name": "Tink List Investment Holdings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/investment-accounts/:id/holdings",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List individual holdings within an investment account, including instrument, quantity, and market value."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Loans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Loan Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/loan-accounts"
+          },
+          "docs": "List loan accounts the user has consented to share, including outstanding balance, interest rate, and term."
+        },
+        {
+          "info": {
+            "name": "Tink Get A Loan Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/loan-accounts/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a single loan account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "BalanceRefresh",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Create A Balance Refresh",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/api/v1/balance-refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger an on-demand refresh of account balances for a connected credentials object. Used by Balance Check to fetch fresh data outside of the bank's standard polling cadence.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Get A Balance Refresh Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/api/v1/balance-refresh/:balanceRefreshId",
+            "params": [
+              {
+                "name": "balanceRefreshId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the status of a previously triggered balance refresh."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

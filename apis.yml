@@ -2,16 +2,12 @@ aid: tink-com
 url: https://raw.githubusercontent.com/api-evangelist/tink-com/refs/heads/main/apis.yml
 name: Tink
 description: >-
-  Tink, a Visa solution acquired in 2022, is a European Open Banking platform
-  with 6,000+ bank connections across Europe and a US Pay by Bank stack.
-  Tink exposes a single API for PSD2-aggregated bank data (Accounts,
-  Transactions, Balances, Identities, Investments, Loans), value-added risk
-  reports (Account Check, Business Account Check, Income Check, Expense
-  Check, Risk Insights, Risk Categorisation), Money Manager BFM, Data
-  Enrichment, and PSD2 Payment Initiation Services (Pay by Bank, Auto
-  Payments, Variable Recurring Payments, Mandates, Refunds, Payouts).
-  Authentication is OAuth 2.0 with delegated user consent through the
-  Tink Link hosted flow.
+  Tink, a Visa solution acquired in 2022, is a European Open Banking platform with 6,000+ bank connections across Europe
+  and a US Pay by Bank stack. Tink exposes a single API for PSD2-aggregated bank data (Accounts, Transactions, Balances,
+  Identities, Investments, Loans), value-added risk reports (Account Check, Business Account Check, Income Check,
+  Expense Check, Risk Insights, Risk Categorisation), Money Manager BFM, Data Enrichment, and PSD2 Payment Initiation
+  Services (Pay by Bank, Auto Payments, Variable Recurring Payments, Mandates, Refunds, Payouts). Authentication is
+  OAuth 2.0 with delegated user consent through the Tink Link hosted flow.
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Open Banking
@@ -35,7 +31,9 @@ access: 3rd-Party
 apis:
   - aid: tink-com:tink-oauth-api
     name: Tink OAuth API
-    description: OAuth 2.0 client-credentials, refresh, and delegated authorization-grant endpoints that gate every Tink API. Includes permanent user creation and Tink Link session delegation.
+    description: >-
+      OAuth 2.0 client-credentials, refresh, and delegated authorization-grant endpoints that gate every Tink API.
+      Includes permanent user creation and Tink Link session delegation.
     humanURL: https://docs.tink.com/api-reference/auth-api
     baseURL: https://api.tink.com
     tags:
@@ -47,11 +45,12 @@ apis:
         type: Documentation
       - url: openapi/tink-oauth-api-openapi.yml
         type: OpenAPI
-      - url: capabilities/oauth.yaml
-        type: NaftikoCapability
   - aid: tink-com:tink-account-check-api
     name: Tink Account Check API
-    description: Verify that a bank account belongs to the consumer or business presenting it. Returns verified account, identity, balance, and user-match results as JSON or PDF. Includes Business Account Check and Tink Link session creation with user info for identity matching.
+    description: >-
+      Verify that a bank account belongs to the consumer or business presenting it. Returns verified account, identity,
+      balance, and user-match results as JSON or PDF. Includes Business Account Check and Tink Link session creation
+      with user info for identity matching.
     humanURL: https://docs.tink.com/resources/account-check
     baseURL: https://api.tink.com
     tags:
@@ -68,11 +67,12 @@ apis:
         type: JSONSchema
       - url: examples/tink-account-verification-report-example.json
         type: Example
-      - url: capabilities/account-check.yaml
-        type: NaftikoCapability
   - aid: tink-com:tink-data-api
     name: Tink Data API
-    description: Read consented bank data from 6,000+ European banks. Lists accounts, balances, transactions, account parties, identities, investment holdings, and loan accounts. Includes on-demand balance refresh, credentials management, and provider-consent inspection.
+    description: >-
+      Read consented bank data from 6,000+ European banks. Lists accounts, balances, transactions, account parties,
+      identities, investment holdings, and loan accounts. Includes on-demand balance refresh, credentials management,
+      and provider-consent inspection.
     humanURL: https://docs.tink.com/resources/transactions
     baseURL: https://api.tink.com
     tags:
@@ -91,11 +91,11 @@ apis:
         type: JSONSchema
       - url: examples/tink-transaction-example.json
         type: Example
-      - url: capabilities/data-transactions.yaml
-        type: NaftikoCapability
   - aid: tink-com:tink-data-enrichment-api
     name: Tink Data Enrichment API
-    description: Categorise raw bank transactions, identify the merchant, detect confirmed recurring transactions, and predict future recurring payments. Powers Money Manager, Expense Check, Income Check, and Risk Insights downstream.
+    description: >-
+      Categorise raw bank transactions, identify the merchant, detect confirmed recurring transactions, and predict
+      future recurring payments. Powers Money Manager, Expense Check, Income Check, and Risk Insights downstream.
     humanURL: https://docs.tink.com/resources/data-enrichment
     baseURL: https://api.tink.com
     tags:
@@ -108,11 +108,12 @@ apis:
         type: Documentation
       - url: openapi/tink-data-enrichment-api-openapi.yml
         type: OpenAPI
-      - url: capabilities/data-enrichment.yaml
-        type: NaftikoCapability
   - aid: tink-com:tink-payments-api
     name: Tink Payments API
-    description: PSD2 Payment Initiation Services. Initiate single payments, refunds, payouts, and create mandates for Auto Payments and sweeping Variable Recurring Payments. Available in EU under PSD2 and in the US via the Pay by Bank stack at api.us.tink.com.
+    description: >-
+      PSD2 Payment Initiation Services. Initiate single payments, refunds, payouts, and create mandates for Auto
+      Payments and sweeping Variable Recurring Payments. Available in EU under PSD2 and in the US via the Pay by Bank
+      stack at api.us.tink.com.
     humanURL: https://docs.tink.com/resources/payments
     baseURL: https://api.tink.com
     tags:
@@ -132,11 +133,11 @@ apis:
         type: JSONSchema
       - url: examples/tink-payment-example.json
         type: Example
-      - url: capabilities/payments.yaml
-        type: NaftikoCapability
   - aid: tink-com:tink-risk-reports-api
     name: Tink Risk and Reports API
-    description: Decisioning-grade reports built on aggregated bank data — Income Check, Expense Check, Risk Insights, and Risk Categorisation — for affordability, underwriting, and lending decisions.
+    description: >-
+      Decisioning-grade reports built on aggregated bank data — Income Check, Expense Check, Risk Insights, and Risk
+      Categorisation — for affordability, underwriting, and lending decisions.
     humanURL: https://docs.tink.com/resources/risk-insights
     baseURL: https://api.tink.com
     tags:
@@ -156,11 +157,11 @@ apis:
         type: Documentation
       - url: openapi/tink-risk-reports-api-openapi.yml
         type: OpenAPI
-      - url: capabilities/risk-reports.yaml
-        type: NaftikoCapability
   - aid: tink-com:tink-money-manager-api
     name: Tink Money Manager API
-    description: Personal and business financial-management surface. Cash-flow summaries, recurring and one-off business budgets, a financial calendar of bills and invoices, and reconciliations against bank transactions.
+    description: >-
+      Personal and business financial-management surface. Cash-flow summaries, recurring and one-off business budgets, a
+      financial calendar of bills and invoices, and reconciliations against bank transactions.
     humanURL: https://docs.tink.com/resources/money-manager
     baseURL: https://api.tink.com
     tags:
@@ -174,11 +175,11 @@ apis:
         type: Documentation
       - url: openapi/tink-money-manager-api-openapi.yml
         type: OpenAPI
-      - url: capabilities/money-manager.yaml
-        type: NaftikoCapability
   - aid: tink-com:tink-connector-api
     name: Tink Connector API
-    description: Push partner-collected accounts and transactions into the Tink platform so they benefit from Tink categorisation, recurring detection, Money Manager, and risk reporting alongside PSD2-aggregated data.
+    description: >-
+      Push partner-collected accounts and transactions into the Tink platform so they benefit from Tink categorisation,
+      recurring detection, Money Manager, and risk reporting alongside PSD2-aggregated data.
     humanURL: https://docs.tink.com/resources/connector
     baseURL: https://api.tink.com
     tags:
@@ -189,11 +190,11 @@ apis:
         type: Documentation
       - url: openapi/tink-connector-api-openapi.yml
         type: OpenAPI
-      - url: capabilities/connector.yaml
-        type: NaftikoCapability
   - aid: tink-com:tink-webhooks-api
     name: Tink Webhooks API
-    description: Register webhook endpoints that receive asynchronous events when reports are ready, payments and refunds change status, or consented bank data is refreshed.
+    description: >-
+      Register webhook endpoints that receive asynchronous events when reports are ready, payments and refunds change
+      status, or consented bank data is refreshed.
     humanURL: https://docs.tink.com/resources/webhooks
     baseURL: https://api.tink.com
     tags:
@@ -204,42 +205,54 @@ apis:
         type: Documentation
       - url: openapi/tink-webhooks-api-openapi.yml
         type: OpenAPI
-      - url: capabilities/webhooks.yaml
-        type: NaftikoCapability
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/tink/overview
   - type: ArazzoWorkflows
     url: arazzo/
     workflows:
-    - url: arazzo/tink-com-account-transactions-overview-workflow.yml
-      name: Tink Account And Transactions Overview
-      summary: List a user's accounts, read the balances of a chosen account, then list its transactions.
-    - url: arazzo/tink-com-account-verification-report-workflow.yml
-      name: Tink Account Check Verification And Report Retrieval
-      summary: Create a Tink Link session pre-loaded with identity, then retrieve the resulting Account Check report as JSON and PDF.
-    - url: arazzo/tink-com-balance-refresh-poll-workflow.yml
-      name: Tink Trigger A Balance Refresh And Poll It
-      summary: Trigger an on-demand balance refresh for a credentials object, then poll until it finishes, then read fresh balances.
-    - url: arazzo/tink-com-initiate-payment-poll-status-workflow.yml
-      name: Tink Initiate A Payment And Poll Its Status
-      summary: Initiate a Pay by Bank payment, then poll the payment until it reaches a terminal status.
-    - url: arazzo/tink-com-mandate-setup-workflow.yml
-      name: Tink Create A Payment Mandate And Confirm It
-      summary: Create a recurring payment mandate for a user, then read it back to confirm it is active.
-    - url: arazzo/tink-com-payment-refund-poll-workflow.yml
-      name: Tink Refund An Executed Payment And Poll The Refund
-      summary: Confirm a payment is executed, initiate a refund, then poll the refund until it reaches a terminal status.
-    - url: arazzo/tink-com-provider-consent-cleanup-workflow.yml
-      name: Tink Review And Revoke A Bank Consent
-      summary: List a user's provider consents and credentials, then delete the credentials object to revoke the underlying bank consent.
-    - url: arazzo/tink-com-recurring-spend-budget-workflow.yml
-      name: Tink Build A Budget From Recurring Spend
-      summary: Read a user's confirmed recurring transactions and category taxonomy, create a business budget around them, then read the budget's progress.
-    - url: arazzo/tink-com-user-data-access-workflow.yml
-      name: Tink Onboard A User And Access Their Bank Data
-      summary: Create a permanent Tink user, delegate bank authorization, exchange the code for a user token, and list their accounts.
-    - url: arazzo/tink-com-webhook-endpoint-setup-workflow.yml
-      name: Tink Register And Verify A Webhook Endpoint
-      summary: Register a webhook endpoint for selected event types, read it back to capture its signing secret, then confirm it is enabled in the endpoint list.
+      - url: arazzo/tink-com-account-transactions-overview-workflow.yml
+        name: Tink Account And Transactions Overview
+        summary: List a user's accounts, read the balances of a chosen account, then list its transactions.
+      - url: arazzo/tink-com-account-verification-report-workflow.yml
+        name: Tink Account Check Verification And Report Retrieval
+        summary: >-
+          Create a Tink Link session pre-loaded with identity, then retrieve the resulting Account Check report as JSON
+          and PDF.
+      - url: arazzo/tink-com-balance-refresh-poll-workflow.yml
+        name: Tink Trigger A Balance Refresh And Poll It
+        summary: >-
+          Trigger an on-demand balance refresh for a credentials object, then poll until it finishes, then read fresh
+          balances.
+      - url: arazzo/tink-com-initiate-payment-poll-status-workflow.yml
+        name: Tink Initiate A Payment And Poll Its Status
+        summary: Initiate a Pay by Bank payment, then poll the payment until it reaches a terminal status.
+      - url: arazzo/tink-com-mandate-setup-workflow.yml
+        name: Tink Create A Payment Mandate And Confirm It
+        summary: Create a recurring payment mandate for a user, then read it back to confirm it is active.
+      - url: arazzo/tink-com-payment-refund-poll-workflow.yml
+        name: Tink Refund An Executed Payment And Poll The Refund
+        summary: Confirm a payment is executed, initiate a refund, then poll the refund until it reaches a terminal status.
+      - url: arazzo/tink-com-provider-consent-cleanup-workflow.yml
+        name: Tink Review And Revoke A Bank Consent
+        summary: >-
+          List a user's provider consents and credentials, then delete the credentials object to revoke the underlying
+          bank consent.
+      - url: arazzo/tink-com-recurring-spend-budget-workflow.yml
+        name: Tink Build A Budget From Recurring Spend
+        summary: >-
+          Read a user's confirmed recurring transactions and category taxonomy, create a business budget around them,
+          then read the budget's progress.
+      - url: arazzo/tink-com-user-data-access-workflow.yml
+        name: Tink Onboard A User And Access Their Bank Data
+        summary: >-
+          Create a permanent Tink user, delegate bank authorization, exchange the code for a user token, and list their
+          accounts.
+      - url: arazzo/tink-com-webhook-endpoint-setup-workflow.yml
+        name: Tink Register And Verify A Webhook Endpoint
+        summary: >-
+          Register a webhook endpoint for selected event types, read it back to capture its signing secret, then confirm
+          it is enabled in the endpoint list.
   - url: https://tink.com/
     type: Portal
     name: Tink Home
@@ -322,7 +335,9 @@ common:
     name: Features
     data:
       - name: 6,000+ Bank Connections
-        description: PSD2 and non-PSD2 connectivity across the Nordics, UK, DACH, Benelux, France, Iberia, Italy, Ireland, and Poland.
+        description: >-
+          PSD2 and non-PSD2 connectivity across the Nordics, UK, DACH, Benelux, France, Iberia, Italy, Ireland, and
+          Poland.
       - name: PSD2 Payment Initiation
         description: Single API for one-off payments, Variable Recurring Payments, Auto Payments, payouts, refunds, and mandates.
       - name: Account Check and Business Account Check

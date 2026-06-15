@@ -1,0 +1,323 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Money Manager API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CashFlow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Get Cash Flow Summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/finance-management/v1/cash-flow-summaries/:resolution",
+            "params": [
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to_lte",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve cash flow summaries (income vs expense) for the user at the requested resolution. Resolution values include DAILY, WEEKLY, MONTHLY, QUARTERLY, and YEARLY.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Budgets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Business Budgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/finance-management/v1/business-budgets",
+            "params": [
+              {
+                "name": "progress_status_in",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List business budgets, optionally filtered by progress status."
+        },
+        {
+          "info": {
+            "name": "Tink Create A Business Budget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/finance-management/v1/business-budgets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a one-off or recurring business budget tied to a category, merchant, or tag set."
+        },
+        {
+          "info": {
+            "name": "Tink Get A Business Budget",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/finance-management/v1/business-budgets/:budgetId",
+            "params": [
+              {
+                "name": "budgetId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a business budget by id with current progress and remaining amount."
+        },
+        {
+          "info": {
+            "name": "Tink Update A Business Budget",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.tink.com/finance-management/v1/business-budgets/:budgetId",
+            "params": [
+              {
+                "name": "budgetId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update fields on a business budget (limit, period, tags)."
+        },
+        {
+          "info": {
+            "name": "Tink Delete A Business Budget",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tink.com/finance-management/v1/business-budgets/:budgetId",
+            "params": [
+              {
+                "name": "budgetId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a business budget."
+        },
+        {
+          "info": {
+            "name": "Tink Get Business Budget History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/finance-management/v1/business-budgets/:budgetId/history",
+            "params": [
+              {
+                "name": "budgetId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the historical performance of a budget across past periods."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "FinancialCalendar",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Financial Calendar Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/finance-management/v1/financial-calendar-events",
+            "params": [
+              {
+                "name": "due_date_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "due_date_lte",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List financial calendar events filtered by due-date range."
+        },
+        {
+          "info": {
+            "name": "Tink Create A Financial Calendar Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/finance-management/v1/financial-calendar-events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a scheduled or recurring financial calendar event such as a bill, invoice, or tax payment."
+        },
+        {
+          "info": {
+            "name": "Tink Get A Financial Calendar Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/finance-management/v1/financial-calendar-events/:calendarEventId",
+            "params": [
+              {
+                "name": "calendarEventId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single financial calendar event by id."
+        },
+        {
+          "info": {
+            "name": "Tink Update A Financial Calendar Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.tink.com/finance-management/v1/financial-calendar-events/:calendarEventId",
+            "params": [
+              {
+                "name": "calendarEventId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update fields on a financial calendar event."
+        },
+        {
+          "info": {
+            "name": "Tink Delete A Financial Calendar Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tink.com/finance-management/v1/financial-calendar-events/:calendarEventId",
+            "params": [
+              {
+                "name": "calendarEventId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a financial calendar event."
+        },
+        {
+          "info": {
+            "name": "Tink Create A Calendar Event Reconciliation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/finance-management/v1/financial-calendar-events/:calendarEventId/reconciliations",
+            "params": [
+              {
+                "name": "calendarEventId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reconcile a calendar event against a matched transaction."
+        },
+        {
+          "info": {
+            "name": "Tink List Calendar Event Summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/finance-management/v1/financial-calendar-summaries/:resolution",
+            "params": [
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "period_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "period_lte",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Aggregate financial calendar events into summaries at the requested resolution."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

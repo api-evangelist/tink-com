@@ -1,0 +1,1501 @@
+{
+  "item": [
+    {
+      "id": "371a1e88-104a-4bbe-b0b4-a21d812b31b1",
+      "name": "Accounts",
+      "description": {
+        "content": "User bank accounts and balances.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "717745d4-15bc-45be-8fdb-25717b87e98b",
+          "name": "Tink List Accounts",
+          "request": {
+            "name": "Tink List Accounts",
+            "description": {
+              "content": "List all bank accounts the user has consented to share with the calling application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41cd49e1-d7b3-4bad-ac84-0858265bb778",
+              "name": "Accounts returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accounts\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"CHECKING\",\n      \"balances\": {\n        \"booked\": {\n          \"amount\": {\n            \"value\": {\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unscaledValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"currencyCode\": \"string\"\n          }\n        },\n        \"available\": {\n          \"amount\": {\n            \"value\": {\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unscaledValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"currencyCode\": \"string\"\n          }\n        }\n      },\n      \"identifiers\": {\n        \"iban\": {\n          \"iban\": \"string\",\n          \"bban\": \"string\"\n        },\n        \"sortCode\": {\n          \"code\": \"string\",\n          \"accountNumber\": \"string\"\n        }\n      },\n      \"currencyCode\": \"string\",\n      \"customerSegment\": \"UNDEFINED\",\n      \"financialInstitutionId\": \"string\",\n      \"dates\": {\n        \"lastRefreshed\": \"1984-10-24T19:20:03.145Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"SAVINGS\",\n      \"balances\": {\n        \"booked\": {\n          \"amount\": {\n            \"value\": {\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unscaledValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"currencyCode\": \"string\"\n          }\n        },\n        \"available\": {\n          \"amount\": {\n            \"value\": {\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unscaledValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"currencyCode\": \"string\"\n          }\n        }\n      },\n      \"identifiers\": {\n        \"iban\": {\n          \"iban\": \"string\",\n          \"bban\": \"string\"\n        },\n        \"sortCode\": {\n          \"code\": \"string\",\n          \"accountNumber\": \"string\"\n        }\n      },\n      \"currencyCode\": \"string\",\n      \"customerSegment\": \"UNDEFINED\",\n      \"financialInstitutionId\": \"string\",\n      \"dates\": {\n        \"lastRefreshed\": \"1992-08-14T07:34:29.159Z\"\n      }\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03e9e7bc-44aa-4e63-9c33-441546368cf6",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e238e23d-a535-483e-b761-46f97471bea7",
+          "name": "Tink Get Account Balances",
+          "request": {
+            "name": "Tink Get Account Balances",
+            "description": {
+              "content": "Retrieve balance snapshots for a single account, including booked and available balance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "accounts",
+                ":account_id",
+                "balances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b8e53a0-204b-4ffa-a528-eb26adddc248",
+              "name": "Balances returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "accounts",
+                    ":account_id",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"balances\": [\n    {\n      \"amount\": {\n        \"value\": {\n          \"scale\": \"string\",\n          \"unscaledValue\": \"string\"\n        },\n        \"currencyCode\": \"string\"\n      }\n    },\n    {\n      \"amount\": {\n        \"value\": {\n          \"scale\": \"string\",\n          \"unscaledValue\": \"string\"\n        },\n        \"currencyCode\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64502147-dca0-4156-bcca-c37b9bf66166",
+          "name": "Tink List Account Parties",
+          "request": {
+            "name": "Tink List Account Parties",
+            "description": {
+              "content": "List the legal parties (account holders) attached to an account, as returned by the bank.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "accounts",
+                ":account_id",
+                "parties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd9978d2-c220-4002-9bed-a4d383352992",
+              "name": "Account parties returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "accounts",
+                    ":account_id",
+                    "parties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parties\": [\n    {\n      \"name\": \"string\",\n      \"role\": \"HOLDER\",\n      \"partyType\": \"ORGANIZATION\"\n    },\n    {\n      \"name\": \"string\",\n      \"role\": \"AUTHORIZED_USER\",\n      \"partyType\": \"PERSON\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2441d0e-1bd5-48d4-9caf-487597785416",
+          "name": "Tink List User Credentials",
+          "request": {
+            "name": "Tink List User Credentials",
+            "description": {
+              "content": "List bank credential objects (consents) attached to the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "credentials",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e963aed4-1aad-413c-abe2-3a295df05fae",
+              "name": "Credentials returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "credentials",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"credentials\": [\n    {\n      \"id\": \"string\",\n      \"providerName\": \"string\",\n      \"status\": \"AUTHENTICATING\",\n      \"statusUpdated\": 2480,\n      \"userId\": \"string\",\n      \"sessionExpiryDate\": 357\n    },\n    {\n      \"id\": \"string\",\n      \"providerName\": \"string\",\n      \"status\": \"DELETED\",\n      \"statusUpdated\": 7854,\n      \"userId\": \"string\",\n      \"sessionExpiryDate\": 2176\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6b04e0c-983f-432e-9e82-abb1cec5d06e",
+          "name": "Tink Delete User Credentials",
+          "request": {
+            "name": "Tink Delete User Credentials",
+            "description": {
+              "content": "Delete a credentials object and revoke the underlying bank consent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "credentials",
+                ":credentialsId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "credentialsId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "242da9e6-8fc1-49e8-a242-f44785dbffd2",
+              "name": "Credentials deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "credentials",
+                    ":credentialsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credentialsId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02f68d5e-2df1-4f51-a3fc-ed3d5f2bad6a",
+          "name": "Tink List Provider Consents",
+          "request": {
+            "name": "Tink List Provider Consents",
+            "description": {
+              "content": "List all active bank-provider consents for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "provider-consents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51cf898f-bd99-441d-b0a3-45114194871e",
+              "name": "Provider consents returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "provider-consents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"providerConsents\": [\n    {\n      \"credentialsId\": \"string\",\n      \"providerName\": \"string\",\n      \"status\": \"string\",\n      \"statusUpdated\": 757,\n      \"sessionExpiryDate\": 2915,\n      \"accountIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"credentialsId\": \"string\",\n      \"providerName\": \"string\",\n      \"status\": \"string\",\n      \"statusUpdated\": 1237,\n      \"sessionExpiryDate\": 2117,\n      \"accountIds\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1f9c6ddc-5a88-4d03-9745-9e13049d634d",
+      "name": "Transactions",
+      "description": {
+        "content": "User bank transactions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "168a8a85-6f74-47d1-ad7c-217e2b95a05b",
+          "name": "Tink List Transactions",
+          "request": {
+            "name": "Tink List Transactions",
+            "description": {
+              "content": "List bank transactions across all consented accounts with optional filters by date range, account, status, and amount.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountIdIn",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "bookedDateGte",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "bookedDateLte",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "statusIn",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a38714c9-e2c0-496f-b6d9-21bd454c72b3",
+              "name": "Transactions returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookedDateGte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookedDateLte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "statusIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactions\": [\n    {\n      \"id\": \"string\",\n      \"accountId\": \"string\",\n      \"amount\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"descriptions\": {\n        \"original\": \"string\",\n        \"display\": \"string\"\n      },\n      \"dates\": {\n        \"booked\": \"1987-04-07\",\n        \"value\": \"1996-12-13\"\n      },\n      \"status\": \"UNDEFINED\",\n      \"categories\": {\n        \"pfm\": {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      },\n      \"merchantInformation\": {\n        \"merchantCategoryCode\": \"string\",\n        \"merchantName\": \"string\"\n      },\n      \"types\": {\n        \"type\": \"string\",\n        \"financialInstitutionTypeCode\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"accountId\": \"string\",\n      \"amount\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"descriptions\": {\n        \"original\": \"string\",\n        \"display\": \"string\"\n      },\n      \"dates\": {\n        \"booked\": \"1998-01-27\",\n        \"value\": \"1975-12-09\"\n      },\n      \"status\": \"PENDING\",\n      \"categories\": {\n        \"pfm\": {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      },\n      \"merchantInformation\": {\n        \"merchantCategoryCode\": \"string\",\n        \"merchantName\": \"string\"\n      },\n      \"types\": {\n        \"type\": \"string\",\n        \"financialInstitutionTypeCode\": \"string\"\n      }\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "11672445-f313-447f-a685-11c12cae7f60",
+      "name": "Identities",
+      "description": {
+        "content": "Account holder identities returned by the bank.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a9eb7d7b-e3d9-474b-b121-d9e6776f1488",
+          "name": "Tink List Identities",
+          "request": {
+            "name": "Tink List Identities",
+            "description": {
+              "content": "List identity records returned by banks for the consented user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "identities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db9afab1-1e1f-4704-bfa4-7b3fdafb31d4",
+              "name": "Identities returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "identities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identities\": [\n    {\n      \"id\": \"string\",\n      \"name\": {\n        \"fullName\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      \"dateOfBirth\": \"1962-09-17\",\n      \"emailAddresses\": [\n        {\n          \"value\": \"string\"\n        },\n        {\n          \"value\": \"string\"\n        }\n      ],\n      \"addresses\": [\n        {\n          \"fullAddress\": \"string\",\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\"\n        },\n        {\n          \"fullAddress\": \"string\",\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": {\n        \"fullName\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      \"dateOfBirth\": \"1960-05-24\",\n      \"emailAddresses\": [\n        {\n          \"value\": \"string\"\n        },\n        {\n          \"value\": \"string\"\n        }\n      ],\n      \"addresses\": [\n        {\n          \"fullAddress\": \"string\",\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\"\n        },\n        {\n          \"fullAddress\": \"string\",\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1159d57b-a56d-4502-ba52-4e3439e39ea2",
+      "name": "Investments",
+      "description": {
+        "content": "Investment accounts and holdings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a65cd322-15e8-4b78-910c-0601fbfdbb6e",
+          "name": "Tink List Investment Accounts",
+          "request": {
+            "name": "Tink List Investment Accounts",
+            "description": {
+              "content": "List investment accounts the user has consented to share.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "investment-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc384037-3753-475a-aea5-0c020637d679",
+              "name": "Investment accounts returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "investment-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"investmentAccounts\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"marketValue\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"cashBalance\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"marketValue\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"cashBalance\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9852838d-239a-41de-8f32-edc46d8b8b89",
+          "name": "Tink List Investment Holdings",
+          "request": {
+            "name": "Tink List Investment Holdings",
+            "description": {
+              "content": "List individual holdings within an investment account, including instrument, quantity, and market value.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "investment-accounts",
+                ":id",
+                "holdings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67e5c434-6bfb-42c3-ab7b-013cb1c78ac8",
+              "name": "Holdings returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "investment-accounts",
+                    ":id",
+                    "holdings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"holdings\": [\n    {\n      \"id\": \"string\",\n      \"instrument\": {\n        \"isin\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"OTHER\"\n      },\n      \"quantity\": \"string\",\n      \"marketValue\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"purchasePrice\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"instrument\": {\n        \"isin\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"ETF\"\n      },\n      \"quantity\": \"string\",\n      \"marketValue\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"purchasePrice\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bd4e72cf-0a76-4842-969a-51bc9930cc99",
+      "name": "Loans",
+      "description": {
+        "content": "Loan accounts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6592c47-6788-41c5-8b07-30fdda1a8c11",
+          "name": "Tink List Loan Accounts",
+          "request": {
+            "name": "Tink List Loan Accounts",
+            "description": {
+              "content": "List loan accounts the user has consented to share, including outstanding balance, interest rate, and term.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "loan-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39f25148-32cc-42c2-b1e6-bdfb3371db4a",
+              "name": "Loan accounts returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "loan-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"loanAccounts\": [\n    {\n      \"id\": \"string\",\n      \"accountName\": \"string\",\n      \"loanType\": \"OTHER\",\n      \"outstandingBalance\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"interestRate\": 5133.482115147993,\n      \"terms\": {\n        \"endDate\": \"2022-10-13\",\n        \"durationMonths\": 2146\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"accountName\": \"string\",\n      \"loanType\": \"UNDEFINED\",\n      \"outstandingBalance\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"interestRate\": 8184.187763052685,\n      \"terms\": {\n        \"endDate\": \"1999-10-01\",\n        \"durationMonths\": 5961\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee4d9e90-e840-4541-848b-cd90c5a16518",
+          "name": "Tink Get A Loan Account",
+          "request": {
+            "name": "Tink Get A Loan Account",
+            "description": {
+              "content": "Retrieve detailed information for a single loan account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "loan-accounts",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ce684b7-c7c1-476a-8959-7bc9ae159843",
+              "name": "Loan account returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "loan-accounts",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"accountName\": \"string\",\n  \"loanType\": \"OTHER\",\n  \"outstandingBalance\": {\n    \"amount\": {\n      \"value\": {\n        \"scale\": \"string\",\n        \"unscaledValue\": \"string\"\n      },\n      \"currencyCode\": \"string\"\n    }\n  },\n  \"interestRate\": 3487.5244043113717,\n  \"terms\": {\n    \"endDate\": \"1993-10-06\",\n    \"durationMonths\": 4496\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ddd83412-1968-4cd4-aea6-b303967a12f7",
+      "name": "BalanceRefresh",
+      "description": {
+        "content": "On-demand balance refresh.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3ddd0aae-2674-47a1-ae3b-781941c3407f",
+          "name": "Tink Create A Balance Refresh",
+          "request": {
+            "name": "Tink Create A Balance Refresh",
+            "description": {
+              "content": "Trigger an on-demand refresh of account balances for a connected credentials object. Used by Balance Check to fetch fresh data outside of the bank's standard polling cadence.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "balance-refresh"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"credentialsId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a0f4687-2fe7-4978-872a-dde9c9dff98c",
+              "name": "Balance refresh accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "balance-refresh"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"credentialsId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"balanceRefreshId\": \"string\",\n  \"status\": \"FINISHED\",\n  \"statusMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a789dbaa-fb19-4ef8-932a-f37a0bb90a34",
+          "name": "Tink Get A Balance Refresh Status",
+          "request": {
+            "name": "Tink Get A Balance Refresh Status",
+            "description": {
+              "content": "Retrieve the status of a previously triggered balance refresh.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "balance-refresh",
+                ":balanceRefreshId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "balanceRefreshId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3095a33-e19e-448f-9c44-3842fc56c63c",
+              "name": "Balance refresh status returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "balance-refresh",
+                    ":balanceRefreshId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "balanceRefreshId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"balanceRefreshId\": \"string\",\n  \"status\": \"FINISHED\",\n  \"statusMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ee69f9d8-8fbc-4a46-8c65-09b8863599c9",
+    "name": "Tink Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Data API exposes aggregated PSD2 and non-PSD2 account information for consented users across 6,000+ European banks: accounts, balances, transactions, identities, account parties, investment holdings, and loan accounts. Used for one-time access reports as well as continuous-access products like Money Manager and Risk Insights.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

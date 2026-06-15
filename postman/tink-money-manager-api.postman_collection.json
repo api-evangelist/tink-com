@@ -1,0 +1,1558 @@
+{
+  "info": {
+    "_postman_id": "fc012065-e188-442b-9e55-3198f41c2731",
+    "name": "Tink Money Manager API",
+    "description": "Tink Money Manager (Business Financial Management) provides personal and business financial management capabilities including cash flow summaries, budgets, financial calendar events, and reconciliations. The finance-management API powers SMB-facing dashboards inside customer banking and accounting apps.\n\n\nContact Support:\n Name: Tink Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:19:26.000Z",
+    "updatedAt": "2026-06-05T15:19:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fc012065-e188-442b-9e55-3198f41c2731"
+  },
+  "item": [
+    {
+      "name": "finance-management",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "cash-flow-summaries",
+              "item": [
+                {
+                  "name": "{resolution}",
+                  "item": [
+                    {
+                      "name": "Tink Get Cash Flow Summaries",
+                      "id": "101ecfea-4167-4d0b-9d80-fd45f3fe6abd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/cash-flow-summaries/:resolution?from_gte=<date>&to_lte=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "cash-flow-summaries",
+                            ":resolution"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "from_gte",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "to_lte",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "ef5f40fe-787b-4bbb-a40e-73c4137715cc",
+                              "key": "resolution",
+                              "value": "MONTHLY",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve cash flow summaries (income vs expense) for the user at the requested resolution. Resolution values include DAILY, WEEKLY, MONTHLY, QUARTERLY, and YEARLY.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "ab500402-7289-4e35-b74a-82fbbddac1be",
+                          "name": "Cash flow summaries returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/finance-management/v1/cash-flow-summaries/:resolution?from_gte=<date>&to_lte=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "finance-management",
+                                "v1",
+                                "cash-flow-summaries",
+                                ":resolution"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "from_gte",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "to_lte",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "resolution"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"summaries\": [\n    {\n      \"periodStart\": \"<date>\",\n      \"periodEnd\": \"<date>\",\n      \"income\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"expenses\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"net\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      }\n    },\n    {\n      \"periodStart\": \"<date>\",\n      \"periodEnd\": \"<date>\",\n      \"income\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"expenses\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"net\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:19:26.000Z",
+                          "updatedAt": "2026-06-05T15:19:26.000Z",
+                          "uid": "35240-ab500402-7289-4e35-b74a-82fbbddac1be"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-101ecfea-4167-4d0b-9d80-fd45f3fe6abd"
+                    }
+                  ],
+                  "id": "d87d00b1-3a14-4278-9626-356ae6adb9e8",
+                  "createdAt": "2026-06-05T15:19:26.000Z",
+                  "updatedAt": "2026-06-05T15:19:26.000Z",
+                  "uid": "35240-d87d00b1-3a14-4278-9626-356ae6adb9e8"
+                }
+              ],
+              "id": "22a68112-8808-4b4e-b202-e84aaa672fcf",
+              "createdAt": "2026-06-05T15:19:26.000Z",
+              "updatedAt": "2026-06-05T15:19:26.000Z",
+              "uid": "35240-22a68112-8808-4b4e-b202-e84aaa672fcf"
+            },
+            {
+              "name": "business-budgets",
+              "item": [
+                {
+                  "name": "{budgetId}",
+                  "item": [
+                    {
+                      "name": "history",
+                      "item": [
+                        {
+                          "name": "Tink Get Business Budget History",
+                          "id": "934ccef8-bebb-40f3-8b67-8ffcada97bc4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/finance-management/v1/business-budgets/:budgetId/history",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "finance-management",
+                                "v1",
+                                "business-budgets",
+                                ":budgetId",
+                                "history"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4a2cf682-23c4-4492-8c97-6d227d58e458",
+                                  "key": "budgetId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieve the historical performance of a budget across past periods."
+                          },
+                          "response": [
+                            {
+                              "id": "ca614226-f9e7-416d-9ddb-1e44602a28c5",
+                              "name": "Budget history returned.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/finance-management/v1/business-budgets/:budgetId/history",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "finance-management",
+                                    "v1",
+                                    "business-budgets",
+                                    ":budgetId",
+                                    "history"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "budgetId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"budgetId\": \"<string>\",\n  \"periods\": [\n    {\n      \"periodStart\": \"<date>\",\n      \"periodEnd\": \"<date>\",\n      \"spent\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"status\": \"EXCEEDED\"\n    },\n    {\n      \"periodStart\": \"<date>\",\n      \"periodEnd\": \"<date>\",\n      \"spent\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"status\": \"EXCEEDED\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:19:26.000Z",
+                              "updatedAt": "2026-06-05T15:19:26.000Z",
+                              "uid": "35240-ca614226-f9e7-416d-9ddb-1e44602a28c5"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:19:26.000Z",
+                          "updatedAt": "2026-06-05T15:19:26.000Z",
+                          "uid": "35240-934ccef8-bebb-40f3-8b67-8ffcada97bc4"
+                        }
+                      ],
+                      "id": "b312e586-e000-4da2-8733-83697760e6eb",
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-b312e586-e000-4da2-8733-83697760e6eb"
+                    },
+                    {
+                      "name": "Tink Get A Business Budget",
+                      "id": "0dddc3f6-2444-4bab-89af-b84be60ab569",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/business-budgets/:budgetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "business-budgets",
+                            ":budgetId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ff286dce-86e4-4f42-b678-8c02ef67ed22",
+                              "key": "budgetId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a business budget by id with current progress and remaining amount."
+                      },
+                      "response": [
+                        {
+                          "id": "9f16a6af-1665-46b7-82df-59ed4d2a1492",
+                          "name": "Budget returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/finance-management/v1/business-budgets/:budgetId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "finance-management",
+                                "v1",
+                                "business-budgets",
+                                ":budgetId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "budgetId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"period\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"progress\": {\n    \"spent\": {\n      \"amount\": \"<string>\",\n      \"currencyCode\": \"<string>\"\n    },\n    \"remaining\": {\n      \"amount\": \"<string>\",\n      \"currencyCode\": \"<string>\"\n    },\n    \"status\": \"ON_TRACK\"\n  }\n}",
+                          "createdAt": "2026-06-05T15:19:26.000Z",
+                          "updatedAt": "2026-06-05T15:19:26.000Z",
+                          "uid": "35240-9f16a6af-1665-46b7-82df-59ed4d2a1492"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-0dddc3f6-2444-4bab-89af-b84be60ab569"
+                    },
+                    {
+                      "name": "Tink Update A Business Budget",
+                      "id": "f5699546-86a2-4ce7-8d09-996e285092e3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"period\": \"ONE_OFF\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"filters\": {\n    \"categoryIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"merchantNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/business-budgets/:budgetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "business-budgets",
+                            ":budgetId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2d2a963c-1141-4623-ae44-dbaa67b89da2",
+                              "key": "budgetId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update fields on a business budget (limit, period, tags)."
+                      },
+                      "response": [
+                        {
+                          "id": "aa1be1b0-0e60-469f-b57b-7f5be258ba2a",
+                          "name": "Budget updated.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"period\": \"ONE_OFF\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"filters\": {\n    \"categoryIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"merchantNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/finance-management/v1/business-budgets/:budgetId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "finance-management",
+                                "v1",
+                                "business-budgets",
+                                ":budgetId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "budgetId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"period\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"progress\": {\n    \"spent\": {\n      \"amount\": \"<string>\",\n      \"currencyCode\": \"<string>\"\n    },\n    \"remaining\": {\n      \"amount\": \"<string>\",\n      \"currencyCode\": \"<string>\"\n    },\n    \"status\": \"ON_TRACK\"\n  }\n}",
+                          "createdAt": "2026-06-05T15:19:26.000Z",
+                          "updatedAt": "2026-06-05T15:19:26.000Z",
+                          "uid": "35240-aa1be1b0-0e60-469f-b57b-7f5be258ba2a"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-f5699546-86a2-4ce7-8d09-996e285092e3"
+                    },
+                    {
+                      "name": "Tink Delete A Business Budget",
+                      "id": "3030aa58-2033-42ff-b5d5-107961f29c35",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/business-budgets/:budgetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "business-budgets",
+                            ":budgetId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fb91de82-0eae-445e-a01d-7af7f8a7545c",
+                              "key": "budgetId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a business budget."
+                      },
+                      "response": [
+                        {
+                          "id": "7e7bb110-4a0c-4763-a2c7-f71b98e304f4",
+                          "name": "Budget deleted.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/finance-management/v1/business-budgets/:budgetId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "finance-management",
+                                "v1",
+                                "business-budgets",
+                                ":budgetId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "budgetId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:19:26.000Z",
+                          "updatedAt": "2026-06-05T15:19:26.000Z",
+                          "uid": "35240-7e7bb110-4a0c-4763-a2c7-f71b98e304f4"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-3030aa58-2033-42ff-b5d5-107961f29c35"
+                    }
+                  ],
+                  "id": "4580dda2-afc6-4854-8221-3479ae963f2a",
+                  "createdAt": "2026-06-05T15:19:26.000Z",
+                  "updatedAt": "2026-06-05T15:19:26.000Z",
+                  "uid": "35240-4580dda2-afc6-4854-8221-3479ae963f2a"
+                },
+                {
+                  "name": "Tink Create A Business Budget",
+                  "id": "858ae633-080a-4bf4-9adb-cce6e94d8897",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"period\": \"ONE_OFF\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"filters\": {\n    \"categoryIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"merchantNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/finance-management/v1/business-budgets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "finance-management",
+                        "v1",
+                        "business-budgets"
+                      ]
+                    },
+                    "description": "Create a one-off or recurring business budget tied to a category, merchant, or tag set."
+                  },
+                  "response": [
+                    {
+                      "id": "33383c7a-312f-4010-ac91-ab8ba4900d8b",
+                      "name": "Budget created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"period\": \"ONE_OFF\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"filters\": {\n    \"categoryIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"merchantNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/business-budgets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "business-budgets"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"period\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"progress\": {\n    \"spent\": {\n      \"amount\": \"<string>\",\n      \"currencyCode\": \"<string>\"\n    },\n    \"remaining\": {\n      \"amount\": \"<string>\",\n      \"currencyCode\": \"<string>\"\n    },\n    \"status\": \"ON_TRACK\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-33383c7a-312f-4010-ac91-ab8ba4900d8b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:19:26.000Z",
+                  "updatedAt": "2026-06-05T15:19:26.000Z",
+                  "uid": "35240-858ae633-080a-4bf4-9adb-cce6e94d8897"
+                },
+                {
+                  "name": "Tink List Business Budgets",
+                  "id": "d2839c54-048b-452b-825c-f23c35790240",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/finance-management/v1/business-budgets?progress_status_in=EXCEEDED",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "finance-management",
+                        "v1",
+                        "business-budgets"
+                      ],
+                      "query": [
+                        {
+                          "key": "progress_status_in",
+                          "value": "EXCEEDED"
+                        }
+                      ]
+                    },
+                    "description": "List business budgets, optionally filtered by progress status."
+                  },
+                  "response": [
+                    {
+                      "id": "85391d0a-b11c-46ec-964f-26305bbe3f3b",
+                      "name": "Budgets returned.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/business-budgets?progress_status_in=EXCEEDED",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "business-budgets"
+                          ],
+                          "query": [
+                            {
+                              "key": "progress_status_in",
+                              "value": "EXCEEDED"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"budgets\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"amount\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"period\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"progress\": {\n        \"spent\": {\n          \"amount\": \"<string>\",\n          \"currencyCode\": \"<string>\"\n        },\n        \"remaining\": {\n          \"amount\": \"<string>\",\n          \"currencyCode\": \"<string>\"\n        },\n        \"status\": \"ON_TRACK\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"amount\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"period\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"progress\": {\n        \"spent\": {\n          \"amount\": \"<string>\",\n          \"currencyCode\": \"<string>\"\n        },\n        \"remaining\": {\n          \"amount\": \"<string>\",\n          \"currencyCode\": \"<string>\"\n        },\n        \"status\": \"ON_TRACK\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-85391d0a-b11c-46ec-964f-26305bbe3f3b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:19:26.000Z",
+                  "updatedAt": "2026-06-05T15:19:26.000Z",
+                  "uid": "35240-d2839c54-048b-452b-825c-f23c35790240"
+                }
+              ],
+              "id": "02bff2f6-ca3b-4cb1-9c4c-9d8a778eb699",
+              "createdAt": "2026-06-05T15:19:26.000Z",
+              "updatedAt": "2026-06-05T15:19:26.000Z",
+              "uid": "35240-02bff2f6-ca3b-4cb1-9c4c-9d8a778eb699"
+            },
+            {
+              "name": "financial-calendar-events",
+              "item": [
+                {
+                  "name": "{calendarEventId}",
+                  "item": [
+                    {
+                      "name": "reconciliations",
+                      "item": [
+                        {
+                          "name": "Tink Create A Calendar Event Reconciliation",
+                          "id": "7b0a1ee6-fb6e-4849-a49f-f4322a61e2c2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"transactionId\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events/:calendarEventId/reconciliations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "finance-management",
+                                "v1",
+                                "financial-calendar-events",
+                                ":calendarEventId",
+                                "reconciliations"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a62b797d-1918-4ef0-b246-cef39448ac74",
+                                  "key": "calendarEventId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Reconcile a calendar event against a matched transaction."
+                          },
+                          "response": [
+                            {
+                              "id": "2879c97b-c069-4bf5-9088-2f9bec088840",
+                              "name": "Reconciliation created.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"transactionId\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events/:calendarEventId/reconciliations",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "finance-management",
+                                    "v1",
+                                    "financial-calendar-events",
+                                    ":calendarEventId",
+                                    "reconciliations"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "calendarEventId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"calendarEventId\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"reconciledAt\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-06-05T15:19:26.000Z",
+                              "updatedAt": "2026-06-05T15:19:26.000Z",
+                              "uid": "35240-2879c97b-c069-4bf5-9088-2f9bec088840"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:19:26.000Z",
+                          "updatedAt": "2026-06-05T15:19:26.000Z",
+                          "uid": "35240-7b0a1ee6-fb6e-4849-a49f-f4322a61e2c2"
+                        }
+                      ],
+                      "id": "4fd79d98-e0f7-414a-b02b-8a61e2dfc662",
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-4fd79d98-e0f7-414a-b02b-8a61e2dfc662"
+                    },
+                    {
+                      "name": "Tink Get A Financial Calendar Event",
+                      "id": "463e2504-2298-4e7c-a0ee-bece4cab37b3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events/:calendarEventId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "financial-calendar-events",
+                            ":calendarEventId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "dbd4c7f8-48f3-4f10-982d-de5dba17be15",
+                              "key": "calendarEventId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a single financial calendar event by id."
+                      },
+                      "response": [
+                        {
+                          "id": "08eab3b2-7306-46a8-8261-47f827bc4028",
+                          "name": "Event returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events/:calendarEventId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "finance-management",
+                                "v1",
+                                "financial-calendar-events",
+                                ":calendarEventId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "calendarEventId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"dueDate\": \"<date>\",\n  \"type\": \"<string>\",\n  \"recurrence\": \"<string>\",\n  \"status\": \"CANCELLED\"\n}",
+                          "createdAt": "2026-06-05T15:19:26.000Z",
+                          "updatedAt": "2026-06-05T15:19:26.000Z",
+                          "uid": "35240-08eab3b2-7306-46a8-8261-47f827bc4028"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-463e2504-2298-4e7c-a0ee-bece4cab37b3"
+                    },
+                    {
+                      "name": "Tink Update A Financial Calendar Event",
+                      "id": "7d444ab5-7ca7-4c58-b8fc-029adb08c16d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"dueDate\": \"<date>\",\n  \"type\": \"BILL\",\n  \"recurrence\": \"QUARTERLY\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events/:calendarEventId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "financial-calendar-events",
+                            ":calendarEventId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9c3deb9f-5df3-4b70-96f1-62101a7b6d34",
+                              "key": "calendarEventId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update fields on a financial calendar event."
+                      },
+                      "response": [
+                        {
+                          "id": "79f90c93-1283-4b13-b671-37f326ca1335",
+                          "name": "Event updated.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"dueDate\": \"<date>\",\n  \"type\": \"BILL\",\n  \"recurrence\": \"QUARTERLY\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events/:calendarEventId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "finance-management",
+                                "v1",
+                                "financial-calendar-events",
+                                ":calendarEventId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "calendarEventId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"dueDate\": \"<date>\",\n  \"type\": \"<string>\",\n  \"recurrence\": \"<string>\",\n  \"status\": \"CANCELLED\"\n}",
+                          "createdAt": "2026-06-05T15:19:26.000Z",
+                          "updatedAt": "2026-06-05T15:19:26.000Z",
+                          "uid": "35240-79f90c93-1283-4b13-b671-37f326ca1335"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-7d444ab5-7ca7-4c58-b8fc-029adb08c16d"
+                    },
+                    {
+                      "name": "Tink Delete A Financial Calendar Event",
+                      "id": "67e5fad8-810a-4fcc-8269-5577d41d86bf",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events/:calendarEventId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "financial-calendar-events",
+                            ":calendarEventId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b3baaefe-8150-48d2-b25a-3b47209806bd",
+                              "key": "calendarEventId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a financial calendar event."
+                      },
+                      "response": [
+                        {
+                          "id": "00e9d688-0a1b-4b0c-9d5e-21c60a337225",
+                          "name": "Event deleted.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events/:calendarEventId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "finance-management",
+                                "v1",
+                                "financial-calendar-events",
+                                ":calendarEventId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "calendarEventId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:19:26.000Z",
+                          "updatedAt": "2026-06-05T15:19:26.000Z",
+                          "uid": "35240-00e9d688-0a1b-4b0c-9d5e-21c60a337225"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-67e5fad8-810a-4fcc-8269-5577d41d86bf"
+                    }
+                  ],
+                  "id": "e6bce6a8-7280-47f0-81c2-f1284606ebd7",
+                  "createdAt": "2026-06-05T15:19:26.000Z",
+                  "updatedAt": "2026-06-05T15:19:26.000Z",
+                  "uid": "35240-e6bce6a8-7280-47f0-81c2-f1284606ebd7"
+                },
+                {
+                  "name": "Tink Create A Financial Calendar Event",
+                  "id": "f32ee604-d838-4ba8-853f-6d6767e8cbc9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"dueDate\": \"<date>\",\n  \"type\": \"BILL\",\n  \"recurrence\": \"QUARTERLY\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "finance-management",
+                        "v1",
+                        "financial-calendar-events"
+                      ]
+                    },
+                    "description": "Create a scheduled or recurring financial calendar event such as a bill, invoice, or tax payment."
+                  },
+                  "response": [
+                    {
+                      "id": "5b8667a1-bf78-459c-9cdf-cee5677fa59c",
+                      "name": "Event created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"dueDate\": \"<date>\",\n  \"type\": \"BILL\",\n  \"recurrence\": \"QUARTERLY\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "financial-calendar-events"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"dueDate\": \"<date>\",\n  \"type\": \"<string>\",\n  \"recurrence\": \"<string>\",\n  \"status\": \"CANCELLED\"\n}",
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-5b8667a1-bf78-459c-9cdf-cee5677fa59c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:19:26.000Z",
+                  "updatedAt": "2026-06-05T15:19:26.000Z",
+                  "uid": "35240-f32ee604-d838-4ba8-853f-6d6767e8cbc9"
+                },
+                {
+                  "name": "Tink List Financial Calendar Events",
+                  "id": "e4c44ff2-1cf8-4e66-bd4c-7a7d09558506",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events?due_date_gte=<date>&due_date_lte=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "finance-management",
+                        "v1",
+                        "financial-calendar-events"
+                      ],
+                      "query": [
+                        {
+                          "key": "due_date_gte",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "due_date_lte",
+                          "value": "<date>"
+                        }
+                      ]
+                    },
+                    "description": "List financial calendar events filtered by due-date range."
+                  },
+                  "response": [
+                    {
+                      "id": "14837403-9f06-4a4b-841d-6e92d64e5a1d",
+                      "name": "Events returned.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-events?due_date_gte=<date>&due_date_lte=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "financial-calendar-events"
+                          ],
+                          "query": [
+                            {
+                              "key": "due_date_gte",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "due_date_lte",
+                              "value": "<date>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"events\": [\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"amount\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"dueDate\": \"<date>\",\n      \"type\": \"<string>\",\n      \"recurrence\": \"<string>\",\n      \"status\": \"OVERDUE\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"amount\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"dueDate\": \"<date>\",\n      \"type\": \"<string>\",\n      \"recurrence\": \"<string>\",\n      \"status\": \"CANCELLED\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-14837403-9f06-4a4b-841d-6e92d64e5a1d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:19:26.000Z",
+                  "updatedAt": "2026-06-05T15:19:26.000Z",
+                  "uid": "35240-e4c44ff2-1cf8-4e66-bd4c-7a7d09558506"
+                }
+              ],
+              "id": "4051daa1-7031-4812-a3bd-091e19d913ac",
+              "createdAt": "2026-06-05T15:19:26.000Z",
+              "updatedAt": "2026-06-05T15:19:26.000Z",
+              "uid": "35240-4051daa1-7031-4812-a3bd-091e19d913ac"
+            },
+            {
+              "name": "financial-calendar-summaries",
+              "item": [
+                {
+                  "name": "{resolution}",
+                  "item": [
+                    {
+                      "name": "Tink List Calendar Event Summaries",
+                      "id": "0e114138-054b-4ee7-8d63-ec219a6ed47e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-summaries/:resolution?period_gte=<date>&period_lte=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "finance-management",
+                            "v1",
+                            "financial-calendar-summaries",
+                            ":resolution"
+                          ],
+                          "query": [
+                            {
+                              "key": "period_gte",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "period_lte",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "b1bb4c48-dec2-4a35-a407-e934136dfae5",
+                              "key": "resolution",
+                              "value": "YEARLY",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Aggregate financial calendar events into summaries at the requested resolution."
+                      },
+                      "response": [
+                        {
+                          "id": "11b5ca51-0b2a-4a07-9cc3-fe422289a25c",
+                          "name": "Summaries returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/finance-management/v1/financial-calendar-summaries/:resolution?period_gte=<date>&period_lte=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "finance-management",
+                                "v1",
+                                "financial-calendar-summaries",
+                                ":resolution"
+                              ],
+                              "query": [
+                                {
+                                  "key": "period_gte",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "key": "period_lte",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "resolution"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"summaries\": [\n    {\n      \"periodStart\": \"<date>\",\n      \"periodEnd\": \"<date>\",\n      \"eventCount\": \"<integer>\",\n      \"totalAmount\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      }\n    },\n    {\n      \"periodStart\": \"<date>\",\n      \"periodEnd\": \"<date>\",\n      \"eventCount\": \"<integer>\",\n      \"totalAmount\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:19:26.000Z",
+                          "updatedAt": "2026-06-05T15:19:26.000Z",
+                          "uid": "35240-11b5ca51-0b2a-4a07-9cc3-fe422289a25c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:26.000Z",
+                      "updatedAt": "2026-06-05T15:19:26.000Z",
+                      "uid": "35240-0e114138-054b-4ee7-8d63-ec219a6ed47e"
+                    }
+                  ],
+                  "id": "0018ddf1-e98d-4392-97ab-e9e2ba6eb8fc",
+                  "createdAt": "2026-06-05T15:19:26.000Z",
+                  "updatedAt": "2026-06-05T15:19:26.000Z",
+                  "uid": "35240-0018ddf1-e98d-4392-97ab-e9e2ba6eb8fc"
+                }
+              ],
+              "id": "b1aac930-7843-4f77-89eb-71504badd47b",
+              "createdAt": "2026-06-05T15:19:26.000Z",
+              "updatedAt": "2026-06-05T15:19:26.000Z",
+              "uid": "35240-b1aac930-7843-4f77-89eb-71504badd47b"
+            }
+          ],
+          "id": "fc10d1d4-b2c4-4305-aca8-89142e42512e",
+          "createdAt": "2026-06-05T15:19:26.000Z",
+          "updatedAt": "2026-06-05T15:19:26.000Z",
+          "uid": "35240-fc10d1d4-b2c4-4305-aca8-89142e42512e"
+        }
+      ],
+      "id": "d0fc4355-ce7f-4d77-8338-fcf251aacbdf",
+      "createdAt": "2026-06-05T15:19:26.000Z",
+      "updatedAt": "2026-06-05T15:19:26.000Z",
+      "uid": "35240-d0fc4355-ce7f-4d77-8338-fcf251aacbdf"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tink.com"
+    }
+  ]
+}

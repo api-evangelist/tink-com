@@ -1,0 +1,538 @@
+{
+  "info": {
+    "_postman_id": "f1f5d9a9-82be-4d07-ad91-d40733eb810f",
+    "name": "Tink Webhooks API",
+    "description": "Tink Webhooks delivers asynchronous event notifications when reports are ready, payments change status, or refreshed bank data is available. Subscribers register an endpoint and select the event types to receive.\n\n\nContact Support:\n Name: Tink Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:19:28.000Z",
+    "updatedAt": "2026-06-05T15:19:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f1f5d9a9-82be-4d07-ad91-d40733eb810f"
+  },
+  "item": [
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "webhook-endpoints",
+              "item": [
+                {
+                  "name": "{endpointId}",
+                  "item": [
+                    {
+                      "name": "Tink Get A Webhook Endpoint",
+                      "id": "491d0456-a9b1-4ed3-b66b-4e00ff0fcf7c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/events/v2/webhook-endpoints/:endpointId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            "v2",
+                            "webhook-endpoints",
+                            ":endpointId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4d4b7039-c415-46b2-949d-9378133c8f44",
+                              "key": "endpointId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a webhook endpoint by id."
+                      },
+                      "response": [
+                        {
+                          "id": "dc5569ad-9793-49a4-ad00-9651183f4123",
+                          "name": "Endpoint returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/events/v2/webhook-endpoints/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "events",
+                                "v2",
+                                "webhook-endpoints",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"disabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:19:29.000Z",
+                          "updatedAt": "2026-06-05T15:19:29.000Z",
+                          "uid": "35240-dc5569ad-9793-49a4-ad00-9651183f4123"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:29.000Z",
+                      "updatedAt": "2026-06-05T15:19:29.000Z",
+                      "uid": "35240-491d0456-a9b1-4ed3-b66b-4e00ff0fcf7c"
+                    },
+                    {
+                      "name": "Tink Update A Webhook Endpoint",
+                      "id": "f9a0ab3f-c588-44f6-af08-66d335e58e4e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"risk-categorisation.completed\",\n    \"credentials.updated\"\n  ],\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/events/v2/webhook-endpoints/:endpointId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            "v2",
+                            "webhook-endpoints",
+                            ":endpointId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c5a609a4-281a-4af1-9117-2750428b780a",
+                              "key": "endpointId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update fields on a webhook endpoint (url, enabledEvents, disabled)."
+                      },
+                      "response": [
+                        {
+                          "id": "532b649b-cb43-4e5d-94a4-eed85ccf1d45",
+                          "name": "Endpoint updated.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"risk-categorisation.completed\",\n    \"credentials.updated\"\n  ],\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/events/v2/webhook-endpoints/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "events",
+                                "v2",
+                                "webhook-endpoints",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"disabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:19:29.000Z",
+                          "updatedAt": "2026-06-05T15:19:29.000Z",
+                          "uid": "35240-532b649b-cb43-4e5d-94a4-eed85ccf1d45"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:29.000Z",
+                      "updatedAt": "2026-06-05T15:19:29.000Z",
+                      "uid": "35240-f9a0ab3f-c588-44f6-af08-66d335e58e4e"
+                    },
+                    {
+                      "name": "Tink Delete A Webhook Endpoint",
+                      "id": "5b12efc7-20be-4969-89fd-81f7950ab5e8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/events/v2/webhook-endpoints/:endpointId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            "v2",
+                            "webhook-endpoints",
+                            ":endpointId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0368dab3-d541-44c2-95e6-c16b4f6a2a36",
+                              "key": "endpointId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a webhook endpoint."
+                      },
+                      "response": [
+                        {
+                          "id": "63c6160b-1dcf-493b-a5a6-36b256132c54",
+                          "name": "Endpoint deleted.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/events/v2/webhook-endpoints/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "events",
+                                "v2",
+                                "webhook-endpoints",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:19:29.000Z",
+                          "updatedAt": "2026-06-05T15:19:29.000Z",
+                          "uid": "35240-63c6160b-1dcf-493b-a5a6-36b256132c54"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:19:29.000Z",
+                      "updatedAt": "2026-06-05T15:19:29.000Z",
+                      "uid": "35240-5b12efc7-20be-4969-89fd-81f7950ab5e8"
+                    }
+                  ],
+                  "id": "dc7c9775-2d20-4494-9064-b66e0be61264",
+                  "createdAt": "2026-06-05T15:19:29.000Z",
+                  "updatedAt": "2026-06-05T15:19:29.000Z",
+                  "uid": "35240-dc7c9775-2d20-4494-9064-b66e0be61264"
+                },
+                {
+                  "name": "Tink Create A Webhook Endpoint",
+                  "id": "210afabc-beb2-45d8-9b1e-fb76c6541486",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"risk-categorisation.completed\",\n    \"credentials.updated\"\n  ],\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/events/v2/webhook-endpoints",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "v2",
+                        "webhook-endpoints"
+                      ]
+                    },
+                    "description": "Register a webhook endpoint that Tink will POST events to. Supports event filters for account-verification-report, income-check, expense-check, risk-insights, payment-status, refund-status, and credentials-updated events.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "c6deadb9-3910-4d86-a3af-daf773961f79",
+                      "name": "Endpoint created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"risk-categorisation.completed\",\n    \"credentials.updated\"\n  ],\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/events/v2/webhook-endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            "v2",
+                            "webhook-endpoints"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"disabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:19:29.000Z",
+                      "updatedAt": "2026-06-05T15:19:29.000Z",
+                      "uid": "35240-c6deadb9-3910-4d86-a3af-daf773961f79"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:19:29.000Z",
+                  "updatedAt": "2026-06-05T15:19:29.000Z",
+                  "uid": "35240-210afabc-beb2-45d8-9b1e-fb76c6541486"
+                },
+                {
+                  "name": "Tink List Webhook Endpoints",
+                  "id": "af66bee6-f65e-42e3-9e41-9f4ef2d2d117",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/v2/webhook-endpoints",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "v2",
+                        "webhook-endpoints"
+                      ]
+                    },
+                    "description": "List all webhook endpoints registered for the calling client."
+                  },
+                  "response": [
+                    {
+                      "id": "243295f2-7bbc-4d7d-a164-e64c567baa80",
+                      "name": "Endpoints returned.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/events/v2/webhook-endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            "v2",
+                            "webhook-endpoints"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"endpoints\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"description\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"enabledEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"disabled\": \"<boolean>\",\n      \"created\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"description\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"enabledEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"disabled\": \"<boolean>\",\n      \"created\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:19:29.000Z",
+                      "updatedAt": "2026-06-05T15:19:29.000Z",
+                      "uid": "35240-243295f2-7bbc-4d7d-a164-e64c567baa80"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:19:29.000Z",
+                  "updatedAt": "2026-06-05T15:19:29.000Z",
+                  "uid": "35240-af66bee6-f65e-42e3-9e41-9f4ef2d2d117"
+                }
+              ],
+              "id": "7e0a3c0b-8403-45a9-accd-76a0408123e3",
+              "createdAt": "2026-06-05T15:19:29.000Z",
+              "updatedAt": "2026-06-05T15:19:29.000Z",
+              "uid": "35240-7e0a3c0b-8403-45a9-accd-76a0408123e3"
+            }
+          ],
+          "id": "77268f5f-d378-4072-aee5-be87b7a0d39e",
+          "createdAt": "2026-06-05T15:19:29.000Z",
+          "updatedAt": "2026-06-05T15:19:29.000Z",
+          "uid": "35240-77268f5f-d378-4072-aee5-be87b7a0d39e"
+        }
+      ],
+      "id": "e0c31708-a4d5-4e21-a867-8c648fb1bbd7",
+      "createdAt": "2026-06-05T15:19:29.000Z",
+      "updatedAt": "2026-06-05T15:19:29.000Z",
+      "uid": "35240-e0c31708-a4d5-4e21-a867-8c648fb1bbd7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tink.com"
+    }
+  ]
+}
