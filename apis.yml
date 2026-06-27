@@ -66,7 +66,7 @@ apis:
       - url: json-schema/tink-account-verification-report-schema.json
         type: JSONSchema
       - url: examples/tink-account-verification-report-example.json
-        type: Example
+        type: Examples
   - aid: tink-com:tink-data-api
     name: Tink Data API
     description: >-
@@ -90,7 +90,7 @@ apis:
       - url: json-schema/tink-transaction-schema.json
         type: JSONSchema
       - url: examples/tink-transaction-example.json
-        type: Example
+        type: Examples
   - aid: tink-com:tink-data-enrichment-api
     name: Tink Data Enrichment API
     description: >-
@@ -132,7 +132,7 @@ apis:
       - url: json-schema/tink-payment-schema.json
         type: JSONSchema
       - url: examples/tink-payment-example.json
-        type: Example
+        type: Examples
   - aid: tink-com:tink-risk-reports-api
     name: Tink Risk and Reports API
     description: >-
@@ -208,51 +208,36 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/tink/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/tink-com-account-transactions-overview-workflow.yml
-        name: Tink Account And Transactions Overview
-        summary: List a user's accounts, read the balances of a chosen account, then list its transactions.
-      - url: arazzo/tink-com-account-verification-report-workflow.yml
-        name: Tink Account Check Verification And Report Retrieval
-        summary: >-
-          Create a Tink Link session pre-loaded with identity, then retrieve the resulting Account Check report as JSON
-          and PDF.
-      - url: arazzo/tink-com-balance-refresh-poll-workflow.yml
-        name: Tink Trigger A Balance Refresh And Poll It
-        summary: >-
-          Trigger an on-demand balance refresh for a credentials object, then poll until it finishes, then read fresh
-          balances.
-      - url: arazzo/tink-com-initiate-payment-poll-status-workflow.yml
-        name: Tink Initiate A Payment And Poll Its Status
-        summary: Initiate a Pay by Bank payment, then poll the payment until it reaches a terminal status.
-      - url: arazzo/tink-com-mandate-setup-workflow.yml
-        name: Tink Create A Payment Mandate And Confirm It
-        summary: Create a recurring payment mandate for a user, then read it back to confirm it is active.
-      - url: arazzo/tink-com-payment-refund-poll-workflow.yml
-        name: Tink Refund An Executed Payment And Poll The Refund
-        summary: Confirm a payment is executed, initiate a refund, then poll the refund until it reaches a terminal status.
-      - url: arazzo/tink-com-provider-consent-cleanup-workflow.yml
-        name: Tink Review And Revoke A Bank Consent
-        summary: >-
-          List a user's provider consents and credentials, then delete the credentials object to revoke the underlying
-          bank consent.
-      - url: arazzo/tink-com-recurring-spend-budget-workflow.yml
-        name: Tink Build A Budget From Recurring Spend
-        summary: >-
-          Read a user's confirmed recurring transactions and category taxonomy, create a business budget around them,
-          then read the budget's progress.
-      - url: arazzo/tink-com-user-data-access-workflow.yml
-        name: Tink Onboard A User And Access Their Bank Data
-        summary: >-
-          Create a permanent Tink user, delegate bank authorization, exchange the code for a user token, and list their
-          accounts.
-      - url: arazzo/tink-com-webhook-endpoint-setup-workflow.yml
-        name: Tink Register And Verify A Webhook Endpoint
-        summary: >-
-          Register a webhook endpoint for selected event types, read it back to capture its signing secret, then confirm
-          it is enabled in the endpoint list.
+  - type: Arazzo
+    url: arazzo/tink-com-account-transactions-overview-workflow.yml
+    name: Tink Account And Transactions Overview
+  - type: Arazzo
+    url: arazzo/tink-com-account-verification-report-workflow.yml
+    name: Tink Account Check Verification And Report Retrieval
+  - type: Arazzo
+    url: arazzo/tink-com-balance-refresh-poll-workflow.yml
+    name: Tink Trigger A Balance Refresh And Poll It
+  - type: Arazzo
+    url: arazzo/tink-com-initiate-payment-poll-status-workflow.yml
+    name: Tink Initiate A Payment And Poll Its Status
+  - type: Arazzo
+    url: arazzo/tink-com-mandate-setup-workflow.yml
+    name: Tink Create A Payment Mandate And Confirm It
+  - type: Arazzo
+    url: arazzo/tink-com-payment-refund-poll-workflow.yml
+    name: Tink Refund An Executed Payment And Poll The Refund
+  - type: Arazzo
+    url: arazzo/tink-com-provider-consent-cleanup-workflow.yml
+    name: Tink Review And Revoke A Bank Consent
+  - type: Arazzo
+    url: arazzo/tink-com-recurring-spend-budget-workflow.yml
+    name: Tink Build A Budget From Recurring Spend
+  - type: Arazzo
+    url: arazzo/tink-com-user-data-access-workflow.yml
+    name: Tink Onboard A User And Access Their Bank Data
+  - type: Arazzo
+    url: arazzo/tink-com-webhook-endpoint-setup-workflow.yml
+    name: Tink Register And Verify A Webhook Endpoint
   - url: https://tink.com/
     type: Portal
     name: Tink Home
@@ -263,7 +248,7 @@ common:
     type: Console
     name: Tink Console
   - url: https://tink.com/contact-sales/
-    type: SignUp
+    type: Signup
     name: Contact Sales
   - url: https://tink.com/pricing/
     type: Pricing
@@ -299,16 +284,16 @@ common:
     type: Postman
     name: Tink Postman Collections (US)
   - url: https://github.com/tink-ab/tink-link-android
-    type: SDK
+    type: SDKs
     name: Tink Link Android SDK
   - url: https://github.com/tink-ab/tink-link-ios
-    type: SDK
+    type: SDKs
     name: Tink Link iOS SDK
   - url: https://github.com/tink-ab/tink-money-manager-android
-    type: SDK
+    type: SDKs
     name: Tink Money Manager Android SDK
   - url: https://github.com/tink-ab/tink-money-manager-ios
-    type: SDK
+    type: SDKs
     name: Tink Money Manager iOS SDK
   - url: https://github.com/tink-ab/terraform-provider-buildkite
     type: Tools
