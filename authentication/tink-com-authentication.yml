@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/tink-account-check-api-openapi.yml, openapi/tink-connector-api-openapi.yml,
+  openapi/tink-data-api-openapi.yml, openapi/tink-data-enrichment-api-openapi.yml, openapi/tink-money-manager-api-openapi.yml,
+  openapi/tink-oauth-api-openapi.yml, openapi/tink-payments-api-openapi.yml, openapi/tink-risk-reports-api-openapi.yml,
+  openapi/tink-webhooks-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/tink-account-check-api-openapi.yml
+  - openapi/tink-connector-api-openapi.yml
+  - openapi/tink-data-api-openapi.yml
+  - openapi/tink-data-enrichment-api-openapi.yml
+  - openapi/tink-money-manager-api-openapi.yml
+  - openapi/tink-oauth-api-openapi.yml
+  - openapi/tink-payments-api-openapi.yml
+  - openapi/tink-risk-reports-api-openapi.yml
+  - openapi/tink-webhooks-api-openapi.yml

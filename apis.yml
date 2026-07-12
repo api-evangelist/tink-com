@@ -206,6 +206,12 @@ apis:
       - url: openapi/tink-webhooks-api-openapi.yml
         type: OpenAPI
 common:
+  - type: VulnerabilityDisclosure
+    url: security/tink-com-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/tink-com-domain-security.yml
+  - type: Authentication
+    url: authentication/tink-com-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/tink/overview
   - type: Arazzo
