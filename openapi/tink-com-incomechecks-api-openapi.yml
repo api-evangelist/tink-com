@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts IncomeChecks API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: IncomeChecks
+  description: Income verification reports.
+paths:
+  /v2/income-checks/{report_id}:
+    get:
+      summary: Tink Get An Income Check Report
+      description: 'Retrieve a completed Income Check report as JSON. Includes verified income streams, employer information, salary cadence, and trend analysis over the lookback window.
+
+        '
+      operationId: getIncomeCheckReport
+      tags:
+      - IncomeChecks
+      parameters:
+      - $ref: '#/components/parameters/ReportIdParam'
+      responses:
+        '200':
+          description: Income Check report returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncomeCheckReport'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/income-checks/{report_id}:generate-pdf:
+    get:
+      summary: Tink Generate An Income Check PDF
+      description: Retrieve the Income Check report rendered as a PDF for compliance archives.
+      operationId: generateIncomeCheckPdf
+      tags:
+      - IncomeChecks
+      parameters:
+      - $ref: '#/components/parameters/ReportIdParam'
+      responses:
+        '200':
+          description: PDF returned.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+components:
+  responses:
+    NotFound:
+      description: Report not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    IncomeCheckReport:
+      type: object
+      properties:
+        id:
+          type: string
+        market:
+          type: string
+        generatedAt:
+          type: string
+          format: date-time
+        verifiedIncomes:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifiedIncome'
+        summary:
+          type: object
+          properties:
+            totalNetIncome:
+              $ref: '#/components/schemas/Money'
+            averageMonthlyIncome:
+              $ref: '#/components/schemas/Money'
+            consecutiveMonthsWithIncome:
+              type: integer
+              format: int32
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
+    VerifiedIncome:
+      type: object
+      properties:
+        source:
+          type: string
+        payer:
+          type: string
+        category:
+          type: string
+          enum:
+          - SALARY
+          - BENEFIT
+          - PENSION
+          - INTEREST
+          - DIVIDEND
+          - OTHER
+        cadence:
+          type: string
+          enum:
+          - WEEKLY
+          - BIWEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+          - IRREGULAR
+        averageAmount:
+          $ref: '#/components/schemas/Money'
+        firstSeen:
+          type: string
+          format: date
+        lastSeen:
+          type: string
+          format: date
+  parameters:
+    ReportIdParam:
+      in: path
+      name: report_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

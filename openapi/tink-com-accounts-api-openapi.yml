@@ -1,0 +1,321 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: Accounts
+  description: User bank accounts and balances.
+paths:
+  /data/v2/accounts:
+    get:
+      summary: Tink List Accounts
+      description: List all bank accounts the user has consented to share with the calling application.
+      operationId: listAccounts
+      tags:
+      - Accounts
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: Accounts returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /data/v2/accounts/{account_id}/balances:
+    get:
+      summary: Tink Get Account Balances
+      description: Retrieve balance snapshots for a single account, including booked and available balance.
+      operationId: getAccountBalances
+      tags:
+      - Accounts
+      parameters:
+      - $ref: '#/components/parameters/AccountIdParam'
+      responses:
+        '200':
+          description: Balances returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceList'
+  /data/v2/accounts/{account_id}/parties:
+    get:
+      summary: Tink List Account Parties
+      description: List the legal parties (account holders) attached to an account, as returned by the bank.
+      operationId: listAccountParties
+      tags:
+      - Accounts
+      parameters:
+      - $ref: '#/components/parameters/AccountIdParam'
+      responses:
+        '200':
+          description: Account parties returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartyList'
+  /api/v1/credentials/list:
+    get:
+      summary: Tink List User Credentials
+      description: List bank credential objects (consents) attached to the current user.
+      operationId: listCredentials
+      tags:
+      - Accounts
+      responses:
+        '200':
+          description: Credentials returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredentialsList'
+  /api/v1/credentials/{credentialsId}:
+    delete:
+      summary: Tink Delete User Credentials
+      description: Delete a credentials object and revoke the underlying bank consent.
+      operationId: deleteCredentials
+      tags:
+      - Accounts
+      parameters:
+      - in: path
+        name: credentialsId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Credentials deleted.
+  /api/v1/provider-consents:
+    get:
+      summary: Tink List Provider Consents
+      description: List all active bank-provider consents for the current user.
+      operationId: listProviderConsents
+      tags:
+      - Accounts
+      responses:
+        '200':
+          description: Provider consents returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderConsentList'
+components:
+  schemas:
+    Party:
+      type: object
+      properties:
+        name:
+          type: string
+        role:
+          type: string
+          enum:
+          - HOLDER
+          - AUTHORIZED_USER
+          - UNDEFINED
+        partyType:
+          type: string
+          enum:
+          - PERSON
+          - ORGANIZATION
+    CredentialsList:
+      type: object
+      properties:
+        credentials:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              providerName:
+                type: string
+              status:
+                type: string
+                enum:
+                - CREATED
+                - AUTHENTICATING
+                - UPDATING
+                - UPDATED
+                - AUTHENTICATION_ERROR
+                - TEMPORARY_ERROR
+                - DELETED
+              statusUpdated:
+                type: integer
+                format: int64
+              userId:
+                type: string
+              sessionExpiryDate:
+                type: integer
+                format: int64
+    BalanceList:
+      type: object
+      properties:
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Money'
+    Balances:
+      type: object
+      properties:
+        booked:
+          $ref: '#/components/schemas/Money'
+        available:
+          $ref: '#/components/schemas/Money'
+    AccountList:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        nextPageToken:
+          type: string
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
+    ProviderConsentList:
+      type: object
+      properties:
+        providerConsents:
+          type: array
+          items:
+            type: object
+            properties:
+              credentialsId:
+                type: string
+              providerName:
+                type: string
+              status:
+                type: string
+              statusUpdated:
+                type: integer
+                format: int64
+              sessionExpiryDate:
+                type: integer
+                format: int64
+              accountIds:
+                type: array
+                items:
+                  type: string
+    PartyList:
+      type: object
+      properties:
+        parties:
+          type: array
+          items:
+            $ref: '#/components/schemas/Party'
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - CHECKING
+          - SAVINGS
+          - CREDIT_CARD
+          - LOAN
+          - INVESTMENT
+          - OTHER
+        balances:
+          $ref: '#/components/schemas/Balances'
+        identifiers:
+          type: object
+          properties:
+            iban:
+              type: object
+              properties:
+                iban:
+                  type: string
+                bban:
+                  type: string
+            sortCode:
+              type: object
+              properties:
+                code:
+                  type: string
+                accountNumber:
+                  type: string
+        currencyCode:
+          type: string
+        customerSegment:
+          type: string
+          enum:
+          - PERSONAL
+          - BUSINESS
+          - UNDEFINED
+        financialInstitutionId:
+          type: string
+        dates:
+          type: object
+          properties:
+            lastRefreshed:
+              type: string
+              format: date-time
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PageSize:
+      in: query
+      name: pageSize
+      schema:
+        type: integer
+        format: int32
+        maximum: 200
+    PageToken:
+      in: query
+      name: pageToken
+      schema:
+        type: string
+    AccountIdParam:
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

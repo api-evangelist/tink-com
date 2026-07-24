@@ -1,0 +1,243 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts Budgets API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: Budgets
+  description: Personal and business budgets.
+paths:
+  /finance-management/v1/business-budgets:
+    post:
+      summary: Tink Create A Business Budget
+      description: Create a one-off or recurring business budget tied to a category, merchant, or tag set.
+      operationId: createBusinessBudget
+      tags:
+      - Budgets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BudgetRequest'
+      responses:
+        '201':
+          description: Budget created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Budget'
+    get:
+      summary: Tink List Business Budgets
+      description: List business budgets, optionally filtered by progress status.
+      operationId: listBusinessBudgets
+      tags:
+      - Budgets
+      parameters:
+      - in: query
+        name: progress_status_in
+        schema:
+          type: string
+          enum:
+          - ON_TRACK
+          - AT_RISK
+          - EXCEEDED
+      responses:
+        '200':
+          description: Budgets returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BudgetList'
+  /finance-management/v1/business-budgets/{budgetId}:
+    get:
+      summary: Tink Get A Business Budget
+      description: Retrieve a business budget by id with current progress and remaining amount.
+      operationId: getBusinessBudget
+      tags:
+      - Budgets
+      parameters:
+      - $ref: '#/components/parameters/BudgetIdParam'
+      responses:
+        '200':
+          description: Budget returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Budget'
+    patch:
+      summary: Tink Update A Business Budget
+      description: Update fields on a business budget (limit, period, tags).
+      operationId: updateBusinessBudget
+      tags:
+      - Budgets
+      parameters:
+      - $ref: '#/components/parameters/BudgetIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BudgetRequest'
+      responses:
+        '200':
+          description: Budget updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Budget'
+    delete:
+      summary: Tink Delete A Business Budget
+      description: Delete a business budget.
+      operationId: deleteBusinessBudget
+      tags:
+      - Budgets
+      parameters:
+      - $ref: '#/components/parameters/BudgetIdParam'
+      responses:
+        '204':
+          description: Budget deleted.
+  /finance-management/v1/business-budgets/{budgetId}/history:
+    get:
+      summary: Tink Get Business Budget History
+      description: Retrieve the historical performance of a budget across past periods.
+      operationId: getBusinessBudgetHistory
+      tags:
+      - Budgets
+      parameters:
+      - $ref: '#/components/parameters/BudgetIdParam'
+      responses:
+        '200':
+          description: Budget history returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BudgetHistory'
+components:
+  schemas:
+    BudgetRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        period:
+          type: string
+          enum:
+          - ONE_OFF
+          - WEEK
+          - MONTH
+          - QUARTER
+          - YEAR
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        filters:
+          type: object
+          properties:
+            categoryIds:
+              type: array
+              items:
+                type: string
+            merchantNames:
+              type: array
+              items:
+                type: string
+            tags:
+              type: array
+              items:
+                type: string
+    BudgetHistory:
+      type: object
+      properties:
+        budgetId:
+          type: string
+        periods:
+          type: array
+          items:
+            type: object
+            properties:
+              periodStart:
+                type: string
+                format: date
+              periodEnd:
+                type: string
+                format: date
+              spent:
+                $ref: '#/components/schemas/Money'
+              status:
+                type: string
+                enum:
+                - ON_TRACK
+                - AT_RISK
+                - EXCEEDED
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+    Budget:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        period:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        progress:
+          type: object
+          properties:
+            spent:
+              $ref: '#/components/schemas/Money'
+            remaining:
+              $ref: '#/components/schemas/Money'
+            status:
+              type: string
+              enum:
+              - ON_TRACK
+              - AT_RISK
+              - EXCEEDED
+    BudgetList:
+      type: object
+      properties:
+        budgets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Budget'
+  parameters:
+    BudgetIdParam:
+      in: path
+      name: budgetId
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

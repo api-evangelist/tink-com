@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts CashFlow API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: CashFlow
+  description: Cash flow summaries.
+paths:
+  /finance-management/v1/cash-flow-summaries/{resolution}:
+    get:
+      summary: Tink Get Cash Flow Summaries
+      description: 'Retrieve cash flow summaries (income vs expense) for the user at the requested resolution. Resolution values include DAILY, WEEKLY, MONTHLY, QUARTERLY, and YEARLY.
+
+        '
+      operationId: getCashFlowSummaries
+      tags:
+      - CashFlow
+      parameters:
+      - in: path
+        name: resolution
+        required: true
+        schema:
+          type: string
+          enum:
+          - DAILY
+          - WEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+      - in: query
+        name: from_gte
+        required: true
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: to_lte
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Cash flow summaries returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CashFlowSummaryList'
+components:
+  schemas:
+    CashFlowSummaryList:
+      type: object
+      properties:
+        summaries:
+          type: array
+          items:
+            type: object
+            properties:
+              periodStart:
+                type: string
+                format: date
+              periodEnd:
+                type: string
+                format: date
+              income:
+                $ref: '#/components/schemas/Money'
+              expenses:
+                $ref: '#/components/schemas/Money'
+              net:
+                $ref: '#/components/schemas/Money'
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

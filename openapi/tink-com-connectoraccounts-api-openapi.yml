@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts ConnectorAccounts API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: ConnectorAccounts
+  description: Partner-ingested accounts.
+paths:
+  /connector/users/{external_user_id}/accounts:
+    post:
+      summary: Tink Ingest Connector Accounts
+      description: Push a batch of partner accounts for the specified Tink user.
+      operationId: ingestConnectorAccounts
+      tags:
+      - ConnectorAccounts
+      parameters:
+      - $ref: '#/components/parameters/ExternalUserIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectorAccountBatch'
+      responses:
+        '202':
+          description: Accounts accepted for ingestion.
+components:
+  schemas:
+    ConnectorAccountBatch:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectorAccount'
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+    ConnectorAccount:
+      type: object
+      properties:
+        externalAccountId:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - CHECKING
+          - SAVINGS
+          - CREDIT_CARD
+          - LOAN
+          - INVESTMENT
+          - OTHER
+        currencyCode:
+          type: string
+        balance:
+          $ref: '#/components/schemas/Money'
+        identifiers:
+          type: object
+          properties:
+            iban:
+              type: string
+            sortCode:
+              type: string
+            accountNumber:
+              type: string
+  parameters:
+    ExternalUserIdParam:
+      in: path
+      name: external_user_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

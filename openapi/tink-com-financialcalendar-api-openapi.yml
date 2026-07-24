@@ -1,0 +1,288 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts FinancialCalendar API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: FinancialCalendar
+  description: Financial calendar events and reconciliations.
+paths:
+  /finance-management/v1/financial-calendar-events:
+    post:
+      summary: Tink Create A Financial Calendar Event
+      description: Create a scheduled or recurring financial calendar event such as a bill, invoice, or tax payment.
+      operationId: createCalendarEvent
+      tags:
+      - FinancialCalendar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarEventRequest'
+      responses:
+        '201':
+          description: Event created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarEvent'
+    get:
+      summary: Tink List Financial Calendar Events
+      description: List financial calendar events filtered by due-date range.
+      operationId: listCalendarEvents
+      tags:
+      - FinancialCalendar
+      parameters:
+      - in: query
+        name: due_date_gte
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: due_date_lte
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Events returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarEventList'
+  /finance-management/v1/financial-calendar-events/{calendarEventId}:
+    get:
+      summary: Tink Get A Financial Calendar Event
+      description: Retrieve a single financial calendar event by id.
+      operationId: getCalendarEvent
+      tags:
+      - FinancialCalendar
+      parameters:
+      - $ref: '#/components/parameters/CalendarEventIdParam'
+      responses:
+        '200':
+          description: Event returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarEvent'
+    patch:
+      summary: Tink Update A Financial Calendar Event
+      description: Update fields on a financial calendar event.
+      operationId: updateCalendarEvent
+      tags:
+      - FinancialCalendar
+      parameters:
+      - $ref: '#/components/parameters/CalendarEventIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarEventRequest'
+      responses:
+        '200':
+          description: Event updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarEvent'
+    delete:
+      summary: Tink Delete A Financial Calendar Event
+      description: Delete a financial calendar event.
+      operationId: deleteCalendarEvent
+      tags:
+      - FinancialCalendar
+      parameters:
+      - $ref: '#/components/parameters/CalendarEventIdParam'
+      responses:
+        '204':
+          description: Event deleted.
+  /finance-management/v1/financial-calendar-events/{calendarEventId}/reconciliations:
+    post:
+      summary: Tink Create A Calendar Event Reconciliation
+      description: Reconcile a calendar event against a matched transaction.
+      operationId: createReconciliation
+      tags:
+      - FinancialCalendar
+      parameters:
+      - $ref: '#/components/parameters/CalendarEventIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReconciliationRequest'
+      responses:
+        '201':
+          description: Reconciliation created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reconciliation'
+  /finance-management/v1/financial-calendar-summaries/{resolution}:
+    get:
+      summary: Tink List Calendar Event Summaries
+      description: Aggregate financial calendar events into summaries at the requested resolution.
+      operationId: listCalendarEventSummaries
+      tags:
+      - FinancialCalendar
+      parameters:
+      - in: path
+        name: resolution
+        required: true
+        schema:
+          type: string
+          enum:
+          - WEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+      - in: query
+        name: period_gte
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: period_lte
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Summaries returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarEventSummaryList'
+components:
+  schemas:
+    Reconciliation:
+      type: object
+      properties:
+        id:
+          type: string
+        calendarEventId:
+          type: string
+        transactionId:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        reconciledAt:
+          type: string
+          format: date-time
+    CalendarEventList:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalendarEvent'
+    ReconciliationRequest:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+    CalendarEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        dueDate:
+          type: string
+          format: date
+        type:
+          type: string
+        recurrence:
+          type: string
+        status:
+          type: string
+          enum:
+          - OPEN
+          - PAID
+          - OVERDUE
+          - CANCELLED
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+    CalendarEventRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        dueDate:
+          type: string
+          format: date
+        type:
+          type: string
+          enum:
+          - BILL
+          - INVOICE
+          - TAX
+          - SALARY
+          - OTHER
+        recurrence:
+          type: string
+          enum:
+          - SINGLE
+          - WEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+        tags:
+          type: array
+          items:
+            type: string
+    CalendarEventSummaryList:
+      type: object
+      properties:
+        summaries:
+          type: array
+          items:
+            type: object
+            properties:
+              periodStart:
+                type: string
+                format: date
+              periodEnd:
+                type: string
+                format: date
+              eventCount:
+                type: integer
+                format: int32
+              totalAmount:
+                $ref: '#/components/schemas/Money'
+  parameters:
+    CalendarEventIdParam:
+      in: path
+      name: calendarEventId
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

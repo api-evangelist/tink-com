@@ -1,36 +1,33 @@
 openapi: 3.1.0
 info:
-  title: Tink Webhooks API
-  description: >
-    Tink Webhooks delivers asynchronous event notifications when reports are
-    ready, payments change status, or refreshed bank data is available.
-    Subscribers register an endpoint and select the event types to receive.
-  version: '2.0'
+  title: Tink Account Check Accounts WebhookEndpoints API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
   contact:
     name: Tink Developer Support
-    url: https://docs.tink.com/resources/webhooks
+    url: https://docs.tink.com/resources/account-check
 servers:
-  - url: https://api.tink.com
-    description: Tink EU Production
-  - url: https://api.us.tink.com
-    description: Tink US Production
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
 security:
-  - BearerAuth: []
+- BearerAuth: []
 tags:
-  - name: WebhookEndpoints
-    description: Webhook endpoint management.
+- name: WebhookEndpoints
+  description: Webhook endpoint management.
 paths:
   /events/v2/webhook-endpoints:
     post:
       summary: Tink Create A Webhook Endpoint
-      description: >
-        Register a webhook endpoint that Tink will POST events to. Supports
-        event filters for account-verification-report, income-check,
-        expense-check, risk-insights, payment-status, refund-status, and
-        credentials-updated events.
+      description: 'Register a webhook endpoint that Tink will POST events to. Supports event filters for account-verification-report, income-check, expense-check, risk-insights, payment-status, refund-status, and credentials-updated events.
+
+        '
       operationId: createWebhookEndpoint
       tags:
-        - WebhookEndpoints
+      - WebhookEndpoints
       requestBody:
         required: true
         content:
@@ -49,7 +46,7 @@ paths:
       description: List all webhook endpoints registered for the calling client.
       operationId: listWebhookEndpoints
       tags:
-        - WebhookEndpoints
+      - WebhookEndpoints
       responses:
         '200':
           description: Endpoints returned.
@@ -63,9 +60,9 @@ paths:
       description: Retrieve a webhook endpoint by id.
       operationId: getWebhookEndpoint
       tags:
-        - WebhookEndpoints
+      - WebhookEndpoints
       parameters:
-        - $ref: '#/components/parameters/EndpointIdParam'
+      - $ref: '#/components/parameters/EndpointIdParam'
       responses:
         '200':
           description: Endpoint returned.
@@ -78,9 +75,9 @@ paths:
       description: Update fields on a webhook endpoint (url, enabledEvents, disabled).
       operationId: updateWebhookEndpoint
       tags:
-        - WebhookEndpoints
+      - WebhookEndpoints
       parameters:
-        - $ref: '#/components/parameters/EndpointIdParam'
+      - $ref: '#/components/parameters/EndpointIdParam'
       requestBody:
         content:
           application/json:
@@ -98,17 +95,13 @@ paths:
       description: Delete a webhook endpoint.
       operationId: deleteWebhookEndpoint
       tags:
-        - WebhookEndpoints
+      - WebhookEndpoints
       parameters:
-        - $ref: '#/components/parameters/EndpointIdParam'
+      - $ref: '#/components/parameters/EndpointIdParam'
       responses:
         '204':
           description: Endpoint deleted.
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
   parameters:
     EndpointIdParam:
       in: path
@@ -120,8 +113,8 @@ components:
     WebhookEndpointRequest:
       type: object
       required:
-        - url
-        - enabledEvents
+      - url
+      - enabledEvents
       properties:
         url:
           type: string
@@ -133,17 +126,24 @@ components:
           items:
             type: string
             enum:
-              - account-verification-report.completed
-              - account-verification-report.failed
-              - income-check.completed
-              - expense-check.completed
-              - risk-insights.completed
-              - risk-categorisation.completed
-              - payment.status-updated
-              - refund.status-updated
-              - credentials.updated
-              - account.updated
-              - transaction.updated
+            - account-verification-report.completed
+            - account-verification-report.failed
+            - income-check.completed
+            - expense-check.completed
+            - risk-insights.completed
+            - risk-categorisation.completed
+            - payment.status-updated
+            - refund.status-updated
+            - credentials.updated
+            - account.updated
+            - transaction.updated
+    WebhookEndpointList:
+      type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookEndpoint'
     WebhookEndpoint:
       type: object
       properties:
@@ -165,10 +165,7 @@ components:
         created:
           type: string
           format: date-time
-    WebhookEndpointList:
-      type: object
-      properties:
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookEndpoint'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

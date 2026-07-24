@@ -1,0 +1,82 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts ConnectorTransactions API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: ConnectorTransactions
+  description: Partner-ingested transactions.
+paths:
+  /connector/users/{external_user_id}/transactions:
+    post:
+      summary: Tink Ingest Connector Transactions
+      description: Push a batch of partner transactions for the specified Tink user and accounts.
+      operationId: ingestConnectorTransactions
+      tags:
+      - ConnectorTransactions
+      parameters:
+      - $ref: '#/components/parameters/ExternalUserIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectorTransactionBatch'
+      responses:
+        '202':
+          description: Transactions accepted for ingestion.
+components:
+  schemas:
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+    ConnectorTransaction:
+      type: object
+      properties:
+        externalTransactionId:
+          type: string
+        externalAccountId:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        bookedDate:
+          type: string
+          format: date
+        description:
+          type: string
+        merchantName:
+          type: string
+    ConnectorTransactionBatch:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectorTransaction'
+  parameters:
+    ExternalUserIdParam:
+      in: path
+      name: external_user_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

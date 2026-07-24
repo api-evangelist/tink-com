@@ -1,0 +1,162 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts Mandates API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: Mandates
+  description: Recurring payment mandates.
+paths:
+  /payments/mandates:
+    post:
+      summary: Tink Create A Mandate
+      description: 'Create a payment mandate that authorizes recurring or sweeping variable recurring payments from a user''s bank account.
+
+        '
+      operationId: createMandate
+      tags:
+      - Mandates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MandateRequest'
+      responses:
+        '201':
+          description: Mandate created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mandate'
+  /payments/mandates/{id}:
+    get:
+      summary: Tink Get A Mandate
+      description: Retrieve a mandate by id.
+      operationId: getMandate
+      tags:
+      - Mandates
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Mandate returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mandate'
+    delete:
+      summary: Tink Revoke A Mandate
+      description: Revoke an active mandate.
+      operationId: revokeMandate
+      tags:
+      - Mandates
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Mandate revoked.
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        accountNumber:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - IBAN
+              - SORT_CODE
+              - BBAN
+              - ACCOUNT_NUMBER
+            value:
+              type: string
+        name:
+          type: string
+        country:
+          type: string
+    Mandate:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - CREATED
+          - ACTIVE
+          - REVOKED
+          - EXPIRED
+        userId:
+          type: string
+        market:
+          type: string
+        currency:
+          type: string
+        maximumIndividualAmount:
+          type: string
+        maximumAmountPerPeriod:
+          type: string
+        period:
+          type: string
+          enum:
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+        expiresAt:
+          type: string
+          format: date-time
+        beneficiary:
+          $ref: '#/components/schemas/Account'
+    MandateRequest:
+      type: object
+      properties:
+        market:
+          type: string
+        currency:
+          type: string
+        userId:
+          type: string
+        maximumIndividualAmount:
+          type: string
+        maximumAmountPerPeriod:
+          type: string
+        period:
+          type: string
+          enum:
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+        beneficiary:
+          $ref: '#/components/schemas/Account'
+        expiresAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

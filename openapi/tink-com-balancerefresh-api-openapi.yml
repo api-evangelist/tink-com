@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts BalanceRefresh API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: BalanceRefresh
+  description: On-demand balance refresh.
+paths:
+  /api/v1/balance-refresh:
+    post:
+      summary: Tink Create A Balance Refresh
+      description: 'Trigger an on-demand refresh of account balances for a connected credentials object. Used by Balance Check to fetch fresh data outside of the bank''s standard polling cadence.
+
+        '
+      operationId: createBalanceRefresh
+      tags:
+      - BalanceRefresh
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BalanceRefreshRequest'
+      responses:
+        '202':
+          description: Balance refresh accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceRefreshStatus'
+  /api/v1/balance-refresh/{balanceRefreshId}:
+    get:
+      summary: Tink Get A Balance Refresh Status
+      description: Retrieve the status of a previously triggered balance refresh.
+      operationId: getBalanceRefresh
+      tags:
+      - BalanceRefresh
+      parameters:
+      - in: path
+        name: balanceRefreshId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Balance refresh status returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceRefreshStatus'
+components:
+  schemas:
+    BalanceRefreshRequest:
+      type: object
+      properties:
+        credentialsId:
+          type: string
+    BalanceRefreshStatus:
+      type: object
+      properties:
+        balanceRefreshId:
+          type: string
+        status:
+          type: string
+          enum:
+          - QUEUED
+          - IN_PROGRESS
+          - FINISHED
+          - FAILED
+        statusMessage:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

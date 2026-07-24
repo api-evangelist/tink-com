@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts RiskCategorisation API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: RiskCategorisation
+  description: Risk categorisation reports.
+paths:
+  /risk/v2/risk-categorisation/reports/{report_id}:
+    get:
+      summary: Tink Get A Risk Categorisation Report
+      description: Retrieve a Risk Categorisation report classifying transactions for lending and affordability decisions.
+      operationId: getRiskCategorisationReport
+      tags:
+      - RiskCategorisation
+      parameters:
+      - $ref: '#/components/parameters/ReportIdParam'
+      responses:
+        '200':
+          description: Risk Categorisation report returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskCategorisationReport'
+components:
+  schemas:
+    RiskCategorisationReport:
+      type: object
+      properties:
+        id:
+          type: string
+        generatedAt:
+          type: string
+          format: date-time
+        categories:
+          type: array
+          items:
+            type: object
+            properties:
+              category:
+                type: string
+              riskTier:
+                type: string
+                enum:
+                - LOW
+                - MEDIUM
+                - HIGH
+              amount:
+                $ref: '#/components/schemas/Money'
+              transactionCount:
+                type: integer
+                format: int32
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+  parameters:
+    ReportIdParam:
+      in: path
+      name: report_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

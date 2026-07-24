@@ -1,0 +1,284 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts Payments API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: Payments
+  description: Payment initiation, status, cancel, and refund.
+paths:
+  /payments:
+    post:
+      summary: Tink Initiate A Payment
+      description: 'Initiate a payment from the customer''s bank account to the beneficiary using PSD2 PIS rails. Returns a payment object and the Tink Link redirect URL the customer follows to authenticate and authorize at their bank.
+
+        '
+      operationId: initiatePayment
+      tags:
+      - Payments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        '201':
+          description: Payment initiated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /payments/{paymentId}:
+    get:
+      summary: Tink Get A Payment
+      description: Retrieve a payment by id, including current status (CREATED, AUTHORIZED, EXECUTED, REJECTED, CANCELLED, REFUNDED).
+      operationId: getPayment
+      tags:
+      - Payments
+      parameters:
+      - $ref: '#/components/parameters/PaymentIdParam'
+      responses:
+        '200':
+          description: Payment returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /payments/{paymentId}/cancel:
+    post:
+      summary: Tink Cancel A Payment
+      description: Cancel a payment that has not yet been executed by the customer's bank.
+      operationId: cancelPayment
+      tags:
+      - Payments
+      parameters:
+      - $ref: '#/components/parameters/PaymentIdParam'
+      responses:
+        '200':
+          description: Payment cancelled.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+  /payments/{paymentId}/refunds:
+    post:
+      summary: Tink Refund A Payment
+      description: Initiate a full or partial refund for an executed payment.
+      operationId: refundPayment
+      tags:
+      - Payments
+      parameters:
+      - $ref: '#/components/parameters/PaymentIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundRequest'
+      responses:
+        '201':
+          description: Refund created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+  /payments/{paymentId}/refunds/{refundId}:
+    get:
+      summary: Tink Get A Refund
+      description: Retrieve a refund by id, including current status.
+      operationId: getRefund
+      tags:
+      - Payments
+      parameters:
+      - $ref: '#/components/parameters/PaymentIdParam'
+      - in: path
+        name: refundId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Refund returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        accountNumber:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - IBAN
+              - SORT_CODE
+              - BBAN
+              - ACCOUNT_NUMBER
+            value:
+              type: string
+        name:
+          type: string
+        country:
+          type: string
+    RefundRequest:
+      type: object
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+        remittanceInformation:
+          type: object
+          properties:
+            type:
+              type: string
+            value:
+              type: string
+    PaymentRequest:
+      type: object
+      required:
+      - amount
+      - currency
+      - market
+      - destinations
+      properties:
+        amount:
+          type: string
+          example: '100.00'
+        currency:
+          type: string
+          example: EUR
+        market:
+          type: string
+          example: GB
+        remittanceInformation:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - UNSTRUCTURED
+              - REFERENCE
+            value:
+              type: string
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        sourceAccount:
+          $ref: '#/components/schemas/Account'
+    Payment:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - CREATED
+          - AUTHORIZED
+          - EXECUTED
+          - REJECTED
+          - CANCELLED
+          - REFUNDED
+          - FAILED
+        amount:
+          type: string
+        currency:
+          type: string
+        market:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        redirectUrl:
+          type: string
+          format: uri
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        sourceAccount:
+          $ref: '#/components/schemas/Account'
+        remittanceInformation:
+          type: object
+          properties:
+            type:
+              type: string
+            value:
+              type: string
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
+    Refund:
+      type: object
+      properties:
+        id:
+          type: string
+        paymentId:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        status:
+          type: string
+          enum:
+          - CREATED
+          - EXECUTED
+          - REJECTED
+          - FAILED
+        created:
+          type: string
+          format: date-time
+  responses:
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PaymentIdParam:
+      in: path
+      name: paymentId
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

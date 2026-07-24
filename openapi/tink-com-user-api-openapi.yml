@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts User API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: User
+  description: Permanent user lifecycle management.
+paths:
+  /api/v1/user/create:
+    post:
+      summary: Tink Create A Permanent User
+      description: 'Create a permanent Tink user identified by `external_user_id` for repeat data access. Required before delegating authorization for continuous-access products such as Transactions, Balance Check, and Account Check refreshes.
+
+        '
+      operationId: createUser
+      tags:
+      - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '200':
+          description: User created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /api/v1/user/delete:
+    post:
+      summary: Tink Delete A User
+      description: Permanently delete a Tink user and all associated credentials.
+      operationId: deleteUser
+      tags:
+      - User
+      responses:
+        '204':
+          description: User deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    CreateUserRequest:
+      type: object
+      required:
+      - external_user_id
+      - market
+      - locale
+      properties:
+        external_user_id:
+          type: string
+        market:
+          type: string
+          example: GB
+        locale:
+          type: string
+          example: en_US
+        retention_class:
+          type: string
+          enum:
+          - PERMANENT
+          - TEMPORARY
+    UserResponse:
+      type: object
+      properties:
+        user_id:
+          type: string
+        external_user_id:
+          type: string
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

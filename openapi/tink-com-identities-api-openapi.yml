@@ -1,0 +1,85 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts Identities API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: Identities
+  description: Account holder identities returned by the bank.
+paths:
+  /data/v2/identities:
+    get:
+      summary: Tink List Identities
+      description: List identity records returned by banks for the consented user.
+      operationId: listIdentities
+      tags:
+      - Identities
+      responses:
+        '200':
+          description: Identities returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityList'
+components:
+  schemas:
+    Identity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: object
+          properties:
+            fullName:
+              type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+        dateOfBirth:
+          type: string
+          format: date
+        emailAddresses:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+        addresses:
+          type: array
+          items:
+            type: object
+            properties:
+              fullAddress:
+                type: string
+              country:
+                type: string
+              city:
+                type: string
+              postalCode:
+                type: string
+    IdentityList:
+      type: object
+      properties:
+        identities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

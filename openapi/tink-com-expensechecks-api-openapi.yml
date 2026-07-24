@@ -1,0 +1,88 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts ExpenseChecks API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: ExpenseChecks
+  description: Expense verification reports.
+paths:
+  /risk/v1/expense-checks/{report_id}:
+    get:
+      summary: Tink Get An Expense Check Report
+      description: Retrieve a completed Expense Check report summarising essential and discretionary spending.
+      operationId: getExpenseCheckReport
+      tags:
+      - ExpenseChecks
+      parameters:
+      - $ref: '#/components/parameters/ReportIdParam'
+      responses:
+        '200':
+          description: Expense Check report returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseCheckReport'
+components:
+  schemas:
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+    ExpenseCheckReport:
+      type: object
+      properties:
+        id:
+          type: string
+        generatedAt:
+          type: string
+          format: date-time
+        summary:
+          type: object
+          properties:
+            essentialExpenses:
+              $ref: '#/components/schemas/Money'
+            discretionaryExpenses:
+              $ref: '#/components/schemas/Money'
+            totalExpenses:
+              $ref: '#/components/schemas/Money'
+        categories:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              amount:
+                $ref: '#/components/schemas/Money'
+              transactionCount:
+                type: integer
+                format: int32
+  parameters:
+    ReportIdParam:
+      in: path
+      name: report_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

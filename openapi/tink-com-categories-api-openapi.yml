@@ -1,0 +1,70 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts Categories API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: Categories
+  description: Tink categorisation taxonomy.
+paths:
+  /enrichment/v1/categories:
+    get:
+      summary: Tink List Categories
+      description: List the Tink categorisation taxonomy for the calling locale.
+      operationId: listCategories
+      tags:
+      - Categories
+      parameters:
+      - in: query
+        name: locale
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Categories returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryList'
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        parentId:
+          type: string
+        type:
+          type: string
+          enum:
+          - EXPENSES
+          - INCOME
+          - TRANSFERS
+    CategoryList:
+      type: object
+      properties:
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

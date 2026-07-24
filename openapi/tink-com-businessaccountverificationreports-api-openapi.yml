@@ -1,0 +1,157 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts BusinessAccountVerificationReports API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: BusinessAccountVerificationReports
+  description: Business account ownership verification reports.
+paths:
+  /data/v1/business-account-verification-reports/{report_id}:
+    get:
+      summary: Tink Get A Business Account Verification Report
+      description: 'Retrieve a completed Business Account Check report verifying that a commercial bank account is owned by the business identified during the Tink Link session.
+
+        '
+      operationId: getBusinessAccountVerificationReport
+      tags:
+      - BusinessAccountVerificationReports
+      parameters:
+      - $ref: '#/components/parameters/ReportIdParam'
+      responses:
+        '200':
+          description: Business verification report returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessAccountVerificationReport'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Business:
+      type: object
+      properties:
+        name:
+          type: string
+        registrationNumber:
+          type: string
+        country:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    Address:
+      type: object
+      properties:
+        country:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+        addressLine:
+          type: string
+    BusinessAccountVerificationReport:
+      type: object
+      properties:
+        id:
+          type: string
+        market:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        business:
+          $ref: '#/components/schemas/Business'
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifiedAccount'
+    VerifiedAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - CHECKING
+          - SAVINGS
+          - CREDIT_CARD
+          - LOAN
+          - INVESTMENT
+          - OTHER
+        balance:
+          $ref: '#/components/schemas/Money'
+        identifiers:
+          type: object
+          properties:
+            iban:
+              type: string
+            sortCodeAccountNumber:
+              type: object
+              properties:
+                sortCode:
+                  type: string
+                accountNumber:
+                  type: string
+            bban:
+              type: string
+        holderName:
+          type: string
+        currency:
+          type: string
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Report not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ReportIdParam:
+      in: path
+      name: report_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

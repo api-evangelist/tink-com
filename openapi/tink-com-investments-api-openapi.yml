@@ -1,0 +1,128 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts Investments API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: Investments
+  description: Investment accounts and holdings.
+paths:
+  /data/v2/investment-accounts:
+    get:
+      summary: Tink List Investment Accounts
+      description: List investment accounts the user has consented to share.
+      operationId: listInvestmentAccounts
+      tags:
+      - Investments
+      responses:
+        '200':
+          description: Investment accounts returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvestmentAccountList'
+  /data/v2/investment-accounts/{id}/holdings:
+    get:
+      summary: Tink List Investment Holdings
+      description: List individual holdings within an investment account, including instrument, quantity, and market value.
+      operationId: listInvestmentHoldings
+      tags:
+      - Investments
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Holdings returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HoldingList'
+components:
+  schemas:
+    HoldingList:
+      type: object
+      properties:
+        holdings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Holding'
+    InvestmentAccountList:
+      type: object
+      properties:
+        investmentAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvestmentAccount'
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
+    Holding:
+      type: object
+      properties:
+        id:
+          type: string
+        instrument:
+          type: object
+          properties:
+            isin:
+              type: string
+            name:
+              type: string
+            type:
+              type: string
+              enum:
+              - STOCK
+              - FUND
+              - BOND
+              - ETF
+              - OTHER
+              - UNDEFINED
+        quantity:
+          type: string
+        marketValue:
+          $ref: '#/components/schemas/Money'
+        purchasePrice:
+          $ref: '#/components/schemas/Money'
+    InvestmentAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        marketValue:
+          $ref: '#/components/schemas/Money'
+        cashBalance:
+          $ref: '#/components/schemas/Money'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

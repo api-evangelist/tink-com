@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts EnrichedTransactions API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: EnrichedTransactions
+  description: Categorised and merchant-enriched transactions.
+paths:
+  /enrichment/v1/transactions:
+    get:
+      summary: Tink List Enriched Transactions
+      description: List user transactions enriched with Tink category, merchant information, and recurring flag.
+      operationId: listEnrichedTransactions
+      tags:
+      - EnrichedTransactions
+      parameters:
+      - in: query
+        name: accountIdIn
+        schema:
+          type: string
+      - in: query
+        name: bookedDateGte
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: bookedDateLte
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Enriched transactions returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrichedTransactionList'
+components:
+  schemas:
+    EnrichedTransactionList:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrichedTransaction'
+        nextPageToken:
+          type: string
+    EnrichedTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+            currencyCode:
+              type: string
+        descriptions:
+          type: object
+          properties:
+            original:
+              type: string
+            display:
+              type: string
+        categories:
+          type: object
+          properties:
+            pfm:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+        merchantInformation:
+          type: object
+          properties:
+            merchantName:
+              type: string
+            merchantCategoryCode:
+              type: string
+        recurring:
+          type: boolean
+        dates:
+          type: object
+          properties:
+            booked:
+              type: string
+              format: date
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,189 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts OAuth API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: OAuth
+  description: Token, authorization, and delegated grant endpoints.
+paths:
+  /api/v1/oauth/token:
+    post:
+      summary: Tink Create An OAuth Token
+      description: 'Issue an OAuth 2.0 access token. Supports `client_credentials` for server-side calls, `authorization_code` to exchange a Tink Link or delegated grant code for a user token, and `refresh_token` to renew an existing user token without re-authentication.
+
+        '
+      operationId: createOauthToken
+      tags:
+      - OAuth
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: Access token issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v1/oauth/authorization-grant:
+    post:
+      summary: Tink Create An Authorization Grant
+      description: 'Mint a one-time authorization code for an existing permanent user. The returned `code` is exchanged at `/api/v1/oauth/token` with `grant_type=authorization_code` to obtain a user access token scoped to the requested data products.
+
+        '
+      operationId: createAuthorizationGrant
+      tags:
+      - OAuth
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthorizationGrantRequest'
+      responses:
+        '200':
+          description: Authorization code issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationGrantResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /api/v1/oauth/authorization-grant/delegate:
+    post:
+      summary: Tink Create A Delegated Authorization Grant
+      description: 'Mint a delegated authorization code for a user who has not yet connected a bank, returning a Tink Link URL the customer can launch to authenticate with their bank and consent to the requested scopes.
+
+        '
+      operationId: createDelegatedAuthorizationGrant
+      tags:
+      - OAuth
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DelegatedAuthorizationGrantRequest'
+      responses:
+        '200':
+          description: Delegated authorization code issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationGrantResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  schemas:
+    TokenRequest:
+      type: object
+      required:
+      - grant_type
+      properties:
+        grant_type:
+          type: string
+          enum:
+          - client_credentials
+          - authorization_code
+          - refresh_token
+        client_id:
+          type: string
+        client_secret:
+          type: string
+        code:
+          type: string
+        refresh_token:
+          type: string
+        scope:
+          type: string
+    DelegatedAuthorizationGrantRequest:
+      type: object
+      required:
+      - scope
+      properties:
+        external_user_id:
+          type: string
+        actor_client_id:
+          type: string
+        scope:
+          type: string
+        id_hint:
+          type: string
+    AuthorizationGrantRequest:
+      type: object
+      required:
+      - external_user_id
+      - scope
+      properties:
+        external_user_id:
+          type: string
+        scope:
+          type: string
+        id_hint:
+          type: string
+    AuthorizationGrantResponse:
+      type: object
+      properties:
+        code:
+          type: string
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+          format: int32
+        refresh_token:
+          type: string
+        scope:
+          type: string
+        id_hint:
+          type: string
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

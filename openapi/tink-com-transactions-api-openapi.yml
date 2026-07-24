@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts Transactions API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: Transactions
+  description: User bank transactions.
+paths:
+  /data/v2/transactions:
+    get:
+      summary: Tink List Transactions
+      description: 'List bank transactions across all consented accounts with optional filters by date range, account, status, and amount.
+
+        '
+      operationId: listTransactions
+      tags:
+      - Transactions
+      parameters:
+      - in: query
+        name: accountIdIn
+        schema:
+          type: string
+      - in: query
+        name: bookedDateGte
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: bookedDateLte
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: statusIn
+        schema:
+          type: string
+          enum:
+          - BOOKED
+          - PENDING
+          - UNDEFINED
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: Transactions returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+components:
+  schemas:
+    TransactionList:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        nextPageToken:
+          type: string
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        descriptions:
+          type: object
+          properties:
+            original:
+              type: string
+            display:
+              type: string
+        dates:
+          type: object
+          properties:
+            booked:
+              type: string
+              format: date
+            value:
+              type: string
+              format: date
+        status:
+          type: string
+          enum:
+          - BOOKED
+          - PENDING
+          - UNDEFINED
+        categories:
+          type: object
+          properties:
+            pfm:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+        merchantInformation:
+          type: object
+          properties:
+            merchantCategoryCode:
+              type: string
+            merchantName:
+              type: string
+        types:
+          type: object
+          properties:
+            type:
+              type: string
+            financialInstitutionTypeCode:
+              type: string
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
+  parameters:
+    PageSize:
+      in: query
+      name: pageSize
+      schema:
+        type: integer
+        format: int32
+        maximum: 200
+    PageToken:
+      in: query
+      name: pageToken
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

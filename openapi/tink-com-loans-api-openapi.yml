@@ -1,0 +1,114 @@
+openapi: 3.1.0
+info:
+  title: Tink Account Check Accounts Loans API
+  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
+
+    '
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/account-check
+servers:
+- url: https://api.tink.com
+  description: Tink EU Production
+- url: https://api.us.tink.com
+  description: Tink US Production
+security:
+- BearerAuth: []
+tags:
+- name: Loans
+  description: Loan accounts.
+paths:
+  /data/v2/loan-accounts:
+    get:
+      summary: Tink List Loan Accounts
+      description: List loan accounts the user has consented to share, including outstanding balance, interest rate, and term.
+      operationId: listLoanAccounts
+      tags:
+      - Loans
+      responses:
+        '200':
+          description: Loan accounts returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccountList'
+  /data/v2/loan-accounts/{accountId}:
+    get:
+      summary: Tink Get A Loan Account
+      description: Retrieve detailed information for a single loan account.
+      operationId: getLoanAccount
+      tags:
+      - Loans
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Loan account returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccount'
+components:
+  schemas:
+    LoanAccountList:
+      type: object
+      properties:
+        loanAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoanAccount'
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
+    LoanAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        accountName:
+          type: string
+        loanType:
+          type: string
+          enum:
+          - MORTGAGE
+          - BLANCO
+          - MEMBERSHIP
+          - AUTO
+          - STUDENT
+          - OTHER
+          - UNDEFINED
+        outstandingBalance:
+          $ref: '#/components/schemas/Money'
+        interestRate:
+          type: number
+          format: double
+        terms:
+          type: object
+          properties:
+            endDate:
+              type: string
+              format: date
+            durationMonths:
+              type: integer
+              format: int32
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
