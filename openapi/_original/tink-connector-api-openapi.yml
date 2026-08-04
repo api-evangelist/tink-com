@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: Tink Connector API
+  description: >
+    Tink Connector lets partners push their own account and transaction data
+    into the Tink platform for users they already authenticate, so those
+    feeds benefit from Tink categorisation, recurring detection, Money
+    Manager, and risk reporting alongside PSD2-aggregated data.
+  version: '1.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/connector
+servers:
+  - url: https://api.tink.com
+    description: Tink EU Production
+security:
+  - BearerAuth: []
+tags:
+  - name: ConnectorAccounts
+    description: Partner-ingested accounts.
+  - name: ConnectorTransactions
+    description: Partner-ingested transactions.
+paths:
+  /connector/users/{external_user_id}/accounts:
+    post:
+      summary: Tink Ingest Connector Accounts
+      description: Push a batch of partner accounts for the specified Tink user.
+      operationId: ingestConnectorAccounts
+      tags:
+        - ConnectorAccounts
+      parameters:
+        - $ref: '#/components/parameters/ExternalUserIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectorAccountBatch'
+      responses:
+        '202':
+          description: Accounts accepted for ingestion.
+  /connector/users/{external_user_id}/transactions:
+    post:
+      summary: Tink Ingest Connector Transactions
+      description: Push a batch of partner transactions for the specified Tink user and accounts.
+      operationId: ingestConnectorTransactions
+      tags:
+        - ConnectorTransactions
+      parameters:
+        - $ref: '#/components/parameters/ExternalUserIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectorTransactionBatch'
+      responses:
+        '202':
+          description: Transactions accepted for ingestion.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  parameters:
+    ExternalUserIdParam:
+      in: path
+      name: external_user_id
+      required: true
+      schema:
+        type: string
+  schemas:
+    ConnectorAccountBatch:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectorAccount'
+    ConnectorAccount:
+      type: object
+      properties:
+        externalAccountId:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum: [CHECKING, SAVINGS, CREDIT_CARD, LOAN, INVESTMENT, OTHER]
+        currencyCode:
+          type: string
+        balance:
+          $ref: '#/components/schemas/Money'
+        identifiers:
+          type: object
+          properties:
+            iban:
+              type: string
+            sortCode:
+              type: string
+            accountNumber:
+              type: string
+    ConnectorTransactionBatch:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectorTransaction'
+    ConnectorTransaction:
+      type: object
+      properties:
+        externalTransactionId:
+          type: string
+        externalAccountId:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        bookedDate:
+          type: string
+          format: date
+        description:
+          type: string
+        merchantName:
+          type: string
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string

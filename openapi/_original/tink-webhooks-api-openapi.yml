@@ -1,0 +1,174 @@
+openapi: 3.1.0
+info:
+  title: Tink Webhooks API
+  description: >
+    Tink Webhooks delivers asynchronous event notifications when reports are
+    ready, payments change status, or refreshed bank data is available.
+    Subscribers register an endpoint and select the event types to receive.
+  version: '2.0'
+  contact:
+    name: Tink Developer Support
+    url: https://docs.tink.com/resources/webhooks
+servers:
+  - url: https://api.tink.com
+    description: Tink EU Production
+  - url: https://api.us.tink.com
+    description: Tink US Production
+security:
+  - BearerAuth: []
+tags:
+  - name: WebhookEndpoints
+    description: Webhook endpoint management.
+paths:
+  /events/v2/webhook-endpoints:
+    post:
+      summary: Tink Create A Webhook Endpoint
+      description: >
+        Register a webhook endpoint that Tink will POST events to. Supports
+        event filters for account-verification-report, income-check,
+        expense-check, risk-insights, payment-status, refund-status, and
+        credentials-updated events.
+      operationId: createWebhookEndpoint
+      tags:
+        - WebhookEndpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookEndpointRequest'
+      responses:
+        '201':
+          description: Endpoint created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookEndpoint'
+    get:
+      summary: Tink List Webhook Endpoints
+      description: List all webhook endpoints registered for the calling client.
+      operationId: listWebhookEndpoints
+      tags:
+        - WebhookEndpoints
+      responses:
+        '200':
+          description: Endpoints returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookEndpointList'
+  /events/v2/webhook-endpoints/{endpointId}:
+    get:
+      summary: Tink Get A Webhook Endpoint
+      description: Retrieve a webhook endpoint by id.
+      operationId: getWebhookEndpoint
+      tags:
+        - WebhookEndpoints
+      parameters:
+        - $ref: '#/components/parameters/EndpointIdParam'
+      responses:
+        '200':
+          description: Endpoint returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookEndpoint'
+    patch:
+      summary: Tink Update A Webhook Endpoint
+      description: Update fields on a webhook endpoint (url, enabledEvents, disabled).
+      operationId: updateWebhookEndpoint
+      tags:
+        - WebhookEndpoints
+      parameters:
+        - $ref: '#/components/parameters/EndpointIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookEndpointRequest'
+      responses:
+        '200':
+          description: Endpoint updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookEndpoint'
+    delete:
+      summary: Tink Delete A Webhook Endpoint
+      description: Delete a webhook endpoint.
+      operationId: deleteWebhookEndpoint
+      tags:
+        - WebhookEndpoints
+      parameters:
+        - $ref: '#/components/parameters/EndpointIdParam'
+      responses:
+        '204':
+          description: Endpoint deleted.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  parameters:
+    EndpointIdParam:
+      in: path
+      name: endpointId
+      required: true
+      schema:
+        type: string
+  schemas:
+    WebhookEndpointRequest:
+      type: object
+      required:
+        - url
+        - enabledEvents
+      properties:
+        url:
+          type: string
+          format: uri
+        description:
+          type: string
+        enabledEvents:
+          type: array
+          items:
+            type: string
+            enum:
+              - account-verification-report.completed
+              - account-verification-report.failed
+              - income-check.completed
+              - expense-check.completed
+              - risk-insights.completed
+              - risk-categorisation.completed
+              - payment.status-updated
+              - refund.status-updated
+              - credentials.updated
+              - account.updated
+              - transaction.updated
+    WebhookEndpoint:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+        description:
+          type: string
+        secret:
+          type: string
+        enabledEvents:
+          type: array
+          items:
+            type: string
+        disabled:
+          type: boolean
+        created:
+          type: string
+          format: date-time
+    WebhookEndpointList:
+      type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookEndpoint'
