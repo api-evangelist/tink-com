@@ -1,0 +1,638 @@
+{
+  "item": [
+    {
+      "id": "889a08b8-017a-491f-9749-d9d1e8934d70",
+      "name": "AccountVerificationReports",
+      "description": {
+        "content": "Account ownership verification reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dad362c1-63d1-4f8f-8df5-540dc2d6a570",
+          "name": "Tink Get An Account Verification Report",
+          "request": {
+            "name": "Tink Get An Account Verification Report",
+            "description": {
+              "content": "Retrieve a completed Account Check report as a JSON document. Includes verified account, identity, party, balance, and risk-signal sections for every account the user shared.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "account-verification-reports",
+                ":report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b08fe05-464b-4897-aca7-0999b194f595",
+              "name": "Verification report returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "account-verification-reports",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"market\": \"string\",\n  \"locale\": \"string\",\n  \"timestamp\": \"1998-09-01T08:40:53.435Z\",\n  \"accounts\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"INVESTMENT\",\n      \"balance\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"identifiers\": {\n        \"iban\": \"string\",\n        \"sortCodeAccountNumber\": {\n          \"sortCode\": \"string\",\n          \"accountNumber\": \"string\"\n        },\n        \"bban\": \"string\"\n      },\n      \"holderName\": \"string\",\n      \"currency\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"LOAN\",\n      \"balance\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"identifiers\": {\n        \"iban\": \"string\",\n        \"sortCodeAccountNumber\": {\n          \"sortCode\": \"string\",\n          \"accountNumber\": \"string\"\n        },\n        \"bban\": \"string\"\n      },\n      \"holderName\": \"string\",\n      \"currency\": \"string\"\n    }\n  ],\n  \"identities\": [\n    {\n      \"name\": \"string\",\n      \"dateOfBirth\": \"1971-03-20\",\n      \"emails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"addresses\": [\n        {\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\",\n          \"addressLine\": \"string\"\n        },\n        {\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\",\n          \"addressLine\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"dateOfBirth\": \"1991-06-02\",\n      \"emails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"addresses\": [\n        {\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\",\n          \"addressLine\": \"string\"\n        },\n        {\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\",\n          \"addressLine\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"userMatch\": {\n    \"matchedName\": false,\n    \"matchedDateOfBirth\": true,\n    \"matchedAddress\": false,\n    \"matchScore\": 3665.560365638972\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38486500-0e2b-4a53-b09f-a043aeb37af3",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "account-verification-reports",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b45440a4-07d0-436f-b6ad-b5ac7e76c647",
+              "name": "Report not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "account-verification-reports",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2bd459b-0a14-46fb-b196-d87d9548a82b",
+          "name": "Tink Get An Account Verification Report As PDF",
+          "request": {
+            "name": "Tink Get An Account Verification Report As PDF",
+            "description": {
+              "content": "Retrieve a completed Account Check report rendered as a PDF using the specified report template. Useful for compliance, KYC, and underwriting archives.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "account-verification-reports",
+                ":report_id",
+                "pdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "template",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc1dfc56-a33b-436d-8547-d127e8ad5e25",
+              "name": "PDF report returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "account-verification-reports",
+                    ":report_id",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "template",
+                      "value": "standard-1.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b780ebeb-0939-49a5-a022-3fe34d00e500",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "account-verification-reports",
+                    ":report_id",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "template",
+                      "value": "standard-1.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "456aff72-99eb-4042-a102-5e74f21161c7",
+              "name": "Report not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "account-verification-reports",
+                    ":report_id",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "template",
+                      "value": "standard-1.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "feed9eb4-470c-4660-a037-cecc33b918ed",
+          "name": "Tink Create A Tink Link Session",
+          "request": {
+            "name": "Tink Create A Tink Link Session",
+            "description": {
+              "content": "Create a Tink Link session pre-loaded with user information so the Account Check report can be matched against the supplied identity (name, date of birth, address). Returns the hosted Tink Link URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "link",
+                "v1",
+                "session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"market\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user\": {\n    \"name\": \"<string>\",\n    \"dateOfBirth\": \"<date>\",\n    \"ssn\": \"<string>\",\n    \"address\": {\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"addressLine\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "02c47cd2-39fb-495f-ac03-ba735f8d754e",
+              "name": "Tink Link session created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "link",
+                    "v1",
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"market\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user\": {\n    \"name\": \"<string>\",\n    \"dateOfBirth\": \"<date>\",\n    \"ssn\": \"<string>\",\n    \"address\": {\n      \"country\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"addressLine\": \"string\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"string\",\n  \"url\": \"https://AMv.dkTyJOdYGmP86yhRaC9HL5g6lPH8yE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "070e6d36-ba25-415e-9943-4d95aba4c4c4",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "link",
+                    "v1",
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"market\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user\": {\n    \"name\": \"<string>\",\n    \"dateOfBirth\": \"<date>\",\n    \"ssn\": \"<string>\",\n    \"address\": {\n      \"country\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"addressLine\": \"string\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3c7e6165-28cc-40a6-9d08-31e456731bae",
+    "name": "Tink Account Check Accounts AccountVerificationReports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

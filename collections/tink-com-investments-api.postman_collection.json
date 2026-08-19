@@ -1,0 +1,225 @@
+{
+  "item": [
+    {
+      "id": "bc94d75f-868a-4373-999e-df2c97d14a6c",
+      "name": "Investments",
+      "description": {
+        "content": "Investment accounts and holdings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5525a0b0-5621-4683-86c9-888457bde8f5",
+          "name": "Tink List Investment Accounts",
+          "request": {
+            "name": "Tink List Investment Accounts",
+            "description": {
+              "content": "List investment accounts the user has consented to share.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "investment-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11c1bd2a-ff90-4442-9b87-ed99a613e999",
+              "name": "Investment accounts returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "investment-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"investmentAccounts\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"marketValue\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"cashBalance\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"marketValue\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"cashBalance\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e2236f5-3e61-464e-878d-616076f90c30",
+          "name": "Tink List Investment Holdings",
+          "request": {
+            "name": "Tink List Investment Holdings",
+            "description": {
+              "content": "List individual holdings within an investment account, including instrument, quantity, and market value.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "investment-accounts",
+                ":id",
+                "holdings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddcbbcba-6f15-4903-b50b-f1e6d6e6d128",
+              "name": "Holdings returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "investment-accounts",
+                    ":id",
+                    "holdings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"holdings\": [\n    {\n      \"id\": \"string\",\n      \"instrument\": {\n        \"isin\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"STOCK\"\n      },\n      \"quantity\": \"string\",\n      \"marketValue\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"purchasePrice\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"instrument\": {\n        \"isin\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"BOND\"\n      },\n      \"quantity\": \"string\",\n      \"marketValue\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"purchasePrice\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1ca717d-406f-4b99-b013-84517940b4ae",
+    "name": "Tink Account Check Accounts Investments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

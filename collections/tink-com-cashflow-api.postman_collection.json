@@ -1,0 +1,163 @@
+{
+  "item": [
+    {
+      "id": "1fa1ce68-3ebe-4687-84a6-427a651a6e87",
+      "name": "CashFlow",
+      "description": {
+        "content": "Cash flow summaries.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32e58b6c-22f0-4d8d-a4c4-bebe2365eab6",
+          "name": "Tink Get Cash Flow Summaries",
+          "request": {
+            "name": "Tink Get Cash Flow Summaries",
+            "description": {
+              "content": "Retrieve cash flow summaries (income vs expense) for the user at the requested resolution. Resolution values include DAILY, WEEKLY, MONTHLY, QUARTERLY, and YEARLY.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "cash-flow-summaries",
+                ":resolution"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from_gte",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "to_lte",
+                  "value": "<date>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resolution",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4aa4b18f-4513-4a12-a153-5656ac251139",
+              "name": "Cash flow summaries returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "cash-flow-summaries",
+                    ":resolution"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to_lte",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resolution",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summaries\": [\n    {\n      \"periodStart\": \"1991-08-18\",\n      \"periodEnd\": \"1985-11-29\",\n      \"income\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"expenses\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"net\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      }\n    },\n    {\n      \"periodStart\": \"1950-06-19\",\n      \"periodEnd\": \"1984-04-23\",\n      \"income\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"expenses\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"net\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "efe56677-2c22-4d71-bb79-483336fe65b4",
+    "name": "Tink Account Check Accounts CashFlow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

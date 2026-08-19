@@ -1,0 +1,284 @@
+{
+  "item": [
+    {
+      "id": "bb886756-ee39-4852-ae93-a5ac8ae7d436",
+      "name": "IncomeChecks",
+      "description": {
+        "content": "Income verification reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66018a1d-c707-4b14-97f3-139dc2e892fe",
+          "name": "Tink Get An Income Check Report",
+          "request": {
+            "name": "Tink Get An Income Check Report",
+            "description": {
+              "content": "Retrieve a completed Income Check report as JSON. Includes verified income streams, employer information, salary cadence, and trend analysis over the lookback window.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "income-checks",
+                ":report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a680b333-1de5-4748-821c-beae24997741",
+              "name": "Income Check report returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "income-checks",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"market\": \"string\",\n  \"generatedAt\": \"2004-08-22T05:25:01.018Z\",\n  \"verifiedIncomes\": [\n    {\n      \"source\": \"string\",\n      \"payer\": \"string\",\n      \"category\": \"BENEFIT\",\n      \"cadence\": \"YEARLY\",\n      \"averageAmount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"firstSeen\": \"1957-10-12\",\n      \"lastSeen\": \"2020-04-22\"\n    },\n    {\n      \"source\": \"string\",\n      \"payer\": \"string\",\n      \"category\": \"BENEFIT\",\n      \"cadence\": \"MONTHLY\",\n      \"averageAmount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"firstSeen\": \"2010-06-10\",\n      \"lastSeen\": \"2001-01-08\"\n    }\n  ],\n  \"summary\": {\n    \"totalNetIncome\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"averageMonthlyIncome\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"consecutiveMonthsWithIncome\": 5251\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "372fcb9c-68d7-4a88-87fe-4488e57c3dc8",
+              "name": "Report not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "income-checks",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b3eedf3-2064-4e60-9792-2ef7c426d5ac",
+          "name": "Tink Generate An Income Check PDF",
+          "request": {
+            "name": "Tink Generate An Income Check PDF",
+            "description": {
+              "content": "Retrieve the Income Check report rendered as a PDF for compliance archives.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "income-checks",
+                "{{report_id}}:generate-pdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8999244e-8532-412b-80e9-2dec47c3fcd2",
+              "name": "PDF returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "income-checks",
+                    "{{report_id}}:generate-pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "report_id"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fdf08f62-141d-49d9-bab1-6912c605d1dd",
+    "name": "Tink Account Check Accounts IncomeChecks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

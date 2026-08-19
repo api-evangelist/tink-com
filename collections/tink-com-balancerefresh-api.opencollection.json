@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Account Check Accounts BalanceRefresh API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BalanceRefresh",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Create A Balance Refresh",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/api/v1/balance-refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger an on-demand refresh of account balances for a connected credentials object. Used by Balance Check to fetch fresh data outside of the bank's standard polling cadence.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Get A Balance Refresh Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/api/v1/balance-refresh/:balanceRefreshId",
+            "params": [
+              {
+                "name": "balanceRefreshId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the status of a previously triggered balance refresh."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

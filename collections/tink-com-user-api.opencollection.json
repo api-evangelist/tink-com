@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Account Check Accounts User API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Create A Permanent User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/api/v1/user/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a permanent Tink user identified by `external_user_id` for repeat data access. Required before delegating authorization for continuous-access products such as Transactions, Balance Check, and Account Check refreshes.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Delete A User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tink.com/api/v1/user/delete"
+          },
+          "docs": "Permanently delete a Tink user and all associated credentials."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

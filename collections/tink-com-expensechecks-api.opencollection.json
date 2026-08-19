@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Account Check Accounts ExpenseChecks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ExpenseChecks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Get An Expense Check Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/risk/v1/expense-checks/:report_id",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a completed Expense Check report summarising essential and discretionary spending."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

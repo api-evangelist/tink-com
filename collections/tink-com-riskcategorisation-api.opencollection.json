@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Account Check Accounts RiskCategorisation API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RiskCategorisation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Get A Risk Categorisation Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/risk/v2/risk-categorisation/reports/:report_id",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a Risk Categorisation report classifying transactions for lending and affordability decisions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

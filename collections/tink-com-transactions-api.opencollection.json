@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Account Check Accounts Transactions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/transactions",
+            "params": [
+              {
+                "name": "accountIdIn",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bookedDateGte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bookedDateLte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statusIn",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List bank transactions across all consented accounts with optional filters by date range, account, status, and amount.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

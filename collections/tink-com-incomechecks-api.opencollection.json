@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Account Check Accounts IncomeChecks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IncomeChecks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Get An Income Check Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/v2/income-checks/:report_id",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a completed Income Check report as JSON. Includes verified income streams, employer information, salary cadence, and trend analysis over the lookback window.\n"
+        },
+        {
+          "info": {
+            "name": "Tink Generate An Income Check PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/v2/income-checks/:report_id:generate-pdf",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the Income Check report rendered as a PDF for compliance archives."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

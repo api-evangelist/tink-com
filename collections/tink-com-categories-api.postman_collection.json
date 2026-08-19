@@ -1,0 +1,134 @@
+{
+  "item": [
+    {
+      "id": "26d6c244-02b3-434d-b7cc-859476b75638",
+      "name": "Categories",
+      "description": {
+        "content": "Tink categorisation taxonomy.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "056396cb-3c5e-4ab5-8dee-6281839efee1",
+          "name": "Tink List Categories",
+          "request": {
+            "name": "Tink List Categories",
+            "description": {
+              "content": "List the Tink categorisation taxonomy for the calling locale.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrichment",
+                "v1",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fcd2ce5-067c-4984-8638-a87bb3631aa2",
+              "name": "Categories returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrichment",
+                    "v1",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"categories\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"name\": \"string\",\n      \"parentId\": \"string\",\n      \"type\": \"TRANSFERS\"\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"name\": \"string\",\n      \"parentId\": \"string\",\n      \"type\": \"EXPENSES\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "77a35059-99a2-476a-bbaa-4867fe2a8c62",
+    "name": "Tink Account Check Accounts Categories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

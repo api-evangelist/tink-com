@@ -1,0 +1,800 @@
+{
+  "item": [
+    {
+      "id": "f5029b32-350f-4598-aa50-fe5866eaa059",
+      "name": "FinancialCalendar",
+      "description": {
+        "content": "Financial calendar events and reconciliations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27a990f5-6030-4383-a188-fad8d7aa98c9",
+          "name": "Tink Create A Financial Calendar Event",
+          "request": {
+            "name": "Tink Create A Financial Calendar Event",
+            "description": {
+              "content": "Create a scheduled or recurring financial calendar event such as a bill, invoice, or tax payment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "financial-calendar-events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"dueDate\": \"<date>\",\n  \"type\": \"<string>\",\n  \"recurrence\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f624b4b9-d584-41db-8872-05b6214ee7c8",
+              "name": "Event created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "financial-calendar-events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  },\n  \"dueDate\": \"<date>\",\n  \"type\": \"<string>\",\n  \"recurrence\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  },\n  \"dueDate\": \"1988-10-21\",\n  \"type\": \"string\",\n  \"recurrence\": \"string\",\n  \"status\": \"PAID\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52d8c1c8-399f-43ae-a1cb-70aab32e27c2",
+          "name": "Tink List Financial Calendar Events",
+          "request": {
+            "name": "Tink List Financial Calendar Events",
+            "description": {
+              "content": "List financial calendar events filtered by due-date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "financial-calendar-events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "due_date_gte",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "due_date_lte",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afe9504f-3ff1-423a-a26b-2d21ad2d5ba7",
+              "name": "Events returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "financial-calendar-events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "due_date_gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "due_date_lte",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"events\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"dueDate\": \"2010-12-23\",\n      \"type\": \"string\",\n      \"recurrence\": \"string\",\n      \"status\": \"OPEN\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"dueDate\": \"1965-06-30\",\n      \"type\": \"string\",\n      \"recurrence\": \"string\",\n      \"status\": \"CANCELLED\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbd1fc4f-b578-4434-9375-7bdd8e1d82f9",
+          "name": "Tink Get A Financial Calendar Event",
+          "request": {
+            "name": "Tink Get A Financial Calendar Event",
+            "description": {
+              "content": "Retrieve a single financial calendar event by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "financial-calendar-events",
+                ":calendarEventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "calendarEventId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "abfa47db-31cc-4ed0-a7b2-7ca7e1951333",
+              "name": "Event returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "financial-calendar-events",
+                    ":calendarEventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "calendarEventId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  },\n  \"dueDate\": \"1988-10-21\",\n  \"type\": \"string\",\n  \"recurrence\": \"string\",\n  \"status\": \"PAID\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6540fbdb-ef43-423a-a785-1d5d38dd0014",
+          "name": "Tink Update A Financial Calendar Event",
+          "request": {
+            "name": "Tink Update A Financial Calendar Event",
+            "description": {
+              "content": "Update fields on a financial calendar event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "financial-calendar-events",
+                ":calendarEventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "calendarEventId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"dueDate\": \"<date>\",\n  \"type\": \"<string>\",\n  \"recurrence\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3d0e159-5505-496c-9ba9-4d6ab95b259c",
+              "name": "Event updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "financial-calendar-events",
+                    ":calendarEventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "calendarEventId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  },\n  \"dueDate\": \"<date>\",\n  \"type\": \"<string>\",\n  \"recurrence\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  },\n  \"dueDate\": \"1988-10-21\",\n  \"type\": \"string\",\n  \"recurrence\": \"string\",\n  \"status\": \"PAID\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8adfa42-ae0c-407c-b7ec-8761e2506722",
+          "name": "Tink Delete A Financial Calendar Event",
+          "request": {
+            "name": "Tink Delete A Financial Calendar Event",
+            "description": {
+              "content": "Delete a financial calendar event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "financial-calendar-events",
+                ":calendarEventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "calendarEventId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eaadfb12-7375-452b-9cf6-07767f17a65f",
+              "name": "Event deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "financial-calendar-events",
+                    ":calendarEventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "calendarEventId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef4e8fcf-9213-4997-9215-6eb346e1a8ba",
+          "name": "Tink Create A Calendar Event Reconciliation",
+          "request": {
+            "name": "Tink Create A Calendar Event Reconciliation",
+            "description": {
+              "content": "Reconcile a calendar event against a matched transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "financial-calendar-events",
+                ":calendarEventId",
+                "reconciliations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "calendarEventId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionId\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "972aeaa8-56ec-4170-951f-cb8623cd4049",
+              "name": "Reconciliation created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "financial-calendar-events",
+                    ":calendarEventId",
+                    "reconciliations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "calendarEventId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"calendarEventId\": \"string\",\n  \"transactionId\": \"string\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  },\n  \"reconciledAt\": \"2023-06-03T20:50:54.067Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a659d97-2785-485f-a0cb-105b9c011d02",
+          "name": "Tink List Calendar Event Summaries",
+          "request": {
+            "name": "Tink List Calendar Event Summaries",
+            "description": {
+              "content": "Aggregate financial calendar events into summaries at the requested resolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "financial-calendar-summaries",
+                ":resolution"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "period_gte",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "period_lte",
+                  "value": "<date>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resolution",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16f252b5-a611-47d5-80fd-a69fe9b43a81",
+              "name": "Summaries returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "financial-calendar-summaries",
+                    ":resolution"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period_gte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "period_lte",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resolution",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summaries\": [\n    {\n      \"periodStart\": \"1992-12-19\",\n      \"periodEnd\": \"1996-12-05\",\n      \"eventCount\": 8747,\n      \"totalAmount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      }\n    },\n    {\n      \"periodStart\": \"2012-03-16\",\n      \"periodEnd\": \"1998-02-17\",\n      \"eventCount\": 4161,\n      \"totalAmount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d29d9be0-f2fa-43b6-8cdb-3a9ca30619c1",
+    "name": "Tink Account Check Accounts FinancialCalendar API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

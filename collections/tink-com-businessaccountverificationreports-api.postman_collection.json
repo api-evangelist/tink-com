@@ -1,0 +1,249 @@
+{
+  "item": [
+    {
+      "id": "44af350f-eb09-43c5-86f4-0d5fc1fd49d6",
+      "name": "BusinessAccountVerificationReports",
+      "description": {
+        "content": "Business account ownership verification reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1d9785b-b8a5-4567-8f2e-4b984e9eff5b",
+          "name": "Tink Get A Business Account Verification Report",
+          "request": {
+            "name": "Tink Get A Business Account Verification Report",
+            "description": {
+              "content": "Retrieve a completed Business Account Check report verifying that a commercial bank account is owned by the business identified during the Tink Link session.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v1",
+                "business-account-verification-reports",
+                ":report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "632ee4ba-4489-48cd-ad09-f47931da3ac6",
+              "name": "Business verification report returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v1",
+                    "business-account-verification-reports",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"market\": \"string\",\n  \"timestamp\": \"1999-09-25T23:55:52.907Z\",\n  \"business\": {\n    \"name\": \"string\",\n    \"registrationNumber\": \"string\",\n    \"country\": \"string\",\n    \"address\": {\n      \"country\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"addressLine\": \"string\"\n    }\n  },\n  \"accounts\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"SAVINGS\",\n      \"balance\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"identifiers\": {\n        \"iban\": \"string\",\n        \"sortCodeAccountNumber\": {\n          \"sortCode\": \"string\",\n          \"accountNumber\": \"string\"\n        },\n        \"bban\": \"string\"\n      },\n      \"holderName\": \"string\",\n      \"currency\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"LOAN\",\n      \"balance\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"identifiers\": {\n        \"iban\": \"string\",\n        \"sortCodeAccountNumber\": {\n          \"sortCode\": \"string\",\n          \"accountNumber\": \"string\"\n        },\n        \"bban\": \"string\"\n      },\n      \"holderName\": \"string\",\n      \"currency\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a92008d-52a6-40cd-9b9f-077c520c03c6",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v1",
+                    "business-account-verification-reports",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f088325-281d-43be-92f7-1554b6ae8383",
+              "name": "Report not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v1",
+                    "business-account-verification-reports",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "80a18d35-ee79-438f-ad71-2c93a9a3cb3e",
+    "name": "Tink Account Check Accounts BusinessAccountVerificationReports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

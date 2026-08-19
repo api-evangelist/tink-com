@@ -1,0 +1,152 @@
+{
+  "item": [
+    {
+      "id": "8bad2fb6-5048-46ea-81f4-296b31dea086",
+      "name": "EnrichedTransactions",
+      "description": {
+        "content": "Categorised and merchant-enriched transactions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f5f12d46-1384-43a6-9e06-8e018d9668c4",
+          "name": "Tink List Enriched Transactions",
+          "request": {
+            "name": "Tink List Enriched Transactions",
+            "description": {
+              "content": "List user transactions enriched with Tink category, merchant information, and recurring flag.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrichment",
+                "v1",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountIdIn",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "bookedDateGte",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "bookedDateLte",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44f5dfb8-2624-43d1-86e2-9d02df866757",
+              "name": "Enriched transactions returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrichment",
+                    "v1",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookedDateGte",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookedDateLte",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactions\": [\n    {\n      \"id\": \"string\",\n      \"accountId\": \"string\",\n      \"amount\": {\n        \"value\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"descriptions\": {\n        \"original\": \"string\",\n        \"display\": \"string\"\n      },\n      \"categories\": {\n        \"pfm\": {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      },\n      \"merchantInformation\": {\n        \"merchantName\": \"string\",\n        \"merchantCategoryCode\": \"string\"\n      },\n      \"recurring\": true,\n      \"dates\": {\n        \"booked\": \"1994-08-25\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"accountId\": \"string\",\n      \"amount\": {\n        \"value\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"descriptions\": {\n        \"original\": \"string\",\n        \"display\": \"string\"\n      },\n      \"categories\": {\n        \"pfm\": {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      },\n      \"merchantInformation\": {\n        \"merchantName\": \"string\",\n        \"merchantCategoryCode\": \"string\"\n      },\n      \"recurring\": true,\n      \"dates\": {\n        \"booked\": \"2015-02-01\"\n      }\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "36077610-7514-420a-adeb-4cec05dd2ac2",
+    "name": "Tink Account Check Accounts EnrichedTransactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

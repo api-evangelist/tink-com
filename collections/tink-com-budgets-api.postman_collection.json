@@ -1,0 +1,650 @@
+{
+  "item": [
+    {
+      "id": "f95fc942-8510-41fc-b18f-4f05b23b4e4f",
+      "name": "Budgets",
+      "description": {
+        "content": "Personal and business budgets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "927beacf-fbb5-4d66-86cb-0f2843b3200e",
+          "name": "Tink Create A Business Budget",
+          "request": {
+            "name": "Tink Create A Business Budget",
+            "description": {
+              "content": "Create a one-off or recurring business budget tied to a category, merchant, or tag set.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "business-budgets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"period\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"filters\": {\n    \"categoryIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"merchantNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e84a7b86-0ece-417a-9d71-96146a72348b",
+              "name": "Budget created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "business-budgets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  },\n  \"period\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"filters\": {\n    \"categoryIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"merchantNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  },\n  \"period\": \"string\",\n  \"startDate\": \"1951-10-22\",\n  \"endDate\": \"1995-05-13\",\n  \"progress\": {\n    \"spent\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"remaining\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"status\": \"EXCEEDED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85553c19-aad3-414e-ad7d-0c95eabbb9d8",
+          "name": "Tink List Business Budgets",
+          "request": {
+            "name": "Tink List Business Budgets",
+            "description": {
+              "content": "List business budgets, optionally filtered by progress status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "business-budgets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "progress_status_in",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0ab6f38-f832-407f-94a0-a8b8591afb3a",
+              "name": "Budgets returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "business-budgets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "progress_status_in",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"budgets\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"period\": \"string\",\n      \"startDate\": \"1979-09-22\",\n      \"endDate\": \"1998-12-30\",\n      \"progress\": {\n        \"spent\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"remaining\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"status\": \"AT_RISK\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"period\": \"string\",\n      \"startDate\": \"2025-08-04\",\n      \"endDate\": \"1959-03-30\",\n      \"progress\": {\n        \"spent\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"remaining\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"status\": \"EXCEEDED\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db66a3c4-cae7-4de8-9a37-eeceba3770f1",
+          "name": "Tink Get A Business Budget",
+          "request": {
+            "name": "Tink Get A Business Budget",
+            "description": {
+              "content": "Retrieve a business budget by id with current progress and remaining amount.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "business-budgets",
+                ":budgetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "budgetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9508cbd-85ba-45d9-88f7-cdbfa0208a89",
+              "name": "Budget returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "business-budgets",
+                    ":budgetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "budgetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  },\n  \"period\": \"string\",\n  \"startDate\": \"1951-10-22\",\n  \"endDate\": \"1995-05-13\",\n  \"progress\": {\n    \"spent\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"remaining\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"status\": \"EXCEEDED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9a9a3fa-93bf-448e-ade6-efa69bd7e82d",
+          "name": "Tink Update A Business Budget",
+          "request": {
+            "name": "Tink Update A Business Budget",
+            "description": {
+              "content": "Update fields on a business budget (limit, period, tags).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "business-budgets",
+                ":budgetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "budgetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<string>\",\n    \"currencyCode\": \"<string>\"\n  },\n  \"period\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"filters\": {\n    \"categoryIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"merchantNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0c0f99b8-6f4a-4276-beb1-9964df9a8c67",
+              "name": "Budget updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "business-budgets",
+                    ":budgetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "budgetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  },\n  \"period\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"filters\": {\n    \"categoryIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"merchantNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"amount\": {\n    \"amount\": \"string\",\n    \"currencyCode\": \"string\"\n  },\n  \"period\": \"string\",\n  \"startDate\": \"1951-10-22\",\n  \"endDate\": \"1995-05-13\",\n  \"progress\": {\n    \"spent\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"remaining\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"status\": \"EXCEEDED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "671f99fe-b399-4213-a0f6-bc38624c3e3b",
+          "name": "Tink Delete A Business Budget",
+          "request": {
+            "name": "Tink Delete A Business Budget",
+            "description": {
+              "content": "Delete a business budget.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "business-budgets",
+                ":budgetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "budgetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81b4f530-6ee6-4ecb-b323-0097ce7e5f7e",
+              "name": "Budget deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "business-budgets",
+                    ":budgetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "budgetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6c3dd0d-2eb0-44ed-bce6-38c07eaf5545",
+          "name": "Tink Get Business Budget History",
+          "request": {
+            "name": "Tink Get Business Budget History",
+            "description": {
+              "content": "Retrieve the historical performance of a budget across past periods.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance-management",
+                "v1",
+                "business-budgets",
+                ":budgetId",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "budgetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "527ec485-9f3f-42b7-8845-d6536940bccc",
+              "name": "Budget history returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance-management",
+                    "v1",
+                    "business-budgets",
+                    ":budgetId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "budgetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"budgetId\": \"string\",\n  \"periods\": [\n    {\n      \"periodStart\": \"1968-07-21\",\n      \"periodEnd\": \"2024-07-17\",\n      \"spent\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"status\": \"EXCEEDED\"\n    },\n    {\n      \"periodStart\": \"1999-10-27\",\n      \"periodEnd\": \"1966-06-15\",\n      \"spent\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"status\": \"AT_RISK\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b1d4610-64d8-4f2b-9814-edf8eb7340d0",
+    "name": "Tink Account Check Accounts Budgets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

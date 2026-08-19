@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Account Check Accounts CashFlow API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CashFlow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink Get Cash Flow Summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/finance-management/v1/cash-flow-summaries/:resolution",
+            "params": [
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to_lte",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve cash flow summaries (income vs expense) for the user at the requested resolution. Resolution values include DAILY, WEEKLY, MONTHLY, QUARTERLY, and YEARLY.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

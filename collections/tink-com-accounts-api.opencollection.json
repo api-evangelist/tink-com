@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Account Check Accounts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/accounts",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all bank accounts the user has consented to share with the calling application."
+        },
+        {
+          "info": {
+            "name": "Tink Get Account Balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/accounts/:account_id/balances",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve balance snapshots for a single account, including booked and available balance."
+        },
+        {
+          "info": {
+            "name": "Tink List Account Parties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/data/v2/accounts/:account_id/parties",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List the legal parties (account holders) attached to an account, as returned by the bank."
+        },
+        {
+          "info": {
+            "name": "Tink List User Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/api/v1/credentials/list"
+          },
+          "docs": "List bank credential objects (consents) attached to the current user."
+        },
+        {
+          "info": {
+            "name": "Tink Delete User Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tink.com/api/v1/credentials/:credentialsId",
+            "params": [
+              {
+                "name": "credentialsId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a credentials object and revoke the underlying bank consent."
+        },
+        {
+          "info": {
+            "name": "Tink List Provider Consents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/api/v1/provider-consents"
+          },
+          "docs": "List all active bank-provider consents for the current user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

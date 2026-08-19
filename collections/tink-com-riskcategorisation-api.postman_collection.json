@@ -1,0 +1,143 @@
+{
+  "item": [
+    {
+      "id": "7435c01e-3f77-4f94-abb1-c72b352d48ba",
+      "name": "RiskCategorisation",
+      "description": {
+        "content": "Risk categorisation reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f0e277e-84a4-4319-b18f-dc68f9575745",
+          "name": "Tink Get A Risk Categorisation Report",
+          "request": {
+            "name": "Tink Get A Risk Categorisation Report",
+            "description": {
+              "content": "Retrieve a Risk Categorisation report classifying transactions for lending and affordability decisions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v2",
+                "risk-categorisation",
+                "reports",
+                ":report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07d27057-2dd1-4c40-8897-7ee33a3699a7",
+              "name": "Risk Categorisation report returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v2",
+                    "risk-categorisation",
+                    "reports",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"generatedAt\": \"2010-01-08T08:42:09.554Z\",\n  \"categories\": [\n    {\n      \"category\": \"string\",\n      \"riskTier\": \"HIGH\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"transactionCount\": 3226\n    },\n    {\n      \"category\": \"string\",\n      \"riskTier\": \"MEDIUM\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"transactionCount\": 4664\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "30878edd-846b-4035-8d44-3fc1945bafb0",
+    "name": "Tink Account Check Accounts RiskCategorisation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,328 @@
+{
+  "item": [
+    {
+      "id": "81293e8e-6f92-4b96-9cfc-2dd33af1c3c6",
+      "name": "Mandates",
+      "description": {
+        "content": "Recurring payment mandates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e12b49f6-fe55-4895-ab6c-1599cf32535b",
+          "name": "Tink Create A Mandate",
+          "request": {
+            "name": "Tink Create A Mandate",
+            "description": {
+              "content": "Create a payment mandate that authorizes recurring or sweeping variable recurring payments from a user's bank account.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "mandates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"market\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"maximumIndividualAmount\": \"<string>\",\n  \"maximumAmountPerPeriod\": \"<string>\",\n  \"period\": \"<string>\",\n  \"beneficiary\": {\n    \"accountNumber\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"expiresAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "49a4df1e-3956-45ae-8486-8b741c82dad9",
+              "name": "Mandate created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "mandates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"market\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"maximumIndividualAmount\": \"<string>\",\n  \"maximumAmountPerPeriod\": \"<string>\",\n  \"period\": \"<string>\",\n  \"beneficiary\": {\n    \"accountNumber\": {\n      \"type\": \"ACCOUNT_NUMBER\",\n      \"value\": \"string\"\n    },\n    \"name\": \"string\",\n    \"country\": \"string\"\n  },\n  \"expiresAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"ACTIVE\",\n  \"userId\": \"string\",\n  \"market\": \"string\",\n  \"currency\": \"string\",\n  \"maximumIndividualAmount\": \"string\",\n  \"maximumAmountPerPeriod\": \"string\",\n  \"period\": \"YEAR\",\n  \"expiresAt\": \"1955-05-17T11:31:07.519Z\",\n  \"beneficiary\": {\n    \"accountNumber\": {\n      \"type\": \"SORT_CODE\",\n      \"value\": \"string\"\n    },\n    \"name\": \"string\",\n    \"country\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58abdf16-4396-485c-b7fc-8b9c5c86426c",
+          "name": "Tink Get A Mandate",
+          "request": {
+            "name": "Tink Get A Mandate",
+            "description": {
+              "content": "Retrieve a mandate by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "mandates",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "979576ce-519e-4ed0-81e2-2b9604e9848f",
+              "name": "Mandate returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "mandates",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"ACTIVE\",\n  \"userId\": \"string\",\n  \"market\": \"string\",\n  \"currency\": \"string\",\n  \"maximumIndividualAmount\": \"string\",\n  \"maximumAmountPerPeriod\": \"string\",\n  \"period\": \"YEAR\",\n  \"expiresAt\": \"1955-05-17T11:31:07.519Z\",\n  \"beneficiary\": {\n    \"accountNumber\": {\n      \"type\": \"SORT_CODE\",\n      \"value\": \"string\"\n    },\n    \"name\": \"string\",\n    \"country\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df4e0d64-c357-4f34-97fe-105ff825bc97",
+          "name": "Tink Revoke A Mandate",
+          "request": {
+            "name": "Tink Revoke A Mandate",
+            "description": {
+              "content": "Revoke an active mandate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "mandates",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "182b77d1-33ab-49da-8282-da2cdb38a264",
+              "name": "Mandate revoked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "mandates",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bfa1b9cd-5811-4041-a3c4-523d2d8d65c1",
+    "name": "Tink Account Check Accounts Mandates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

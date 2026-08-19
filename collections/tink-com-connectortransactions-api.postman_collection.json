@@ -1,0 +1,154 @@
+{
+  "item": [
+    {
+      "id": "7853ce31-d051-40a4-ad4b-6b547a10401c",
+      "name": "ConnectorTransactions",
+      "description": {
+        "content": "Partner-ingested transactions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b88fed82-c67c-4d0b-88f9-582b810e1842",
+          "name": "Tink Ingest Connector Transactions",
+          "request": {
+            "name": "Tink Ingest Connector Transactions",
+            "description": {
+              "content": "Push a batch of partner transactions for the specified Tink user and accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connector",
+                "users",
+                ":external_user_id",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_user_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactions\": [\n    {\n      \"externalTransactionId\": \"<string>\",\n      \"externalAccountId\": \"<string>\",\n      \"amount\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"bookedDate\": \"<date>\",\n      \"description\": \"<string>\",\n      \"merchantName\": \"<string>\"\n    },\n    {\n      \"externalTransactionId\": \"<string>\",\n      \"externalAccountId\": \"<string>\",\n      \"amount\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"bookedDate\": \"<date>\",\n      \"description\": \"<string>\",\n      \"merchantName\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c2d10f4-b221-49ab-bd0b-d6664ace02bf",
+              "name": "Transactions accepted for ingestion.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connector",
+                    "users",
+                    ":external_user_id",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_user_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactions\": [\n    {\n      \"externalTransactionId\": \"string\",\n      \"externalAccountId\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"bookedDate\": \"2001-04-24\",\n      \"description\": \"string\",\n      \"merchantName\": \"string\"\n    },\n    {\n      \"externalTransactionId\": \"string\",\n      \"externalAccountId\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"bookedDate\": \"1956-08-26\",\n      \"description\": \"string\",\n      \"merchantName\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fec633b4-c56e-4fc5-9aeb-8d4f40479540",
+    "name": "Tink Account Check Accounts ConnectorTransactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

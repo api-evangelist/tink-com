@@ -1,0 +1,141 @@
+{
+  "item": [
+    {
+      "id": "f6cbcfaa-a8e4-432a-b029-d742f315ee83",
+      "name": "RiskInsights",
+      "description": {
+        "content": "Risk decisioning reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a011505-0d1d-4638-8c6c-b646f40db87d",
+          "name": "Tink Get A Risk Insights Report",
+          "request": {
+            "name": "Tink Get A Risk Insights Report",
+            "description": {
+              "content": "Retrieve a Risk Insights report combining income, expenses, balance volatility, and risk signals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v1",
+                "risk-insights",
+                ":report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd8dd436-4cf5-4ac6-9192-19fa8af8dba1",
+              "name": "Risk Insights report returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "risk-insights",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"generatedAt\": \"1980-03-23T13:20:41.396Z\",\n  \"signals\": [\n    {\n      \"code\": \"string\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"severity\": \"MEDIUM\",\n      \"description\": \"string\"\n    }\n  ],\n  \"incomeSummary\": {\n    \"id\": \"string\",\n    \"market\": \"string\",\n    \"generatedAt\": \"1961-07-27T02:03:50.659Z\",\n    \"verifiedIncomes\": [\n      {\n        \"source\": \"string\",\n        \"payer\": \"string\",\n        \"category\": \"OTHER\",\n        \"cadence\": \"IRREGULAR\",\n        \"averageAmount\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"firstSeen\": \"1979-11-21\",\n        \"lastSeen\": \"1986-01-14\"\n      },\n      {\n        \"source\": \"string\",\n        \"payer\": \"string\",\n        \"category\": \"PENSION\",\n        \"cadence\": \"YEARLY\",\n        \"averageAmount\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"firstSeen\": \"1961-12-31\",\n        \"lastSeen\": \"1996-06-20\"\n      }\n    ],\n    \"summary\": {\n      \"totalNetIncome\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"averageMonthlyIncome\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"consecutiveMonthsWithIncome\": 7605\n    }\n  },\n  \"expenseSummary\": {\n    \"id\": \"string\",\n    \"generatedAt\": \"2014-08-10T20:37:22.244Z\",\n    \"summary\": {\n      \"essentialExpenses\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"discretionaryExpenses\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"totalExpenses\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      }\n    },\n    \"categories\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"amount\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"transactionCount\": 3254\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"amount\": {\n          \"amount\": \"string\",\n          \"currencyCode\": \"string\"\n        },\n        \"transactionCount\": 3028\n      }\n    ]\n  },\n  \"balanceVolatility\": {\n    \"averageBalance\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"minimumBalance\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"overdraftDays\": 6477\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "82d1b32e-1da6-4d06-a152-83a673a60f34",
+    "name": "Tink Account Check Accounts RiskInsights API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "item": [
+    {
+      "id": "ab92e508-457a-462f-9899-375c63b24c5f",
+      "name": "Loans",
+      "description": {
+        "content": "Loan accounts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4fdb3c31-d24e-45ae-bb43-f49deb98e56c",
+          "name": "Tink List Loan Accounts",
+          "request": {
+            "name": "Tink List Loan Accounts",
+            "description": {
+              "content": "List loan accounts the user has consented to share, including outstanding balance, interest rate, and term.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "loan-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47276222-fd8e-4d7d-96c0-7f7221fb6df9",
+              "name": "Loan accounts returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "loan-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"loanAccounts\": [\n    {\n      \"id\": \"string\",\n      \"accountName\": \"string\",\n      \"loanType\": \"UNDEFINED\",\n      \"outstandingBalance\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"interestRate\": 6594.88382861554,\n      \"terms\": {\n        \"endDate\": \"1968-07-08\",\n        \"durationMonths\": 4085\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"accountName\": \"string\",\n      \"loanType\": \"OTHER\",\n      \"outstandingBalance\": {\n        \"amount\": {\n          \"value\": {\n            \"scale\": \"string\",\n            \"unscaledValue\": \"string\"\n          },\n          \"currencyCode\": \"string\"\n        }\n      },\n      \"interestRate\": 9694.722987341082,\n      \"terms\": {\n        \"endDate\": \"1953-10-30\",\n        \"durationMonths\": 8967\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d78f11b-6d17-4fed-ab0c-1f10f97edbe7",
+          "name": "Tink Get A Loan Account",
+          "request": {
+            "name": "Tink Get A Loan Account",
+            "description": {
+              "content": "Retrieve detailed information for a single loan account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "loan-accounts",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c0a567e-22fa-4f34-90db-1638c0693c00",
+              "name": "Loan account returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "loan-accounts",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"accountName\": \"string\",\n  \"loanType\": \"AUTO\",\n  \"outstandingBalance\": {\n    \"amount\": {\n      \"value\": {\n        \"scale\": \"string\",\n        \"unscaledValue\": \"string\"\n      },\n      \"currencyCode\": \"string\"\n    }\n  },\n  \"interestRate\": 9363.190697266597,\n  \"terms\": {\n    \"endDate\": \"2007-08-22\",\n    \"durationMonths\": 9523\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc74255d-a0b6-4a07-8b41-adb8d53dfcc2",
+    "name": "Tink Account Check Accounts Loans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

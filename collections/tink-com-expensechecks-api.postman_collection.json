@@ -1,0 +1,141 @@
+{
+  "item": [
+    {
+      "id": "affea76f-ae3a-4782-ba91-a42c272167b8",
+      "name": "ExpenseChecks",
+      "description": {
+        "content": "Expense verification reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "790c4d9f-37fa-41c4-93b2-60590be8caa0",
+          "name": "Tink Get An Expense Check Report",
+          "request": {
+            "name": "Tink Get An Expense Check Report",
+            "description": {
+              "content": "Retrieve a completed Expense Check report summarising essential and discretionary spending.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v1",
+                "expense-checks",
+                ":report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d42f5adf-1b3c-43ad-aa63-5f15d89e8d47",
+              "name": "Expense Check report returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "expense-checks",
+                    ":report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"generatedAt\": \"2015-07-18T09:19:01.316Z\",\n  \"summary\": {\n    \"essentialExpenses\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"discretionaryExpenses\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    },\n    \"totalExpenses\": {\n      \"amount\": \"string\",\n      \"currencyCode\": \"string\"\n    }\n  },\n  \"categories\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"transactionCount\": 9386\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"amount\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"transactionCount\": 3749\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4db503e1-0568-4844-85ab-de7451ded95b",
+    "name": "Tink Account Check Accounts ExpenseChecks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

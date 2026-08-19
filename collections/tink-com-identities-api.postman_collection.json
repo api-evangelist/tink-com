@@ -1,0 +1,123 @@
+{
+  "item": [
+    {
+      "id": "55ba0864-f906-4020-ae03-f3630f4b10c9",
+      "name": "Identities",
+      "description": {
+        "content": "Account holder identities returned by the bank.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e503f057-0e89-4678-ae81-47cac03f5e2a",
+          "name": "Tink List Identities",
+          "request": {
+            "name": "Tink List Identities",
+            "description": {
+              "content": "List identity records returned by banks for the consented user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v2",
+                "identities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea261483-7d24-42bb-9229-91f7dbdc70e9",
+              "name": "Identities returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v2",
+                    "identities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identities\": [\n    {\n      \"id\": \"string\",\n      \"name\": {\n        \"fullName\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      \"dateOfBirth\": \"1997-11-01\",\n      \"emailAddresses\": [\n        {\n          \"value\": \"string\"\n        },\n        {\n          \"value\": \"string\"\n        }\n      ],\n      \"addresses\": [\n        {\n          \"fullAddress\": \"string\",\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\"\n        },\n        {\n          \"fullAddress\": \"string\",\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": {\n        \"fullName\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      \"dateOfBirth\": \"1958-03-14\",\n      \"emailAddresses\": [\n        {\n          \"value\": \"string\"\n        },\n        {\n          \"value\": \"string\"\n        }\n      ],\n      \"addresses\": [\n        {\n          \"fullAddress\": \"string\",\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\"\n        },\n        {\n          \"fullAddress\": \"string\",\n          \"country\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "197330ca-c692-43ae-aeed-51d21fbfd55b",
+    "name": "Tink Account Check Accounts Identities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

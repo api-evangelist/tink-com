@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tink Account Check Accounts EnrichedTransactions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EnrichedTransactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tink List Enriched Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tink.com/enrichment/v1/transactions",
+            "params": [
+              {
+                "name": "accountIdIn",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bookedDateGte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bookedDateLte",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List user transactions enriched with Tink category, merchant information, and recurring flag."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,670 @@
+{
+  "item": [
+    {
+      "id": "90f9e5c0-e084-4489-9c36-f4d5b5279c58",
+      "name": "Payments",
+      "description": {
+        "content": "Payment initiation, status, cancel, and refund.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2879a557-2742-4568-8fb5-edd4d04d8687",
+          "name": "Tink Initiate A Payment",
+          "request": {
+            "name": "Tink Initiate A Payment",
+            "description": {
+              "content": "Initiate a payment from the customer's bank account to the beneficiary using PSD2 PIS rails. Returns a payment object and the Tink Link redirect URL the customer follows to authenticate and authorize at their bank.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"market\": \"<string>\",\n  \"destinations\": [\n    {\n      \"accountNumber\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"accountNumber\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"remittanceInformation\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"sourceAccount\": {\n    \"accountNumber\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d52c99bd-a9c1-4386-9988-7407964cc030",
+              "name": "Payment initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"100.00\",\n  \"currency\": \"EUR\",\n  \"market\": \"GB\",\n  \"destinations\": [\n    {\n      \"accountNumber\": {\n        \"type\": \"SORT_CODE\",\n        \"value\": \"string\"\n      },\n      \"name\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"accountNumber\": {\n        \"type\": \"BBAN\",\n        \"value\": \"string\"\n      },\n      \"name\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"remittanceInformation\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"sourceAccount\": {\n    \"accountNumber\": {\n      \"type\": \"BBAN\",\n      \"value\": \"string\"\n    },\n    \"name\": \"string\",\n    \"country\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"AUTHORIZED\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"market\": \"string\",\n  \"created\": \"1950-09-21T16:51:44.671Z\",\n  \"updated\": \"1948-10-22T04:47:47.338Z\",\n  \"redirectUrl\": \"https://bmGbvEfGFrpN.ethf\",\n  \"destinations\": [\n    {\n      \"accountNumber\": {\n        \"type\": \"ACCOUNT_NUMBER\",\n        \"value\": \"string\"\n      },\n      \"name\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"accountNumber\": {\n        \"type\": \"SORT_CODE\",\n        \"value\": \"string\"\n      },\n      \"name\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"sourceAccount\": {\n    \"accountNumber\": {\n      \"type\": \"BBAN\",\n      \"value\": \"string\"\n    },\n    \"name\": \"string\",\n    \"country\": \"string\"\n  },\n  \"remittanceInformation\": {\n    \"type\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa3d58c7-fee8-4365-9389-92348d8d16b4",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"100.00\",\n  \"currency\": \"EUR\",\n  \"market\": \"GB\",\n  \"destinations\": [\n    {\n      \"accountNumber\": {\n        \"type\": \"SORT_CODE\",\n        \"value\": \"string\"\n      },\n      \"name\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"accountNumber\": {\n        \"type\": \"BBAN\",\n        \"value\": \"string\"\n      },\n      \"name\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"remittanceInformation\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"sourceAccount\": {\n    \"accountNumber\": {\n      \"type\": \"BBAN\",\n      \"value\": \"string\"\n    },\n    \"name\": \"string\",\n    \"country\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db0965a0-2955-4f24-b980-baa7c7542ef4",
+          "name": "Tink Get A Payment",
+          "request": {
+            "name": "Tink Get A Payment",
+            "description": {
+              "content": "Retrieve a payment by id, including current status (CREATED, AUTHORIZED, EXECUTED, REJECTED, CANCELLED, REFUNDED).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":paymentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "840c1bca-0450-4dc0-9429-95aa0134c37e",
+              "name": "Payment returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"AUTHORIZED\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"market\": \"string\",\n  \"created\": \"1950-09-21T16:51:44.671Z\",\n  \"updated\": \"1948-10-22T04:47:47.338Z\",\n  \"redirectUrl\": \"https://bmGbvEfGFrpN.ethf\",\n  \"destinations\": [\n    {\n      \"accountNumber\": {\n        \"type\": \"ACCOUNT_NUMBER\",\n        \"value\": \"string\"\n      },\n      \"name\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"accountNumber\": {\n        \"type\": \"SORT_CODE\",\n        \"value\": \"string\"\n      },\n      \"name\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"sourceAccount\": {\n    \"accountNumber\": {\n      \"type\": \"BBAN\",\n      \"value\": \"string\"\n    },\n    \"name\": \"string\",\n    \"country\": \"string\"\n  },\n  \"remittanceInformation\": {\n    \"type\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed7c6419-9635-4504-8f9c-b3b8a23c763e",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebc2d63c-bd66-4080-8bb0-8cb9995d6de7",
+          "name": "Tink Cancel A Payment",
+          "request": {
+            "name": "Tink Cancel A Payment",
+            "description": {
+              "content": "Cancel a payment that has not yet been executed by the customer's bank.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":paymentId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c545a2f6-13eb-47ec-a683-9a8f1c77879a",
+              "name": "Payment cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"AUTHORIZED\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"market\": \"string\",\n  \"created\": \"1950-09-21T16:51:44.671Z\",\n  \"updated\": \"1948-10-22T04:47:47.338Z\",\n  \"redirectUrl\": \"https://bmGbvEfGFrpN.ethf\",\n  \"destinations\": [\n    {\n      \"accountNumber\": {\n        \"type\": \"ACCOUNT_NUMBER\",\n        \"value\": \"string\"\n      },\n      \"name\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"accountNumber\": {\n        \"type\": \"SORT_CODE\",\n        \"value\": \"string\"\n      },\n      \"name\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"sourceAccount\": {\n    \"accountNumber\": {\n      \"type\": \"BBAN\",\n      \"value\": \"string\"\n    },\n    \"name\": \"string\",\n    \"country\": \"string\"\n  },\n  \"remittanceInformation\": {\n    \"type\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81c6f47b-209d-4bf8-861e-3f919e5b35ad",
+          "name": "Tink Refund A Payment",
+          "request": {
+            "name": "Tink Refund A Payment",
+            "description": {
+              "content": "Initiate a full or partial refund for an executed payment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":paymentId",
+                "refunds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"remittanceInformation\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63563478-31f8-46a0-ad0c-1c2406b7a7ca",
+              "name": "Refund created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "refunds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"remittanceInformation\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"paymentId\": \"string\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"status\": \"CREATED\",\n  \"created\": \"2022-09-23T23:47:38.198Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d577bff0-08ff-4fb7-99cc-4ce86746e555",
+          "name": "Tink Get A Refund",
+          "request": {
+            "name": "Tink Get A Refund",
+            "description": {
+              "content": "Retrieve a refund by id, including current status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":paymentId",
+                "refunds",
+                ":refundId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "refundId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c4fa8e7-faa1-48fe-967b-48ca81b4d9d2",
+              "name": "Refund returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "refunds",
+                    ":refundId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "refundId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"paymentId\": \"string\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"status\": \"CREATED\",\n  \"created\": \"2022-09-23T23:47:38.198Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "84ddd668-225d-4321-a730-350f2515fa98",
+    "name": "Tink Account Check Accounts Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

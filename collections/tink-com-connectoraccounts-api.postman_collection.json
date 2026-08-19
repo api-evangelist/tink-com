@@ -1,0 +1,154 @@
+{
+  "item": [
+    {
+      "id": "e4450d4d-f12d-4398-9acd-5ca2abd069ab",
+      "name": "ConnectorAccounts",
+      "description": {
+        "content": "Partner-ingested accounts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "80abb9fd-b59c-4cae-8ffd-748e66912cbc",
+          "name": "Tink Ingest Connector Accounts",
+          "request": {
+            "name": "Tink Ingest Connector Accounts",
+            "description": {
+              "content": "Push a batch of partner accounts for the specified Tink user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connector",
+                "users",
+                ":external_user_id",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_user_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accounts\": [\n    {\n      \"externalAccountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"currencyCode\": \"<string>\",\n      \"balance\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"identifiers\": {\n        \"iban\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountNumber\": \"<string>\"\n      }\n    },\n    {\n      \"externalAccountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"currencyCode\": \"<string>\",\n      \"balance\": {\n        \"amount\": \"<string>\",\n        \"currencyCode\": \"<string>\"\n      },\n      \"identifiers\": {\n        \"iban\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountNumber\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc6b6c5f-1d5a-41fc-83b8-ec06ddd2e0f5",
+              "name": "Accounts accepted for ingestion.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connector",
+                    "users",
+                    ":external_user_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_user_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accounts\": [\n    {\n      \"externalAccountId\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"CHECKING\",\n      \"currencyCode\": \"string\",\n      \"balance\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"identifiers\": {\n        \"iban\": \"string\",\n        \"sortCode\": \"string\",\n        \"accountNumber\": \"string\"\n      }\n    },\n    {\n      \"externalAccountId\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"CREDIT_CARD\",\n      \"currencyCode\": \"string\",\n      \"balance\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"identifiers\": {\n        \"iban\": \"string\",\n        \"sortCode\": \"string\",\n        \"accountNumber\": \"string\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5fa8c590-c55d-455f-ba06-70af5e15f497",
+    "name": "Tink Account Check Accounts ConnectorAccounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,387 @@
+{
+  "item": [
+    {
+      "id": "70f0e0ac-e091-4ad8-8a0e-3dcb197d2936",
+      "name": "RecurringTransactions",
+      "description": {
+        "content": "Recurring transaction detection and prediction.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a91c55f-e557-44ab-89a5-a127740ba928",
+          "name": "Tink List Recurring Transactions",
+          "request": {
+            "name": "Tink List Recurring Transactions",
+            "description": {
+              "content": "List confirmed recurring transactions (subscriptions, salary, rent) for the user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrichment",
+                "v1",
+                "recurring-transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aff65998-80b6-427c-9005-3fb16a7d7678",
+              "name": "Recurring transactions returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrichment",
+                    "v1",
+                    "recurring-transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"recurringTransactions\": [\n    {\n      \"id\": \"string\",\n      \"merchantName\": \"string\",\n      \"cadence\": \"QUARTERLY\",\n      \"averageAmount\": {\n        \"value\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"category\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"lastOccurrence\": \"2007-03-07\",\n      \"nextExpectedOccurrence\": \"1994-12-16\"\n    },\n    {\n      \"id\": \"string\",\n      \"merchantName\": \"string\",\n      \"cadence\": \"DAILY\",\n      \"averageAmount\": {\n        \"value\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"category\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"lastOccurrence\": \"2023-03-24\",\n      \"nextExpectedOccurrence\": \"2007-10-30\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0994fcee-80a3-408f-837f-70737c24d19e",
+          "name": "Tink List Predicted Recurring Transactions",
+          "request": {
+            "name": "Tink List Predicted Recurring Transactions",
+            "description": {
+              "content": "List predicted future recurring transactions inferred from the user's transaction history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrichment",
+                "v1",
+                "predicted-recurring-transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2789f93c-b716-4db7-8aac-bf83f9343750",
+              "name": "Predicted recurring transactions returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrichment",
+                    "v1",
+                    "predicted-recurring-transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"recurringTransactions\": [\n    {\n      \"id\": \"string\",\n      \"merchantName\": \"string\",\n      \"cadence\": \"QUARTERLY\",\n      \"averageAmount\": {\n        \"value\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"category\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"lastOccurrence\": \"2007-03-07\",\n      \"nextExpectedOccurrence\": \"1994-12-16\"\n    },\n    {\n      \"id\": \"string\",\n      \"merchantName\": \"string\",\n      \"cadence\": \"DAILY\",\n      \"averageAmount\": {\n        \"value\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"category\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"lastOccurrence\": \"2023-03-24\",\n      \"nextExpectedOccurrence\": \"2007-10-30\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "059ad834-8db6-45db-b39d-6a35d8474449",
+          "name": "Tink List Recurring Transaction Groups",
+          "request": {
+            "name": "Tink List Recurring Transaction Groups",
+            "description": {
+              "content": "List recurring transaction groups (clusters of related recurring transactions).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrichment",
+                "v1",
+                "recurring-transactions-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ce31de5-0504-41e8-9bc0-724f0c9785c1",
+              "name": "Groups returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrichment",
+                    "v1",
+                    "recurring-transactions-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groups\": [\n    {\n      \"id\": \"string\",\n      \"merchantName\": \"string\",\n      \"cadence\": \"MONTHLY\",\n      \"recurringTransactionIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"totalAmount\": {\n        \"value\": \"string\",\n        \"currencyCode\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"merchantName\": \"string\",\n      \"cadence\": \"MONTHLY\",\n      \"recurringTransactionIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"totalAmount\": {\n        \"value\": \"string\",\n        \"currencyCode\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed366665-0a43-4060-a75c-8dd7eb240b7a",
+          "name": "Tink Get A Recurring Transaction Group",
+          "request": {
+            "name": "Tink Get A Recurring Transaction Group",
+            "description": {
+              "content": "Retrieve a single recurring transaction group by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrichment",
+                "v1",
+                "recurring-transactions-groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "539b61e4-fe7e-4a36-9536-52426ce45351",
+              "name": "Group returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrichment",
+                    "v1",
+                    "recurring-transactions-groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"merchantName\": \"string\",\n  \"cadence\": \"DAILY\",\n  \"recurringTransactionIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"totalAmount\": {\n    \"value\": \"string\",\n    \"currencyCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tink.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b5524482-bce9-4471-88a2-60d66fc5fa1e",
+    "name": "Tink Account Check Accounts RecurringTransactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.\n\n\nContact Support:\n Name: Tink Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
