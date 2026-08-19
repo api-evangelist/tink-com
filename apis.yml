@@ -8,6 +8,7 @@ description: >-
   Expense Check, Risk Insights, Risk Categorisation), Money Manager BFM, Data Enrichment, and PSD2 Payment Initiation
   Services (Pay by Bank, Auto Payments, Variable Recurring Payments, Mandates, Refunds, Payouts). Authentication is
   OAuth 2.0 with delegated user consent through the Tink Link hosted flow.
+specificationVersion: '0.23'
 accessModel:
   pricing: paid
   onboarding: self-serve
