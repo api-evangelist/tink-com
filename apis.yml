@@ -49,6 +49,8 @@ apis:
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -269,6 +271,8 @@ apis:
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
+  - Cash Flow
+  tags_raw:
   - CashFlow
   properties:
   - type: OpenAPI
@@ -797,6 +801,8 @@ apis:
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
@@ -1017,6 +1023,8 @@ apis:
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -1105,6 +1113,8 @@ apis:
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
+  - Webhook Endpoints
+  tags_raw:
   - WebhookEndpoints
   properties:
   - type: OpenAPI
