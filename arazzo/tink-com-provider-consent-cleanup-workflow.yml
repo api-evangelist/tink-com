@@ -13,8 +13,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataApi
-  url: ../openapi/tink-data-api-openapi.yml
+- name: accountsApi
+  url: ../openapi/tink-com-accounts-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: review-and-revoke-consent

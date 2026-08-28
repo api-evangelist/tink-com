@@ -12,8 +12,8 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: webhooksApi
-  url: ../openapi/tink-webhooks-api-openapi.yml
+- name: webhookendpointsApi
+  url: ../openapi/tink-com-webhookendpoints-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: register-and-verify-webhook

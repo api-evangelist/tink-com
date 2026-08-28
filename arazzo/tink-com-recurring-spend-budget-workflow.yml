@@ -12,11 +12,14 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: enrichmentApi
-  url: ../openapi/tink-data-enrichment-api-openapi.yml
+- name: budgetsApi
+  url: ../openapi/tink-com-budgets-api-openapi.yml
   type: openapi
-- name: moneyManagerApi
-  url: ../openapi/tink-money-manager-api-openapi.yml
+- name: categoriesApi
+  url: ../openapi/tink-com-categories-api-openapi.yml
+  type: openapi
+- name: recurringtransactionsApi
+  url: ../openapi/tink-com-recurringtransactions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: recurring-spend-budget

@@ -13,11 +13,14 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: oauthApi
-  url: ../openapi/tink-oauth-api-openapi.yml
+- name: accountsApi
+  url: ../openapi/tink-com-accounts-api-openapi.yml
   type: openapi
-- name: dataApi
-  url: ../openapi/tink-data-api-openapi.yml
+- name: oauthApi
+  url: ../openapi/tink-com-oauth-api-openapi.yml
+  type: openapi
+- name: userApi
+  url: ../openapi/tink-com-user-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: onboard-user-and-list-accounts

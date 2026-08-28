@@ -12,8 +12,8 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: accountCheckApi
-  url: ../openapi/tink-account-check-api-openapi.yml
+- name: accountverificationreportsApi
+  url: ../openapi/tink-com-accountverificationreports-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: account-verification-report

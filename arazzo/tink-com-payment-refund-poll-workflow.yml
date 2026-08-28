@@ -13,7 +13,7 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: paymentsApi
-  url: ../openapi/tink-payments-api-openapi.yml
+  url: ../openapi/tink-com-payments-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: refund-payment-and-poll
