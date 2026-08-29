@@ -1,0 +1,77 @@
+slug: tink-com
+provider: Tink
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Payments
+  spec_file: tink-com-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.9
+  evidence: POST /payments initiatePayment "Tink Initiate A Payment"; POST /payments/{paymentId}/cancel;
+    POST /payments/{paymentId}/refunds
+  reason: Operations initiate, cancel and refund payment instructions — open-banking payment initiation,
+    unambiguously payment initiation management.
+- tag: AccountVerificationReports
+  spec_file: tink-com-accountverificationreports-api-openapi.yml
+  capability_id: BC-1300
+  capability_id_l1: BC-1300
+  capability_name: Banking Customer Management
+  confidence: 0.75
+  evidence: '"verifies that a bank account belongs to the person or business presenting it ... verified
+    account ownership, identity, IBAN ... and holder match status"'
+  reason: Account ownership and holder-identity verification supports customer onboarding/due diligence
+    for the consuming institution. Evidence does not clearly distinguish onboarding identity verification
+    from KYC/CDD, so only the L1 is asserted.
+- tag: BusinessAccountVerificationReports
+  spec_file: tink-com-businessaccountverificationreports-api-openapi.yml
+  capability_id: BC-1300
+  capability_id_l1: BC-1300
+  capability_name: Banking Customer Management
+  confidence: 0.72
+  evidence: GET /data/v1/business-account-verification-reports/{report_id}; schemas Business, VerifiedAccount,
+    BusinessAccountVerificationReport
+  reason: Verification that a bank account belongs to the business presenting it feeds business customer
+    onboarding/due diligence. Cannot cleanly separate onboarding verification from KYB/CDD, so L1 only.
+- tag: Identities
+  spec_file: tink-com-identities-api-openapi.yml
+  capability_id: BC-1300
+  capability_id_l1: BC-1300
+  capability_name: Banking Customer Management
+  confidence: 0.7
+  evidence: 'GET /data/v2/identities listIdentities "Tink List Identities"; spec: "verifies that a bank
+    account belongs to the person or business presenting it ... verified account ownership, identity"'
+  reason: Returns bank-verified holder identity data used to confirm account ownership — a banking customer
+    identification/verification surface. Evidence does not clearly separate KYC/CDD from customer information
+    management, so only the L1 is asserted.
+- tag: Mandates
+  spec_file: tink-com-mandates-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.7
+  evidence: POST /payments/mandates createMandate "Tink Create A Mandate"; DELETE /payments/mandates/{id}
+    revokeMandate
+  reason: Creation and revocation of payment mandates under the /payments namespace is capture and authorisation
+    of payment instructions (recurring payment authority), i.e. payment initiation management.
+- tag: WebhookEndpoints
+  spec_file: tink-com-webhookendpoints-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.7
+  evidence: POST /events/v2/webhook-endpoints  createWebhookEndpoint  Tink Create A Webhook Endpoint
+  reason: Full CRUD lifecycle over outbound webhook endpoints for platform events, which is exactly the
+    webhook/event subscription management sub-capability of the vendor's developer platform. Confidence
+    held moderate because it is generic integration plumbing.

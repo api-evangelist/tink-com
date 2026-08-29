@@ -1166,6 +1166,9 @@ apis:
   - type: Documentation
     url: https://docs.tink.com/resources/webhooks
 common:
+  - type: CapabilityMap
+    url: capabilities/tink-com-capability-edges.yml
+    name: Tink Business Capability Map
   - type: AgenticAccess
     url: agentic-access/tink-com-agentic-access.yml
   - type: VulnerabilityDisclosure
