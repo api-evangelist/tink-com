@@ -283,7 +283,7 @@ apis:
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
-  - Cash Flow
+  - CashFlow
   tags_raw:
   - CashFlow
   properties:
@@ -1125,7 +1125,7 @@ apis:
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
-  - Webhook Endpoints
+  - WebhookEndpoints
   tags_raw:
   - WebhookEndpoints
   properties:
