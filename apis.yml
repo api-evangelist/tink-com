@@ -1167,6 +1167,8 @@ apis:
   - type: Documentation
     url: https://docs.tink.com/resources/webhooks
 common:
+  - type: Website
+    url: https://www.tink.com/
   - type: CapabilityMap
     url: capabilities/tink-com-capability-edges.yml
     name: Tink Business Capability Map
