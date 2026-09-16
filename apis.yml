@@ -278,52 +278,6 @@ apis:
     url: https://docs.tink.com/resources/connector
   - type: Documentation
     url: https://docs.tink.com/resources/webhooks
-- aid: tink-com:tink-com-cashflow-api
-  name: Tink CashFlow API
-  description: Cash flow summaries.
-  humanURL: https://docs.tink.com/api-reference/auth-api
-  baseURL: https://api.tink.com
-  tags:
-  - Cash Flow
-  tags_raw:
-  - CashFlow
-  properties:
-  - type: OpenAPI
-    url: openapi/tink-com-cashflow-api-openapi.yml
-  - type: Documentation
-    url: https://docs.tink.com/api-reference/auth-api
-  - type: Documentation
-    url: https://docs.tink.com/resources/account-check
-  - type: JSONSchema
-    url: json-schema/tink-account-verification-report-schema.json
-  - type: Examples
-    url: examples/tink-account-verification-report-example.json
-  - type: Documentation
-    url: https://docs.tink.com/resources/transactions
-  - type: JSONSchema
-    url: json-schema/tink-transaction-schema.json
-  - type: Examples
-    url: examples/tink-transaction-example.json
-  - type: Documentation
-    url: https://docs.tink.com/resources/data-enrichment
-  - type: Documentation
-    url: https://docs.tink.com/resources/payments
-  - type: JSONSchema
-    url: json-schema/tink-payment-schema.json
-  - type: Examples
-    url: examples/tink-payment-example.json
-  - type: Documentation
-    url: https://docs.tink.com/resources/risk-insights
-  - type: Documentation
-    url: https://docs.tink.com/resources/income-check
-  - type: Documentation
-    url: https://docs.tink.com/resources/expense-check
-  - type: Documentation
-    url: https://docs.tink.com/resources/money-manager
-  - type: Documentation
-    url: https://docs.tink.com/resources/connector
-  - type: Documentation
-    url: https://docs.tink.com/resources/webhooks
 - aid: tink-com:tink-com-categories-api
   name: Tink Categories API
   description: Tink categorisation taxonomy.
@@ -808,52 +762,6 @@ apis:
     url: https://docs.tink.com/resources/connector
   - type: Documentation
     url: https://docs.tink.com/resources/webhooks
-- aid: tink-com:tink-com-oauth-api
-  name: Tink OAuth API
-  description: Token, authorization, and delegated grant endpoints.
-  humanURL: https://docs.tink.com/api-reference/auth-api
-  baseURL: https://api.tink.com
-  tags:
-  - Authentication
-  tags_raw:
-  - OAuth
-  properties:
-  - type: OpenAPI
-    url: openapi/tink-com-oauth-api-openapi.yml
-  - type: Documentation
-    url: https://docs.tink.com/api-reference/auth-api
-  - type: Documentation
-    url: https://docs.tink.com/resources/account-check
-  - type: JSONSchema
-    url: json-schema/tink-account-verification-report-schema.json
-  - type: Examples
-    url: examples/tink-account-verification-report-example.json
-  - type: Documentation
-    url: https://docs.tink.com/resources/transactions
-  - type: JSONSchema
-    url: json-schema/tink-transaction-schema.json
-  - type: Examples
-    url: examples/tink-transaction-example.json
-  - type: Documentation
-    url: https://docs.tink.com/resources/data-enrichment
-  - type: Documentation
-    url: https://docs.tink.com/resources/payments
-  - type: JSONSchema
-    url: json-schema/tink-payment-schema.json
-  - type: Examples
-    url: examples/tink-payment-example.json
-  - type: Documentation
-    url: https://docs.tink.com/resources/risk-insights
-  - type: Documentation
-    url: https://docs.tink.com/resources/income-check
-  - type: Documentation
-    url: https://docs.tink.com/resources/expense-check
-  - type: Documentation
-    url: https://docs.tink.com/resources/money-manager
-  - type: Documentation
-    url: https://docs.tink.com/resources/connector
-  - type: Documentation
-    url: https://docs.tink.com/resources/webhooks
 - aid: tink-com:tink-com-payments-api
   name: Tink Payments API
   description: Payment initiation, status, cancel, and refund.
@@ -1120,18 +1028,104 @@ apis:
     url: https://docs.tink.com/resources/connector
   - type: Documentation
     url: https://docs.tink.com/resources/webhooks
-- aid: tink-com:tink-com-webhookendpoints-api
-  name: Tink WebhookEndpoints API
+- aid: tink-com:tink-com-cash-flow-api
+  name: Tink Cash Flow API
+  description: Cash flow summaries.
+  humanURL: https://docs.tink.com/api-reference/auth-api
+  baseURL: https://api.tink.com
+  tags:
+  - Cash Flow
+  properties:
+  - type: OpenAPI
+    url: openapi/tink-com-cash-flow-api-openapi.yml
+  - type: Documentation
+    url: https://docs.tink.com/api-reference/auth-api
+  - type: Documentation
+    url: https://docs.tink.com/resources/account-check
+  - type: JSONSchema
+    url: json-schema/tink-account-verification-report-schema.json
+  - type: Examples
+    url: examples/tink-account-verification-report-example.json
+  - type: Documentation
+    url: https://docs.tink.com/resources/transactions
+  - type: JSONSchema
+    url: json-schema/tink-transaction-schema.json
+  - type: Examples
+    url: examples/tink-transaction-example.json
+  - type: Documentation
+    url: https://docs.tink.com/resources/data-enrichment
+  - type: Documentation
+    url: https://docs.tink.com/resources/payments
+  - type: JSONSchema
+    url: json-schema/tink-payment-schema.json
+  - type: Examples
+    url: examples/tink-payment-example.json
+  - type: Documentation
+    url: https://docs.tink.com/resources/risk-insights
+  - type: Documentation
+    url: https://docs.tink.com/resources/income-check
+  - type: Documentation
+    url: https://docs.tink.com/resources/expense-check
+  - type: Documentation
+    url: https://docs.tink.com/resources/money-manager
+  - type: Documentation
+    url: https://docs.tink.com/resources/connector
+  - type: Documentation
+    url: https://docs.tink.com/resources/webhooks
+- aid: tink-com:tink-com-o-auth-api
+  name: Tink O Auth API
+  description: Token, authorization, and delegated grant endpoints.
+  humanURL: https://docs.tink.com/api-reference/auth-api
+  baseURL: https://api.tink.com
+  tags:
+  - O Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/tink-com-o-auth-api-openapi.yml
+  - type: Documentation
+    url: https://docs.tink.com/api-reference/auth-api
+  - type: Documentation
+    url: https://docs.tink.com/resources/account-check
+  - type: JSONSchema
+    url: json-schema/tink-account-verification-report-schema.json
+  - type: Examples
+    url: examples/tink-account-verification-report-example.json
+  - type: Documentation
+    url: https://docs.tink.com/resources/transactions
+  - type: JSONSchema
+    url: json-schema/tink-transaction-schema.json
+  - type: Examples
+    url: examples/tink-transaction-example.json
+  - type: Documentation
+    url: https://docs.tink.com/resources/data-enrichment
+  - type: Documentation
+    url: https://docs.tink.com/resources/payments
+  - type: JSONSchema
+    url: json-schema/tink-payment-schema.json
+  - type: Examples
+    url: examples/tink-payment-example.json
+  - type: Documentation
+    url: https://docs.tink.com/resources/risk-insights
+  - type: Documentation
+    url: https://docs.tink.com/resources/income-check
+  - type: Documentation
+    url: https://docs.tink.com/resources/expense-check
+  - type: Documentation
+    url: https://docs.tink.com/resources/money-manager
+  - type: Documentation
+    url: https://docs.tink.com/resources/connector
+  - type: Documentation
+    url: https://docs.tink.com/resources/webhooks
+- aid: tink-com:tink-com-webhook-endpoints-api
+  name: Tink Webhook Endpoints API
   description: Webhook endpoint management.
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
   - Webhook Endpoints
-  tags_raw:
-  - WebhookEndpoints
   properties:
   - type: OpenAPI
-    url: openapi/tink-com-webhookendpoints-api-openapi.yml
+    url: openapi/tink-com-webhook-endpoints-api-openapi.yml
   - type: Documentation
     url: https://docs.tink.com/api-reference/auth-api
   - type: Documentation
