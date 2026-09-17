@@ -1028,16 +1028,16 @@ apis:
     url: https://docs.tink.com/resources/connector
   - type: Documentation
     url: https://docs.tink.com/resources/webhooks
-- aid: tink-com:tink-com-cash-flow-api
-  name: Tink Cash Flow API
-  description: Cash flow summaries.
+- aid: tink-com:tink-com-oauth-api
+  name: Tink O Auth API
+  description: Token, authorization, and delegated grant endpoints.
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
-  - Cash Flow
+  - OAuth
   properties:
   - type: OpenAPI
-    url: openapi/tink-com-cash-flow-api-openapi.yml
+    url: openapi/tink-com-oauth-api-openapi.yml
   - type: Documentation
     url: https://docs.tink.com/api-reference/auth-api
   - type: Documentation
@@ -1072,16 +1072,16 @@ apis:
     url: https://docs.tink.com/resources/connector
   - type: Documentation
     url: https://docs.tink.com/resources/webhooks
-- aid: tink-com:tink-com-o-auth-api
-  name: Tink O Auth API
-  description: Token, authorization, and delegated grant endpoints.
+- aid: tink-com:tink-com-cash-flow-api
+  name: Tink Cash Flow API
+  description: Cash flow summaries.
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
-  - O Auth
+  - Cash Flow
   properties:
   - type: OpenAPI
-    url: openapi/tink-com-o-auth-api-openapi.yml
+    url: openapi/tink-com-cash-flow-api-openapi.yml
   - type: Documentation
     url: https://docs.tink.com/api-reference/auth-api
   - type: Documentation
