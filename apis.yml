@@ -636,6 +636,8 @@ apis:
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
+  - Investment
+  tags_raw:
   - Investments
   properties:
   - type: OpenAPI
@@ -1034,6 +1036,8 @@ apis:
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
