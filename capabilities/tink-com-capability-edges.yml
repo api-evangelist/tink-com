@@ -66,7 +66,8 @@ edges:
   reason: Creation and revocation of payment mandates under the /payments namespace is capture and authorisation
     of payment instructions (recurring payment authority), i.e. payment initiation management.
 - tag: WebhookEndpoints
-  spec_file: tink-com-webhookendpoints-api-openapi.yml
+  spec_file: tink-com-webhook-endpoints-api-openapi.yml
+  reanchored_from: tink-com-webhookendpoints-api-openapi.yml
   capability_id: BC-4270.80
   capability_id_l1: BC-4270
   capability_name: Webhook & Event Subscription Management
