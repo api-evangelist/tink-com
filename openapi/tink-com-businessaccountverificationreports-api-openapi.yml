@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Tink Account Check Accounts BusinessAccountVerificationReports API
-  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
-
-    '
+  title: Tink Account Check Business Account Verification Reports API
+  description: Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
   version: '1.0'
   contact:
     name: Tink Developer Support
@@ -22,9 +20,7 @@ paths:
   /data/v1/business-account-verification-reports/{report_id}:
     get:
       summary: Tink Get A Business Account Verification Report
-      description: 'Retrieve a completed Business Account Check report verifying that a commercial bank account is owned by the business identified during the Tink Link session.
-
-        '
+      description: Retrieve a completed Business Account Check report verifying that a commercial bank account is owned by the business identified during the Tink Link session.
       operationId: getBusinessAccountVerificationReport
       tags:
       - BusinessAccountVerificationReports
@@ -43,17 +39,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Business:
-      type: object
-      properties:
-        name:
-          type: string
-        registrationNumber:
-          type: string
-        country:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
     Address:
       type: object
       properties:
@@ -65,22 +50,13 @@ components:
           type: string
         addressLine:
           type: string
-    BusinessAccountVerificationReport:
+    Error:
       type: object
       properties:
-        id:
+        errorMessage:
           type: string
-        market:
+        errorCode:
           type: string
-        timestamp:
-          type: string
-          format: date-time
-        business:
-          $ref: '#/components/schemas/Business'
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/VerifiedAccount'
     VerifiedAccount:
       type: object
       properties:
@@ -124,13 +100,40 @@ components:
           type: string
         currencyCode:
           type: string
-    Error:
+    Business:
       type: object
       properties:
-        errorMessage:
+        name:
           type: string
-        errorCode:
+        registrationNumber:
           type: string
+        country:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    BusinessAccountVerificationReport:
+      type: object
+      properties:
+        id:
+          type: string
+        market:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        business:
+          $ref: '#/components/schemas/Business'
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifiedAccount'
+  parameters:
+    ReportIdParam:
+      in: path
+      name: report_id
+      required: true
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Missing or invalid bearer token.
@@ -144,13 +147,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    ReportIdParam:
-      in: path
-      name: report_id
-      required: true
-      schema:
-        type: string
   securitySchemes:
     BearerAuth:
       type: http

@@ -1,33 +1,27 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Tink Account Check Accounts CashFlow API
-  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
-
-    '
+  title: Tink Money Manager Cash Flow API
+  description: Tink Money Manager (Business Financial Management) provides personal and business financial management capabilities including cash flow summaries, budgets, financial calendar events, and reconciliations. The finance-management API powers SMB-facing dashboards inside customer banking and accounting apps.
   version: '1.0'
   contact:
     name: Tink Developer Support
-    url: https://docs.tink.com/resources/account-check
+    url: https://docs.tink.com/resources/money-manager
 servers:
 - url: https://api.tink.com
   description: Tink EU Production
-- url: https://api.us.tink.com
-  description: Tink US Production
 security:
 - BearerAuth: []
 tags:
-- name: CashFlow
+- name: Cash Flow
   description: Cash flow summaries.
 paths:
   /finance-management/v1/cash-flow-summaries/{resolution}:
     get:
       summary: Tink Get Cash Flow Summaries
-      description: 'Retrieve cash flow summaries (income vs expense) for the user at the requested resolution. Resolution values include DAILY, WEEKLY, MONTHLY, QUARTERLY, and YEARLY.
-
-        '
+      description: Retrieve cash flow summaries (income vs expense) for the user at the requested resolution. Resolution values include DAILY, WEEKLY, MONTHLY, QUARTERLY, and YEARLY.
       operationId: getCashFlowSummaries
       tags:
-      - CashFlow
+      - Cash Flow
       parameters:
       - in: path
         name: resolution
@@ -61,6 +55,13 @@ paths:
                 $ref: '#/components/schemas/CashFlowSummaryList'
 components:
   schemas:
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
     CashFlowSummaryList:
       type: object
       properties:
@@ -81,13 +82,6 @@ components:
                 $ref: '#/components/schemas/Money'
               net:
                 $ref: '#/components/schemas/Money'
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

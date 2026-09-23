@@ -1,13 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Tink Account Check Accounts BalanceRefresh API
-  description: 'Tink Account Check verifies that a bank account belongs to the person or business presenting it. After a customer authenticates via Tink Link the Account Check report exposes verified account ownership, identity, IBAN or sort-code/account number, account type, balance, and holder match status. The report can be retrieved as JSON for programmatic use or as a PDF for compliance archives.
-
-    '
-  version: '1.0'
+  title: Tink Data Balance Refresh API
+  description: 'Tink Data API exposes aggregated PSD2 and non-PSD2 account information for consented users across 6,000+ European banks: accounts, balances, transactions, identities, account parties, investment holdings, and loan accounts. Used for one-time access reports as well as continuous-access products like Money Manager and Risk Insights.'
+  version: '2.0'
   contact:
     name: Tink Developer Support
-    url: https://docs.tink.com/resources/account-check
+    url: https://docs.tink.com/resources/transactions
 servers:
 - url: https://api.tink.com
   description: Tink EU Production
@@ -22,9 +20,7 @@ paths:
   /api/v1/balance-refresh:
     post:
       summary: Tink Create A Balance Refresh
-      description: 'Trigger an on-demand refresh of account balances for a connected credentials object. Used by Balance Check to fetch fresh data outside of the bank''s standard polling cadence.
-
-        '
+      description: Trigger an on-demand refresh of account balances for a connected credentials object. Used by Balance Check to fetch fresh data outside of the bank's standard polling cadence.
       operationId: createBalanceRefresh
       tags:
       - BalanceRefresh
@@ -62,11 +58,6 @@ paths:
                 $ref: '#/components/schemas/BalanceRefreshStatus'
 components:
   schemas:
-    BalanceRefreshRequest:
-      type: object
-      properties:
-        credentialsId:
-          type: string
     BalanceRefreshStatus:
       type: object
       properties:
@@ -80,6 +71,11 @@ components:
           - FINISHED
           - FAILED
         statusMessage:
+          type: string
+    BalanceRefreshRequest:
+      type: object
+      properties:
+        credentialsId:
           type: string
   securitySchemes:
     BearerAuth:
