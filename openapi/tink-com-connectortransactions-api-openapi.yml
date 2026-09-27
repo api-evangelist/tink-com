@@ -34,6 +34,13 @@ paths:
         '202':
           description: Transactions accepted for ingestion.
 components:
+  parameters:
+    ExternalUserIdParam:
+      in: path
+      name: external_user_id
+      required: true
+      schema:
+        type: string
   schemas:
     Money:
       type: object
@@ -42,6 +49,13 @@ components:
           type: string
         currencyCode:
           type: string
+    ConnectorTransactionBatch:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectorTransaction'
     ConnectorTransaction:
       type: object
       properties:
@@ -58,20 +72,6 @@ components:
           type: string
         merchantName:
           type: string
-    ConnectorTransactionBatch:
-      type: object
-      properties:
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConnectorTransaction'
-  parameters:
-    ExternalUserIdParam:
-      in: path
-      name: external_user_id
-      required: true
-      schema:
-        type: string
   securitySchemes:
     BearerAuth:
       type: http

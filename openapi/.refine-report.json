@@ -39,7 +39,7 @@
     "tink-com-webhookendpoints-api-openapi.yml"
   ],
   "archived": [
-    "deleted 3 superseded output(s) from the previous generation"
+    "deleted 2 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
@@ -54,8 +54,8 @@
     "tink-payments-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "tink-risk-reports-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "tink-webhooks-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "superseded outputs removed: tink-com-cash-flow-api-openapi.yml, tink-com-o-auth-api-openapi.yml, tink-com-webhook-endpoints-api-openapi.yml",
-    "apis.yml register: written (+3 apis, 25 total)"
+    "superseded outputs removed: tink-com-cash-flow-api-openapi.yml, tink-com-webhook-endpoints-api-openapi.yml",
+    "apis.yml register: written (+2 apis, 25 total)"
   ],
   "skipped": [
     "tink-com-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -75,7 +75,7 @@
     "tink-com-investments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tink-com-loans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tink-com-mandates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "tink-com-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tink-com-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tink-com-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tink-com-recurringtransactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tink-com-riskcategorisation-api-openapi.yml: previously refined output, superseded by openapi/_original/",

@@ -88,54 +88,6 @@ paths:
           $ref: '#/components/responses/BadRequest'
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        country:
-          type: string
-        city:
-          type: string
-        postalCode:
-          type: string
-        addressLine:
-          type: string
-    UserMatch:
-      type: object
-      properties:
-        matchedName:
-          type: boolean
-        matchedDateOfBirth:
-          type: boolean
-        matchedAddress:
-          type: boolean
-        matchScore:
-          type: number
-    Error:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-        errorCode:
-          type: string
-    CreateLinkSessionRequest:
-      type: object
-      properties:
-        market:
-          type: string
-        locale:
-          type: string
-        user:
-          type: object
-          properties:
-            name:
-              type: string
-            dateOfBirth:
-              type: string
-              format: date
-            ssn:
-              type: string
-            address:
-              $ref: '#/components/schemas/Address'
     AccountVerificationReport:
       type: object
       properties:
@@ -158,6 +110,28 @@ components:
             $ref: '#/components/schemas/Identity'
         userMatch:
           $ref: '#/components/schemas/UserMatch'
+    UserMatch:
+      type: object
+      properties:
+        matchedName:
+          type: boolean
+        matchedDateOfBirth:
+          type: boolean
+        matchedAddress:
+          type: boolean
+        matchScore:
+          type: number
+    Address:
+      type: object
+      properties:
+        country:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+        addressLine:
+          type: string
     Identity:
       type: object
       properties:
@@ -174,6 +148,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address'
+    CreateLinkSessionRequest:
+      type: object
+      properties:
+        market:
+          type: string
+        locale:
+          type: string
+        user:
+          type: object
+          properties:
+            name:
+              type: string
+            dateOfBirth:
+              type: string
+              format: date
+            ssn:
+              type: string
+            address:
+              $ref: '#/components/schemas/Address'
     LinkSessionResponse:
       type: object
       properties:
@@ -225,22 +218,22 @@ components:
           type: string
         currencyCode:
           type: string
-  parameters:
-    ReportIdParam:
-      in: path
-      name: report_id
-      required: true
-      schema:
-        type: string
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
   responses:
-    BadRequest:
-      description: Invalid request.
+    Unauthorized:
+      description: Missing or invalid bearer token.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid bearer token.
+    BadRequest:
+      description: Invalid request.
       content:
         application/json:
           schema:
@@ -251,6 +244,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    ReportIdParam:
+      in: path
+      name: report_id
+      required: true
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

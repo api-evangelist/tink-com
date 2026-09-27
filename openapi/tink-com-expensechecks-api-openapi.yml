@@ -34,14 +34,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/ExpenseCheckReport'
 components:
+  parameters:
+    ReportIdParam:
+      in: path
+      name: report_id
+      required: true
+      schema:
+        type: string
   schemas:
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
     ExpenseCheckReport:
       type: object
       properties:
@@ -73,13 +73,13 @@ components:
               transactionCount:
                 type: integer
                 format: int32
-  parameters:
-    ReportIdParam:
-      in: path
-      name: report_id
-      required: true
-      schema:
-        type: string
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http

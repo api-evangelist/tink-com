@@ -114,20 +114,62 @@ paths:
                 $ref: '#/components/schemas/ProviderConsentList'
 components:
   schemas:
-    Error:
+    AccountList:
       type: object
       properties:
-        errorMessage:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        nextPageToken:
           type: string
-        errorCode:
-          type: string
-    Balances:
+    Party:
       type: object
       properties:
-        booked:
-          $ref: '#/components/schemas/Money'
-        available:
-          $ref: '#/components/schemas/Money'
+        name:
+          type: string
+        role:
+          type: string
+          enum:
+          - HOLDER
+          - AUTHORIZED_USER
+          - UNDEFINED
+        partyType:
+          type: string
+          enum:
+          - PERSON
+          - ORGANIZATION
+    BalanceList:
+      type: object
+      properties:
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Money'
+    ProviderConsentList:
+      type: object
+      properties:
+        providerConsents:
+          type: array
+          items:
+            type: object
+            properties:
+              credentialsId:
+                type: string
+              providerName:
+                type: string
+              status:
+                type: string
+              statusUpdated:
+                type: integer
+                format: int64
+              sessionExpiryDate:
+                type: integer
+                format: int64
+              accountIds:
+                type: array
+                items:
+                  type: string
     CredentialsList:
       type: object
       properties:
@@ -158,22 +200,13 @@ components:
               sessionExpiryDate:
                 type: integer
                 format: int64
-    Party:
+    Balances:
       type: object
       properties:
-        name:
-          type: string
-        role:
-          type: string
-          enum:
-          - HOLDER
-          - AUTHORIZED_USER
-          - UNDEFINED
-        partyType:
-          type: string
-          enum:
-          - PERSON
-          - ORGANIZATION
+        booked:
+          $ref: '#/components/schemas/Money'
+        available:
+          $ref: '#/components/schemas/Money'
     Money:
       type: object
       properties:
@@ -189,13 +222,13 @@ components:
                   type: string
             currencyCode:
               type: string
-    BalanceList:
+    PartyList:
       type: object
       properties:
-        balances:
+        parties:
           type: array
           items:
-            $ref: '#/components/schemas/Money'
+            $ref: '#/components/schemas/Party'
     Account:
       type: object
       properties:
@@ -247,45 +280,12 @@ components:
             lastRefreshed:
               type: string
               format: date-time
-    ProviderConsentList:
+    Error:
       type: object
       properties:
-        providerConsents:
-          type: array
-          items:
-            type: object
-            properties:
-              credentialsId:
-                type: string
-              providerName:
-                type: string
-              status:
-                type: string
-              statusUpdated:
-                type: integer
-                format: int64
-              sessionExpiryDate:
-                type: integer
-                format: int64
-              accountIds:
-                type: array
-                items:
-                  type: string
-    PartyList:
-      type: object
-      properties:
-        parties:
-          type: array
-          items:
-            $ref: '#/components/schemas/Party'
-    AccountList:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-        nextPageToken:
+        errorMessage:
+          type: string
+        errorCode:
           type: string
   responses:
     Unauthorized:
@@ -295,6 +295,12 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   parameters:
+    AccountIdParam:
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
     PageSize:
       in: query
       name: pageSize
@@ -305,12 +311,6 @@ components:
     PageToken:
       in: query
       name: pageToken
-      schema:
-        type: string
-    AccountIdParam:
-      in: path
-      name: account_id
-      required: true
       schema:
         type: string
   securitySchemes:

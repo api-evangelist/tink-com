@@ -54,12 +54,36 @@ paths:
                 format: binary
 components:
   schemas:
-    Error:
+    IncomeCheckReport:
       type: object
       properties:
-        errorMessage:
+        id:
           type: string
-        errorCode:
+        market:
+          type: string
+        generatedAt:
+          type: string
+          format: date-time
+        verifiedIncomes:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifiedIncome'
+        summary:
+          type: object
+          properties:
+            totalNetIncome:
+              $ref: '#/components/schemas/Money'
+            averageMonthlyIncome:
+              $ref: '#/components/schemas/Money'
+            consecutiveMonthsWithIncome:
+              type: integer
+              format: int32
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
           type: string
     VerifiedIncome:
       type: object
@@ -94,37 +118,13 @@ components:
         lastSeen:
           type: string
           format: date
-    Money:
+    Error:
       type: object
       properties:
-        amount:
+        errorMessage:
           type: string
-        currencyCode:
+        errorCode:
           type: string
-    IncomeCheckReport:
-      type: object
-      properties:
-        id:
-          type: string
-        market:
-          type: string
-        generatedAt:
-          type: string
-          format: date-time
-        verifiedIncomes:
-          type: array
-          items:
-            $ref: '#/components/schemas/VerifiedIncome'
-        summary:
-          type: object
-          properties:
-            totalNetIncome:
-              $ref: '#/components/schemas/Money'
-            averageMonthlyIncome:
-              $ref: '#/components/schemas/Money'
-            consecutiveMonthsWithIncome:
-              type: integer
-              format: int32
   parameters:
     ReportIdParam:
       in: path

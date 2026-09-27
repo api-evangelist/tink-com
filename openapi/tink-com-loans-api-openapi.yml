@@ -53,28 +53,6 @@ paths:
                 $ref: '#/components/schemas/LoanAccount'
 components:
   schemas:
-    Money:
-      type: object
-      properties:
-        amount:
-          type: object
-          properties:
-            value:
-              type: object
-              properties:
-                scale:
-                  type: string
-                unscaledValue:
-                  type: string
-            currencyCode:
-              type: string
-    LoanAccountList:
-      type: object
-      properties:
-        loanAccounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoanAccount'
     LoanAccount:
       type: object
       properties:
@@ -106,6 +84,28 @@ components:
             durationMonths:
               type: integer
               format: int32
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
+    LoanAccountList:
+      type: object
+      properties:
+        loanAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoanAccount'
   securitySchemes:
     BearerAuth:
       type: http

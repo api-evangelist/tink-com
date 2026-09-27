@@ -35,77 +35,30 @@ paths:
                 $ref: '#/components/schemas/RiskInsightsReport'
 components:
   schemas:
-    ExpenseCheckReport:
+    IncomeCheckReport:
       type: object
       properties:
         id:
           type: string
+        market:
+          type: string
         generatedAt:
           type: string
           format: date-time
+        verifiedIncomes:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifiedIncome'
         summary:
           type: object
           properties:
-            essentialExpenses:
+            totalNetIncome:
               $ref: '#/components/schemas/Money'
-            discretionaryExpenses:
+            averageMonthlyIncome:
               $ref: '#/components/schemas/Money'
-            totalExpenses:
-              $ref: '#/components/schemas/Money'
-        categories:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              amount:
-                $ref: '#/components/schemas/Money'
-              transactionCount:
-                type: integer
-                format: int32
-    VerifiedIncome:
-      type: object
-      properties:
-        source:
-          type: string
-        payer:
-          type: string
-        category:
-          type: string
-          enum:
-          - SALARY
-          - BENEFIT
-          - PENSION
-          - INTEREST
-          - DIVIDEND
-          - OTHER
-        cadence:
-          type: string
-          enum:
-          - WEEKLY
-          - BIWEEKLY
-          - MONTHLY
-          - QUARTERLY
-          - YEARLY
-          - IRREGULAR
-        averageAmount:
-          $ref: '#/components/schemas/Money'
-        firstSeen:
-          type: string
-          format: date
-        lastSeen:
-          type: string
-          format: date
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
+            consecutiveMonthsWithIncome:
+              type: integer
+              format: int32
     RiskInsightsReport:
       type: object
       properties:
@@ -144,30 +97,77 @@ components:
             overdraftDays:
               type: integer
               format: int32
-    IncomeCheckReport:
+    ExpenseCheckReport:
       type: object
       properties:
         id:
           type: string
-        market:
-          type: string
         generatedAt:
           type: string
           format: date-time
-        verifiedIncomes:
-          type: array
-          items:
-            $ref: '#/components/schemas/VerifiedIncome'
         summary:
           type: object
           properties:
-            totalNetIncome:
+            essentialExpenses:
               $ref: '#/components/schemas/Money'
-            averageMonthlyIncome:
+            discretionaryExpenses:
               $ref: '#/components/schemas/Money'
-            consecutiveMonthsWithIncome:
-              type: integer
-              format: int32
+            totalExpenses:
+              $ref: '#/components/schemas/Money'
+        categories:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              amount:
+                $ref: '#/components/schemas/Money'
+              transactionCount:
+                type: integer
+                format: int32
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+    VerifiedIncome:
+      type: object
+      properties:
+        source:
+          type: string
+        payer:
+          type: string
+        category:
+          type: string
+          enum:
+          - SALARY
+          - BENEFIT
+          - PENSION
+          - INTEREST
+          - DIVIDEND
+          - OTHER
+        cadence:
+          type: string
+          enum:
+          - WEEKLY
+          - BIWEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+          - IRREGULAR
+        averageAmount:
+          $ref: '#/components/schemas/Money'
+        firstSeen:
+          type: string
+          format: date
+        lastSeen:
+          type: string
+          format: date
   parameters:
     ReportIdParam:
       in: path

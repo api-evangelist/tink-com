@@ -81,6 +81,41 @@ paths:
                 $ref: '#/components/schemas/RecurringTransactionGroup'
 components:
   schemas:
+    RecurringTransactionList:
+      type: object
+      properties:
+        recurringTransactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecurringTransaction'
+    RecurringTransactionGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        merchantName:
+          type: string
+        cadence:
+          type: string
+          enum:
+          - DAILY
+          - WEEKLY
+          - BIWEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+          - IRREGULAR
+        recurringTransactionIds:
+          type: array
+          items:
+            type: string
+        totalAmount:
+          type: object
+          properties:
+            value:
+              type: string
+            currencyCode:
+              type: string
     RecurringTransaction:
       type: object
       properties:
@@ -118,34 +153,6 @@ components:
         nextExpectedOccurrence:
           type: string
           format: date
-    RecurringTransactionGroup:
-      type: object
-      properties:
-        id:
-          type: string
-        merchantName:
-          type: string
-        cadence:
-          type: string
-          enum:
-          - DAILY
-          - WEEKLY
-          - BIWEEKLY
-          - MONTHLY
-          - QUARTERLY
-          - YEARLY
-          - IRREGULAR
-        recurringTransactionIds:
-          type: array
-          items:
-            type: string
-        totalAmount:
-          type: object
-          properties:
-            value:
-              type: string
-            currencyCode:
-              type: string
     RecurringTransactionGroupList:
       type: object
       properties:
@@ -153,13 +160,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RecurringTransactionGroup'
-    RecurringTransactionList:
-      type: object
-      properties:
-        recurringTransactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecurringTransaction'
   securitySchemes:
     BearerAuth:
       type: http

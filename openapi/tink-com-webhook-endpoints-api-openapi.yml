@@ -120,13 +120,6 @@ components:
         created:
           type: string
           format: date-time
-    WebhookEndpointList:
-      type: object
-      properties:
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookEndpoint'
     WebhookEndpointRequest:
       type: object
       required:
@@ -154,6 +147,13 @@ components:
             - credentials.updated
             - account.updated
             - transaction.updated
+    WebhookEndpointList:
+      type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookEndpoint'
   parameters:
     EndpointIdParam:
       in: path

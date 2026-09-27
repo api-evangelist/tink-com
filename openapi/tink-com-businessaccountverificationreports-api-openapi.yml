@@ -50,13 +50,33 @@ components:
           type: string
         addressLine:
           type: string
-    Error:
+    BusinessAccountVerificationReport:
       type: object
       properties:
-        errorMessage:
+        id:
           type: string
-        errorCode:
+        market:
           type: string
+        timestamp:
+          type: string
+          format: date-time
+        business:
+          $ref: '#/components/schemas/Business'
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifiedAccount'
+    Business:
+      type: object
+      properties:
+        name:
+          type: string
+        registrationNumber:
+          type: string
+        country:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
     VerifiedAccount:
       type: object
       properties:
@@ -100,40 +120,13 @@ components:
           type: string
         currencyCode:
           type: string
-    Business:
+    Error:
       type: object
       properties:
-        name:
+        errorMessage:
           type: string
-        registrationNumber:
+        errorCode:
           type: string
-        country:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-    BusinessAccountVerificationReport:
-      type: object
-      properties:
-        id:
-          type: string
-        market:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        business:
-          $ref: '#/components/schemas/Business'
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/VerifiedAccount'
-  parameters:
-    ReportIdParam:
-      in: path
-      name: report_id
-      required: true
-      schema:
-        type: string
   responses:
     Unauthorized:
       description: Missing or invalid bearer token.
@@ -147,6 +140,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    ReportIdParam:
+      in: path
+      name: report_id
+      required: true
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

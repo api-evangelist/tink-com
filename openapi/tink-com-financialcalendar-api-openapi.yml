@@ -178,6 +178,29 @@ components:
         reconciledAt:
           type: string
           format: date-time
+    CalendarEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        dueDate:
+          type: string
+          format: date
+        type:
+          type: string
+        recurrence:
+          type: string
+        status:
+          type: string
+          enum:
+          - OPEN
+          - PAID
+          - OVERDUE
+          - CANCELLED
     CalendarEventRequest:
       type: object
       properties:
@@ -208,20 +231,6 @@ components:
           type: array
           items:
             type: string
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
-    ReconciliationRequest:
-      type: object
-      properties:
-        transactionId:
-          type: string
-        amount:
-          $ref: '#/components/schemas/Money'
     CalendarEventSummaryList:
       type: object
       properties:
@@ -241,6 +250,20 @@ components:
                 format: int32
               totalAmount:
                 $ref: '#/components/schemas/Money'
+    ReconciliationRequest:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
     CalendarEventList:
       type: object
       properties:
@@ -248,29 +271,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CalendarEvent'
-    CalendarEvent:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        amount:
-          $ref: '#/components/schemas/Money'
-        dueDate:
-          type: string
-          format: date
-        type:
-          type: string
-        recurrence:
-          type: string
-        status:
-          type: string
-          enum:
-          - OPEN
-          - PAID
-          - OVERDUE
-          - CANCELLED
   parameters:
     CalendarEventIdParam:
       in: path

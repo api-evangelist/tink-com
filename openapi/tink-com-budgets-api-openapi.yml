@@ -122,6 +122,13 @@ paths:
                 $ref: '#/components/schemas/BudgetHistory'
 components:
   schemas:
+    BudgetList:
+      type: object
+      properties:
+        budgets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Budget'
     BudgetRequest:
       type: object
       properties:
@@ -219,13 +226,6 @@ components:
               - ON_TRACK
               - AT_RISK
               - EXCEEDED
-    BudgetList:
-      type: object
-      properties:
-        budgets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Budget'
   parameters:
     BudgetIdParam:
       in: path

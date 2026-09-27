@@ -64,21 +64,13 @@ components:
           $ref: '#/components/schemas/Money'
         cashBalance:
           $ref: '#/components/schemas/Money'
-    Money:
+    HoldingList:
       type: object
       properties:
-        amount:
-          type: object
-          properties:
-            value:
-              type: object
-              properties:
-                scale:
-                  type: string
-                unscaledValue:
-                  type: string
-            currencyCode:
-              type: string
+        holdings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Holding'
     Holding:
       type: object
       properties:
@@ -106,6 +98,21 @@ components:
           $ref: '#/components/schemas/Money'
         purchasePrice:
           $ref: '#/components/schemas/Money'
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
     InvestmentAccountList:
       type: object
       properties:
@@ -113,13 +120,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InvestmentAccount'
-    HoldingList:
-      type: object
-      properties:
-        holdings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Holding'
   securitySchemes:
     BearerAuth:
       type: http

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Tink and Authorization O Auth API
+  title: Tink and Authorization OAuth API
   description: OAuth 2.0 client-credentials, refresh, and delegated authorization-grant endpoints that gate every Tink data, payments, and reporting API. Tink issues client access tokens for server-to-server calls, user access tokens on behalf of an end user, and short-lived authorization codes that the Tink Link flow exchanges for user tokens. All other Tink APIs require a Bearer token issued by this service.
   version: '1.0'
   contact:
@@ -103,25 +103,6 @@ components:
           type: string
         id_hint:
           type: string
-    Error:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-        errorCode:
-          type: string
-    AuthorizationGrantRequest:
-      type: object
-      required:
-      - external_user_id
-      - scope
-      properties:
-        external_user_id:
-          type: string
-        scope:
-          type: string
-        id_hint:
-          type: string
     TokenRequest:
       type: object
       required:
@@ -165,15 +146,34 @@ components:
           type: string
         id_hint:
           type: string
+    AuthorizationGrantRequest:
+      type: object
+      required:
+      - external_user_id
+      - scope
+      properties:
+        external_user_id:
+          type: string
+        scope:
+          type: string
+        id_hint:
+          type: string
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
   responses:
-    BadRequest:
-      description: Invalid request.
+    Unauthorized:
+      description: Missing or invalid bearer token.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid bearer token.
+    BadRequest:
+      description: Invalid request.
       content:
         application/json:
           schema:

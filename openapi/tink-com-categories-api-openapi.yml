@@ -38,13 +38,6 @@ paths:
                 $ref: '#/components/schemas/CategoryList'
 components:
   schemas:
-    CategoryList:
-      type: object
-      properties:
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/Category'
     Category:
       type: object
       properties:
@@ -62,6 +55,13 @@ components:
           - EXPENSES
           - INCOME
           - TRANSFERS
+    CategoryList:
+      type: object
+      properties:
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
   securitySchemes:
     BearerAuth:
       type: http
