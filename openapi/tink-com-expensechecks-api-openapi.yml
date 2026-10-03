@@ -34,13 +34,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ExpenseCheckReport'
 components:
-  parameters:
-    ReportIdParam:
-      in: path
-      name: report_id
-      required: true
-      schema:
-        type: string
   schemas:
     ExpenseCheckReport:
       type: object
@@ -80,6 +73,13 @@ components:
           type: string
         currencyCode:
           type: string
+  parameters:
+    ReportIdParam:
+      in: path
+      name: report_id
+      required: true
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

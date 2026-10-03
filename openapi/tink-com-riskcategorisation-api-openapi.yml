@@ -42,6 +42,13 @@ components:
       schema:
         type: string
   schemas:
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
     RiskCategorisationReport:
       type: object
       properties:
@@ -68,13 +75,6 @@ components:
               transactionCount:
                 type: integer
                 format: int32
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

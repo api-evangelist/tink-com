@@ -35,6 +35,13 @@ paths:
                 $ref: '#/components/schemas/RiskInsightsReport'
 components:
   schemas:
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
     IncomeCheckReport:
       type: object
       properties:
@@ -59,6 +66,39 @@ components:
             consecutiveMonthsWithIncome:
               type: integer
               format: int32
+    VerifiedIncome:
+      type: object
+      properties:
+        source:
+          type: string
+        payer:
+          type: string
+        category:
+          type: string
+          enum:
+          - SALARY
+          - BENEFIT
+          - PENSION
+          - INTEREST
+          - DIVIDEND
+          - OTHER
+        cadence:
+          type: string
+          enum:
+          - WEEKLY
+          - BIWEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+          - IRREGULAR
+        averageAmount:
+          $ref: '#/components/schemas/Money'
+        firstSeen:
+          type: string
+          format: date
+        lastSeen:
+          type: string
+          format: date
     RiskInsightsReport:
       type: object
       properties:
@@ -128,46 +168,6 @@ components:
               transactionCount:
                 type: integer
                 format: int32
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
-    VerifiedIncome:
-      type: object
-      properties:
-        source:
-          type: string
-        payer:
-          type: string
-        category:
-          type: string
-          enum:
-          - SALARY
-          - BENEFIT
-          - PENSION
-          - INTEREST
-          - DIVIDEND
-          - OTHER
-        cadence:
-          type: string
-          enum:
-          - WEEKLY
-          - BIWEEKLY
-          - MONTHLY
-          - QUARTERLY
-          - YEARLY
-          - IRREGULAR
-        averageAmount:
-          $ref: '#/components/schemas/Money'
-        firstSeen:
-          type: string
-          format: date
-        lastSeen:
-          type: string
-          format: date
   parameters:
     ReportIdParam:
       in: path

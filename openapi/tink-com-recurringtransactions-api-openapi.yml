@@ -116,6 +116,13 @@ components:
               type: string
             currencyCode:
               type: string
+    RecurringTransactionGroupList:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecurringTransactionGroup'
     RecurringTransaction:
       type: object
       properties:
@@ -153,13 +160,6 @@ components:
         nextExpectedOccurrence:
           type: string
           format: date
-    RecurringTransactionGroupList:
-      type: object
-      properties:
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecurringTransactionGroup'
   securitySchemes:
     BearerAuth:
       type: http

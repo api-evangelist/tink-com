@@ -53,6 +53,28 @@ paths:
                 $ref: '#/components/schemas/HoldingList'
 components:
   schemas:
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
+    InvestmentAccountList:
+      type: object
+      properties:
+        investmentAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvestmentAccount'
     InvestmentAccount:
       type: object
       properties:
@@ -98,28 +120,6 @@ components:
           $ref: '#/components/schemas/Money'
         purchasePrice:
           $ref: '#/components/schemas/Money'
-    Money:
-      type: object
-      properties:
-        amount:
-          type: object
-          properties:
-            value:
-              type: object
-              properties:
-                scale:
-                  type: string
-                unscaledValue:
-                  type: string
-            currencyCode:
-              type: string
-    InvestmentAccountList:
-      type: object
-      properties:
-        investmentAccounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvestmentAccount'
   securitySchemes:
     BearerAuth:
       type: http

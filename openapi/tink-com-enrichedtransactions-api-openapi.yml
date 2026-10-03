@@ -48,15 +48,6 @@ paths:
                 $ref: '#/components/schemas/EnrichedTransactionList'
 components:
   schemas:
-    EnrichedTransactionList:
-      type: object
-      properties:
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnrichedTransaction'
-        nextPageToken:
-          type: string
     EnrichedTransaction:
       type: object
       properties:
@@ -103,6 +94,15 @@ components:
             booked:
               type: string
               format: date
+    EnrichedTransactionList:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrichedTransaction'
+        nextPageToken:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http

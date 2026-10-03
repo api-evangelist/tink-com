@@ -117,6 +117,79 @@ paths:
                 $ref: '#/components/schemas/Refund'
 components:
   schemas:
+    RefundRequest:
+      type: object
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+        remittanceInformation:
+          type: object
+          properties:
+            type:
+              type: string
+            value:
+              type: string
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
+    Account:
+      type: object
+      properties:
+        accountNumber:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - IBAN
+              - SORT_CODE
+              - BBAN
+              - ACCOUNT_NUMBER
+            value:
+              type: string
+        name:
+          type: string
+        country:
+          type: string
+    PaymentRequest:
+      type: object
+      required:
+      - amount
+      - currency
+      - market
+      - destinations
+      properties:
+        amount:
+          type: string
+          example: '100.00'
+        currency:
+          type: string
+          example: EUR
+        market:
+          type: string
+          example: GB
+        remittanceInformation:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - UNSTRUCTURED
+              - REFERENCE
+            value:
+              type: string
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        sourceAccount:
+          $ref: '#/components/schemas/Account'
     Payment:
       type: object
       properties:
@@ -160,53 +233,6 @@ components:
               type: string
             value:
               type: string
-    PaymentRequest:
-      type: object
-      required:
-      - amount
-      - currency
-      - market
-      - destinations
-      properties:
-        amount:
-          type: string
-          example: '100.00'
-        currency:
-          type: string
-          example: EUR
-        market:
-          type: string
-          example: GB
-        remittanceInformation:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - UNSTRUCTURED
-              - REFERENCE
-            value:
-              type: string
-        destinations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-        sourceAccount:
-          $ref: '#/components/schemas/Account'
-    RefundRequest:
-      type: object
-      properties:
-        amount:
-          type: string
-        currency:
-          type: string
-        remittanceInformation:
-          type: object
-          properties:
-            type:
-              type: string
-            value:
-              type: string
     Refund:
       type: object
       properties:
@@ -228,32 +254,6 @@ components:
         created:
           type: string
           format: date-time
-    Account:
-      type: object
-      properties:
-        accountNumber:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - IBAN
-              - SORT_CODE
-              - BBAN
-              - ACCOUNT_NUMBER
-            value:
-              type: string
-        name:
-          type: string
-        country:
-          type: string
-    Error:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-        errorCode:
-          type: string
   parameters:
     PaymentIdParam:
       in: path
@@ -262,14 +262,14 @@ components:
       schema:
         type: string
   responses:
-    BadRequest:
-      description: Invalid request.
+    NotFound:
+      description: Not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found.
+    BadRequest:
+      description: Invalid request.
       content:
         application/json:
           schema:

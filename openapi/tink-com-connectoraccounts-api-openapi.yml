@@ -34,28 +34,7 @@ paths:
         '202':
           description: Accounts accepted for ingestion.
 components:
-  parameters:
-    ExternalUserIdParam:
-      in: path
-      name: external_user_id
-      required: true
-      schema:
-        type: string
   schemas:
-    ConnectorAccountBatch:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConnectorAccount'
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
     ConnectorAccount:
       type: object
       properties:
@@ -85,6 +64,27 @@ components:
               type: string
             accountNumber:
               type: string
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+    ConnectorAccountBatch:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectorAccount'
+  parameters:
+    ExternalUserIdParam:
+      in: path
+      name: external_user_id
+      required: true
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

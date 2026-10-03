@@ -122,73 +122,6 @@ paths:
                 $ref: '#/components/schemas/BudgetHistory'
 components:
   schemas:
-    BudgetList:
-      type: object
-      properties:
-        budgets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Budget'
-    BudgetRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        amount:
-          $ref: '#/components/schemas/Money'
-        period:
-          type: string
-          enum:
-          - ONE_OFF
-          - WEEK
-          - MONTH
-          - QUARTER
-          - YEAR
-        startDate:
-          type: string
-          format: date
-        endDate:
-          type: string
-          format: date
-        filters:
-          type: object
-          properties:
-            categoryIds:
-              type: array
-              items:
-                type: string
-            merchantNames:
-              type: array
-              items:
-                type: string
-            tags:
-              type: array
-              items:
-                type: string
-    BudgetHistory:
-      type: object
-      properties:
-        budgetId:
-          type: string
-        periods:
-          type: array
-          items:
-            type: object
-            properties:
-              periodStart:
-                type: string
-                format: date
-              periodEnd:
-                type: string
-                format: date
-              spent:
-                $ref: '#/components/schemas/Money'
-              status:
-                type: string
-                enum:
-                - ON_TRACK
-                - AT_RISK
-                - EXCEEDED
     Money:
       type: object
       properties:
@@ -226,6 +159,73 @@ components:
               - ON_TRACK
               - AT_RISK
               - EXCEEDED
+    BudgetHistory:
+      type: object
+      properties:
+        budgetId:
+          type: string
+        periods:
+          type: array
+          items:
+            type: object
+            properties:
+              periodStart:
+                type: string
+                format: date
+              periodEnd:
+                type: string
+                format: date
+              spent:
+                $ref: '#/components/schemas/Money'
+              status:
+                type: string
+                enum:
+                - ON_TRACK
+                - AT_RISK
+                - EXCEEDED
+    BudgetRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        period:
+          type: string
+          enum:
+          - ONE_OFF
+          - WEEK
+          - MONTH
+          - QUARTER
+          - YEAR
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        filters:
+          type: object
+          properties:
+            categoryIds:
+              type: array
+              items:
+                type: string
+            merchantNames:
+              type: array
+              items:
+                type: string
+            tags:
+              type: array
+              items:
+                type: string
+    BudgetList:
+      type: object
+      properties:
+        budgets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Budget'
   parameters:
     BudgetIdParam:
       in: path

@@ -56,6 +56,20 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
+    UserResponse:
+      type: object
+      properties:
+        user_id:
+          type: string
+        external_user_id:
+          type: string
     CreateUserRequest:
       type: object
       required:
@@ -76,20 +90,6 @@ components:
           enum:
           - PERMANENT
           - TEMPORARY
-    UserResponse:
-      type: object
-      properties:
-        user_id:
-          type: string
-        external_user_id:
-          type: string
-    Error:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-        errorCode:
-          type: string
   responses:
     Unauthorized:
       description: Missing or invalid bearer token.

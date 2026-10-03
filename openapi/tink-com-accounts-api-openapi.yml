@@ -113,39 +113,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProviderConsentList'
 components:
+  parameters:
+    PageToken:
+      in: query
+      name: pageToken
+      schema:
+        type: string
+    PageSize:
+      in: query
+      name: pageSize
+      schema:
+        type: integer
+        format: int32
+        maximum: 200
+    AccountIdParam:
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
   schemas:
-    AccountList:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-        nextPageToken:
-          type: string
-    Party:
-      type: object
-      properties:
-        name:
-          type: string
-        role:
-          type: string
-          enum:
-          - HOLDER
-          - AUTHORIZED_USER
-          - UNDEFINED
-        partyType:
-          type: string
-          enum:
-          - PERSON
-          - ORGANIZATION
-    BalanceList:
-      type: object
-      properties:
-        balances:
-          type: array
-          items:
-            $ref: '#/components/schemas/Money'
     ProviderConsentList:
       type: object
       properties:
@@ -170,6 +157,35 @@ components:
                 type: array
                 items:
                   type: string
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
+    BalanceList:
+      type: object
+      properties:
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Money'
     CredentialsList:
       type: object
       properties:
@@ -200,28 +216,6 @@ components:
               sessionExpiryDate:
                 type: integer
                 format: int64
-    Balances:
-      type: object
-      properties:
-        booked:
-          $ref: '#/components/schemas/Money'
-        available:
-          $ref: '#/components/schemas/Money'
-    Money:
-      type: object
-      properties:
-        amount:
-          type: object
-          properties:
-            value:
-              type: object
-              properties:
-                scale:
-                  type: string
-                unscaledValue:
-                  type: string
-            currencyCode:
-              type: string
     PartyList:
       type: object
       properties:
@@ -229,6 +223,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Party'
+    Party:
+      type: object
+      properties:
+        name:
+          type: string
+        role:
+          type: string
+          enum:
+          - HOLDER
+          - AUTHORIZED_USER
+          - UNDEFINED
+        partyType:
+          type: string
+          enum:
+          - PERSON
+          - ORGANIZATION
     Account:
       type: object
       properties:
@@ -280,13 +290,22 @@ components:
             lastRefreshed:
               type: string
               format: date-time
-    Error:
+    AccountList:
       type: object
       properties:
-        errorMessage:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        nextPageToken:
           type: string
-        errorCode:
-          type: string
+    Balances:
+      type: object
+      properties:
+        booked:
+          $ref: '#/components/schemas/Money'
+        available:
+          $ref: '#/components/schemas/Money'
   responses:
     Unauthorized:
       description: Missing or invalid bearer token.
@@ -294,25 +313,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    AccountIdParam:
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-    PageSize:
-      in: query
-      name: pageSize
-      schema:
-        type: integer
-        format: int32
-        maximum: 200
-    PageToken:
-      in: query
-      name: pageToken
-      schema:
-        type: string
   securitySchemes:
     BearerAuth:
       type: http

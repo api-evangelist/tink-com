@@ -33,13 +33,6 @@ paths:
                 $ref: '#/components/schemas/IdentityList'
 components:
   schemas:
-    IdentityList:
-      type: object
-      properties:
-        identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
     Identity:
       type: object
       properties:
@@ -77,6 +70,13 @@ components:
                 type: string
               postalCode:
                 type: string
+    IdentityList:
+      type: object
+      properties:
+        identities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
   securitySchemes:
     BearerAuth:
       type: http

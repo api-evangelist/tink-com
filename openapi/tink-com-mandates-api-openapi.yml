@@ -74,6 +74,50 @@ paths:
           description: Mandate revoked.
 components:
   schemas:
+    MandateRequest:
+      type: object
+      properties:
+        market:
+          type: string
+        currency:
+          type: string
+        userId:
+          type: string
+        maximumIndividualAmount:
+          type: string
+        maximumAmountPerPeriod:
+          type: string
+        period:
+          type: string
+          enum:
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+        beneficiary:
+          $ref: '#/components/schemas/Account'
+        expiresAt:
+          type: string
+          format: date-time
+    Account:
+      type: object
+      properties:
+        accountNumber:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - IBAN
+              - SORT_CODE
+              - BBAN
+              - ACCOUNT_NUMBER
+            value:
+              type: string
+        name:
+          type: string
+        country:
+          type: string
     Mandate:
       type: object
       properties:
@@ -108,50 +152,6 @@ components:
           format: date-time
         beneficiary:
           $ref: '#/components/schemas/Account'
-    Account:
-      type: object
-      properties:
-        accountNumber:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - IBAN
-              - SORT_CODE
-              - BBAN
-              - ACCOUNT_NUMBER
-            value:
-              type: string
-        name:
-          type: string
-        country:
-          type: string
-    MandateRequest:
-      type: object
-      properties:
-        market:
-          type: string
-        currency:
-          type: string
-        userId:
-          type: string
-        maximumIndividualAmount:
-          type: string
-        maximumAmountPerPeriod:
-          type: string
-        period:
-          type: string
-          enum:
-          - DAY
-          - WEEK
-          - MONTH
-          - YEAR
-        beneficiary:
-          $ref: '#/components/schemas/Account'
-        expiresAt:
-          type: string
-          format: date-time
   securitySchemes:
     BearerAuth:
       type: http

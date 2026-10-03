@@ -98,28 +98,21 @@ paths:
         '204':
           description: Endpoint deleted.
 components:
+  parameters:
+    EndpointIdParam:
+      in: path
+      name: endpointId
+      required: true
+      schema:
+        type: string
   schemas:
-    WebhookEndpoint:
+    WebhookEndpointList:
       type: object
       properties:
-        id:
-          type: string
-        url:
-          type: string
-          format: uri
-        description:
-          type: string
-        secret:
-          type: string
-        enabledEvents:
+        endpoints:
           type: array
           items:
-            type: string
-        disabled:
-          type: boolean
-        created:
-          type: string
-          format: date-time
+            $ref: '#/components/schemas/WebhookEndpoint'
     WebhookEndpointRequest:
       type: object
       required:
@@ -147,20 +140,27 @@ components:
             - credentials.updated
             - account.updated
             - transaction.updated
-    WebhookEndpointList:
+    WebhookEndpoint:
       type: object
       properties:
-        endpoints:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+        description:
+          type: string
+        secret:
+          type: string
+        enabledEvents:
           type: array
           items:
-            $ref: '#/components/schemas/WebhookEndpoint'
-  parameters:
-    EndpointIdParam:
-      in: path
-      name: endpointId
-      required: true
-      schema:
-        type: string
+            type: string
+        disabled:
+          type: boolean
+        created:
+          type: string
+          format: date-time
   securitySchemes:
     BearerAuth:
       type: http

@@ -164,6 +164,20 @@ paths:
                 $ref: '#/components/schemas/CalendarEventSummaryList'
 components:
   schemas:
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
+    CalendarEventList:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalendarEvent'
     Reconciliation:
       type: object
       properties:
@@ -178,6 +192,25 @@ components:
         reconciledAt:
           type: string
           format: date-time
+    CalendarEventSummaryList:
+      type: object
+      properties:
+        summaries:
+          type: array
+          items:
+            type: object
+            properties:
+              periodStart:
+                type: string
+                format: date
+              periodEnd:
+                type: string
+                format: date
+              eventCount:
+                type: integer
+                format: int32
+              totalAmount:
+                $ref: '#/components/schemas/Money'
     CalendarEvent:
       type: object
       properties:
@@ -231,25 +264,6 @@ components:
           type: array
           items:
             type: string
-    CalendarEventSummaryList:
-      type: object
-      properties:
-        summaries:
-          type: array
-          items:
-            type: object
-            properties:
-              periodStart:
-                type: string
-                format: date
-              periodEnd:
-                type: string
-                format: date
-              eventCount:
-                type: integer
-                format: int32
-              totalAmount:
-                $ref: '#/components/schemas/Money'
     ReconciliationRequest:
       type: object
       properties:
@@ -257,20 +271,6 @@ components:
           type: string
         amount:
           $ref: '#/components/schemas/Money'
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
-    CalendarEventList:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/CalendarEvent'
   parameters:
     CalendarEventIdParam:
       in: path
