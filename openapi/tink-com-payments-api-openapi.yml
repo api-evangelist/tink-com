@@ -138,25 +138,27 @@ components:
           type: string
         errorCode:
           type: string
-    Account:
+    Refund:
       type: object
       properties:
-        accountNumber:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - IBAN
-              - SORT_CODE
-              - BBAN
-              - ACCOUNT_NUMBER
-            value:
-              type: string
-        name:
+        id:
           type: string
-        country:
+        paymentId:
           type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        status:
+          type: string
+          enum:
+          - CREATED
+          - EXECUTED
+          - REJECTED
+          - FAILED
+        created:
+          type: string
+          format: date-time
     PaymentRequest:
       type: object
       required:
@@ -190,6 +192,25 @@ components:
             $ref: '#/components/schemas/Account'
         sourceAccount:
           $ref: '#/components/schemas/Account'
+    Account:
+      type: object
+      properties:
+        accountNumber:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - IBAN
+              - SORT_CODE
+              - BBAN
+              - ACCOUNT_NUMBER
+            value:
+              type: string
+        name:
+          type: string
+        country:
+          type: string
     Payment:
       type: object
       properties:
@@ -233,27 +254,6 @@ components:
               type: string
             value:
               type: string
-    Refund:
-      type: object
-      properties:
-        id:
-          type: string
-        paymentId:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-        status:
-          type: string
-          enum:
-          - CREATED
-          - EXECUTED
-          - REJECTED
-          - FAILED
-        created:
-          type: string
-          format: date-time
   parameters:
     PaymentIdParam:
       in: path

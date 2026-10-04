@@ -81,13 +81,6 @@ paths:
                 $ref: '#/components/schemas/RecurringTransactionGroup'
 components:
   schemas:
-    RecurringTransactionList:
-      type: object
-      properties:
-        recurringTransactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecurringTransaction'
     RecurringTransactionGroup:
       type: object
       properties:
@@ -160,6 +153,13 @@ components:
         nextExpectedOccurrence:
           type: string
           format: date
+    RecurringTransactionList:
+      type: object
+      properties:
+        recurringTransactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecurringTransaction'
   securitySchemes:
     BearerAuth:
       type: http

@@ -97,31 +97,6 @@ components:
           type: string
         errorCode:
           type: string
-    DelegatedAuthorizationGrantRequest:
-      type: object
-      required:
-      - scope
-      properties:
-        external_user_id:
-          type: string
-        actor_client_id:
-          type: string
-        scope:
-          type: string
-        id_hint:
-          type: string
-    AuthorizationGrantRequest:
-      type: object
-      required:
-      - external_user_id
-      - scope
-      properties:
-        external_user_id:
-          type: string
-        scope:
-          type: string
-        id_hint:
-          type: string
     TokenRequest:
       type: object
       required:
@@ -143,6 +118,23 @@ components:
           type: string
         scope:
           type: string
+    AuthorizationGrantRequest:
+      type: object
+      required:
+      - external_user_id
+      - scope
+      properties:
+        external_user_id:
+          type: string
+        scope:
+          type: string
+        id_hint:
+          type: string
+    AuthorizationGrantResponse:
+      type: object
+      properties:
+        code:
+          type: string
     TokenResponse:
       type: object
       properties:
@@ -160,10 +152,18 @@ components:
           type: string
         id_hint:
           type: string
-    AuthorizationGrantResponse:
+    DelegatedAuthorizationGrantRequest:
       type: object
+      required:
+      - scope
       properties:
-        code:
+        external_user_id:
+          type: string
+        actor_client_id:
+          type: string
+        scope:
+          type: string
+        id_hint:
           type: string
   responses:
     Unauthorized:

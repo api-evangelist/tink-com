@@ -113,26 +113,38 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProviderConsentList'
 components:
-  parameters:
-    PageToken:
-      in: query
-      name: pageToken
-      schema:
-        type: string
-    PageSize:
-      in: query
-      name: pageSize
-      schema:
-        type: integer
-        format: int32
-        maximum: 200
-    AccountIdParam:
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
   schemas:
+    BalanceList:
+      type: object
+      properties:
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Money'
+    AccountList:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        nextPageToken:
+          type: string
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
     ProviderConsentList:
       type: object
       properties:
@@ -157,21 +169,6 @@ components:
                 type: array
                 items:
                   type: string
-    Money:
-      type: object
-      properties:
-        amount:
-          type: object
-          properties:
-            value:
-              type: object
-              properties:
-                scale:
-                  type: string
-                unscaledValue:
-                  type: string
-            currencyCode:
-              type: string
     Error:
       type: object
       properties:
@@ -179,43 +176,6 @@ components:
           type: string
         errorCode:
           type: string
-    BalanceList:
-      type: object
-      properties:
-        balances:
-          type: array
-          items:
-            $ref: '#/components/schemas/Money'
-    CredentialsList:
-      type: object
-      properties:
-        credentials:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              providerName:
-                type: string
-              status:
-                type: string
-                enum:
-                - CREATED
-                - AUTHENTICATING
-                - UPDATING
-                - UPDATED
-                - AUTHENTICATION_ERROR
-                - TEMPORARY_ERROR
-                - DELETED
-              statusUpdated:
-                type: integer
-                format: int64
-              userId:
-                type: string
-              sessionExpiryDate:
-                type: integer
-                format: int64
     PartyList:
       type: object
       properties:
@@ -223,6 +183,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Party'
+    Balances:
+      type: object
+      properties:
+        booked:
+          $ref: '#/components/schemas/Money'
+        available:
+          $ref: '#/components/schemas/Money'
     Party:
       type: object
       properties:
@@ -290,22 +257,55 @@ components:
             lastRefreshed:
               type: string
               format: date-time
-    AccountList:
+    CredentialsList:
       type: object
       properties:
-        accounts:
+        credentials:
           type: array
           items:
-            $ref: '#/components/schemas/Account'
-        nextPageToken:
-          type: string
-    Balances:
-      type: object
-      properties:
-        booked:
-          $ref: '#/components/schemas/Money'
-        available:
-          $ref: '#/components/schemas/Money'
+            type: object
+            properties:
+              id:
+                type: string
+              providerName:
+                type: string
+              status:
+                type: string
+                enum:
+                - CREATED
+                - AUTHENTICATING
+                - UPDATING
+                - UPDATED
+                - AUTHENTICATION_ERROR
+                - TEMPORARY_ERROR
+                - DELETED
+              statusUpdated:
+                type: integer
+                format: int64
+              userId:
+                type: string
+              sessionExpiryDate:
+                type: integer
+                format: int64
+  parameters:
+    AccountIdParam:
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+    PageSize:
+      in: query
+      name: pageSize
+      schema:
+        type: integer
+        format: int32
+        maximum: 200
+    PageToken:
+      in: query
+      name: pageToken
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Missing or invalid bearer token.

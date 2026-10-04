@@ -35,6 +35,13 @@ paths:
                 $ref: '#/components/schemas/ExpenseCheckReport'
 components:
   schemas:
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
     ExpenseCheckReport:
       type: object
       properties:
@@ -66,13 +73,6 @@ components:
               transactionCount:
                 type: integer
                 format: int32
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
   parameters:
     ReportIdParam:
       in: path

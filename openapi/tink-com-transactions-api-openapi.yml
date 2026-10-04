@@ -58,11 +58,6 @@ paths:
                 $ref: '#/components/schemas/TransactionList'
 components:
   parameters:
-    PageToken:
-      in: query
-      name: pageToken
-      schema:
-        type: string
     PageSize:
       in: query
       name: pageSize
@@ -70,6 +65,11 @@ components:
         type: integer
         format: int32
         maximum: 200
+    PageToken:
+      in: query
+      name: pageToken
+      schema:
+        type: string
   schemas:
     Money:
       type: object
@@ -86,15 +86,6 @@ components:
                   type: string
             currencyCode:
               type: string
-    TransactionList:
-      type: object
-      properties:
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-        nextPageToken:
-          type: string
     Transaction:
       type: object
       properties:
@@ -150,6 +141,15 @@ components:
               type: string
             financialInstitutionTypeCode:
               type: string
+    TransactionList:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        nextPageToken:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http

@@ -35,13 +35,13 @@ paths:
           description: Transactions accepted for ingestion.
 components:
   schemas:
-    Money:
+    ConnectorTransactionBatch:
       type: object
       properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectorTransaction'
     ConnectorTransaction:
       type: object
       properties:
@@ -58,13 +58,13 @@ components:
           type: string
         merchantName:
           type: string
-    ConnectorTransactionBatch:
+    Money:
       type: object
       properties:
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConnectorTransaction'
+        amount:
+          type: string
+        currencyCode:
+          type: string
   parameters:
     ExternalUserIdParam:
       in: path

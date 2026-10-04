@@ -42,63 +42,6 @@ components:
           type: string
         currencyCode:
           type: string
-    IncomeCheckReport:
-      type: object
-      properties:
-        id:
-          type: string
-        market:
-          type: string
-        generatedAt:
-          type: string
-          format: date-time
-        verifiedIncomes:
-          type: array
-          items:
-            $ref: '#/components/schemas/VerifiedIncome'
-        summary:
-          type: object
-          properties:
-            totalNetIncome:
-              $ref: '#/components/schemas/Money'
-            averageMonthlyIncome:
-              $ref: '#/components/schemas/Money'
-            consecutiveMonthsWithIncome:
-              type: integer
-              format: int32
-    VerifiedIncome:
-      type: object
-      properties:
-        source:
-          type: string
-        payer:
-          type: string
-        category:
-          type: string
-          enum:
-          - SALARY
-          - BENEFIT
-          - PENSION
-          - INTEREST
-          - DIVIDEND
-          - OTHER
-        cadence:
-          type: string
-          enum:
-          - WEEKLY
-          - BIWEEKLY
-          - MONTHLY
-          - QUARTERLY
-          - YEARLY
-          - IRREGULAR
-        averageAmount:
-          $ref: '#/components/schemas/Money'
-        firstSeen:
-          type: string
-          format: date
-        lastSeen:
-          type: string
-          format: date
     RiskInsightsReport:
       type: object
       properties:
@@ -135,6 +78,63 @@ components:
             minimumBalance:
               $ref: '#/components/schemas/Money'
             overdraftDays:
+              type: integer
+              format: int32
+    VerifiedIncome:
+      type: object
+      properties:
+        source:
+          type: string
+        payer:
+          type: string
+        category:
+          type: string
+          enum:
+          - SALARY
+          - BENEFIT
+          - PENSION
+          - INTEREST
+          - DIVIDEND
+          - OTHER
+        cadence:
+          type: string
+          enum:
+          - WEEKLY
+          - BIWEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+          - IRREGULAR
+        averageAmount:
+          $ref: '#/components/schemas/Money'
+        firstSeen:
+          type: string
+          format: date
+        lastSeen:
+          type: string
+          format: date
+    IncomeCheckReport:
+      type: object
+      properties:
+        id:
+          type: string
+        market:
+          type: string
+        generatedAt:
+          type: string
+          format: date-time
+        verifiedIncomes:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifiedIncome'
+        summary:
+          type: object
+          properties:
+            totalNetIncome:
+              $ref: '#/components/schemas/Money'
+            averageMonthlyIncome:
+              $ref: '#/components/schemas/Money'
+            consecutiveMonthsWithIncome:
               type: integer
               format: int32
     ExpenseCheckReport:

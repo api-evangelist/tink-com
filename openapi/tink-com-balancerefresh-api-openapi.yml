@@ -58,6 +58,11 @@ paths:
                 $ref: '#/components/schemas/BalanceRefreshStatus'
 components:
   schemas:
+    BalanceRefreshRequest:
+      type: object
+      properties:
+        credentialsId:
+          type: string
     BalanceRefreshStatus:
       type: object
       properties:
@@ -71,11 +76,6 @@ components:
           - FINISHED
           - FAILED
         statusMessage:
-          type: string
-    BalanceRefreshRequest:
-      type: object
-      properties:
-        credentialsId:
           type: string
   securitySchemes:
     BearerAuth:
