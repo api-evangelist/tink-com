@@ -1,0 +1,45 @@
+generated: '2026-10-12'
+method: searched
+source: https://docs.tink.com/api-introduction
+auth:
+  style: OAuth 2.0 bearer access tokens (client credentials or mutual TLS for client authentication); 401 missing/expired token, 403 missing scope
+  docs: https://docs.tink.com/api-introduction
+idempotency:
+  coverage: full
+  header: Idempotency-Key
+  retention: Keys are removed from the system after 24 hours and can be used again for subsequent requests.
+  scope_note: Documented API-wide in the API reference introduction, not per endpoint.
+  docs: https://docs.tink.com/api-introduction
+request_tracing:
+  response_header: X-Request-ID
+  request_header: X-Client-Trace-ID
+  docs: https://docs.tink.com/api-introduction
+versioning:
+  scheme: URL path (v1, some endpoints v2)
+  text: The API base URL contains a version identifier. The current version is v1. A few endpoints are available under v2.
+  docs: https://docs.tink.com/api-introduction
+message_formats: Requests are sent as JSON or, in some cases, form-encoded; dates as UNIX epoch milliseconds or ISO 8601.
+rate_limit_signaling:
+  status: 429
+  scope: per app ID
+  docs: https://docs.tink.com/api-introduction
+webhook_signature:
+  header: X-Tink-Signature
+  format: t=<unix timestamp>,v1=<signature>
+  docs: https://docs.tink.com/resources/transactions/webhooks-for-transactions.md
+reversibility:
+  surfaces:
+  - surface: future-dated payments
+    reversal: cancel payment
+    window: prior to the execution date (before funds are exchanged); immediate payments cannot be canceled
+    grade: verified
+    docs: https://docs.tink.com/resources/payments/one-time-payments/cancel-a-future-dated-payment.md
+  - surface: user consents / credentials
+    reversal: delete or revoke consents
+    docs: https://docs.tink.com/resources/transactions/managing-consents.md
+    grade: documented
+related:
+  errors: errors/tink-com-error-codes.yml
+  lifecycle: lifecycle/tink-com-lifecycle.yml
+  authentication: authentication/tink-com-authentication.yml
+  rate_limits: rate-limits/tink-com-rate-limits.yml

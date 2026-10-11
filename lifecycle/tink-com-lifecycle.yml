@@ -1,0 +1,8 @@
+generated: '2026-10-12'
+method: searched
+source: https://docs.tink.com/api-introduction
+versioning: The API base URL contains a version identifier. The current version is v1. A few endpoints are available under v2. New properties and data models are continuously added and the API will remain
+  backward compatible with this specification until deprecated.
+deprecation: null
+status_page: https://status.tink.com
+note: No published deprecation policy or Sunset header found; TLS v1.2 retirement is announced in the API reference introduction.

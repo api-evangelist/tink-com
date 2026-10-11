@@ -1,0 +1,46 @@
+generated: '2026-10-12'
+method: searched
+source: https://search.maven.org/solrsearch/select?q=g:com.tink*; https://api.github.com/orgs/tink-ab/repos
+packages:
+- name: com.tink:link
+  registry: maven
+  url: https://central.sonatype.com/artifact/com.tink/link
+  language: kotlin
+  official: true
+  version: 3.0.1
+  published: '2025-03-12'
+- name: com.tink.moneymanager:sdk
+  registry: maven
+  url: https://central.sonatype.com/artifact/com.tink.moneymanager/sdk
+  language: kotlin
+  official: true
+  version: 3.1.0
+  published: '2025-06-16'
+- name: tink-link-ios
+  registry: github
+  url: https://github.com/tink-ab/tink-link-ios
+  language: swift
+  official: true
+  version: 5.1.0
+  published: '2026-05-06'
+- name: tink-money-manager-ios
+  registry: github
+  url: https://github.com/tink-ab/tink-money-manager-ios
+  language: swift
+  official: true
+  version: 3.1.8
+  published: '2026-03-24'
+- name: tink-link-android
+  registry: github
+  url: https://github.com/tink-ab/tink-link-android
+  language: kotlin
+  official: true
+  version: 3.0.1
+  published: '2025-03-13'
+- name: tink-money-manager-android
+  registry: github
+  url: https://github.com/tink-ab/tink-money-manager-android
+  language: kotlin
+  official: true
+  version: 3.2.6
+  published: '2026-04-28'

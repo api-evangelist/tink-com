@@ -1,0 +1,270 @@
+generated: '2026-10-12'
+method: searched
+source: https://docs.tink.com/resources/transactions/handle-transactions-error-codes.md
+format: Tink Link redirect error/message codes
+envelope: error_status and message query parameters returned on the redirect URI
+problems:
+- status: null
+  code: USER_CANCELLED
+  title: USER_CANCELLED
+  description: The end user cancelled the journey. This status shouldn't be considered as an error.
+- status: null
+  code: BAD_REQUEST
+  title: BAD_REQUEST
+  description: The URL is invalid, usually due to an incorrect or missing URL parameter.
+- status: null
+  code: AUTHENTICATION_ERROR
+  title: AUTHENTICATION_ERROR
+  description: Something went wrong during the bank’s authentication process.
+- status: null
+  code: TEMPORARY_ERROR
+  title: TEMPORARY_ERROR
+  description: A temporary error in Tink's platform. To resolve, try again later.
+- status: null
+  code: INTERNAL_ERROR
+  title: INTERNAL_ERROR
+  description: An unexpected error in Tink's platform. For help, [contact support](/resources/getting-started/support.md).
+- status: null
+  code: USER_DECLINED_CONSENT
+  title: USER_DECLINED_CONSENT
+  description: The user declined to provide their consent, which exits the Tink Link flow.
+- status: null
+  code: INVALID_PARAMETER_ACCOUNT_DIALOG_TYPE
+  title: INVALID_PARAMETER_ACCOUNT_DIALOG_TYPE
+  description: The `account_dialog_type` value is incorrect or missing.
+- status: null
+  code: INVALID_PARAMETER_AUTHORIZATION_CODE
+  title: INVALID_PARAMETER_AUTHORIZATION_CODE
+  description: 'One or more of these values are missing: `authorization code`, `handoff session ID`, and `authorization token`.'
+- status: null
+  code: INVALID_PARAMETER_CLIENT_ID
+  title: INVALID_PARAMETER_CLIENT_ID
+  description: The `client_id` value is incorrect or missing.
+- status: null
+  code: INVALID_PARAMETER_CREDENTIALS_ID
+  title: INVALID_PARAMETER_CREDENTIALS_ID
+  description: The `credentials_id` value is missing. Used only with [permanent users](resources/aggregation/permanent-users.md).
+- status: null
+  code: INVALID_PARAMETER_FINANCIAL_SERVICES_SEGMENTS
+  title: INVALID_PARAMETER_FINANCIAL_SERVICES_SEGMENTS
+  description: 'The `financial_services_segments` value is incorrect or missing. Allowed values: `PERSONAL`, `BUSINESS`.'
+- status: null
+  code: INVALID_PARAMETER_INPUT_PROVIDER
+  title: INVALID_PARAMETER_INPUT_PROVIDER
+  description: The `input_provider` value is longer than 100 characters.
+- status: null
+  code: INVALID_PARAMETER_INPUT_USERNAME
+  title: INVALID_PARAMETER_INPUT_USERNAME
+  description: The `input_username` value is incorrect, missing, or longer than 50 characters.
+- status: null
+  code: INVALID_PARAMETER_PAYMENT_REQUEST_ID
+  title: INVALID_PARAMETER_PAYMENT_REQUEST_ID
+  description: The `payment_request_id` value is missing.
+- status: null
+  code: INVALID_PARAMETER_REDIRECT_URI
+  title: INVALID_PARAMETER_REDIRECT_URI
+  description: The `redirect_uri` value is missing or malformed.
+- status: null
+  code: INVALID_PARAMETER_REFRESHABLE_ITEMS
+  title: INVALID_PARAMETER_REFRESHABLE_ITEMS
+  description: 'The `refreshable_items` value is incorrect. Allowed values: `CHECKING_ACCOUNTS`, `CHECKING_TRANSACTIONS`, `CREDITCARD_ACCOUNTS`, `CREDITCARD_TRANSACTIONS`, `SAVING_ACCOUNTS`, `SAVING_TRANSACTIONS`.'
+- status: null
+  code: INVALID_PARAMETER_REPORT_TYPES
+  title: INVALID_PARAMETER_REPORT_TYPES
+  description: The `report_types` value is incorrect or missing. Shown only when using product bundling.
+- status: null
+  code: INVALID_PARAMETER_SCOPE
+  title: INVALID_PARAMETER_SCOPE
+  description: The `scope` value is missing. Used only with [Account Aggregation](/resources/aggregation.md).
+- status: null
+  code: INVALID_STATE_ACCESS_TOKEN
+  title: INVALID_STATE_ACCESS_TOKEN
+  description: The `access token` value is missing, expired, or incorrect.
+- status: null
+  code: INVALID_STATE_AUTHENTICATION
+  title: INVALID_STATE_AUTHENTICATION
+  description: The [credentialsType](/api-connectivity-v1#connectivity-v1/provider/the-provider-model) is `MOBILE_BANKID` or `THIRD_PARTY_APP` and either the user didn’t successfully authenticate, or the
+    integration doesn't use BankID on a mobile device or a third-party app.
+- status: null
+  code: INVALID_STATE_CREDENTIALS
+  title: INVALID_STATE_CREDENTIALS
+  description: The credential has reached a `TEMPORARY_ERROR` state.
+- status: null
+  code: INVALID_STATE_CREDENTIALS_IS_AWAITING_THIRD_PARTY
+  title: INVALID_STATE_CREDENTIALS_IS_AWAITING_THIRD_PARTY
+  description: Attempted authentication or refresh of a credential that is in a pending state. Used only with [permanent users](resources/aggregation/permanent-users.md).
+- status: null
+  code: INVALID_STATE_EMBED_NOT_ALLOWED
+  title: INVALID_STATE_EMBED_NOT_ALLOWED
+  description: Tink is embedded when embedding isn't allowed. To request the ability to embed Tink, go to **Console** > [**your_app**] > **App settings** > **App details** > **Display name (public)** and
+    select **Verify**.
+- status: null
+  code: INVALID_STATE_NON_OPEN_BANKING_PROVIDER
+  title: INVALID_STATE_NON_OPEN_BANKING_PROVIDER
+  description: Attempted authentication of a credential for a non-open-banking provider. Used only with [permanent users](resources/aggregation/permanent-users.md).
+- status: null
+  code: INVALID_STATE_PAYMENT_RETRY_NOT_ALLOWED
+  title: INVALID_STATE_PAYMENT_RETRY_NOT_ALLOWED
+  description: The `payment_request_id` has already been used. Used only with direct payments.
+- status: null
+  code: INVALID_STATE_PERMANENT_USER_FLAG
+  title: INVALID_STATE_PERMANENT_USER_FLAG
+  description: Attempted to use permanent users for an app that doesn't have permanent users enabled.
+- status: null
+  code: INVALID_STATE_PROVIDER
+  title: INVALID_STATE_PROVIDER
+  description: 'The selected provider isn''t available. Occurs when a preselected provider doesn''t exist in the selected market because:   - The provider isn''t included in the app''s provider policy.  -
+    The provider isn''t available.'
+- status: null
+  code: INVALID_STATE_PROVIDER_DOES_NOT_RECOGNIZE_USER
+  title: INVALID_STATE_PROVIDER_DOES_NOT_RECOGNIZE_USER
+  description: The user has selected a provider that they don’t have an account with.
+- status: null
+  code: INVALID_STATE_REDIRECTED_AUTHORIZATION_TOKEN
+  title: INVALID_STATE_REDIRECTED_AUTHORIZATION_TOKEN
+  description: A third party is redirecting back to Tink, but the query is missing `authorization_token`.
+- status: null
+  code: INVALID_STATE_REDIRECTED_CREDENTIALS_ID
+  title: INVALID_STATE_REDIRECTED_CREDENTIALS_ID
+  description: A third party is redirecting back to Tink, but the query is missing `credentialsId`.
+- status: null
+  code: INVALID_STATE_REFRESH_CREDENTIALS_RATE_LIMITED
+  title: INVALID_STATE_REFRESH_CREDENTIALS_RATE_LIMITED
+  description: The app has exceeded the [API rate limits](/api#introduction/rate-limits) while refreshing credentials.
+- status: null
+  code: INVALID_STATE_REDIRECT_URI
+  title: INVALID_STATE_REDIRECT_URI
+  description: The `redirect_uri` is invalid. Make sure that it's registered in the "App settings" page in [Console](https://console.tink.com/app-settings/client).
+- status: null
+  code: INVALID_STATE_SCOPE
+  title: INVALID_STATE_SCOPE
+  description: One or more scopes are incorrect or not available for the OAuth client.
+- status: null
+  code: REQUEST_FAILED_CREATE_RESET_CREDENTIALS
+  title: REQUEST_FAILED_CREATE_RESET_CREDENTIALS
+  description: The reset credentials endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_ACCOUNTS
+  title: REQUEST_FAILED_FETCH_ACCOUNTS
+  description: Couldn't retrieve the user's account. Used only for Account Check or for the reports/bundled flow when Account Check is a bundled product.
+- status: null
+  code: REQUEST_FAILED_FETCH_PROVIDER
+  title: REQUEST_FAILED_FETCH_PROVIDER
+  description: 'Causes:  - The providers endpoint is unavailable.  - The selected provider couldn''t be found.  - `input_provider` doesn''t exist in the selected market.  - `input_provider` is not included
+    in the configured Provider Policy.'
+- status: null
+  code: REQUEST_FAILED_OAUTH_DESCRIBE
+  title: REQUEST_FAILED_OAUTH_DESCRIBE
+  description: The `redirect_uri` parameter is not registered in Console or the OAuth describe endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_CONSUME_HANDOFF_SESSION
+  title: REQUEST_FAILED_CONSUME_HANDOFF_SESSION
+  description: The handoff session endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_CREATE_ACCOUNT_CHECK_REPORT
+  title: REQUEST_FAILED_CREATE_ACCOUNT_CHECK_REPORT
+  description: The account check endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_CREATE_ANONYMOUS_USER
+  title: REQUEST_FAILED_CREATE_ANONYMOUS_USER
+  description: The create anonymous users endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_CREATE_BULK_PAYMENT
+  title: REQUEST_FAILED_CREATE_BULK_PAYMENT
+  description: The bulk payments endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_CREATE_CREDENTIALS
+  title: REQUEST_FAILED_CREATE_CREDENTIALS
+  description: Credentials can't be created because the `credentials:write` scope is missing or the Tink credentials service is unavailable.
+- status: null
+  code: REQUEST_FAILED_CREATE_HANDOFF_SESSION
+  title: REQUEST_FAILED_CREATE_HANDOFF_SESSION
+  description: The handoff session endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_CREATE_INCOME_CHECK_REPORT
+  title: REQUEST_FAILED_CREATE_INCOME_CHECK_REPORT
+  description: The income check endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_CREATE_RECURRING_PAYMENT
+  title: REQUEST_FAILED_CREATE_RECURRING_PAYMENT
+  description: The recurring payment endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_CREATE_REPORT
+  title: REQUEST_FAILED_CREATE_REPORT
+  description: The bundled flow endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_CREATE_RISK_INSIGHTS_REPORT
+  title: REQUEST_FAILED_CREATE_RISK_INSIGHTS_REPORT
+  description: The risk insights endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_CREATE_TRANSFER
+  title: REQUEST_FAILED_CREATE_TRANSFER
+  description: The transfer endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_BULK_PAYMENT
+  title: REQUEST_FAILED_FETCH_BULK_PAYMENT
+  description: The bulk payments endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_BULK_PAYMENT_STATUS
+  title: REQUEST_FAILED_FETCH_BULK_PAYMENT_STATUS
+  description: The bulk payments endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_CREDENTIALS
+  title: REQUEST_FAILED_FETCH_CREDENTIALS
+  description: The credentials endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_EXISTING_USER
+  title: REQUEST_FAILED_FETCH_EXISTING_USER
+  description: 'Occurs when:  - `handoffSessionId` is missing.  - `authorizationCode` is missing.  - The handoff session endpoint is unavailable.  - The authentication/token endpoint is unavailable.'
+- status: null
+  code: REQUEST_FAILED_FETCH_FLOW
+  title: REQUEST_FAILED_FETCH_FLOW
+  description: The flow endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_HANDOFF_SESSION
+  title: REQUEST_FAILED_FETCH_HANDOFF_SESSION
+  description: The handoff session endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_LEGAL_TEXT
+  title: REQUEST_FAILED_FETCH_LEGAL_TEXT
+  description: Couldn't the privacy policy or terms and conditions.
+- status: null
+  code: REQUEST_FAILED_FETCH_PAYMENT_INFO
+  title: REQUEST_FAILED_FETCH_PAYMENT_INFO
+  description: The get payment or get transfer details endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_PAYMENT_TRANSFER_INFO
+  title: REQUEST_FAILED_FETCH_PAYMENT_TRANSFER_INFO
+  description: The payment transfer endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_PROVIDER_PAYMENT_CONDITIONS
+  title: REQUEST_FAILED_FETCH_PROVIDER_PAYMENT_CONDITIONS
+  description: The payment providers endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_PROVIDERS
+  title: REQUEST_FAILED_FETCH_PROVIDERS
+  description: The providers endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_RECURRING_PAYMENT_INFO
+  title: REQUEST_FAILED_FETCH_RECURRING_PAYMENT_INFO
+  description: The recurring payment endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_REPORTS_DESCRIBE
+  title: REQUEST_FAILED_FETCH_REPORTS_DESCRIBE
+  description: The bundled flow endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_SESSION
+  title: REQUEST_FAILED_FETCH_SESSION
+  description: The session endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_TRANSFER_ACCOUNTS
+  title: REQUEST_FAILED_FETCH_TRANSFER_ACCOUNTS
+  description: The transfer accounts endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_FETCH_USER_WITH_EXISTING_TOKEN
+  title: REQUEST_FAILED_FETCH_USER_WITH_EXISTING_TOKEN
+  description: The user endpoint is unavailable.
+- status: null
+  code: REQUEST_FAILED_REFRESH_CREDENTIALS
+  title: REQUEST_FAILED_REFRESH_CREDENTIALS
+  description: The credentials endpoint is unavailable.

@@ -1,0 +1,18 @@
+generated: '2026-10-12'
+method: searched
+source: https://docs.tink.com/resources/api-setup/get-access-token.md
+docs: https://docs.tink.com/resources/api-setup/get-access-token.md
+note: Scopes named in Tink access-token docs; the full per-endpoint scope list is in the API reference (403 = access token missing a required scope).
+scopes:
+- name: accounts:read
+  source: https://docs.tink.com/resources/api-setup/get-access-token.md
+- name: transactions:read
+  source: https://docs.tink.com/resources/api-setup/get-access-token.md
+- name: user:read
+  source: https://docs.tink.com/resources/api-setup/get-access-token.md
+- name: credentials:read
+  source: https://docs.tink.com/resources/api-setup/get-access-token.md
+- name: authorization:grant
+  source: https://docs.tink.com/resources/api-setup/get-access-token.md
+- name: user:create
+  source: https://docs.tink.com/resources/api-setup/get-access-token.md

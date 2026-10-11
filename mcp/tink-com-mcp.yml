@@ -1,0 +1,237 @@
+generated: '2026-10-12'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/tink-com-accounts-api-openapi.yml
+- openapi/tink-com-accountverificationreports-api-openapi.yml
+- openapi/tink-com-balancerefresh-api-openapi.yml
+- openapi/tink-com-budgets-api-openapi.yml
+- openapi/tink-com-businessaccountverificationreports-api-openapi.yml
+- openapi/tink-com-cash-flow-api-openapi.yml
+- openapi/tink-com-categories-api-openapi.yml
+- openapi/tink-com-connectoraccounts-api-openapi.yml
+- openapi/tink-com-connectortransactions-api-openapi.yml
+- openapi/tink-com-enrichedtransactions-api-openapi.yml
+- openapi/tink-com-expensechecks-api-openapi.yml
+- openapi/tink-com-financialcalendar-api-openapi.yml
+- openapi/tink-com-identities-api-openapi.yml
+- openapi/tink-com-incomechecks-api-openapi.yml
+- openapi/tink-com-investments-api-openapi.yml
+- openapi/tink-com-loans-api-openapi.yml
+- openapi/tink-com-mandates-api-openapi.yml
+- openapi/tink-com-oauth-api-openapi.yml
+- openapi/tink-com-payments-api-openapi.yml
+- openapi/tink-com-recurringtransactions-api-openapi.yml
+- openapi/tink-com-riskcategorisation-api-openapi.yml
+- openapi/tink-com-riskinsights-api-openapi.yml
+- openapi/tink-com-transactions-api-openapi.yml
+- openapi/tink-com-user-api-openapi.yml
+- openapi/tink-com-webhook-endpoints-api-openapi.yml
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: derived
+note: No MCP server was found. No probe result in the dossier. Candidate tools below are derived from the 63 operation(s) in the provider's own
+  OpenAPI (40 listed); they describe what a server WOULD expose, not one that exists.
+tools:
+- name: list_accounts
+  operationId: listAccounts
+  method: GET
+  path: /data/v2/accounts
+  description: Tink List Accounts
+- name: get_account_verification_report
+  operationId: getAccountVerificationReport
+  method: GET
+  path: /api/v1/account-verification-reports/{report_id}
+  description: Tink Get An Account Verification Report
+- name: create_balance_refresh
+  operationId: createBalanceRefresh
+  method: POST
+  path: /api/v1/balance-refresh
+  description: Tink Create A Balance Refresh
+- name: create_business_budget
+  operationId: createBusinessBudget
+  method: POST
+  path: /finance-management/v1/business-budgets
+  description: Tink Create A Business Budget
+- name: get_business_account_verification_report
+  operationId: getBusinessAccountVerificationReport
+  method: GET
+  path: /data/v1/business-account-verification-reports/{report_id}
+  description: Tink Get A Business Account Verification Report
+- name: get_cash_flow_summaries
+  operationId: getCashFlowSummaries
+  method: GET
+  path: /finance-management/v1/cash-flow-summaries/{resolution}
+  description: Tink Get Cash Flow Summaries
+- name: list_categories
+  operationId: listCategories
+  method: GET
+  path: /enrichment/v1/categories
+  description: Tink List Categories
+- name: ingest_connector_accounts
+  operationId: ingestConnectorAccounts
+  method: POST
+  path: /connector/users/{external_user_id}/accounts
+  description: Tink Ingest Connector Accounts
+- name: ingest_connector_transactions
+  operationId: ingestConnectorTransactions
+  method: POST
+  path: /connector/users/{external_user_id}/transactions
+  description: Tink Ingest Connector Transactions
+- name: list_enriched_transactions
+  operationId: listEnrichedTransactions
+  method: GET
+  path: /enrichment/v1/transactions
+  description: Tink List Enriched Transactions
+- name: get_expense_check_report
+  operationId: getExpenseCheckReport
+  method: GET
+  path: /risk/v1/expense-checks/{report_id}
+  description: Tink Get An Expense Check Report
+- name: create_calendar_event
+  operationId: createCalendarEvent
+  method: POST
+  path: /finance-management/v1/financial-calendar-events
+  description: Tink Create A Financial Calendar Event
+- name: list_identities
+  operationId: listIdentities
+  method: GET
+  path: /data/v2/identities
+  description: Tink List Identities
+- name: get_income_check_report
+  operationId: getIncomeCheckReport
+  method: GET
+  path: /v2/income-checks/{report_id}
+  description: Tink Get An Income Check Report
+- name: list_investment_accounts
+  operationId: listInvestmentAccounts
+  method: GET
+  path: /data/v2/investment-accounts
+  description: Tink List Investment Accounts
+- name: list_loan_accounts
+  operationId: listLoanAccounts
+  method: GET
+  path: /data/v2/loan-accounts
+  description: Tink List Loan Accounts
+- name: create_mandate
+  operationId: createMandate
+  method: POST
+  path: /payments/mandates
+  description: Tink Create A Mandate
+- name: create_oauth_token
+  operationId: createOauthToken
+  method: POST
+  path: /api/v1/oauth/token
+  description: Tink Create An OAuth Token
+- name: initiate_payment
+  operationId: initiatePayment
+  method: POST
+  path: /payments
+  description: Tink Initiate A Payment
+- name: list_recurring_transactions
+  operationId: listRecurringTransactions
+  method: GET
+  path: /enrichment/v1/recurring-transactions
+  description: Tink List Recurring Transactions
+- name: get_risk_categorisation_report
+  operationId: getRiskCategorisationReport
+  method: GET
+  path: /risk/v2/risk-categorisation/reports/{report_id}
+  description: Tink Get A Risk Categorisation Report
+- name: get_risk_insights_report
+  operationId: getRiskInsightsReport
+  method: GET
+  path: /risk/v1/risk-insights/{report_id}
+  description: Tink Get A Risk Insights Report
+- name: list_transactions
+  operationId: listTransactions
+  method: GET
+  path: /data/v2/transactions
+  description: Tink List Transactions
+- name: create_user
+  operationId: createUser
+  method: POST
+  path: /api/v1/user/create
+  description: Tink Create A Permanent User
+- name: create_webhook_endpoint
+  operationId: createWebhookEndpoint
+  method: POST
+  path: /events/v2/webhook-endpoints
+  description: Tink Create A Webhook Endpoint
+- name: get_account_balances
+  operationId: getAccountBalances
+  method: GET
+  path: /data/v2/accounts/{account_id}/balances
+  description: Tink Get Account Balances
+- name: get_account_verification_report_pdf
+  operationId: getAccountVerificationReportPdf
+  method: GET
+  path: /api/v1/account-verification-reports/{report_id}/pdf
+  description: Tink Get An Account Verification Report As PDF
+- name: get_balance_refresh
+  operationId: getBalanceRefresh
+  method: GET
+  path: /api/v1/balance-refresh/{balanceRefreshId}
+  description: Tink Get A Balance Refresh Status
+- name: list_business_budgets
+  operationId: listBusinessBudgets
+  method: GET
+  path: /finance-management/v1/business-budgets
+  description: Tink List Business Budgets
+- name: list_calendar_events
+  operationId: listCalendarEvents
+  method: GET
+  path: /finance-management/v1/financial-calendar-events
+  description: Tink List Financial Calendar Events
+- name: generate_income_check_pdf
+  operationId: generateIncomeCheckPdf
+  method: GET
+  path: /v2/income-checks/{report_id}:generate-pdf
+  description: Tink Generate An Income Check PDF
+- name: list_investment_holdings
+  operationId: listInvestmentHoldings
+  method: GET
+  path: /data/v2/investment-accounts/{id}/holdings
+  description: Tink List Investment Holdings
+- name: get_loan_account
+  operationId: getLoanAccount
+  method: GET
+  path: /data/v2/loan-accounts/{accountId}
+  description: Tink Get A Loan Account
+- name: get_mandate
+  operationId: getMandate
+  method: GET
+  path: /payments/mandates/{id}
+  description: Tink Get A Mandate
+- name: create_authorization_grant
+  operationId: createAuthorizationGrant
+  method: POST
+  path: /api/v1/oauth/authorization-grant
+  description: Tink Create An Authorization Grant
+- name: get_payment
+  operationId: getPayment
+  method: GET
+  path: /payments/{paymentId}
+  description: Tink Get A Payment
+- name: list_predicted_recurring_transactions
+  operationId: listPredictedRecurringTransactions
+  method: GET
+  path: /enrichment/v1/predicted-recurring-transactions
+  description: Tink List Predicted Recurring Transactions
+- name: delete_user
+  operationId: deleteUser
+  method: POST
+  path: /api/v1/user/delete
+  description: Tink Delete A User
+- name: list_webhook_endpoints
+  operationId: listWebhookEndpoints
+  method: GET
+  path: /events/v2/webhook-endpoints
+  description: Tink List Webhook Endpoints
+- name: list_account_parties
+  operationId: listAccountParties
+  method: GET
+  path: /data/v2/accounts/{account_id}/parties
+  description: Tink List Account Parties

@@ -1,114 +1,559 @@
-vocabulary: Tink (tink.com)
+generated: '2026-05-25'
+method: generated
+vocabulary:
+  name: Tink (tink.com)
+  terms:
+  - term: PSD2
+    definition: operational vocabulary term, Connectivity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Connectivity
+  - term: Open Banking
+    definition: operational vocabulary term, Connectivity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Connectivity
+  - term: Bank Aggregation
+    definition: operational vocabulary term, Connectivity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Connectivity
+  - term: SCA (Strong Customer Authentication)
+    definition: operational vocabulary term, Connectivity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Connectivity
+  - term: Tink Link
+    definition: operational vocabulary term, Connectivity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Connectivity
+  - term: Provider
+    definition: operational vocabulary term, Connectivity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Connectivity
+  - term: Credentials
+    definition: operational vocabulary term, Connectivity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Connectivity
+  - term: Provider Consent
+    definition: operational vocabulary term, Connectivity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Connectivity
+  - term: Refresh
+    definition: operational vocabulary term, Connectivity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Connectivity
+  - term: Continuous Access
+    definition: operational vocabulary term, Connectivity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Connectivity
+  - term: One-Time Access
+    definition: operational vocabulary term, Connectivity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Connectivity
+  - term: Permanent User
+    definition: operational vocabulary term, Identity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Identity
+  - term: External User ID
+    definition: operational vocabulary term, Identity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Identity
+  - term: Identity Match
+    definition: operational vocabulary term, Identity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Identity
+  - term: Beneficial Owner
+    definition: operational vocabulary term, Identity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Identity
+  - term: Business
+    definition: operational vocabulary term, Identity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Identity
+  - term: KYC
+    definition: operational vocabulary term, Identity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Identity
+  - term: KYB
+    definition: operational vocabulary term, Identity dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Identity
+  - term: Account
+    definition: operational vocabulary term, Data dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Data
+  - term: Balance
+    definition: operational vocabulary term, Data dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Data
+  - term: Transaction
+    definition: operational vocabulary term, Data dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Data
+  - term: Holding
+    definition: operational vocabulary term, Data dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Data
+  - term: Loan Account
+    definition: operational vocabulary term, Data dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Data
+  - term: Party
+    definition: operational vocabulary term, Data dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Data
+  - term: Categorisation
+    definition: operational vocabulary term, Data dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Data
+  - term: Recurring Transaction
+    definition: operational vocabulary term, Data dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Data
+  - term: Merchant Information
+    definition: operational vocabulary term, Data dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Data
+  - term: MCC
+    definition: operational vocabulary term, Data dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Data
+  - term: Account Verification Report
+    definition: operational vocabulary term, Risk and Decisioning dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Risk and Decisioning
+  - term: Business Account Verification Report
+    definition: operational vocabulary term, Risk and Decisioning dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Risk and Decisioning
+  - term: Income Check Report
+    definition: operational vocabulary term, Risk and Decisioning dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Risk and Decisioning
+  - term: Expense Check Report
+    definition: operational vocabulary term, Risk and Decisioning dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Risk and Decisioning
+  - term: Risk Insights Report
+    definition: operational vocabulary term, Risk and Decisioning dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Risk and Decisioning
+  - term: Risk Categorisation Report
+    definition: operational vocabulary term, Risk and Decisioning dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Risk and Decisioning
+  - term: Risk Signal
+    definition: operational vocabulary term, Risk and Decisioning dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Risk and Decisioning
+  - term: Affordability
+    definition: operational vocabulary term, Risk and Decisioning dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Risk and Decisioning
+  - term: Payment Initiation Service
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: PIS
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: Pay by Bank
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: Mandate
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: Variable Recurring Payment
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: Sweeping VRP
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: Auto Payment
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: Payout
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: Refund
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: Remittance Information
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: IBAN
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: BBAN
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: Sort Code
+    definition: operational vocabulary term, Payments dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Payments
+  - term: Cash Flow Summary
+    definition: operational vocabulary term, Money Management dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Money Management
+  - term: Business Budget
+    definition: operational vocabulary term, Money Management dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Money Management
+  - term: Financial Calendar Event
+    definition: operational vocabulary term, Money Management dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Money Management
+  - term: Reconciliation
+    definition: operational vocabulary term, Money Management dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Money Management
+  - term: Predicted Recurring Transaction
+    definition: operational vocabulary term, Money Management dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Money Management
+  - term: Webhook Endpoint
+    definition: operational vocabulary term, Events dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Events
+  - term: Enabled Event
+    definition: operational vocabulary term, Events dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Events
+  - term: Event Type
+    definition: operational vocabulary term, Events dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Events
+  - term: Signature Verification
+    definition: operational vocabulary term, Events dimension (no definition recorded in the source vocabulary).
+    tags:
+    - operational
+    - Events
+  - term: Account Ownership Verification
+    definition: capability vocabulary term, Use Cases dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Use Cases
+  - term: Income Verification
+    definition: capability vocabulary term, Use Cases dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Use Cases
+  - term: Affordability Assessment
+    definition: capability vocabulary term, Use Cases dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Use Cases
+  - term: Underwriting
+    definition: capability vocabulary term, Use Cases dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Use Cases
+  - term: Onboarding
+    definition: capability vocabulary term, Use Cases dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Use Cases
+  - term: PSD2 Payment Initiation
+    definition: capability vocabulary term, Use Cases dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Use Cases
+  - term: Subscription Billing
+    definition: capability vocabulary term, Use Cases dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Use Cases
+  - term: Sweeping
+    definition: capability vocabulary term, Use Cases dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Use Cases
+  - term: Refund Processing
+    definition: capability vocabulary term, Use Cases dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Use Cases
+  - term: Cash Flow Forecasting
+    definition: capability vocabulary term, Use Cases dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Use Cases
+  - term: Expense Management
+    definition: capability vocabulary term, Use Cases dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Use Cases
+  - term: PSD2
+    definition: capability vocabulary term, Compliance dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Compliance
+  - term: GDPR
+    definition: capability vocabulary term, Compliance dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Compliance
+  - term: SOC 2 Type II
+    definition: capability vocabulary term, Compliance dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Compliance
+  - term: PCI DSS
+    definition: capability vocabulary term, Compliance dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Compliance
+  - term: eIDAS
+    definition: capability vocabulary term, Compliance dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Compliance
+  - term: PSD3 (forthcoming)
+    definition: capability vocabulary term, Compliance dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Compliance
+  - term: Nordics
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: United Kingdom
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: Germany
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: France
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: Spain
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: Italy
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: Netherlands
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: Belgium
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: Portugal
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: Austria
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: Ireland
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: Poland
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  - term: United States
+    definition: capability vocabulary term, Markets dimension (no definition recorded in the source vocabulary).
+    tags:
+    - capability
+    - Markets
+  description: Controlled vocabulary for Tink, Visa's European Open Banking and account-to-account payments platform.
 description: Controlled vocabulary for Tink, Visa's European Open Banking and account-to-account payments platform.
 created: '2026-05-25'
 modified: '2026-05-25'
 operational:
-  - dimension: Connectivity
-    terms:
-      - PSD2
-      - Open Banking
-      - Bank Aggregation
-      - SCA (Strong Customer Authentication)
-      - Tink Link
-      - Provider
-      - Credentials
-      - Provider Consent
-      - Refresh
-      - Continuous Access
-      - One-Time Access
-  - dimension: Identity
-    terms:
-      - Permanent User
-      - External User ID
-      - Identity Match
-      - Beneficial Owner
-      - Business
-      - KYC
-      - KYB
-  - dimension: Data
-    terms:
-      - Account
-      - Balance
-      - Transaction
-      - Holding
-      - Loan Account
-      - Party
-      - Categorisation
-      - Recurring Transaction
-      - Merchant Information
-      - MCC
-  - dimension: Risk and Decisioning
-    terms:
-      - Account Verification Report
-      - Business Account Verification Report
-      - Income Check Report
-      - Expense Check Report
-      - Risk Insights Report
-      - Risk Categorisation Report
-      - Risk Signal
-      - Affordability
-  - dimension: Payments
-    terms:
-      - Payment Initiation Service
-      - PIS
-      - Pay by Bank
-      - Mandate
-      - Variable Recurring Payment
-      - Sweeping VRP
-      - Auto Payment
-      - Payout
-      - Refund
-      - Remittance Information
-      - IBAN
-      - BBAN
-      - Sort Code
-  - dimension: Money Management
-    terms:
-      - Cash Flow Summary
-      - Business Budget
-      - Financial Calendar Event
-      - Reconciliation
-      - Predicted Recurring Transaction
-  - dimension: Events
-    terms:
-      - Webhook Endpoint
-      - Enabled Event
-      - Event Type
-      - Signature Verification
+- dimension: Connectivity
+  terms:
+  - PSD2
+  - Open Banking
+  - Bank Aggregation
+  - SCA (Strong Customer Authentication)
+  - Tink Link
+  - Provider
+  - Credentials
+  - Provider Consent
+  - Refresh
+  - Continuous Access
+  - One-Time Access
+- dimension: Identity
+  terms:
+  - Permanent User
+  - External User ID
+  - Identity Match
+  - Beneficial Owner
+  - Business
+  - KYC
+  - KYB
+- dimension: Data
+  terms:
+  - Account
+  - Balance
+  - Transaction
+  - Holding
+  - Loan Account
+  - Party
+  - Categorisation
+  - Recurring Transaction
+  - Merchant Information
+  - MCC
+- dimension: Risk and Decisioning
+  terms:
+  - Account Verification Report
+  - Business Account Verification Report
+  - Income Check Report
+  - Expense Check Report
+  - Risk Insights Report
+  - Risk Categorisation Report
+  - Risk Signal
+  - Affordability
+- dimension: Payments
+  terms:
+  - Payment Initiation Service
+  - PIS
+  - Pay by Bank
+  - Mandate
+  - Variable Recurring Payment
+  - Sweeping VRP
+  - Auto Payment
+  - Payout
+  - Refund
+  - Remittance Information
+  - IBAN
+  - BBAN
+  - Sort Code
+- dimension: Money Management
+  terms:
+  - Cash Flow Summary
+  - Business Budget
+  - Financial Calendar Event
+  - Reconciliation
+  - Predicted Recurring Transaction
+- dimension: Events
+  terms:
+  - Webhook Endpoint
+  - Enabled Event
+  - Event Type
+  - Signature Verification
 capability:
-  - dimension: Use Cases
-    terms:
-      - Account Ownership Verification
-      - Income Verification
-      - Affordability Assessment
-      - Underwriting
-      - Onboarding
-      - PSD2 Payment Initiation
-      - Subscription Billing
-      - Sweeping
-      - Refund Processing
-      - Cash Flow Forecasting
-      - Expense Management
-  - dimension: Compliance
-    terms:
-      - PSD2
-      - GDPR
-      - SOC 2 Type II
-      - PCI DSS
-      - eIDAS
-      - PSD3 (forthcoming)
-  - dimension: Markets
-    terms:
-      - Nordics
-      - United Kingdom
-      - Germany
-      - France
-      - Spain
-      - Italy
-      - Netherlands
-      - Belgium
-      - Portugal
-      - Austria
-      - Ireland
-      - Poland
-      - United States
+- dimension: Use Cases
+  terms:
+  - Account Ownership Verification
+  - Income Verification
+  - Affordability Assessment
+  - Underwriting
+  - Onboarding
+  - PSD2 Payment Initiation
+  - Subscription Billing
+  - Sweeping
+  - Refund Processing
+  - Cash Flow Forecasting
+  - Expense Management
+- dimension: Compliance
+  terms:
+  - PSD2
+  - GDPR
+  - SOC 2 Type II
+  - PCI DSS
+  - eIDAS
+  - PSD3 (forthcoming)
+- dimension: Markets
+  terms:
+  - Nordics
+  - United Kingdom
+  - Germany
+  - France
+  - Spain
+  - Italy
+  - Netherlands
+  - Belgium
+  - Portugal
+  - Austria
+  - Ireland
+  - Poland
+  - United States

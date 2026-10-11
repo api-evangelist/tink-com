@@ -1,0 +1,11 @@
+generated: '2026-10-12'
+method: searched
+source: https://docs.tink.com/resources/console/demo-bank.md
+name: Tink Demo Bank
+description: Demo Bank is a simulated bank that allows you to test Tink products without using real bank credentials. Even though Demo Bank doesn't use real bank credentials, it lets you try real-world
+  scenarios and see how your end-user flow works before it goes into production.
+docs: https://docs.tink.com/resources/console/demo-bank.md
+test_credentials: Demo Bank user credentials are found inside Console (per market, per user); not published in public docs.
+scenario_docs:
+- https://docs.tink.com/resources/payments/one-time-payments/test-different-one-time-payment-scenarios.md
+sandbox_apps: Console lets you create a sandbox app to retrieve API credentials.

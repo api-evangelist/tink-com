@@ -1,6 +1,9 @@
 aid: tink-com
+
 url: https://raw.githubusercontent.com/api-evangelist/tink-com/refs/heads/main/apis.yml
+
 name: Tink
+
 description: >-
   Tink, a Visa solution acquired in 2022, is a European Open Banking platform with 6,000+ bank connections across Europe
   and a US Pay by Bank stack. Tink exposes a single API for PSD2-aggregated bank data (Accounts, Transactions, Balances,
@@ -8,6 +11,7 @@ description: >-
   Expense Check, Risk Insights, Risk Categorisation), Money Manager BFM, Data Enrichment, and PSD2 Payment Initiation
   Services (Pay by Bank, Auto Payments, Variable Recurring Payments, Mandates, Refunds, Payouts). Authentication is
   OAuth 2.0 with delegated user consent through the Tink Link hosted flow.
+
 deliveryModel:
   model: saas
   open_source: false
@@ -20,7 +24,9 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 specificationVersion: '0.23'
+
 accessModel:
   pricing: paid
   onboarding: unknown
@@ -35,7 +41,9 @@ accessModel:
   - security
   generated: '2026-09-03'
   method: derived
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tink-com.png
+
 tags:
   - Open Banking
   - PSD2
@@ -48,14 +56,257 @@ tags:
   - Europe
   - Visa
   - Data Aggregation
+
 created: '2026-05-25'
+
 modified: '2026-05-25'
+
 maintainers:
   - FN: API Evangelist
     email: info@apievangelist.com
     X-twitter: '@apievangelist'
+
 kind: contract
+
 access: 3rd-Party
+
+common:
+  - type: Spectral
+    url: rules/tink-rules.yml
+  - type: Spectral
+    url: rules/tink-com-rules.yml
+  - type: Spectral
+    url: rules/tink-com-jsonschema-spectral-rules.yml
+  - type: DataModel
+    url: data-model/tink-com-data-model.yml
+  - type: Idempotency
+    url: conventions/tink-com-conventions.yml
+  - type: Conventions
+    url: conventions/tink-com-conventions.yml
+  - type: OAuthScopes
+    url: scopes/tink-com-scopes.yml
+  - type: Lifecycle
+    url: lifecycle/tink-com-lifecycle.yml
+  - type: ErrorCatalog
+    url: errors/tink-com-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/tink-com-problem-types.yml
+  - type: Conformance
+    url: conformance/tink-com-conformance.yml
+  - type: LLMsTxt
+    url: llms/tink-com-llms.txt
+  - type: SecurityTxt
+    url: well-known/tink-com-status-security.txt
+  - type: WellKnown
+    url: well-known/tink-com-well-known.yml
+  - type: Hosts
+    url: hosts/tink-com-hosts.yml
+  - type: Vendors
+    url: vendors/tink-com-vendors.yml
+  - type: Packages
+    url: packages/tink-com-packages.yml
+  - type: Newsroom
+    url: https://www.tink.com/press/
+  - type: Login
+    url: https://console.tink.com/login
+  - type: Website
+    url: https://www.tink.com/
+  - type: CapabilityMap
+    url: capabilities/tink-com-capability-edges.yml
+    name: Tink Business Capability Map
+  - type: AgenticAccess
+    url: agentic-access/tink-com-agentic-access.yml
+  - type: VulnerabilityDisclosure
+    url: security/tink-com-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/tink-com-domain-security.yml
+  - type: Authentication
+    url: authentication/tink-com-authentication.yml
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/tink/overview
+  - type: Arazzo
+    url: arazzo/tink-com-account-transactions-overview-workflow.yml
+    name: Tink Account And Transactions Overview
+  - type: Arazzo
+    url: arazzo/tink-com-account-verification-report-workflow.yml
+    name: Tink Account Check Verification And Report Retrieval
+  - type: Arazzo
+    url: arazzo/tink-com-balance-refresh-poll-workflow.yml
+    name: Tink Trigger A Balance Refresh And Poll It
+  - type: Arazzo
+    url: arazzo/tink-com-initiate-payment-poll-status-workflow.yml
+    name: Tink Initiate A Payment And Poll Its Status
+  - type: Arazzo
+    url: arazzo/tink-com-mandate-setup-workflow.yml
+    name: Tink Create A Payment Mandate And Confirm It
+  - type: Arazzo
+    url: arazzo/tink-com-payment-refund-poll-workflow.yml
+    name: Tink Refund An Executed Payment And Poll The Refund
+  - type: Arazzo
+    url: arazzo/tink-com-provider-consent-cleanup-workflow.yml
+    name: Tink Review And Revoke A Bank Consent
+  - type: Arazzo
+    url: arazzo/tink-com-recurring-spend-budget-workflow.yml
+    name: Tink Build A Budget From Recurring Spend
+  - type: Arazzo
+    url: arazzo/tink-com-user-data-access-workflow.yml
+    name: Tink Onboard A User And Access Their Bank Data
+  - type: Arazzo
+    url: arazzo/tink-com-webhook-endpoint-setup-workflow.yml
+    name: Tink Register And Verify A Webhook Endpoint
+  - url: https://tink.com/
+    type: Portal
+    name: Tink Home
+  - url: https://docs.tink.com/
+    type: Documentation
+    name: Tink Developer Docs
+  - url: https://console.tink.com/
+    type: Console
+    name: Tink Console
+  - url: https://tink.com/contact-sales/
+    type: Signup
+    name: Contact Sales
+  - url: https://tink.com/pricing/
+    type: Pricing
+    name: Tink Pricing
+  - url: https://status.tink.com/
+    type: StatusPage
+    name: Tink Status
+  - url: https://docs.tink.com/changelog
+    type: ChangeLog
+    name: Tink Changelog
+  - url: https://tink.com/blog/
+    type: Blog
+    name: Tink Blog
+  - url: https://tink.com/terms-and-conditions/
+    type: TermsOfService
+    name: Terms and Conditions
+  - url: https://docs.tink.com/api
+    type: APIReference
+    name: Tink API Reference
+  - url: https://docs.tink.com/resources/getting-started/set-up-your-account
+    type: GettingStarted
+    name: Set up your Tink account
+  - url: https://github.com/tink-ab
+    type: GitHubOrganization
+    name: Tink on GitHub
+  - url: https://www.linkedin.com/company/tink-ab/
+    type: LinkedIn
+    name: Tink on LinkedIn
+  - url: https://github.com/tink-ab/tink-postman
+    type: Postman
+    name: Tink Postman Collections (EU)
+  - url: https://github.com/tink-ab/tink-postman-us
+    type: Postman
+    name: Tink Postman Collections (US)
+  - url: https://github.com/tink-ab/tink-link-android
+    type: SDKs
+    name: Tink Link Android SDK
+  - url: https://github.com/tink-ab/tink-link-ios
+    type: SDKs
+    name: Tink Link iOS SDK
+  - url: https://github.com/tink-ab/tink-money-manager-android
+    type: SDKs
+    name: Tink Money Manager Android SDK
+  - url: https://github.com/tink-ab/tink-money-manager-ios
+    type: SDKs
+    name: Tink Money Manager iOS SDK
+  - url: https://github.com/tink-ab/terraform-provider-buildkite
+    type: Tools
+    name: Tink Terraform Provider for Buildkite
+  - url: rules/tink-rules.yml
+    type: SpectralRules
+    name: Tink Spectral Ruleset
+  - url: vocabulary/tink-com-vocabulary.yml
+    type: Vocabulary
+    name: Tink Vocabulary
+  - url: json-ld/tink-com-context.jsonld
+    type: JSONLD
+    name: Tink JSON-LD Context
+  - url: plans/tink-com-plans-pricing.yml
+    type: Plans
+    name: Tink Plans and Pricing
+  - url: rate-limits/tink-com-rate-limits.yml
+    type: RateLimits
+    name: Tink Rate Limits
+  - url: finops/tink-com-finops.yml
+    type: FinOps
+    name: Tink FinOps Surface
+  - type: Features
+    name: Features
+    data:
+      - name: 6,000+ Bank Connections
+        description: >-
+          PSD2 and non-PSD2 connectivity across the Nordics, UK, DACH, Benelux, France, Iberia, Italy, Ireland, and
+          Poland.
+      - name: PSD2 Payment Initiation
+        description: Single API for one-off payments, Variable Recurring Payments, Auto Payments, payouts, refunds, and mandates.
+      - name: Account Check and Business Account Check
+        description: Verified account ownership for individuals and businesses with optional identity match (name, DOB, address).
+      - name: Risk Insights and Risk Categorisation
+        description: Lender-grade affordability and risk-decisioning reports built on aggregated bank data.
+      - name: Income Check and Expense Check
+        description: Verified income streams and categorised expenses for underwriting and KYC.
+      - name: Money Manager
+        description: Cash-flow summaries, budgets, financial calendar, and reconciliations for SMB and personal apps.
+      - name: Data Enrichment
+        description: Tink categorisation taxonomy, merchant identification, and recurring-transaction detection and prediction.
+      - name: Connector API
+        description: Push partner-collected data into the Tink platform for downstream enrichment and reporting.
+      - name: Tink Link
+        description: Hosted bank-consent UX handling SCA and bank app-to-app redirects on mobile.
+      - name: Webhooks
+        description: Asynchronous notifications for report completion, payment and refund status, and credentials updates.
+      - name: SOC 2 Type II and PSD2 Licence
+        description: Single PSD2 licensed integration removes the need for customers to obtain their own PSD2 authorisation.
+  - type: UseCases
+    name: UseCases
+    data:
+      - name: Onboarding and KYC
+        description: Verify bank ownership and identity match in seconds with Account Check.
+      - name: Affordability and Underwriting
+        description: Risk Insights, Income Check, and Expense Check inform consumer and SMB lending decisions.
+      - name: Pay by Bank Checkout
+        description: Initiate account-to-account payments at checkout with one-off PIS or Auto Payments.
+      - name: Subscription Billing
+        description: Sweeping Variable Recurring Payments collect recurring charges directly from the customer's bank.
+      - name: Business Financial Management
+        description: Embed Money Manager dashboards in SMB banking and accounting apps.
+      - name: PFM and Personal Banking
+        description: Power personal finance experiences with categorised transactions and recurring detection.
+      - name: Payouts
+        description: Disburse funds back to a verified bank account using PIS payouts.
+      - name: Open Finance Composition
+        description: Stitch PSD2 data with partner-collected data via Connector API for a unified view.
+  - type: Integrations
+    name: Integrations
+    data:
+      - name: Visa
+        description: Tink is a Visa solution following the 2022 acquisition; integrates with Visa's payment and risk products.
+      - name: Adyen
+        description: Pay by Bank rails for Adyen merchants.
+      - name: Revolut
+        description: Open Banking data and payments connectivity for Revolut.
+      - name: Younited
+        description: Risk decisioning powered by Tink for the European consumer lender.
+      - name: Bank Norwegian
+        description: Account aggregation and risk reports for the Nordic digital bank.
+      - name: PostNord Strålfors
+        description: Payment Initiation Services for the Nordic communications and logistics group.
+  - type: Solutions
+    name: Solutions
+    data:
+      - name: Banking
+        description: Aggregation, money management, and PIS for retail and business banking platforms.
+      - name: Lending
+        description: Income, expense, risk, and account verification for credit underwriting.
+      - name: Payments
+        description: Pay by Bank, VRP, mandates, refunds, and payouts for ecommerce, billers, and PSPs.
+      - name: Wealth and Investments
+        description: Holdings, loans, and balance aggregation for wealth-management and PFM apps.
+      - name: SMB
+        description: Money Manager BFM, business budgets, cash-flow, and Business Account Check for SMB platforms.
+
 apis:
 - aid: tink-com:tink-com-accounts-api
   name: Tink Accounts API
@@ -1165,201 +1416,8 @@ apis:
     url: https://docs.tink.com/resources/connector
   - type: Documentation
     url: https://docs.tink.com/resources/webhooks
-common:
-  - type: Website
-    url: https://www.tink.com/
-  - type: CapabilityMap
-    url: capabilities/tink-com-capability-edges.yml
-    name: Tink Business Capability Map
-  - type: AgenticAccess
-    url: agentic-access/tink-com-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/tink-com-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/tink-com-domain-security.yml
-  - type: Authentication
-    url: authentication/tink-com-authentication.yml
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/tink/overview
-  - type: Arazzo
-    url: arazzo/tink-com-account-transactions-overview-workflow.yml
-    name: Tink Account And Transactions Overview
-  - type: Arazzo
-    url: arazzo/tink-com-account-verification-report-workflow.yml
-    name: Tink Account Check Verification And Report Retrieval
-  - type: Arazzo
-    url: arazzo/tink-com-balance-refresh-poll-workflow.yml
-    name: Tink Trigger A Balance Refresh And Poll It
-  - type: Arazzo
-    url: arazzo/tink-com-initiate-payment-poll-status-workflow.yml
-    name: Tink Initiate A Payment And Poll Its Status
-  - type: Arazzo
-    url: arazzo/tink-com-mandate-setup-workflow.yml
-    name: Tink Create A Payment Mandate And Confirm It
-  - type: Arazzo
-    url: arazzo/tink-com-payment-refund-poll-workflow.yml
-    name: Tink Refund An Executed Payment And Poll The Refund
-  - type: Arazzo
-    url: arazzo/tink-com-provider-consent-cleanup-workflow.yml
-    name: Tink Review And Revoke A Bank Consent
-  - type: Arazzo
-    url: arazzo/tink-com-recurring-spend-budget-workflow.yml
-    name: Tink Build A Budget From Recurring Spend
-  - type: Arazzo
-    url: arazzo/tink-com-user-data-access-workflow.yml
-    name: Tink Onboard A User And Access Their Bank Data
-  - type: Arazzo
-    url: arazzo/tink-com-webhook-endpoint-setup-workflow.yml
-    name: Tink Register And Verify A Webhook Endpoint
-  - url: https://tink.com/
-    type: Portal
-    name: Tink Home
-  - url: https://docs.tink.com/
-    type: Documentation
-    name: Tink Developer Docs
-  - url: https://console.tink.com/
-    type: Console
-    name: Tink Console
-  - url: https://tink.com/contact-sales/
-    type: Signup
-    name: Contact Sales
-  - url: https://tink.com/pricing/
-    type: Pricing
-    name: Tink Pricing
-  - url: https://status.tink.com/
-    type: StatusPage
-    name: Tink Status
-  - url: https://docs.tink.com/changelog
-    type: ChangeLog
-    name: Tink Changelog
-  - url: https://tink.com/blog/
-    type: Blog
-    name: Tink Blog
-  - url: https://tink.com/terms-and-conditions/
-    type: TermsOfService
-    name: Terms and Conditions
-  - url: https://tink.com/privacy-policy/
-    type: PrivacyPolicy
-    name: Privacy Policy
-  - url: https://tink.com/security/
-    type: Security
-    name: Tink Security
-  - url: https://github.com/tink-ab
-    type: GitHubOrganization
-    name: Tink on GitHub
-  - url: https://www.linkedin.com/company/tink-ab/
-    type: LinkedIn
-    name: Tink on LinkedIn
-  - url: https://github.com/tink-ab/tink-postman
-    type: Postman
-    name: Tink Postman Collections (EU)
-  - url: https://github.com/tink-ab/tink-postman-us
-    type: Postman
-    name: Tink Postman Collections (US)
-  - url: https://github.com/tink-ab/tink-link-android
-    type: SDKs
-    name: Tink Link Android SDK
-  - url: https://github.com/tink-ab/tink-link-ios
-    type: SDKs
-    name: Tink Link iOS SDK
-  - url: https://github.com/tink-ab/tink-money-manager-android
-    type: SDKs
-    name: Tink Money Manager Android SDK
-  - url: https://github.com/tink-ab/tink-money-manager-ios
-    type: SDKs
-    name: Tink Money Manager iOS SDK
-  - url: https://github.com/tink-ab/terraform-provider-buildkite
-    type: Tools
-    name: Tink Terraform Provider for Buildkite
-  - url: rules/tink-rules.yml
-    type: SpectralRules
-    name: Tink Spectral Ruleset
-  - url: vocabulary/tink-com-vocabulary.yml
-    type: Vocabulary
-    name: Tink Vocabulary
-  - url: json-ld/tink-com-context.jsonld
-    type: JSONLD
-    name: Tink JSON-LD Context
-  - url: plans/tink-com-plans-pricing.yml
-    type: Plans
-    name: Tink Plans and Pricing
-  - url: rate-limits/tink-com-rate-limits.yml
-    type: RateLimits
-    name: Tink Rate Limits
-  - url: finops/tink-com-finops.yml
-    type: FinOps
-    name: Tink FinOps Surface
-  - type: Features
-    name: Features
-    data:
-      - name: 6,000+ Bank Connections
-        description: >-
-          PSD2 and non-PSD2 connectivity across the Nordics, UK, DACH, Benelux, France, Iberia, Italy, Ireland, and
-          Poland.
-      - name: PSD2 Payment Initiation
-        description: Single API for one-off payments, Variable Recurring Payments, Auto Payments, payouts, refunds, and mandates.
-      - name: Account Check and Business Account Check
-        description: Verified account ownership for individuals and businesses with optional identity match (name, DOB, address).
-      - name: Risk Insights and Risk Categorisation
-        description: Lender-grade affordability and risk-decisioning reports built on aggregated bank data.
-      - name: Income Check and Expense Check
-        description: Verified income streams and categorised expenses for underwriting and KYC.
-      - name: Money Manager
-        description: Cash-flow summaries, budgets, financial calendar, and reconciliations for SMB and personal apps.
-      - name: Data Enrichment
-        description: Tink categorisation taxonomy, merchant identification, and recurring-transaction detection and prediction.
-      - name: Connector API
-        description: Push partner-collected data into the Tink platform for downstream enrichment and reporting.
-      - name: Tink Link
-        description: Hosted bank-consent UX handling SCA and bank app-to-app redirects on mobile.
-      - name: Webhooks
-        description: Asynchronous notifications for report completion, payment and refund status, and credentials updates.
-      - name: SOC 2 Type II and PSD2 Licence
-        description: Single PSD2 licensed integration removes the need for customers to obtain their own PSD2 authorisation.
-  - type: UseCases
-    name: UseCases
-    data:
-      - name: Onboarding and KYC
-        description: Verify bank ownership and identity match in seconds with Account Check.
-      - name: Affordability and Underwriting
-        description: Risk Insights, Income Check, and Expense Check inform consumer and SMB lending decisions.
-      - name: Pay by Bank Checkout
-        description: Initiate account-to-account payments at checkout with one-off PIS or Auto Payments.
-      - name: Subscription Billing
-        description: Sweeping Variable Recurring Payments collect recurring charges directly from the customer's bank.
-      - name: Business Financial Management
-        description: Embed Money Manager dashboards in SMB banking and accounting apps.
-      - name: PFM and Personal Banking
-        description: Power personal finance experiences with categorised transactions and recurring detection.
-      - name: Payouts
-        description: Disburse funds back to a verified bank account using PIS payouts.
-      - name: Open Finance Composition
-        description: Stitch PSD2 data with partner-collected data via Connector API for a unified view.
-  - type: Integrations
-    name: Integrations
-    data:
-      - name: Visa
-        description: Tink is a Visa solution following the 2022 acquisition; integrates with Visa's payment and risk products.
-      - name: Adyen
-        description: Pay by Bank rails for Adyen merchants.
-      - name: Revolut
-        description: Open Banking data and payments connectivity for Revolut.
-      - name: Younited
-        description: Risk decisioning powered by Tink for the European consumer lender.
-      - name: Bank Norwegian
-        description: Account aggregation and risk reports for the Nordic digital bank.
-      - name: PostNord Strålfors
-        description: Payment Initiation Services for the Nordic communications and logistics group.
-  - type: Solutions
-    name: Solutions
-    data:
-      - name: Banking
-        description: Aggregation, money management, and PIS for retail and business banking platforms.
-      - name: Lending
-        description: Income, expense, risk, and account verification for credit underwriting.
-      - name: Payments
-        description: Pay by Bank, VRP, mandates, refunds, and payouts for ecommerce, billers, and PSPs.
-      - name: Wealth and Investments
-        description: Holdings, loans, and balance aggregation for wealth-management and PFM apps.
-      - name: SMB
-        description: Money Manager BFM, business budgets, cash-flow, and Business Account Check for SMB platforms.
+x-enrichment:
+  date: '2026-10-12'
+  status: enriched
+  artifacts_added: 6
+  pass: local-v5
