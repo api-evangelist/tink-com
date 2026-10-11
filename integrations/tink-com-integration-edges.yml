@@ -1,0 +1,20 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/tink-com/integrations
+- https://zapier.com/apps/tink/integrations
+- https://n8n.io/integrations/tink-com/
+- https://n8n.io/integrations/tink/
+- https://composio.dev/toolkits/tink-com
+- https://monid.ai/tools/tink-com
+checked:
+- https://composio.dev/toolkits/tink-com
+- https://monid.ai/tools/tink-com
+- https://n8n.io/integrations/tink-com/
+- https://n8n.io/integrations/tink/
+- https://zapier.com/apps/tink-com/integrations
+- https://zapier.com/apps/tink/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
