@@ -13,6 +13,7 @@ checked:
 - https://monid.ai/tools/tink-com
 - https://n8n.io/integrations/tink-com/
 - https://n8n.io/integrations/tink/
+- https://www.openbanking.org.uk/regulated-providers/tink/
 - https://zapier.com/apps/tink-com/integrations
 - https://zapier.com/apps/tink/integrations
 summary: null
@@ -21887,4 +21888,21 @@ edges:
   - CHECKING_ACCOUNTS
   - TRANSFERS
   - SAVINGS_ACCOUNTS
+- partner_name: UK Open Banking
+  partner: null
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.openbanking.org.uk/regulated-providers/tink/
+  contract_reference:
+    register: UK Open Banking regulated providers (OBL directory)
+    spec_file: null
+    role: Third Party Providers
+    registered_name: Tink Financial Services Limited
+    register_id: https://register.fca.org.uk/s/firm?id=0014G000035DVMFQA4
+    matched_domain: tink.com
+    api_families: null
+    detected_by: sweep-standard-registers.py
+    detected: '2026-10-14'
 templates: []
