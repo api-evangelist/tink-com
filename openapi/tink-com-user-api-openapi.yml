@@ -56,13 +56,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-        errorCode:
-          type: string
     UserResponse:
       type: object
       properties:
@@ -90,15 +83,22 @@ components:
           enum:
           - PERMANENT
           - TEMPORARY
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
   responses:
-    Unauthorized:
-      description: Missing or invalid bearer token.
+    BadRequest:
+      description: Invalid request.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request.
+    Unauthorized:
+      description: Missing or invalid bearer token.
       content:
         application/json:
           schema:

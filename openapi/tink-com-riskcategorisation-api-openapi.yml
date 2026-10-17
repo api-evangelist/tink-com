@@ -34,13 +34,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/RiskCategorisationReport'
 components:
-  parameters:
-    ReportIdParam:
-      in: path
-      name: report_id
-      required: true
-      schema:
-        type: string
   schemas:
     Money:
       type: object
@@ -75,6 +68,13 @@ components:
               transactionCount:
                 type: integer
                 format: int32
+  parameters:
+    ReportIdParam:
+      in: path
+      name: report_id
+      required: true
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

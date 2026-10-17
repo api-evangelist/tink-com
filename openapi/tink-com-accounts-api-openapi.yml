@@ -130,52 +130,6 @@ components:
             $ref: '#/components/schemas/Account'
         nextPageToken:
           type: string
-    Money:
-      type: object
-      properties:
-        amount:
-          type: object
-          properties:
-            value:
-              type: object
-              properties:
-                scale:
-                  type: string
-                unscaledValue:
-                  type: string
-            currencyCode:
-              type: string
-    ProviderConsentList:
-      type: object
-      properties:
-        providerConsents:
-          type: array
-          items:
-            type: object
-            properties:
-              credentialsId:
-                type: string
-              providerName:
-                type: string
-              status:
-                type: string
-              statusUpdated:
-                type: integer
-                format: int64
-              sessionExpiryDate:
-                type: integer
-                format: int64
-              accountIds:
-                type: array
-                items:
-                  type: string
-    Error:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-        errorCode:
-          type: string
     PartyList:
       type: object
       properties:
@@ -183,29 +137,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Party'
-    Balances:
-      type: object
-      properties:
-        booked:
-          $ref: '#/components/schemas/Money'
-        available:
-          $ref: '#/components/schemas/Money'
-    Party:
-      type: object
-      properties:
-        name:
-          type: string
-        role:
-          type: string
-          enum:
-          - HOLDER
-          - AUTHORIZED_USER
-          - UNDEFINED
-        partyType:
-          type: string
-          enum:
-          - PERSON
-          - ORGANIZATION
     Account:
       type: object
       properties:
@@ -257,6 +188,51 @@ components:
             lastRefreshed:
               type: string
               format: date-time
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
+    Party:
+      type: object
+      properties:
+        name:
+          type: string
+        role:
+          type: string
+          enum:
+          - HOLDER
+          - AUTHORIZED_USER
+          - UNDEFINED
+        partyType:
+          type: string
+          enum:
+          - PERSON
+          - ORGANIZATION
+    Balances:
+      type: object
+      properties:
+        booked:
+          $ref: '#/components/schemas/Money'
+        available:
+          $ref: '#/components/schemas/Money'
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
     CredentialsList:
       type: object
       properties:
@@ -287,13 +263,31 @@ components:
               sessionExpiryDate:
                 type: integer
                 format: int64
+    ProviderConsentList:
+      type: object
+      properties:
+        providerConsents:
+          type: array
+          items:
+            type: object
+            properties:
+              credentialsId:
+                type: string
+              providerName:
+                type: string
+              status:
+                type: string
+              statusUpdated:
+                type: integer
+                format: int64
+              sessionExpiryDate:
+                type: integer
+                format: int64
+              accountIds:
+                type: array
+                items:
+                  type: string
   parameters:
-    AccountIdParam:
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
     PageSize:
       in: query
       name: pageSize
@@ -301,6 +295,12 @@ components:
         type: integer
         format: int32
         maximum: 200
+    AccountIdParam:
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
     PageToken:
       in: query
       name: pageToken

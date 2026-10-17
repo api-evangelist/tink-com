@@ -131,34 +131,25 @@ components:
               type: string
             value:
               type: string
-    Error:
+    Account:
       type: object
       properties:
-        errorMessage:
+        accountNumber:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - IBAN
+              - SORT_CODE
+              - BBAN
+              - ACCOUNT_NUMBER
+            value:
+              type: string
+        name:
           type: string
-        errorCode:
+        country:
           type: string
-    Refund:
-      type: object
-      properties:
-        id:
-          type: string
-        paymentId:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-        status:
-          type: string
-          enum:
-          - CREATED
-          - EXECUTED
-          - REJECTED
-          - FAILED
-        created:
-          type: string
-          format: date-time
     PaymentRequest:
       type: object
       required:
@@ -192,25 +183,27 @@ components:
             $ref: '#/components/schemas/Account'
         sourceAccount:
           $ref: '#/components/schemas/Account'
-    Account:
+    Refund:
       type: object
       properties:
-        accountNumber:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - IBAN
-              - SORT_CODE
-              - BBAN
-              - ACCOUNT_NUMBER
-            value:
-              type: string
-        name:
+        id:
           type: string
-        country:
+        paymentId:
           type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        status:
+          type: string
+          enum:
+          - CREATED
+          - EXECUTED
+          - REJECTED
+          - FAILED
+        created:
+          type: string
+          format: date-time
     Payment:
       type: object
       properties:
@@ -254,6 +247,26 @@ components:
               type: string
             value:
               type: string
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          type: string
+  responses:
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     PaymentIdParam:
       in: path
@@ -261,19 +274,6 @@ components:
       required: true
       schema:
         type: string
-  responses:
-    NotFound:
-      description: Not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

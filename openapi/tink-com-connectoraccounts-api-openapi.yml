@@ -35,6 +35,20 @@ paths:
           description: Accounts accepted for ingestion.
 components:
   schemas:
+    ConnectorAccountBatch:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectorAccount'
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
     ConnectorAccount:
       type: object
       properties:
@@ -64,20 +78,6 @@ components:
               type: string
             accountNumber:
               type: string
-    ConnectorAccountBatch:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConnectorAccount'
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
   parameters:
     ExternalUserIdParam:
       in: path

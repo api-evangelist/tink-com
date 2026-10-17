@@ -53,6 +53,21 @@ paths:
                 $ref: '#/components/schemas/LoanAccount'
 components:
   schemas:
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
     LoanAccount:
       type: object
       properties:
@@ -91,21 +106,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LoanAccount'
-    Money:
-      type: object
-      properties:
-        amount:
-          type: object
-          properties:
-            value:
-              type: object
-              properties:
-                scale:
-                  type: string
-                unscaledValue:
-                  type: string
-            currencyCode:
-              type: string
   securitySchemes:
     BearerAuth:
       type: http

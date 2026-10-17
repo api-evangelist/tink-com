@@ -55,6 +55,13 @@ paths:
                 $ref: '#/components/schemas/CashFlowSummaryList'
 components:
   schemas:
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
     CashFlowSummaryList:
       type: object
       properties:
@@ -75,13 +82,6 @@ components:
                 $ref: '#/components/schemas/Money'
               net:
                 $ref: '#/components/schemas/Money'
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

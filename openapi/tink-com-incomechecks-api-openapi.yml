@@ -54,13 +54,6 @@ paths:
                 format: binary
 components:
   schemas:
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
     VerifiedIncome:
       type: object
       properties:
@@ -118,6 +111,13 @@ components:
             consecutiveMonthsWithIncome:
               type: integer
               format: int32
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
     Error:
       type: object
       properties:
@@ -125,13 +125,6 @@ components:
           type: string
         errorCode:
           type: string
-  responses:
-    NotFound:
-      description: Report not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     ReportIdParam:
       in: path
@@ -139,6 +132,13 @@ components:
       required: true
       schema:
         type: string
+  responses:
+    NotFound:
+      description: Report not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

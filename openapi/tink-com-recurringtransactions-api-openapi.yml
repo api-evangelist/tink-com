@@ -81,34 +81,13 @@ paths:
                 $ref: '#/components/schemas/RecurringTransactionGroup'
 components:
   schemas:
-    RecurringTransactionGroup:
+    RecurringTransactionList:
       type: object
       properties:
-        id:
-          type: string
-        merchantName:
-          type: string
-        cadence:
-          type: string
-          enum:
-          - DAILY
-          - WEEKLY
-          - BIWEEKLY
-          - MONTHLY
-          - QUARTERLY
-          - YEARLY
-          - IRREGULAR
-        recurringTransactionIds:
+        recurringTransactions:
           type: array
           items:
-            type: string
-        totalAmount:
-          type: object
-          properties:
-            value:
-              type: string
-            currencyCode:
-              type: string
+            $ref: '#/components/schemas/RecurringTransaction'
     RecurringTransactionGroupList:
       type: object
       properties:
@@ -153,13 +132,34 @@ components:
         nextExpectedOccurrence:
           type: string
           format: date
-    RecurringTransactionList:
+    RecurringTransactionGroup:
       type: object
       properties:
-        recurringTransactions:
+        id:
+          type: string
+        merchantName:
+          type: string
+        cadence:
+          type: string
+          enum:
+          - DAILY
+          - WEEKLY
+          - BIWEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+          - IRREGULAR
+        recurringTransactionIds:
           type: array
           items:
-            $ref: '#/components/schemas/RecurringTransaction'
+            type: string
+        totalAmount:
+          type: object
+          properties:
+            value:
+              type: string
+            currencyCode:
+              type: string
   securitySchemes:
     BearerAuth:
       type: http

@@ -35,51 +35,6 @@ paths:
                 $ref: '#/components/schemas/RiskInsightsReport'
 components:
   schemas:
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
-    RiskInsightsReport:
-      type: object
-      properties:
-        id:
-          type: string
-        generatedAt:
-          type: string
-          format: date-time
-        signals:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-              severity:
-                type: string
-                enum:
-                - INFO
-                - LOW
-                - MEDIUM
-                - HIGH
-              description:
-                type: string
-        incomeSummary:
-          $ref: '#/components/schemas/IncomeCheckReport'
-        expenseSummary:
-          $ref: '#/components/schemas/ExpenseCheckReport'
-        balanceVolatility:
-          type: object
-          properties:
-            averageBalance:
-              $ref: '#/components/schemas/Money'
-            minimumBalance:
-              $ref: '#/components/schemas/Money'
-            overdraftDays:
-              type: integer
-              format: int32
     VerifiedIncome:
       type: object
       properties:
@@ -137,6 +92,13 @@ components:
             consecutiveMonthsWithIncome:
               type: integer
               format: int32
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
     ExpenseCheckReport:
       type: object
       properties:
@@ -168,6 +130,44 @@ components:
               transactionCount:
                 type: integer
                 format: int32
+    RiskInsightsReport:
+      type: object
+      properties:
+        id:
+          type: string
+        generatedAt:
+          type: string
+          format: date-time
+        signals:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              severity:
+                type: string
+                enum:
+                - INFO
+                - LOW
+                - MEDIUM
+                - HIGH
+              description:
+                type: string
+        incomeSummary:
+          $ref: '#/components/schemas/IncomeCheckReport'
+        expenseSummary:
+          $ref: '#/components/schemas/ExpenseCheckReport'
+        balanceVolatility:
+          type: object
+          properties:
+            averageBalance:
+              $ref: '#/components/schemas/Money'
+            minimumBalance:
+              $ref: '#/components/schemas/Money'
+            overdraftDays:
+              type: integer
+              format: int32
   parameters:
     ReportIdParam:
       in: path

@@ -53,6 +53,17 @@ paths:
                 $ref: '#/components/schemas/HoldingList'
 components:
   schemas:
+    InvestmentAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        marketValue:
+          $ref: '#/components/schemas/Money'
+        cashBalance:
+          $ref: '#/components/schemas/Money'
     InvestmentAccountList:
       type: object
       properties:
@@ -60,6 +71,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InvestmentAccount'
+    Money:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                scale:
+                  type: string
+                unscaledValue:
+                  type: string
+            currencyCode:
+              type: string
     Holding:
       type: object
       properties:
@@ -86,32 +112,6 @@ components:
         marketValue:
           $ref: '#/components/schemas/Money'
         purchasePrice:
-          $ref: '#/components/schemas/Money'
-    Money:
-      type: object
-      properties:
-        amount:
-          type: object
-          properties:
-            value:
-              type: object
-              properties:
-                scale:
-                  type: string
-                unscaledValue:
-                  type: string
-            currencyCode:
-              type: string
-    InvestmentAccount:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        marketValue:
-          $ref: '#/components/schemas/Money'
-        cashBalance:
           $ref: '#/components/schemas/Money'
     HoldingList:
       type: object

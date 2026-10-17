@@ -163,30 +163,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/CalendarEventSummaryList'
 components:
+  parameters:
+    CalendarEventIdParam:
+      in: path
+      name: calendarEventId
+      required: true
+      schema:
+        type: string
   schemas:
-    CalendarEvent:
+    Reconciliation:
       type: object
       properties:
         id:
           type: string
-        title:
+        calendarEventId:
+          type: string
+        transactionId:
           type: string
         amount:
           $ref: '#/components/schemas/Money'
-        dueDate:
+        reconciledAt:
           type: string
-          format: date
-        type:
-          type: string
-        recurrence:
-          type: string
-        status:
-          type: string
-          enum:
-          - OPEN
-          - PAID
-          - OVERDUE
-          - CANCELLED
+          format: date-time
     Money:
       type: object
       properties:
@@ -194,6 +192,25 @@ components:
           type: string
         currencyCode:
           type: string
+    CalendarEventSummaryList:
+      type: object
+      properties:
+        summaries:
+          type: array
+          items:
+            type: object
+            properties:
+              periodStart:
+                type: string
+                format: date
+              periodEnd:
+                type: string
+                format: date
+              eventCount:
+                type: integer
+                format: int32
+              totalAmount:
+                $ref: '#/components/schemas/Money'
     CalendarEventRequest:
       type: object
       properties:
@@ -224,32 +241,29 @@ components:
           type: array
           items:
             type: string
-    CalendarEventSummaryList:
+    CalendarEvent:
       type: object
       properties:
-        summaries:
-          type: array
-          items:
-            type: object
-            properties:
-              periodStart:
-                type: string
-                format: date
-              periodEnd:
-                type: string
-                format: date
-              eventCount:
-                type: integer
-                format: int32
-              totalAmount:
-                $ref: '#/components/schemas/Money'
-    CalendarEventList:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/CalendarEvent'
+        id:
+          type: string
+        title:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        dueDate:
+          type: string
+          format: date
+        type:
+          type: string
+        recurrence:
+          type: string
+        status:
+          type: string
+          enum:
+          - OPEN
+          - PAID
+          - OVERDUE
+          - CANCELLED
     ReconciliationRequest:
       type: object
       properties:
@@ -257,27 +271,13 @@ components:
           type: string
         amount:
           $ref: '#/components/schemas/Money'
-    Reconciliation:
+    CalendarEventList:
       type: object
       properties:
-        id:
-          type: string
-        calendarEventId:
-          type: string
-        transactionId:
-          type: string
-        amount:
-          $ref: '#/components/schemas/Money'
-        reconciledAt:
-          type: string
-          format: date-time
-  parameters:
-    CalendarEventIdParam:
-      in: path
-      name: calendarEventId
-      required: true
-      schema:
-        type: string
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalendarEvent'
   securitySchemes:
     BearerAuth:
       type: http

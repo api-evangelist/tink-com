@@ -87,7 +87,77 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Report not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Address:
+      type: object
+      properties:
+        country:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+        addressLine:
+          type: string
+    UserMatch:
+      type: object
+      properties:
+        matchedName:
+          type: boolean
+        matchedDateOfBirth:
+          type: boolean
+        matchedAddress:
+          type: boolean
+        matchScore:
+          type: number
+    AccountVerificationReport:
+      type: object
+      properties:
+        id:
+          type: string
+        market:
+          type: string
+        locale:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifiedAccount'
+        identities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        userMatch:
+          $ref: '#/components/schemas/UserMatch'
+    Money:
+      type: object
+      properties:
+        amount:
+          type: string
+        currencyCode:
+          type: string
     Identity:
       type: object
       properties:
@@ -104,16 +174,39 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address'
-    Address:
+    LinkSessionResponse:
       type: object
       properties:
-        country:
+        sessionId:
           type: string
-        city:
+        url:
           type: string
-        postalCode:
+          format: uri
+    CreateLinkSessionRequest:
+      type: object
+      properties:
+        market:
           type: string
-        addressLine:
+        locale:
+          type: string
+        user:
+          type: object
+          properties:
+            name:
+              type: string
+            dateOfBirth:
+              type: string
+              format: date
+            ssn:
+              type: string
+            address:
+              $ref: '#/components/schemas/Address'
+    Error:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
           type: string
     VerifiedAccount:
       type: object
@@ -151,99 +244,6 @@ components:
           type: string
         currency:
           type: string
-    AccountVerificationReport:
-      type: object
-      properties:
-        id:
-          type: string
-        market:
-          type: string
-        locale:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/VerifiedAccount'
-        identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-        userMatch:
-          $ref: '#/components/schemas/UserMatch'
-    Money:
-      type: object
-      properties:
-        amount:
-          type: string
-        currencyCode:
-          type: string
-    Error:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-        errorCode:
-          type: string
-    CreateLinkSessionRequest:
-      type: object
-      properties:
-        market:
-          type: string
-        locale:
-          type: string
-        user:
-          type: object
-          properties:
-            name:
-              type: string
-            dateOfBirth:
-              type: string
-              format: date
-            ssn:
-              type: string
-            address:
-              $ref: '#/components/schemas/Address'
-    LinkSessionResponse:
-      type: object
-      properties:
-        sessionId:
-          type: string
-        url:
-          type: string
-          format: uri
-    UserMatch:
-      type: object
-      properties:
-        matchedName:
-          type: boolean
-        matchedDateOfBirth:
-          type: boolean
-        matchedAddress:
-          type: boolean
-        matchScore:
-          type: number
-  responses:
-    Unauthorized:
-      description: Missing or invalid bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Report not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     ReportIdParam:
       in: path
