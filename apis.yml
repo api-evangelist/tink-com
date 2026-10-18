@@ -756,6 +756,8 @@ apis:
   humanURL: https://docs.tink.com/api-reference/auth-api
   baseURL: https://api.tink.com
   tags:
+  - Financial Calendar
+  tags_raw:
   - FinancialCalendar
   properties:
   - type: OpenAPI
