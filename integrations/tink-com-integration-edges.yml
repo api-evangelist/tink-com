@@ -16,6 +16,9 @@ checked:
 - https://www.openbanking.org.uk/regulated-providers/tink/
 - https://zapier.com/apps/tink-com/integrations
 - https://zapier.com/apps/tink/integrations
+- https://virksomhedsregister.finanstilsynet.dk/
+- https://www.fi.se/en/our-registers/company-register/
+- https://www.finanstilsynet.no/en/finanstilsynets-registry/
 summary: null
 marketplace_apps: []
 edges:
@@ -21905,4 +21908,34 @@ edges:
   - CHECKING_ACCOUNTS
   - SAVINGS_ACCOUNTS
   - TRANSFERS
+- partner_name: Finansinspektionen company register (Sweden)
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.fi.se/en/our-registers/company-register/
+  category: Swedish licensed bank / credit / payment / e-money institution
+  contract_reference:
+    register: Finansinspektionen company register (Sweden)
+    spec_file: null
+    standard: null
+    role: licensed-institution
+    registrations:
+    - registered_name: Tink AB
+      licences:
+      - Payment institution
+      register_country: SE
+      matched_domain: tink.com
+      matched_by: hand-verified
+      register_id: 556898-2192
+      lei: 5493006USHNLYNUWZV52
+      identity: 'hand review: Tink AB, the Stockholm open-banking payment institution; Wikidata''s name search matched
+        an unrelated ''Tink'' (therealtink.com); all/tink-com holds tink.com'
+    signal_note: 'participation only: a regulator licence listing; no API conformance is published by this register'
+    detected_by: sweep-nordic-financial-registers.py
+    detected: '2026-10-21'
+  detected_by: sweep-nordic-financial-registers.py
+  first_seen: '2026-10-21'
 templates: []

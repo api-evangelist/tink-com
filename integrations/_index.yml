@@ -18877,3 +18877,33 @@
   relationship: bank-coverage
   status: not-a-workflow
   arazzo: null
+- slug: tink-com-finansinspektionen-company-register-sweden
+  label: Finansinspektionen company register (Sweden)
+  partner_name: Finansinspektionen company register (Sweden)
+  category: Swedish licensed bank / credit / payment / e-money institution
+  type: register
+  channel: regulator-register
+  evidence: https://www.fi.se/en/our-registers/company-register/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Finansinspektionen company register (Sweden)
+    spec_file: null
+    standard: null
+    role: licensed-institution
+    registrations:
+    - registered_name: Tink AB
+      licences:
+      - Payment institution
+      register_country: SE
+      matched_domain: tink.com
+      matched_by: hand-verified
+      register_id: 556898-2192
+      lei: 5493006USHNLYNUWZV52
+      identity: 'hand review: Tink AB, the Stockholm open-banking payment institution; Wikidata''s name search matched
+        an unrelated ''Tink'' (therealtink.com); all/tink-com holds tink.com'
+    signal_note: 'participation only: a regulator licence listing; no API conformance is published by this register'
+    detected_by: sweep-nordic-financial-registers.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
